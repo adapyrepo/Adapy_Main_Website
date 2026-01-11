@@ -30,21 +30,21 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 z-20" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-30">
+        <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl"
+            className="max-w-4xl flex flex-col items-center"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] mb-6 text-white">
               Smart Mobility for the <span className="text-white/60">Modern Age.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-xl leading-relaxed mb-10 text-balance">
+            <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-10 text-balance">
               Control your adaptive vehicle equipment with a single tap. 
               The future of accessibility is seamless, connected, and effortless.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
                 <button className="px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95 shadow-2xl">
                   Get Started
