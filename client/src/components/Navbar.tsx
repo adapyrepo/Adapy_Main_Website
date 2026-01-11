@@ -33,7 +33,7 @@ export function Navbar() {
       <div className="max-w-[1024px] mx-auto h-full px-4 flex justify-between items-center">
         {/* Apple-style Logo */}
         <Link href="/" className="z-[101] hover:opacity-100 transition-opacity">
-          <Smartphone className="w-5 h-5 text-white/80 hover:text-white transition-colors" />
+          <Smartphone className="w-5 h-5 text-black/80 hover:text-black transition-colors" />
         </Link>
 
         {/* Desktop Nav */}
@@ -57,14 +57,14 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-6 md:hidden z-[101]">
-          <button className="text-white/80 hover:text-white transition-colors">
+          <button className="text-black/80 hover:text-black transition-colors">
             <Search className="w-5 h-5" />
           </button>
-          <button className="text-white/80 hover:text-white transition-colors">
+          <button className="text-black/80 hover:text-black transition-colors">
             <ShoppingBag className="w-5 h-5" />
           </button>
           <button
-            className="text-white/80 hover:text-white transition-colors"
+            className="text-black/80 hover:text-black transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
