@@ -37,7 +37,7 @@ export default function Home() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl"
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8 text-white">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white">
               Smart Mobility for the <span className="text-white/60">Modern Age.</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-xl leading-relaxed mb-10 text-balance">
