@@ -1,13 +1,29 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Smartphone, Activity, ShieldCheck } from "lucide-react";
 import { useProducts } from "@/hooks/use-products";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find(p => p.isFeatured) || products?.[0];
+  const [textIndex, setTextIndex] = useState(0);
+
+  const heroTexts = [
+    { main: "Smart Mobility", sub: "for the Modern Age." },
+    { main: "Seamless Control", sub: "at your fingertips." },
+    { main: "Total Freedom", sub: "reimagined for you." },
+    { main: "Next Gen Tech", sub: "for accessibility." }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % heroTexts.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
@@ -31,32 +47,48 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-24 md:pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl flex flex-col items-center"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.9] mb-4 text-white">
-              Smart Mobility for the <span className="text-white/60">Modern Age.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8 text-balance">
-              Control your adaptive vehicle equipment with a single tap. 
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link href="/contact">
-                <button className="px-10 py-3 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95">
-                  Get Started
-                </button>
-              </Link>
-              <Link href="/products">
-                <button className="text-lg font-semibold text-white hover:text-white/80 transition-all flex items-center gap-2 group">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </Link>
-            </div>
-          </motion.div>
+          <div className="max-w-5xl flex flex-col items-center h-[280px] md:h-[320px] justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={textIndex}
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -40, filter: "blur(10px)" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center"
+              >
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-4 text-white">
+                  {heroTexts[textIndex].main}
+                  <br />
+                  <span className="text-white/50">{heroTexts[textIndex].sub}</span>
+                </h1>
+              </motion.div>
+            </AnimatePresence>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="flex flex-col items-center"
+            >
+              <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8 text-balance">
+                Control your adaptive vehicle equipment with a single tap. 
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link href="/contact">
+                  <button className="px-10 py-3 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95">
+                    Get Started
+                  </button>
+                </Link>
+                <Link href="/products">
+                  <button className="text-lg font-semibold text-white hover:text-white/80 transition-all flex items-center gap-2 group">
+                    Learn more
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
