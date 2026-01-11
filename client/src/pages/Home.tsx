@@ -51,13 +51,13 @@ export default function Home() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={textIndex}
-                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -40, filter: "blur(10px)" }}
+                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col items-center"
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-4 text-white">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
                   {heroTexts[textIndex].main}
                   <br />
                   <span className="text-white/50">{heroTexts[textIndex].sub}</span>
