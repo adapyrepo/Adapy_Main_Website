@@ -11,16 +11,16 @@ export default function Home() {
   const featuredProduct = products?.find(p => p.isFeatured) || products?.[0];
   const [textIndex, setTextIndex] = useState(0);
 
-  const heroTexts = [
-    { main: "Smart Mobility", sub: "for the Modern Age." },
-    { main: "Seamless Control", sub: "at your fingertips." },
-    { main: "Total Freedom", sub: "reimagined for you." },
-    { main: "Next Gen Tech", sub: "for accessibility." }
+  const benefitStatements = [
+    "Quit quitting your accessibility goals.",
+    "Seamless control for your adaptive gear.",
+    "Independence reimagined for the modern age.",
+    "The future of mobility is here."
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % heroTexts.length);
+      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
@@ -48,45 +48,44 @@ export default function Home() {
 
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-24 md:pb-32">
           <div className="max-w-5xl flex flex-col items-center h-[280px] md:h-[320px] justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={textIndex}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center"
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
-                  {heroTexts[textIndex].main}
-                  <br />
-                  <span className="text-white/50">{heroTexts[textIndex].sub}</span>
-                </h1>
-              </motion.div>
-            </AnimatePresence>
+            {/* Static Header */}
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-2 uppercase">
+              Adapy <span className="font-normal opacity-90">Is Raising the Bar</span>
+            </h1>
+
+            {/* Dynamic Subtext */}
+            <div className="h-20 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={textIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <p className="text-2xl md:text-4xl font-normal text-white mb-8">
+                    {benefitStatements[textIndex]}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col items-center"
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4"
             >
-              <p className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8 text-balance">
-                Control your adaptive vehicle equipment with a single tap. 
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Link href="/contact">
-                  <button className="px-10 py-3 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95">
-                    Get Started
-                  </button>
-                </Link>
-                <Link href="/products">
-                  <button className="text-lg font-semibold text-white hover:text-white/80 transition-all flex items-center gap-2 group">
-                    Learn more
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </div>
+              <Link href="/contact">
+                <button className="px-10 py-3 bg-white text-black rounded-full font-medium text-xl hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95 shadow-2xl">
+                  Learn more
+                </button>
+              </Link>
+              <Link href="/products">
+                <button className="px-10 py-3 bg-transparent border-2 border-white text-white rounded-full font-medium text-xl hover:bg-white/10 transition-all flex items-center gap-2 group">
+                  Buy
+                </button>
+              </Link>
             </motion.div>
           </div>
         </div>
