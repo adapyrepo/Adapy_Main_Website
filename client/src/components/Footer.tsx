@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertSubscriberSchema } from "@shared/schema";
 import type { InsertSubscriber } from "@shared/schema";
 import { Button } from "@/components/ui/button";
+import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 
 export function Footer() {
   const subscribe = useSubscribe();
@@ -25,7 +26,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-24 mb-16">
           <div className="md:col-span-2">
-            <h3 className="text-3xl font-bold tracking-tighter mb-6">ADAPY.</h3>
+            <img src={adapyLogo} alt="Adapy" className="h-8 w-auto invert brightness-0 mb-6" />
             <p className="text-white/60 text-lg max-w-md mb-8">
               Pioneering automation in adaptive mobility. Empowering independence through smart technology.
             </p>

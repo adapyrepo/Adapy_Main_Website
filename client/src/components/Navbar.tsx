@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, Smartphone, Search, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +32,9 @@ export function Navbar() {
   return (
     <header className="apple-navbar">
       <div className="max-w-[1024px] mx-auto h-full px-4 flex justify-between items-center">
-        {/* Apple-style Logo */}
-        <Link href="/" className="z-[101] hover:opacity-100 transition-opacity">
-          <Smartphone className="w-5 h-5 text-black/80 hover:text-black transition-colors" />
+        {/* Adapy Logo */}
+        <Link href="/" className="z-[101] hover:opacity-80 transition-opacity">
+          <img src={adapyLogo} alt="Adapy" className="h-4 w-auto brightness-0" />
         </Link>
 
         {/* Desktop Nav */}

@@ -46,24 +46,24 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 z-20" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-24 md:pb-32">
-          <div className="max-w-5xl flex flex-col items-center h-[280px] md:h-[320px] justify-center">
+        <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
+          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[300px]">
             {/* Static Header */}
-            <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-2 uppercase">
-              Adapy <span className="font-normal opacity-90">Is Raising the Bar</span>
+            <h1 className="text-[48px] md:text-[80px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
+              <span className="font-bold">RAISING</span> <span className="font-normal opacity-90">THE BAR</span>
             </h1>
 
             {/* Dynamic Subtext */}
-            <div className="h-20 flex items-center justify-center">
+            <div className="h-20 md:h-24 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={textIndex}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                 >
-                  <p className="text-2xl md:text-4xl font-normal text-white mb-8">
+                  <p className="text-[21px] md:text-[28px] lg:text-[32px] font-normal text-white tracking-tight">
                     {benefitStatements[textIndex]}
                   </p>
                 </motion.div>
@@ -74,15 +74,15 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4"
+              className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-8"
             >
               <Link href="/contact">
-                <button className="px-10 py-3 bg-white text-black rounded-full font-medium text-xl hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95 shadow-2xl">
+                <button className="px-[21px] py-[11px] bg-white text-black rounded-full font-normal text-[17px] hover:bg-white/90 transition-all transform active:scale-[0.97]">
                   Learn more
                 </button>
               </Link>
               <Link href="/products">
-                <button className="px-10 py-3 bg-transparent border-2 border-white text-white rounded-full font-medium text-xl hover:bg-white/10 transition-all flex items-center gap-2 group">
+                <button className="px-[21px] py-[11px] bg-transparent border-2 border-white text-white rounded-full font-normal text-[17px] hover:bg-white/10 transition-all active:scale-[0.97]">
                   Buy
                 </button>
               </Link>
