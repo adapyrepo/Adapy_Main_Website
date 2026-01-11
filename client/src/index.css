@@ -93,7 +93,7 @@
   }
 
   .apple-navbar {
-    @apply fixed top-0 left-0 right-0 z-[100] h-11 bg-white backdrop-blur-xl border-b border-black/5;
+    @apply fixed top-0 left-0 right-0 z-[100] h-11 bg-white border-b border-black/5;
   }
 
   .apple-navbar-link {
