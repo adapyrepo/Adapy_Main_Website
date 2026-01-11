@@ -14,29 +14,44 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
+      <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+        {/* YouTube Background Video */}
+        <div className="absolute inset-0 z-0">
+          <div className="video-background-container bg-black">
+            <iframe
+              className="video-background-iframe"
+              src="https://www.youtube.com/embed/IRsWYQFkg-8?autoplay=1&mute=1&controls=0&loop=1&playlist=IRsWYQFkg-8&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3&enablejsapi=1"
+              allow="autoplay; encrypted-media"
+              frameBorder="0"
+            />
+          </div>
+          {/* Dark Overlay/Wash */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 z-20" />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-30">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] mb-8 text-balance">
-              Smart Mobility for the <span className="text-muted-foreground">Modern Age.</span>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8 text-white">
+              Smart Mobility for the <span className="text-white/60">Modern Age.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed mb-10">
+            <p className="text-xl md:text-2xl text-white/80 max-w-xl leading-relaxed mb-10 text-balance">
               Control your adaptive vehicle equipment with a single tap. 
               The future of accessibility is seamless, connected, and effortless.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
-                <button className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg hover:bg-primary/90 transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
-                  Request Info Kit
+                <button className="px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all transform hover:scale-105 active:scale-95 shadow-2xl">
+                  Get Started
                 </button>
               </Link>
               <Link href="/products">
-                <button className="px-8 py-4 bg-secondary text-secondary-foreground border border-border/50 rounded-full font-semibold text-lg hover:bg-secondary/80 transition-all flex items-center gap-2 group">
+                <button className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all flex items-center gap-2 group">
                   Explore Products
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -44,9 +59,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        
-        {/* Abstract Background Element */}
-        <div className="absolute right-0 top-1/4 w-[600px] h-[600px] bg-gradient-to-br from-gray-100 to-transparent rounded-full blur-3xl opacity-50 -z-10" />
       </section>
 
       {/* Feature Section: The Ecosystem */}

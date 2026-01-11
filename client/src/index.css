@@ -91,6 +91,35 @@
   .glass-panel {
     @apply bg-background/80 backdrop-blur-md border border-border/50;
   }
+
+  .video-background-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .video-background-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+    .video-background-iframe {
+      height: 56.25vw;
+    }
+  }
+
+  @media (max-aspect-ratio: 16/9) {
+    .video-background-iframe {
+      width: 177.78vh;
+    }
+  }
 }
 
 /* Custom Scrollbar for a cleaner look */
