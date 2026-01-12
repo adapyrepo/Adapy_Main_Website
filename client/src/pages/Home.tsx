@@ -87,8 +87,8 @@ export default function Home() {
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
-          <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
-            <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
+          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12">
+            <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
                 <span className="font-bold">Why</span>{" "}
@@ -96,7 +96,7 @@ export default function Home() {
               </h1>
 
               {/* Dynamic Subtext */}
-              <div className="h-10 md:h-12 flex items-center justify-center">
+              <div className="h-10 md:h-12 flex items-start justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={textIndex}
@@ -116,7 +116,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4"
+                className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-4"
               >
                 <Link href="/contact">
                   <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
