@@ -90,7 +90,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12">
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
-              <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
+              <h1 className="text-[28px] md:text-[48px] lg:text-[56px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
                 <span className="font-bold">Why</span>{" "}
                 <span className="font-normal opacity-90">Adapy</span>
               </h1>
