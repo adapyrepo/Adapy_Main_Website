@@ -86,7 +86,7 @@ export default function Home() {
 
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
-              <h1 className="text-[13px] md:text-[21px] lg:text-[24px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
+              <h1 className="text-[7px] md:text-[11px] lg:text-[12px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
                 <span className="font-bold">Mobility</span>{" "}
                 <span className="font-normal opacity-90">
                   shouldn't be complicated
@@ -94,16 +94,16 @@ export default function Home() {
               </h1>
 
               {/* Dynamic Subtext */}
-              <div className="h-10 md:h-12 flex items-start justify-center">
+              <div className="h-6 md:h-8 flex items-start justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={textIndex}
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                   >
-                    <p className="text-[14px] md:text-[16px] lg:text-[18px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
+                    <p className="text-[7px] md:text-[8px] lg:text-[9px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
                       Adapy brings your adaptive equipment together into one simple, intelligent system.
                     </p>
                   </motion.div>
