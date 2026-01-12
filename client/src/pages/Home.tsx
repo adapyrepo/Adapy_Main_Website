@@ -36,7 +36,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden">
         {/* YouTube Background Video */}
         <div className="absolute inset-0 z-0">
           <div className="video-background-container bg-black">
@@ -86,50 +86,55 @@ export default function Home() {
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-40 flex flex-col items-center text-center mt-auto pb-8">
-          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px] mb-12">
-            {/* Static Header */}
-            <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
-              <span className="font-bold">Why</span>{" "}
-              <span className="font-normal opacity-90">Adapy</span>
-            </h1>
+        <div className="relative z-40 flex flex-col flex-1">
+          <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
+            <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
+              {/* Static Header */}
+              <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
+                <span className="font-bold">Why</span>{" "}
+                <span className="font-normal opacity-90">Adapy</span>
+              </h1>
 
-            {/* Dynamic Subtext */}
-            <div className="h-10 md:h-12 flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={textIndex}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
-                >
-                  <p className="text-[17px] md:text-[21px] lg:text-[24px] font-normal text-white tracking-tight">
-                    {benefitStatements[textIndex]}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+              {/* Dynamic Subtext */}
+              <div className="h-10 md:h-12 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={textIndex}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
+                  >
+                    <p className="text-[17px] md:text-[21px] lg:text-[24px] font-normal text-white tracking-tight">
+                      {benefitStatements[textIndex]}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4"
+              >
+                <Link href="/contact">
+                  <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
+                    Learn more
+                  </button>
+                </Link>
+                <Link href="/products">
+                  <button className="px-[22px] py-[11px] bg-transparent border border-[#0071e3] text-[#0071e3] rounded-full font-normal text-[17px] hover:bg-[#0071e3] hover:text-white transition-all active:scale-[0.97]">
+                    Buy
+                  </button>
+                </Link>
+              </motion.div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4"
-            >
-              <Link href="/contact">
-                <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
-                  Learn more
-                </button>
-              </Link>
-              <Link href="/products">
-                <button className="px-[22px] py-[11px] bg-transparent border border-[#0071e3] text-[#0071e3] rounded-full font-normal text-[17px] hover:bg-[#0071e3] hover:text-white transition-all active:scale-[0.97]">
-                  Buy
-                </button>
-              </Link>
-            </motion.div>
           </div>
-          <ScrollingLogos />
+          
+          <div className="w-full">
+            <ScrollingLogos />
+          </div>
         </div>
       </section>
 

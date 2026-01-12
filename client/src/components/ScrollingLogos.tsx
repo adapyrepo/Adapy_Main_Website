@@ -11,10 +11,10 @@ const logos = [
 
 export function ScrollingLogos() {
   return (
-    <div className="bg-black/80 backdrop-blur-md py-6 overflow-hidden border-t border-white/5 w-full">
-      <div className="relative flex">
+    <div className="bg-[#1d1d1f]/90 backdrop-blur-md py-4 overflow-hidden border-t border-white/5 w-full">
+      <div className="relative flex items-center">
         <motion.div
-          className="flex whitespace-nowrap gap-12 items-center"
+          className="flex whitespace-nowrap gap-16 items-center"
           animate={{
             x: [0, -1000],
           }}
@@ -22,17 +22,17 @@ export function ScrollingLogos() {
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30,
+              duration: 40,
               ease: "linear",
             },
           }}
         >
-          {[...logos, ...logos, ...logos].map((logo, i) => (
+          {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
             <img
               key={i}
               src={logo.url}
               alt={logo.name}
-              className="h-6 md:h-8 w-auto grayscale invert opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+              className="h-6 md:h-8 w-auto grayscale invert opacity-40 hover:opacity-100 transition-all duration-300 mx-4"
             />
           ))}
         </motion.div>
