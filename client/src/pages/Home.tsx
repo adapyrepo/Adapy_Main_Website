@@ -47,19 +47,19 @@ export default function Home() {
             />
           </div>
           {/* Dark Overlay/Wash */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 z-20" />
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-20" />
           
-          {/* Pulsing and Moving Light Effect */}
+          {/* Moving Shadow Effect */}
           <motion.div 
             className="absolute inset-0 z-30 pointer-events-none"
             animate={{
               background: [
-                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 40%)",
-                "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%)",
-                "radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 40%)",
-                "radial-gradient(circle at 10% 70%, rgba(255,255,255,0.08) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 40%)"
+                "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.4) 0%, transparent 60%)",
+                "radial-gradient(circle at 80% 20%, rgba(0,0,0,0.3) 0%, transparent 70%)",
+                "radial-gradient(circle at 70% 80%, rgba(0,0,0,0.4) 0%, transparent 60%)",
+                "radial-gradient(circle at 10% 70%, rgba(0,0,0,0.3) 0%, transparent 70%)",
+                "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.4) 0%, transparent 60%)"
               ]
             }}
             transition={{
@@ -69,9 +69,9 @@ export default function Home() {
             }}
           />
           <motion.div 
-            className="absolute inset-0 z-30 pointer-events-none mix-blend-soft-light"
+            className="absolute inset-0 z-30 pointer-events-none mix-blend-multiply"
             animate={{
-              opacity: [0.15, 0.3, 0.15],
+              opacity: [0.1, 0.25, 0.1],
               scale: [1, 1.05, 1]
             }}
             transition={{
@@ -80,7 +80,7 @@ export default function Home() {
               ease: "easeInOut"
             }}
             style={{
-              background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.6) 100%)"
+              background: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 100%)"
             }}
           />
         </div>
