@@ -47,24 +47,24 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
-          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[200px]">
+          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
             {/* Static Header */}
-            <h1 className="text-[18px] md:text-[40px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
+            <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
               <span className="font-bold">GO</span>{" "}
               <span className="font-normal opacity-90">SMART</span>
             </h1>
 
             {/* Dynamic Subtext */}
-            <div className="h-12 md:h-14 flex items-center justify-center">
+            <div className="h-10 md:h-12 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={textIndex}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                 >
-                  <p className="text-[14px] md:text-[16px] lg:text-[18px] font-normal text-white tracking-tight">
+                  <p className="text-[17px] md:text-[21px] lg:text-[24px] font-normal text-white tracking-tight">
                     {benefitStatements[textIndex]}
                   </p>
                 </motion.div>
@@ -75,15 +75,15 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-6"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4"
             >
               <Link href="/contact">
-                <button className="px-[14px] py-[7px] bg-white text-black rounded-full font-normal text-[13px] hover:bg-white/90 transition-all transform active:scale-[0.97]">
+                <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
                   Learn more
                 </button>
               </Link>
               <Link href="/products">
-                <button className="px-[14px] py-[7px] bg-transparent border border-white text-white rounded-full font-normal text-[13px] hover:bg-white/10 transition-all active:scale-[0.97]">
+                <button className="px-[22px] py-[11px] bg-transparent border border-[#0071e3] text-[#0071e3] rounded-full font-normal text-[17px] hover:bg-[#0071e3] hover:text-white transition-all active:scale-[0.97]">
                   Buy
                 </button>
               </Link>
