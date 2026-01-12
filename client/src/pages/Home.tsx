@@ -90,7 +90,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12 relative">
             {/* Text Protection Glow Overlay */}
             <div className="absolute left-0 bottom-0 w-[600px] h-[400px] bg-black/40 blur-[100px] -z-10 pointer-events-none rounded-tr-[100px]" />
-            
+
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[26px] md:text-[42px] lg:text-[48px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
