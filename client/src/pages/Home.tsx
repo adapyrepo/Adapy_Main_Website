@@ -17,6 +17,10 @@ export default function Home() {
     "Fewer buttons. Fewer barriers. More independence.",
     "Technology that adapts to you—not the other way around.",
     "Move through life with greater confidence and control.",
+    "Switch between devices without switching controls.",
+    "Smarter data for safer, more reliable equipment.",
+    "Confidence knowing your equipment is monitored and supported.",
+    "Predictive maintenance, Always Informed.",
   ];
 
   useEffect(() => {
@@ -45,14 +49,45 @@ export default function Home() {
           {/* Dark Overlay/Wash */}
           <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-20" />
+          
+          {/* Pulsing Light and Shadow Effect */}
+          <motion.div 
+            className="absolute inset-0 z-[25] pointer-events-none opacity-30"
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(0,0,0,0.2) 0%, transparent 40%)",
+                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.3) 0%, transparent 50%)"
+              ]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div 
+            className="absolute inset-0 z-[26] pointer-events-none mix-blend-overlay"
+            animate={{
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.1) 100%)"
+            }}
+          />
         </div>
 
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
           <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
             {/* Static Header */}
             <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
-              <span className="font-bold">GO</span>{" "}
-              <span className="font-normal opacity-90">SMART</span>
+              <span className="font-bold">Why</span>{" "}
+              <span className="font-normal opacity-90">Adapy</span>
             </h1>
 
             {/* Dynamic Subtext */}
