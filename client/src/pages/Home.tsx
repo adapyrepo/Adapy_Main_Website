@@ -90,7 +90,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12">
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
-              <h1 className="text-[28px] md:text-[48px] lg:text-[56px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
+              <h1 className="text-[26px] md:text-[42px] lg:text-[48px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
                 <span className="font-bold">Why</span>{" "}
                 <span className="font-normal opacity-90">Adapy</span>
               </h1>
@@ -105,7 +105,7 @@ export default function Home() {
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                   >
-                    <p className="text-[17px] md:text-[21px] lg:text-[24px] font-normal text-white tracking-tight">
+                    <p className="text-[16px] md:text-[20px] lg:text-[22px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
                       {benefitStatements[textIndex]}
                     </p>
                   </motion.div>
