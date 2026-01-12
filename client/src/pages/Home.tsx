@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollingLogos } from "@/components/ScrollingLogos";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Smartphone, Activity, ShieldCheck } from "lucide-react";
@@ -130,6 +131,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ScrollingLogos />
 
       {/* Feature Section: The Ecosystem */}
       <section className="py-24 bg-secondary/30">
