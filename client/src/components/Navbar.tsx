@@ -32,21 +32,21 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-black/5">
       {/* Top Bar */}
-      <div className="border-b border-black/5 py-3 px-4 md:px-6">
+      <div className="bg-[#1d1d1f] py-3 px-4 md:px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Logo */}
           <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src={adapyLogo} alt="Adapy" className="h-6 md:h-8 w-auto brightness-0" />
+            <img src={adapyLogo} alt="Adapy" className="h-6 md:h-8 w-auto invert brightness-0" />
           </Link>
 
           {/* Mission Statement */}
-          <p className="hidden lg:block text-[13px] font-medium text-black/60 tracking-tight uppercase">
+          <p className="hidden lg:block text-[13px] font-medium text-white/60 tracking-tight uppercase">
             Pioneering independence through smart technology
           </p>
 
           {/* Right Actions */}
           <div className="flex items-center gap-6">
-            <a href="tel:+18005550199" className="flex items-center gap-2 text-[14px] font-semibold text-black hover:text-[#0071e3] transition-colors">
+            <a href="tel:+18005550199" className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-[#0071e3] transition-colors">
               <Phone className="w-4 h-4" />
               <span>1-800-555-0199</span>
             </a>
@@ -55,7 +55,7 @@ export function Navbar() {
                 Get a Quote
               </button>
             </Link>
-            <button className="text-black/60 hover:text-black transition-colors">
+            <button className="text-white/60 hover:text-white transition-colors">
               <Search className="w-5 h-5" />
             </button>
           </div>
