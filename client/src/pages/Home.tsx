@@ -12,10 +12,11 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "Quit quitting your accessibility goals.",
-    "Seamless control for your adaptive gear.",
-    "Independence reimagined for the modern age.",
-    "The future of mobility is here.",
+    "Control all your adaptive equipment from one simple interface.",
+    "Do more on your own, with less effort and frustration.",
+    "Fewer buttons. Fewer barriers. More independence.",
+    "Technology that adapts to you—not the other way around.",
+    "Move through life with greater confidence and control.",
   ];
 
   useEffect(() => {
