@@ -8,14 +8,14 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const { data: products } = useProducts();
-  const featuredProduct = products?.find(p => p.isFeatured) || products?.[0];
+  const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
     "Quit quitting your accessibility goals.",
     "Seamless control for your adaptive gear.",
     "Independence reimagined for the modern age.",
-    "The future of mobility is here."
+    "The future of mobility is here.",
   ];
 
   useEffect(() => {
@@ -49,8 +49,9 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
           <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[300px]">
             {/* Static Header */}
-            <h1 className="text-[48px] md:text-[80px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
-              <span className="font-bold">RAISING</span> <span className="font-normal opacity-90">THE BAR</span>
+            <h1 className="text-[24px] md:text-[80px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
+              <span className="font-bold">GO</span>{" "}
+              <span className="font-normal opacity-90">SMART</span>
             </h1>
 
             {/* Dynamic Subtext */}
@@ -95,27 +96,31 @@ export default function Home() {
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-6">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">The Adapy Ecosystem</h2>
-            <p className="text-xl text-muted-foreground">Everything connected. Everything in sync.</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+              The Adapy Ecosystem
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Everything connected. Everything in sync.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
+              {
                 icon: <Smartphone className="w-8 h-8" />,
-                title: "One App Control", 
-                desc: "Replace multiple remotes with a single, intuitive interface on your smartphone." 
+                title: "One App Control",
+                desc: "Replace multiple remotes with a single, intuitive interface on your smartphone.",
               },
-              { 
+              {
                 icon: <Activity className="w-8 h-8" />,
-                title: "Real-time Monitoring", 
-                desc: "Live status updates and predictive maintenance alerts for your equipment." 
+                title: "Real-time Monitoring",
+                desc: "Live status updates and predictive maintenance alerts for your equipment.",
               },
-              { 
+              {
                 icon: <ShieldCheck className="w-8 h-8" />,
-                title: "Pathways™ Compliance", 
-                desc: "Automated reporting for VA, Medicaid, and funding agencies." 
-              }
+                title: "Pathways™ Compliance",
+                desc: "Automated reporting for VA, Medicaid, and funding agencies.",
+              },
             ].map((feature, i) => (
               <motion.div
                 key={i}
@@ -144,16 +149,19 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               <div className="lg:w-1/2 relative order-2 lg:order-1">
-                 {/* Unsplash abstract tech image */}
-                 {/* minimalist black abstract geometric shape 3d render */}
-                 <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 aspect-square">
-                   <img 
-                     src={featuredProduct.imageUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000"} 
-                     alt={featuredProduct.name}
-                     className="w-full h-full object-cover"
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                 </div>
+                {/* Unsplash abstract tech image */}
+                {/* minimalist black abstract geometric shape 3d render */}
+                <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 aspect-square">
+                  <img
+                    src={
+                      featuredProduct.imageUrl ||
+                      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000"
+                    }
+                    alt={featuredProduct.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
               </div>
               <div className="lg:w-1/2 order-1 lg:order-2">
                 <span className="text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-4 block">
@@ -168,14 +176,16 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   {featuredProduct.description}
                 </p>
-                
+
                 <ul className="space-y-4 mb-10">
-                  {(featuredProduct.features as string[] || []).slice(0, 3).map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-lg">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
+                  {((featuredProduct.features as string[]) || [])
+                    .slice(0, 3)
+                    .map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3 text-lg">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        {feature}
+                      </li>
+                    ))}
                 </ul>
 
                 <Link href={`/products`}>
@@ -196,7 +206,8 @@ export default function Home() {
             Ready to upgrade your mobility?
           </h2>
           <p className="text-xl text-white/60 mb-10 leading-relaxed">
-            Join thousands of users who have regained independence with Adapy's smart ecosystem.
+            Join thousands of users who have regained independence with Adapy's
+            smart ecosystem.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/contact">
@@ -204,7 +215,11 @@ export default function Home() {
                 Contact Sales
               </button>
             </Link>
-            <a href="https://play.google.com/store/apps" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://play.google.com/store/apps"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button className="px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all">
                 Download App
               </button>

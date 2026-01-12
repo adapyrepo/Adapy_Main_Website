@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, Smartphone, Search, ShoppingBag } from "lucide-react";
+import { Menu, X, Phone, Search, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
@@ -30,79 +30,89 @@ export function Navbar() {
   ];
 
   return (
-    <header className="apple-navbar">
-      <div className="max-w-[1024px] mx-auto h-full px-4 flex justify-between items-center">
-        {/* Adapy Logo */}
-        <Link href="/" className="z-[101] hover:opacity-80 transition-opacity">
-          <img src={adapyLogo} alt="Adapy" className="h-4 w-auto brightness-0" />
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-black/5">
+      {/* Top Bar */}
+      <div className="border-b border-black/5 py-3 px-4 md:px-6">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          {/* Logo */}
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <img src={adapyLogo} alt="Adapy" className="h-6 md:h-8 w-auto brightness-0" />
+          </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center justify-between flex-1 max-w-[800px] px-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="apple-navbar-link"
-            >
-              {link.name}
+          {/* Mission Statement */}
+          <p className="hidden lg:block text-[13px] font-medium text-black/60 tracking-tight uppercase">
+            Pioneering independence through smart technology
+          </p>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-6">
+            <a href="tel:+18005550199" className="flex items-center gap-2 text-[14px] font-semibold text-black hover:text-[#0071e3] transition-colors">
+              <Phone className="w-4 h-4" />
+              <span>1-800-555-0199</span>
+            </a>
+            <Link href="/contact">
+              <button className="hidden sm:block px-5 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[13px] hover:bg-[#0077ed] transition-all">
+                Get a Quote
+              </button>
             </Link>
-          ))}
-          <button className="apple-navbar-link p-0">
-            <Search className="w-4 h-4" />
-          </button>
-          <button className="apple-navbar-link p-0">
-            <ShoppingBag className="w-4 h-4" />
-          </button>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <div className="flex items-center gap-6 md:hidden z-[101]">
-          <button className="text-black/80 hover:text-black transition-colors">
-            <Search className="w-5 h-5" />
-          </button>
-          <button className="text-black/80 hover:text-black transition-colors">
-            <ShoppingBag className="w-5 h-5" />
-          </button>
-          <button
-            className="text-black/80 hover:text-black transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            <button className="text-black/60 hover:text-black transition-colors">
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black z-[100] pt-12 px-10 md:hidden overflow-y-auto"
-            >
-              <nav className="flex flex-col mt-4">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.05 }}
-                  >
-                    <Link
-                      href={link.href}
-                      className="block text-2xl font-semibold text-white/90 hover:text-white py-3 border-b border-white/10"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Main Nav Bar */}
+      <div className="h-11 px-4 md:px-6">
+        <div className="max-w-[1200px] mx-auto h-full flex justify-center items-center relative">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-[12px] font-medium text-black/80 hover:text-black transition-colors uppercase tracking-widest"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile Toggle */}
+          <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2">
+            <button
+              className="text-black/80 hover:text-black transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="fixed inset-x-0 top-[110px] bg-white border-b border-black/5 z-[99] md:hidden overflow-hidden"
+          >
+            <nav className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-semibold text-black/80 hover:text-black border-b border-black/5 pb-2"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
