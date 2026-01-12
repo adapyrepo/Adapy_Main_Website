@@ -52,37 +52,37 @@ export default function Home() {
           
           {/* Pulsing Light and Shadow Effect */}
           <motion.div 
-            className="absolute inset-0 z-[25] pointer-events-none opacity-30"
+            className="absolute inset-0 z-30 pointer-events-none"
             animate={{
               background: [
-                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.3) 0%, transparent 50%)",
-                "radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(0,0,0,0.2) 0%, transparent 40%)",
-                "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0,0,0,0.3) 0%, transparent 50%)"
+                "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 60%)",
+                "radial-gradient(circle at 70% 60%, rgba(255,255,255,0.15) 0%, transparent 70%)",
+                "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 60%)"
               ]
             }}
             transition={{
-              duration: 12,
+              duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           />
           <motion.div 
-            className="absolute inset-0 z-[26] pointer-events-none mix-blend-overlay"
+            className="absolute inset-0 z-30 pointer-events-none mix-blend-soft-light"
             animate={{
-              opacity: [0.2, 0.4, 0.2]
+              opacity: [0.3, 0.6, 0.3]
             }}
             transition={{
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut"
             }}
             style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.1) 100%)"
+              background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 100%)"
             }}
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
+        <div className="container mx-auto px-6 relative z-40 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
           <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
             {/* Static Header */}
             <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
