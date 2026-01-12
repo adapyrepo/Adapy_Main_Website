@@ -13,14 +13,7 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "You controlled all your adaptive equipment from one simple interface?",
-    "You could do more on your own, with less effort and frustration?",
-    "You experienced Fewer buttons. Fewer barriers. More independence?",
-    "Your technology adapted to you—not the other way around?",
-    "You could Switch between devices without switching controls?",
-    "You could access Smarter data for safer, more reliable equipment use?",
-    "You had confidence knowing your equipment is monitored and supported?",
-    "You had Predictive maintenance alerts, and were always informed?",
+    "Adapy brings your adaptive equipment together into one simple, intelligent system.",
   ];
 
   useEffect(() => {
@@ -93,9 +86,11 @@ export default function Home() {
 
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
-              <h1 className="text-[26px] md:text-[42px] lg:text-[48px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">WHAT</span>{" "}
-                <span className="font-normal opacity-90">IF...</span>
+              <h1 className="text-[13px] md:text-[21px] lg:text-[24px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
+                <span className="font-bold">Mobility</span>{" "}
+                <span className="font-normal opacity-90">
+                  shouldn't be complicated
+                </span>
               </h1>
 
               {/* Dynamic Subtext */}
@@ -108,8 +103,8 @@ export default function Home() {
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                   >
-                    <p className="text-[16px] md:text-[20px] lg:text-[22px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
-                      {benefitStatements[textIndex]}
+                    <p className="text-[14px] md:text-[16px] lg:text-[18px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
+                      Adapy brings your adaptive equipment together into one simple, intelligent system.
                     </p>
                   </motion.div>
                 </AnimatePresence>
