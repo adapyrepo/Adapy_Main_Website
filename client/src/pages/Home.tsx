@@ -13,15 +13,14 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "Control all your adaptive equipment from one simple interface.",
-    "Do more on your own, with less effort and frustration.",
-    "Fewer buttons. Fewer barriers. More independence.",
-    "Technology that adapts to you—not the other way around.",
-    "Move through life with greater confidence and control.",
-    "Switch between devices without switching controls.",
-    "Smarter data for safer, more reliable equipment.",
-    "Confidence knowing your equipment is monitored and supported.",
-    "Predictive maintenance, Always Informed.",
+    "You controlled all your adaptive equipment from one simple interface?",
+    "You could do more on your own, with less effort and frustration?",
+    "You experienced Fewer buttons. Fewer barriers. More independence?",
+    "Your technology adapted to you—not the other way around?",
+    "You could Switch between devices without switching controls?",
+    "You could access Smarter data for safer, more reliable equipment use?",
+    "You had confidence knowing your equipment is monitored and supported?",
+    "You had Predictive maintenance alerts, and were always informed?",
   ];
 
   useEffect(() => {
@@ -50,9 +49,9 @@ export default function Home() {
           {/* Dark Overlay/Wash */}
           <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px] z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 z-20" />
-          
+
           {/* Moving Shadow Effect */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 z-30 pointer-events-none"
             animate={{
               background: [
@@ -60,39 +59,43 @@ export default function Home() {
                 "radial-gradient(circle at 80% 20%, rgba(0,0,0,0.15) 0%, transparent 60%)",
                 "radial-gradient(circle at 70% 80%, rgba(0,0,0,0.2) 0%, transparent 50%)",
                 "radial-gradient(circle at 10% 70%, rgba(0,0,0,0.15) 0%, transparent 60%)",
-                "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.2) 0%, transparent 50%)"
-              ]
+                "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.2) 0%, transparent 50%)",
+              ],
             }}
             transition={{
               duration: 25,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           />
-          <motion.div 
+          <motion.div
             className="absolute inset-0 z-30 pointer-events-none mix-blend-multiply"
             animate={{
               opacity: [0.05, 0.15, 0.05],
-              scale: [1, 1.02, 1]
+              scale: [1, 1.02, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             style={{
-              background: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 100%)"
+              background:
+                "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 100%)",
             }}
           />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
-          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12">
+          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12 relative">
+            {/* Text Protection Glow Overlay */}
+            <div className="absolute left-0 bottom-0 w-[600px] h-[400px] bg-black/40 blur-[100px] -z-10 pointer-events-none rounded-tr-[100px]" />
+            
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[26px] md:text-[42px] lg:text-[48px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">Why</span>{" "}
-                <span className="font-normal opacity-90">Adapy</span>
+                <span className="font-bold">WHAT</span>{" "}
+                <span className="font-normal opacity-90">IF...</span>
               </h1>
 
               {/* Dynamic Subtext */}
@@ -131,7 +134,7 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
-          
+
           <div className="w-full">
             <ScrollingLogos />
           </div>
