@@ -11,12 +11,7 @@ const logos = [
 
 export function ScrollingLogos() {
   return (
-    <div className="bg-white py-12 overflow-hidden border-b border-black/5">
-      <div className="container mx-auto px-6 mb-8">
-        <p className="text-center text-sm font-semibold uppercase tracking-widest text-black/40">
-          Trusted by Industry Leaders
-        </p>
-      </div>
+    <div className="bg-black/80 backdrop-blur-md py-6 overflow-hidden border-t border-white/5 w-full">
       <div className="relative flex">
         <motion.div
           className="flex whitespace-nowrap gap-12 items-center"
@@ -37,7 +32,7 @@ export function ScrollingLogos() {
               key={i}
               src={logo.url}
               alt={logo.name}
-              className="h-8 md:h-12 w-auto grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+              className="h-6 md:h-8 w-auto grayscale invert opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
             />
           ))}
         </motion.div>

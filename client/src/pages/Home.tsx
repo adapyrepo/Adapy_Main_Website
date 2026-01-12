@@ -86,8 +86,8 @@ export default function Home() {
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-40 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
-          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px]">
+        <div className="container mx-auto px-6 relative z-40 flex flex-col items-center text-center mt-auto pb-8">
+          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[180px] mb-12">
             {/* Static Header */}
             <h1 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-[-0.015em] text-white mb-0 uppercase">
               <span className="font-bold">Why</span>{" "}
@@ -129,10 +129,9 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
+          <ScrollingLogos />
         </div>
       </section>
-
-      <ScrollingLogos />
 
       {/* Feature Section: The Ecosystem */}
       <section className="py-24 bg-secondary/30">
