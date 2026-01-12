@@ -35,36 +35,36 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="video-background-container bg-black">
             <iframe
-              className="video-background-iframe"
-              src="https://www.youtube.com/embed/IRsWYQFkg-8?autoplay=1&mute=1&controls=0&loop=1&playlist=IRsWYQFkg-8&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3&enablejsapi=1"
+              className="video-background-iframe scale-110"
+              src="https://www.youtube.com/embed/IRsWYQFkg-8?autoplay=1&mute=1&controls=0&loop=1&playlist=IRsWYQFkg-8&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3&enablejsapi=1&vq=hd1080"
               allow="autoplay; encrypted-media"
               frameBorder="0"
             />
           </div>
           {/* Dark Overlay/Wash */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 z-20" />
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-20" />
         </div>
 
         <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-auto pb-20 md:pb-24">
-          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[300px]">
+          <div className="max-w-[980px] w-full flex flex-col items-center justify-center min-h-[200px]">
             {/* Static Header */}
-            <h1 className="text-[24px] md:text-[80px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
+            <h1 className="text-[18px] md:text-[40px] leading-[1.05] tracking-[-0.015em] text-white mb-2 uppercase">
               <span className="font-bold">GO</span>{" "}
               <span className="font-normal opacity-90">SMART</span>
             </h1>
 
             {/* Dynamic Subtext */}
-            <div className="h-20 md:h-24 flex items-center justify-center">
+            <div className="h-12 md:h-14 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={textIndex}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                 >
-                  <p className="text-[21px] md:text-[28px] lg:text-[32px] font-normal text-white tracking-tight">
+                  <p className="text-[14px] md:text-[16px] lg:text-[18px] font-normal text-white tracking-tight">
                     {benefitStatements[textIndex]}
                   </p>
                 </motion.div>
@@ -75,15 +75,15 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-8"
+              className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-6"
             >
               <Link href="/contact">
-                <button className="px-[21px] py-[11px] bg-white text-black rounded-full font-normal text-[17px] hover:bg-white/90 transition-all transform active:scale-[0.97]">
+                <button className="px-[14px] py-[7px] bg-white text-black rounded-full font-normal text-[13px] hover:bg-white/90 transition-all transform active:scale-[0.97]">
                   Learn more
                 </button>
               </Link>
               <Link href="/products">
-                <button className="px-[21px] py-[11px] bg-transparent border-2 border-white text-white rounded-full font-normal text-[17px] hover:bg-white/10 transition-all active:scale-[0.97]">
+                <button className="px-[14px] py-[7px] bg-transparent border border-white text-white rounded-full font-normal text-[13px] hover:bg-white/10 transition-all active:scale-[0.97]">
                   Buy
                 </button>
               </Link>
