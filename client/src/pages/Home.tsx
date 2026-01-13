@@ -13,7 +13,9 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "Adapy brings your adaptive equipment together into one simple, intelligent system.",
+    "Adaptive Technology, Working Together",
+    "Real-Time Visibility Into Your Equipment",
+    "Remotes Are a Tangled, Insufficient, and Outdated Solution",
   ];
 
   useEffect(() => {
@@ -104,7 +106,7 @@ export default function Home() {
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
                   >
                     <p className="text-[15px] md:text-[18px] lg:text-[20px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
-                      Adapy brings your adaptive equipment together into one simple, intelligent system.
+                      {benefitStatements[textIndex]}
                     </p>
                   </motion.div>
                 </AnimatePresence>
