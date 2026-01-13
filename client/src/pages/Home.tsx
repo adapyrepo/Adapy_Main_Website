@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { ScrollingLogos } from "@/components/ScrollingLogos";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Smartphone, Activity, ShieldCheck } from "lucide-react";
+import { Smartphone, Activity, ShieldCheck } from "lucide-react";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
 
@@ -13,9 +13,14 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "Adaptive Technology, Working Together",
-    "Real-Time Visibility Into Your Equipment",
-    "Remotes Are a Tangled, Insufficient, and Outdated Solution",
+    "You controlled all your adaptive equipment from one simple interface?",
+    "You could do more on your own, with less effort and frustration?",
+    "You experienced Fewer buttons. Fewer barriers. More independence?",
+    "Your technology adapted to you—not the other way around?",
+    "You could Switch between devices without switching controls?",
+    "You could access Smarter data for safer, more reliable equipment use?",
+    "You had confidence knowing your equipment is monitored and supported?",
+    "You had Predictive maintenance alerts, and were always informed?",
   ];
 
   useEffect(() => {
@@ -23,7 +28,7 @@ export default function Home() {
       setTextIndex((prev) => (prev + 1) % benefitStatements.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [benefitStatements.length]);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
@@ -89,9 +94,10 @@ export default function Home() {
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">One System</span>
-                {""}
-                <span className="font-normal opacity-90">One Interface</span>
+                <span className="font-bold">Mobility</span>{" "}
+                <span className="font-normal opacity-90">
+                  shouldn't be complicated
+                </span>
               </h1>
 
               {/* Dynamic Subtext */}
@@ -194,8 +200,6 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               <div className="lg:w-1/2 relative order-2 lg:order-1">
-                {/* Unsplash abstract tech image */}
-                {/* minimalist black abstract geometric shape 3d render */}
                 <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10 aspect-square">
                   <img
                     src={
