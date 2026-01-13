@@ -89,10 +89,9 @@ export default function Home() {
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">Mobility</span>{" "}
-                <span className="font-normal opacity-90">
-                  shouldn't be complicated
-                </span>
+                <span className="font-bold">One System</span>
+                {""}
+                <span className="font-normal opacity-90">One Interface</span>
               </h1>
 
               {/* Dynamic Subtext */}
