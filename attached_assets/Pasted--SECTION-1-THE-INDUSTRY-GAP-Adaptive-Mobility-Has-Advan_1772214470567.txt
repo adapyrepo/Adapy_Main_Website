@@ -1,0 +1,216 @@
+🔷 SECTION 1 — THE INDUSTRY GAP
+Adaptive Mobility Has Advanced.
+The Infrastructure Has Not.
+
+Today’s adaptive vehicles operate in isolation.
+
+Equipment functions independently
+
+No centralized monitoring
+
+Limited safety visibility
+
+No lifecycle analytics
+
+Minimal real-time diagnostics
+
+No unified intelligence layer
+
+As mobility solutions become more complex, the industry lacks a connected backbone.
+
+Adapy was built to solve this.
+
+🔷 SECTION 2 — THE ADAPY ECOSYSTEM
+One Platform. Multiple Layers. Total Visibility.
+
+At the center of every connected adaptive vehicle is the Adapy Smart Hub — the brain of the system.
+
+From that central intelligence layer, Adapy connects:
+
+Adaptive equipment
+
+Control interfaces
+
+Safety sensors
+
+Environmental monitoring
+
+Cloud dashboards
+
+Fleet management systems
+
+Everything integrated. Everything visible.
+
+🔷 SECTION 3 — THE CORE: SMART HUB
+The Brain of the Adaptive Vehicle
+
+The Adapy Smart Hub centralizes control and monitoring across compatible mobility equipment.
+
+It enables:
+
+Multi-device integration
+
+Equipment diagnostics
+
+Usage reporting
+
+Real-time alerts
+
+Expandable module integration
+
+Secure cloud connectivity
+
+One vehicle. One intelligent control layer.
+
+🔷 SECTION 4 — CONTROL INTEGRATION
+Flexible Equipment Integration
+
+Adaptive vehicles often include multiple systems — lifts, transfer seats, specialty devices, and accessories.
+
+Adapy integrates seamlessly through:
+
+Harness Kits
+
+Purpose-built integration kits designed for specific equipment models. Multiple harness kits can operate within a single installation.
+
+Wireless Controllers
+
+For locations where traditional mounting is not possible — such as inside transfer seats — Adapy enables secure wireless control integration.
+
+This creates a unified control environment across the entire vehicle.
+
+🔷 SECTION 5 — SAFETY & MONITORING
+Environmental & Vehicle Safety Intelligence
+
+The Adapy platform expands through intelligent monitoring modules, including:
+
+Temperature monitoring
+
+Voltage and battery protection
+
+Carbon monoxide detection
+
+GPS tracking
+
+Equipment activity monitoring
+
+These modules connect into the Smart Hub, creating a layered safety architecture within the vehicle.
+
+Safety becomes proactive — not reactive.
+
+🔷 SECTION 6 — CLOUD INTELLIGENCE
+Visibility Beyond the Vehicle
+
+Adapy extends into secure cloud dashboards designed for each stakeholder in the mobility ecosystem.
+
+Dealers
+
+Installation tracking
+
+Warranty documentation
+
+Usage analytics
+
+Service alerts
+
+Compliance reporting
+
+CDRS Professionals
+
+Client equipment visibility
+
+Installation progress insights
+
+Safety monitoring data
+
+Manufacturers
+
+Real-world performance analytics
+
+Equipment diagnostics insights
+
+Usage trend data
+
+Adapy delivers visibility across the entire lifecycle of adaptive equipment.
+
+🔷 SECTION 7 — SCALABLE DEPLOYMENT
+From Individual Vehicles to Fleet Infrastructure
+
+The Adapy platform scales.
+
+Individual Adaptive Vehicles
+
+Connected, intelligent personal mobility environments.
+
+Dealer Networks
+
+Operational visibility across multiple installations and service workflows.
+
+NEMT Fleet Intelligence
+
+Fleet-scale monitoring including:
+
+Environmental safety alerts
+
+Adaptive equipment oversight
+
+GPS tracking
+
+Route management
+
+Driver accountability
+
+Built on the same Smart Hub platform — deployed at scale.
+
+🔷 SECTION 8 — WHY ADAPY
+The Future of Adaptive Mobility Is Connected
+
+Mobility should not operate in silos.
+Safety should not rely on assumption.
+Data should not disappear after installation.
+
+Adapy creates the digital infrastructure layer the adaptive industry has been missing.
+
+Control.
+Safety.
+Intelligence.
+Visibility.
+
+All unified.
+
+🔷 FINAL CTA
+Build on the Adapy Platform
+
+Whether you are a dealer, manufacturer, healthcare professional, or fleet operator — Adapy provides the intelligent infrastructure to power modern adaptive mobility.
+
+Explore the Platform
+Contact Our Team
+
+Strategic Notes
+
+This homepage:
+
+Positions Adapy as infrastructure, not a device
+
+Avoids technical clutter
+
+Introduces all ecosystem layers without overwhelming
+
+Makes NEMT feel like a natural expansion
+
+Supports long-term enterprise positioning
+
+If you would like next, I can:
+
+Create the visual ecosystem diagram layout
+
+Write the full Platform page
+
+Write a high-converting NEMT landing page
+
+Create investor-facing messaging
+
+Or simplify this further if you want it more direct and bold
+
+You are not building a product company, Aaron.
+You’re building category infrastructure.
