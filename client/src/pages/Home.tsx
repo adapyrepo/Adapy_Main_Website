@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollingLogos } from "@/components/ScrollingLogos";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Smartphone, 
   Activity, 
@@ -20,25 +20,36 @@ import {
   Lock
 } from "lucide-react";
 import { useProducts } from "@/hooks/use-products";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
+  const [textIndex, setTextIndex] = useState(0);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
+  const benefitStatements = [
+    "Adaptive Equipment, Finally Unified",
+    "Too Many Remotes. Too Much Failure",
+    "Adaptive Tech Is Broken. We Fixed It.",
+    "Stop Juggling Controls.",
+    "Outdated Systems Don’t Belong in Modern Mobility.",
+    "Complexity Is the Enemy of Independence.",
+    "“Good Enough” Isn’t Good Enough Anymore.",
+    "This Is What Adaptive Tech Should Have Been.",
+    "We Didn’t Add Another Device. We Replaced the Problem.",
+    "Adaptive Equipment Should Work Together—or Not Exist at All.",
+    "One System. Zero Excuses.",
+    "This Is What Happens When Accessibility Is Taken Seriously.",
+    "If It Takes Multiple Remotes, It’s Already Failed.",
+    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [benefitStatements.length]);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
@@ -83,9 +94,25 @@ export default function Home() {
                 </span>
               </motion.div>
 
-              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-6 leading-relaxed">
+              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
                 Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
               </p>
+
+              {/* Rotating Statements */}
+              <div className="h-8 mb-6 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={textIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    className="text-[13px] md:text-[15px] font-medium text-white/50 tracking-wide uppercase italic"
+                  >
+                    {benefitStatements[textIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
                 <Link href="/products">
