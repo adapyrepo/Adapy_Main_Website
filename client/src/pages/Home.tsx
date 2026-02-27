@@ -75,6 +75,12 @@ export default function Home() {
             <div className="absolute left-0 bottom-0 w-[600px] h-[400px] bg-black/40 blur-[100px] -z-10 pointer-events-none rounded-tr-[100px]" />
 
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
+              {/* Static Header */}
+              <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
+                <span className="font-bold">One System.</span>{" "}
+                <span className="font-normal opacity-90">One Interface.</span>
+              </h1>
+
               {/* Mobility Intelligence Platform Heading */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -86,12 +92,6 @@ export default function Home() {
                   Intelligent Mobility Infrastructure for Adaptive Vehicles
                 </span>
               </motion.div>
-
-              {/* Static Header */}
-              <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">One System.</span>{" "}
-                <span className="font-normal opacity-90">One Interface.</span>
-              </h1>
               <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
                 Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
               </p>
