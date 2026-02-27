@@ -65,12 +65,13 @@ export function ScrollingLogos() {
           }}
         >
           {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
-            <img
-              key={i}
-              src={logo.url}
-              alt={logo.name}
-              className="h-5 md:h-8 w-auto grayscale invert opacity-40 hover:opacity-100 transition-all duration-300 mx-4"
-            />
+            <div key={i} className="flex items-center justify-center h-8 md:h-12 w-40 mx-4">
+              <img
+                src={logo.url}
+                alt={logo.name}
+                className="max-h-full max-w-full object-contain grayscale invert opacity-40 hover:opacity-100 transition-all duration-300"
+              />
+            </div>
           ))}
         </motion.div>
       </div>
