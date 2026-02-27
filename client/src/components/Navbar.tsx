@@ -87,7 +87,7 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
         scrolled 
           ? "bg-black/90 backdrop-blur-lg border-white/10 shadow-lg py-2" 
-          : "bg-black/20 backdrop-blur-md border-white/10 py-4"
+          : "bg-black/80 backdrop-blur-md border-white/10 py-4"
       )}
     >
       <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">

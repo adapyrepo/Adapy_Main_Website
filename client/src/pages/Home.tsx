@@ -58,7 +58,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden">
+      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-black">
         {/* YouTube Background Video */}
         <div className="absolute inset-0 z-0">
           <div className="video-background-container bg-black">
@@ -69,47 +69,55 @@ export default function Home() {
               frameBorder="0"
             />
           </div>
-          <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px] z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 z-20" />
+          {/* Enhanced Overlay with Flashlight Effect */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px] z-10" />
+          <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0071e3]/20 blur-[150px] rounded-full opacity-60" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-30" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
-          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-12 relative">
-            <div className="absolute left-0 bottom-0 w-[600px] h-[400px] bg-black/40 blur-[100px] -z-10 pointer-events-none rounded-tr-[100px]" />
-
-            <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
-              <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">One System.</span>{" "}
-                <span className="font-normal opacity-90">One Interface.</span>
-              </h1>
-
+          <div className="flex-1 flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-24 relative">
+            <div className="max-w-[1000px] w-full flex flex-col items-center justify-center min-h-[180px]">
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="mb-4"
+                transition={{ duration: 0.8 }}
+                className="flex flex-col items-center"
               >
-                <span className="text-[12px] md:text-[14px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
-                  Intelligent Infrastructure for Adaptive Mobility
-                </span>
+                <h1 className="text-[32px] md:text-[54px] lg:text-[72px] font-bold leading-[1.07] tracking-tight text-white mb-4 uppercase">
+                  One System. One Interface.
+                </h1>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  className="mb-6"
+                >
+                  <span className="text-[14px] md:text-[18px] font-semibold tracking-[0.3em] text-[#0071e3] uppercase">
+                    Intelligent Infrastructure for Adaptive Mobility
+                  </span>
+                </motion.div>
+
+                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[700px] mb-10 leading-relaxed">
+                  Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  <Link href="/platform">
+                    <button className="px-10 py-4 bg-[#0071e3] text-white rounded-full font-bold text-[18px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20">
+                      Explore the Platform
+                    </button>
+                  </Link>
+                  <Link href="/contact">
+                    <button className="px-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[18px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]">
+                      Contact Our Team
+                    </button>
+                  </Link>
+                </div>
               </motion.div>
-
-              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mb-8 leading-relaxed">
-                Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
-                <Link href="/products">
-                  <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
-                    Explore the Platform
-                  </button>
-                </Link>
-                <Link href="/contact">
-                  <button className="px-[22px] py-[11px] bg-transparent border border-white/30 text-white rounded-full font-normal text-[17px] hover:bg-white/10 transition-all active:scale-[0.97]">
-                    Contact Our Team
-                  </button>
-                </Link>
-              </div>
             </div>
           </div>
 
