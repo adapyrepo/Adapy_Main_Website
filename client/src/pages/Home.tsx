@@ -153,7 +153,7 @@ export default function Home() {
                     onClick={() => setIsSliderOpen(true)}
                     className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
                   >
-                    See How It Works
+                    Request Demo
                   </button>
                 </div>
               </motion.div>

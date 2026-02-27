@@ -78,7 +78,7 @@ export function ScrollingLogos() {
               <img
                 src={logo.url}
                 alt={logo.name}
-                className="max-h-full max-w-full object-contain grayscale invert opacity-40 hover:opacity-100 transition-all duration-300"
+                className="max-h-full max-w-full object-contain grayscale invert opacity-70 hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}
