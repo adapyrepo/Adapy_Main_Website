@@ -10,32 +10,6 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
-  const [textIndex, setTextIndex] = useState(0);
-
-  const benefitStatements = [
-    "Adaptive Equipment, Finally Unified",
-    "Too Many Remotes. Too Much Failure",
-    "Adaptive Tech Is Broken. We Fixed It.",
-    "Stop Juggling Controls.",
-    "Outdated Systems Don’t Belong in Modern Mobility.",
-    "Complexity Is the Enemy of Independence.",
-    "“Good Enough” Isn’t Good Enough Anymore.",
-    "This Is What Adaptive Tech Should Have Been.",
-    "We Didn’t Add Another Device. We Replaced the Problem.",
-    "Adaptive Equipment Should Work Together—or Not Exist at All.",
-    "One System. Zero Excuses.",
-    "This Is What Happens When Accessibility Is Taken Seriously.",
-    "If It Takes Multiple Remotes, It’s Already Failed.",
-    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
-    "",
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [benefitStatements.length]);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
@@ -121,23 +95,6 @@ export default function Home() {
               <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
                 Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
               </p>
-
-              {/* Dynamic Subtext */}
-              <div className="h-10 md:h-12 flex items-start justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={textIndex}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
-                  >
-                    <p className="text-[15px] md:text-[18px] lg:text-[20px] font-normal text-white/90 tracking-[-0.015em] leading-snug">
-                      {benefitStatements[textIndex]}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
 
               <motion.div
                 initial={{ opacity: 0 }}

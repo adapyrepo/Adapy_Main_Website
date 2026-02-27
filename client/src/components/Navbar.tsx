@@ -8,12 +8,37 @@ import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  const [textIndex, setTextIndex] = useState(0);
+
+  const benefitStatements = [
+    "Adaptive Equipment, Finally Unified",
+    "Too Many Remotes. Too Much Failure",
+    "Adaptive Tech Is Broken. We Fixed It.",
+    "Stop Juggling Controls.",
+    "Outdated Systems Don’t Belong in Modern Mobility.",
+    "Complexity Is the Enemy of Independence.",
+    "“Good Enough” Isn’t Good Enough Anymore.",
+    "This Is What Adaptive Tech Should Have Been.",
+    "We Didn’t Add Another Device. We Replaced the Problem.",
+    "Adaptive Equipment Should Work Together—or Not Exist at All.",
+    "One System. Zero Excuses.",
+    "This Is What Happens When Accessibility Is Taken Seriously.",
+    "If It Takes Multiple Remotes, It’s Already Failed.",
+    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [benefitStatements.length]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
   }, [isOpen]);
 
@@ -34,14 +59,38 @@ export function Navbar() {
       {/* Top Bar */}
       <div className="bg-black/20 py-3 px-4 md:px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          {/* Logo */}
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src={adapyLogo} alt="Adapy" className="h-6 md:h-8 w-auto invert brightness-0" />
-          </Link>
+          {/* Logo & Rotating Text */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              <img
+                src={adapyLogo}
+                alt="Adapy"
+                className="h-6 md:h-8 w-auto invert brightness-0"
+              />
+            </Link>
+
+            <div className="hidden lg:block h-6 overflow-hidden border-l border-white/20 pl-6">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={textIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="text-[13px] font-medium text-white/60 tracking-tight uppercase"
+                >
+                  {benefitStatements[textIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-6">
-            <a href="tel:+18005550199" className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-[#0071e3] transition-colors">
+            <a
+              href="tel:+18005550199"
+              className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-[#0071e3] transition-colors"
+            >
               <Phone className="w-4 h-4" />
               <span>1-800-555-0199</span>
             </a>
@@ -50,7 +99,11 @@ export function Navbar() {
                 Get a Quote
               </button>
             </Link>
-            <a href="https://admin.adapy.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://admin.adapy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button className="hidden sm:block px-5 py-2 bg-white/10 text-white border border-white/20 rounded-full font-medium text-[13px] hover:bg-white/20 transition-all">
                 Login
               </button>
@@ -95,7 +148,7 @@ export function Navbar() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="fixed inset-x-0 top-[110px] bg-black/90 backdrop-blur-xl border-b border-white/10 z-[99] md:hidden overflow-hidden"
           >
