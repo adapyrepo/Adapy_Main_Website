@@ -128,7 +128,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full">
+          <div className="w-full opacity-50 hover:opacity-80 transition-opacity duration-500">
             <ScrollingLogos />
           </div>
         </div>
