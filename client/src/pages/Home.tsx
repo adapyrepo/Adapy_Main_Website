@@ -86,22 +86,22 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="text-[28px] md:text-[48px] lg:text-[54px] font-bold leading-[1.1] tracking-tight text-white mb-4 uppercase">
-                  Connected Adaptive Mobility.
+                <h1 className="text-[32px] md:text-[54px] lg:text-[72px] font-bold leading-[1.07] tracking-tight text-white mb-4 uppercase">
+                  The Connected Backbone of Adaptive Mobility.
                 </h1>
 
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                  className="mb-4"
+                  className="mb-6"
                 >
-                  <span className="text-[12px] md:text-[14px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
-                    Intelligent Infrastructure
+                  <span className="text-[14px] md:text-[18px] font-semibold tracking-[0.3em] text-[#0071e3] uppercase">
+                    Intelligent Infrastructure for Adaptive Mobility
                   </span>
                 </motion.div>
 
-                <p className="text-[14px] md:text-[16px] text-white/70 max-w-[700px] mb-8 leading-relaxed">
+                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[700px] mb-10 leading-relaxed">
                   Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
                 </p>
 
