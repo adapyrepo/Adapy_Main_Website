@@ -1,8 +1,9 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import braunabilityLogo from "@assets/braunability_1772217975241.png";
 
 const logos = [
-  { name: "Brand 1", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+1" },
+  { name: "BraunAbility", url: braunabilityLogo },
   { name: "Brand 2", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+2" },
   { name: "Brand 3", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+3" },
   { name: "Brand 4", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+4" },
