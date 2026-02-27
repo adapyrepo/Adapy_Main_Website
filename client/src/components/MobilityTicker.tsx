@@ -6,22 +6,23 @@ export function MobilityTicker() {
   const [data, setData] = useState([45, 52, 48, 61, 55, 67, 72, 68, 81, 75, 88, 92, 85, 98, 105, 95, 110, 115, 108, 122, 128, 120, 135, 142, 138, 150, 155, 148, 162, 175]);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // Animate the sparkline data with ups and downs but ending on a positive note
+  // Animate the sparkline data with more pronounced dips and peaks
   useEffect(() => {
     const interval = setInterval(() => {
       setData(prev => {
         const newData = [...prev.slice(1)];
         const lastVal = prev[prev.length - 1];
         
-        // Dynamic variation: more volatile but generally trending up
-        // We use a larger range for "ups and downs"
-        const variation = (Math.random() - 0.45) * 20; 
+        // Create more significant swings by increasing the multiplier
+        // A slightly negative bias on the random can cause more frequent dips
+        // while the Math.max/min and starting state keep it looking "active"
+        const variation = (Math.random() - 0.48) * 40; 
         
-        // Keep it within a healthy range but allow some "dips"
-        const nextVal = Math.max(60, Math.min(240, lastVal + variation));
+        // Wider range for more dramatic visual movement
+        const nextVal = Math.max(40, Math.min(260, lastVal + variation));
         return [...newData, nextVal];
       });
-    }, 2000);
+    }, 1500); // Faster updates for more "jitter"
     return () => clearInterval(interval);
   }, []);
   
