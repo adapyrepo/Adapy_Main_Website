@@ -3,14 +3,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
+import qstraintLogo from "@assets/Q-straint-logo_1772218515352.webp";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
   { name: "Bruno", url: brunoLogo },
   { name: "Ricon", url: riconLogo },
-  { name: "Brand 4", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+4" },
-  { name: "Brand 5", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+5" },
-  { name: "Brand 6", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+6" },
+  { name: "Q'Straint", url: qstraintLogo },
 ];
 
 export function ScrollingLogos() {
