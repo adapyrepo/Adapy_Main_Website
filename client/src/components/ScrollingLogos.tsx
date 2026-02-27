@@ -8,6 +8,7 @@ import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM-removebg-preview_1772225967882.png";
 import harmarLogo from "@assets/Screenshot_2026-02-27_at_1.43.14_PM_1772225061734.png";
 import atcMobilityLogo from "@assets/ATC_Mobility-Logo_1772225555801.webp";
+import adaptLogo from "@assets/adapt_1772225980081.png";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
@@ -18,6 +19,7 @@ const logos = [
   { name: "Sure Grip", url: suregripLogo },
   { name: "Harmar", url: harmarLogo },
   { name: "ATC Mobility", url: atcMobilityLogo },
+  { name: "Adapt Solutions", url: adaptLogo },
 ];
 
 export function ScrollingLogos() {
