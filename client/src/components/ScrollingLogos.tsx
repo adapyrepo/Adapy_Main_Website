@@ -5,7 +5,7 @@ import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
 import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
 import ezlockLogo from "@assets/ezklock_1772218764750.webp";
-import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM_1772225657394.png";
+import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM-removebg-preview_1772225967882.png";
 import harmarLogo from "@assets/Screenshot_2026-02-27_at_1.43.14_PM_1772225061734.png";
 import atcMobilityLogo from "@assets/ATC_Mobility-Logo_1772225555801.webp";
 
