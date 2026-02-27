@@ -101,9 +101,25 @@ export default function Home() {
                   </span>
                 </motion.div>
 
-                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[700px] mb-10 leading-relaxed">
+                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[700px] mb-6 leading-relaxed">
                   Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
                 </p>
+
+                {/* Rotating Statements */}
+                <div className="h-8 mb-10 overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={textIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                      className="text-[13px] md:text-[15px] font-medium text-[#0071e3] tracking-wide uppercase italic"
+                    >
+                      {benefitStatements[textIndex]}
+                    </motion.p>
+                  </AnimatePresence>
+                </div>
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                   <Link href="/platform">
