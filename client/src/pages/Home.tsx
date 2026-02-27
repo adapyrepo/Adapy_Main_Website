@@ -90,16 +90,7 @@ export default function Home() {
                   Mobility Should Never Operate in Isolation.
                 </h1>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                  className="mb-4"
-                >
-                  <span className="text-[10px] md:text-[12px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
-                    The Operating System for Adaptive Mobility
-                  </span>
-                </motion.div>
+                {/* Subheading Removed */}
 
                 <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-4 leading-relaxed">
                   Adapy transforms adaptive vehicles into intelligent, connected environments — delivering proactive safety, unified control, and lifecycle visibility.
