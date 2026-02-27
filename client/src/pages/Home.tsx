@@ -97,7 +97,7 @@ export default function Home() {
                   className="mb-4"
                 >
                   <span className="text-[10px] md:text-[12px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
-                    Intelligent Infrastructure for Adaptive Mobility
+                    The Platform Powering Adaptive Mobility
                   </span>
                 </motion.div>
 
