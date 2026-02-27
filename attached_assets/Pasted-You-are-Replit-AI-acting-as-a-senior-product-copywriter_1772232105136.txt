@@ -1,0 +1,202 @@
+You are Replit AI acting as a senior product copywriter and UX content designer.
+
+Create the full website content for the “Safety Modules” page under the Hardware section of Adapy.com.
+
+CONTEXT
+
+Adapy Safety Modules extend the Smart Hub platform by adding environmental and vehicle monitoring capabilities inside adaptive mobility environments. These modules may include (but are not limited to):
+
+- Temperature monitoring
+- Voltage monitoring
+- Battery cut-off control
+- Carbon monoxide detection
+- Environmental safety triggers
+- GPS/location services
+- Equipment activity monitoring
+
+Safety Modules connect into the Adapy Smart Hub and operate as part of the broader Smart Mobility ecosystem. They are not standalone consumer sensors. They are integrated into a structured control and monitoring platform.
+
+This page must reinforce:
+- Platform positioning
+- Layered safety architecture
+- Scalability from individual vehicles to fleets
+- Role-based visibility via Adapy Cloud
+
+CRITICAL RULES
+
+- Do NOT invent specific sensor thresholds, battery specs, wireless ranges, or regulatory certifications.
+- Do NOT claim medical-grade, life-saving, or compliance certifications unless explicitly verified.
+- Avoid absolute claims like “guarantees safety.”
+- Use structured, professional language.
+- Emphasize integration into Smart Hub.
+- Make it clear modules are optional extensions of the platform.
+
+DELIVERABLE FORMAT
+
+1) SEO Title (≤ 60 characters)
+2) Meta Description (≤ 155 characters)
+3) Full structured page copy (H1/H2/H3)
+4) CTA list (button + slug)
+5) Suggested page components for development
+6) Optional FAQ (5 Q&A)
+
+PAGE STRUCTURE
+--------------------------------------------------
+
+HERO
+
+H1: Safety Modules
+
+Subheadline:
+Integrated environmental and vehicle monitoring designed for connected adaptive mobility environments.
+
+Primary CTA: Request a Demo
+Secondary CTA: Explore the Smart Hub
+
+--------------------------------------------------
+
+SECTION 1 — WHY SAFETY INTELLIGENCE MATTERS
+
+H2: Adaptive Mobility Requires Proactive Monitoring
+
+Explain:
+- Adaptive vehicles often transport vulnerable passengers.
+- Environmental and equipment risks can go unnoticed.
+- Traditional systems operate independently without centralized oversight.
+- Adapy introduces a structured safety layer inside the vehicle ecosystem.
+
+Close with:
+Safety should be integrated — not added as an afterthought.
+
+--------------------------------------------------
+
+SECTION 2 — WHAT SAFETY MODULES DO
+
+H2: Expanding the Smart Hub Intelligence Layer
+
+Explain:
+Safety Modules connect directly to the Adapy Smart Hub to provide additional monitoring and control capabilities.
+
+Use 6 short feature blocks:
+
+Temperature Monitoring  
+Helps track interior conditions within adaptive environments.
+
+Voltage Monitoring  
+Provides visibility into vehicle power conditions affecting equipment.
+
+Battery Cut-Off Control  
+Structured control options for managing vehicle power states.
+
+Carbon Monoxide / Environmental Detection  
+Monitors air quality conditions inside enclosed vehicle spaces.
+
+GPS & Location Services  
+Enables vehicle-level visibility when deployed within fleet environments.
+
+Equipment Activity Monitoring  
+Tracks operational activity across integrated adaptive systems.
+
+Clarify:
+Modules may vary based on deployment configuration.
+
+--------------------------------------------------
+
+SECTION 3 — HOW IT FITS INTO THE PLATFORM
+
+H2: Layered Safety Architecture
+
+Describe ecosystem visually (text only):
+
+Center: Smart Hub  
+Connected: Harness Kits + Wireless Controllers + Safety Modules  
+Cloud: Dealer Dashboard + CDRS Portal + Fleet Visibility Tools  
+
+Add short caption:
+A unified system coordinating control, monitoring, and visibility.
+
+--------------------------------------------------
+
+SECTION 4 — FROM INDIVIDUAL VEHICLES TO FLEETS
+
+H2: Scalable Safety Deployment
+
+Explain:
+
+Individual Adaptive Vehicles  
+Adds structured monitoring within personal mobility environments.
+
+Dealer Networks  
+Improves post-install visibility and service awareness.
+
+CDRS Professionals  
+Provides greater confidence in safety-aware deployments.
+
+NEMT Fleets  
+Supports vehicle-level safety triggers, monitoring, and operational visibility at scale.
+
+Reinforce:
+Same platform architecture — expanded intelligence layer.
+
+--------------------------------------------------
+
+SECTION 5 — DESIGNED FOR STRUCTURED VISIBILITY
+
+H2: Secure, Role-Based Access
+
+Bullets (non-overclaiming language):
+
+- Role-based dashboard visibility
+- Structured device authentication
+- Secure device-to-cloud communication design
+- Segmented access across stakeholders
+
+Close with:
+Safety data should be accessible — but only to those who need it.
+
+--------------------------------------------------
+
+SECTION 6 — PLATFORM CONNECTION
+
+H2: Powered by the Adapy Smart Hub
+
+Short explanation:
+Safety Modules require the Adapy Smart Hub and function as part of the connected mobility ecosystem. They extend the platform’s intelligence and monitoring capabilities.
+
+CTA:
+View the Smart Hub (/hardware/smart-hub)
+
+--------------------------------------------------
+
+FINAL CTA STRIP
+
+H2: Add Intelligence to Your Safety Strategy
+
+Buttons:
+- Request a Demo (/request-demo)
+- Contact Our Team (/contact)
+- Explore the Platform (/platform)
+
+--------------------------------------------------
+
+INTERNAL LINKS
+
+Smart Hub: /hardware/smart-hub  
+Harness Integration: /hardware/harness-integration  
+Wireless Controllers: /hardware/wireless-controllers  
+Platform: /platform  
+Contact: /contact  
+Request Demo: /request-demo  
+
+--------------------------------------------------
+
+STYLE
+
+- Professional
+- Platform-driven
+- Safety-forward but not alarmist
+- Structured and scannable
+- Avoid hype language
+- Avoid regulatory overclaims
+
+Produce the final structured page copy.

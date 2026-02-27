@@ -12,6 +12,7 @@ import Platform from "@/pages/Platform";
 import SmartHub from "@/pages/SmartHub";
 import HarnessIntegration from "@/pages/HarnessIntegration";
 import WirelessControllers from "@/pages/WirelessControllers";
+import SafetyModules from "@/pages/SafetyModules";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/hardware/smart-hub" component={SmartHub} />
       <Route path="/hardware/harness-integration" component={HarnessIntegration} />
       <Route path="/hardware/wireless-controllers" component={WirelessControllers} />
+      <Route path="/hardware/safety-modules" component={SafetyModules} />
       <Route path="/products" component={Products} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
