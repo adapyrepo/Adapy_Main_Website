@@ -152,7 +152,7 @@ export default function Home() {
                 </Link>
                 <Link href="/products">
                   <button className="px-[22px] py-[11px] bg-transparent border border-[#0071e3] text-[#0071e3] rounded-full font-normal text-[17px] hover:bg-[#0071e3] hover:text-white transition-all active:scale-[0.97]">
-                    CHAT WITH OUR BOT
+                    See Industry Solutions
                   </button>
                 </Link>
               </motion.div>
