@@ -8,11 +8,13 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Platform from "@/pages/Platform";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/platform" component={Platform} />
       <Route path="/products" component={Products} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />

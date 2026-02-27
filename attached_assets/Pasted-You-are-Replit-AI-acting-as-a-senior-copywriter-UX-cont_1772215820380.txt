@@ -1,0 +1,143 @@
+You are Replit AI acting as a senior copywriter + UX content designer. I need you to create a dedicated “Platform” page for Adapy.com using the content and structure below. The final output must be production-ready website copy with clear headings, short paragraphs, and scannable bullet lists. Keep the tone confident, professional, and “platform/infrastructure company” (not a product catalog). Do NOT add fake certifications, fake specs, or fake claims. If something needs verification, phrase it generically.
+
+PAGE NAME
+- Platform (Adapy Smart Mobility Platform)
+
+PAGE GOAL
+- Explain Adapy as a unified platform (ecosystem architecture), not a list of products.
+- Clearly describe how Smart Hub + integrations + modules + cloud dashboards work together.
+- Provide clear CTAs to Hardware and Solutions pages.
+
+OUTPUT REQUIREMENTS
+1) Provide the full page content as structured sections (H1/H2/H3).
+2) Provide short “microcopy” lines for section intros where helpful.
+3) Provide CTA button labels and suggested link targets (slugs).
+4) Provide SEO: title tag (max 60 chars), meta description (max 155 chars).
+5) Include a short “Ecosystem Diagram” section describing what the diagram should show (no actual image generation needed).
+
+USE THIS STRUCTURE AND COPY (YOU MAY POLISH FOR FLOW, BREVITY, AND CONSISTENCY)
+---
+HERO
+H1: The Adapy Smart Mobility Platform
+Subheadline: A unified infrastructure layer that connects, controls, and monitors adaptive mobility environments — from individual vehicles to fleet-scale deployment.
+CTAs:
+- Request a Demo (primary)
+- Explore Hardware (secondary)
+
+SECTION 1 — WHY A PLATFORM
+H2: Adaptive Mobility Needs Infrastructure
+Body:
+Modern adaptive vehicles often include multiple independent systems—lifts, transfer seats, roof systems, environmental controls, and safety devices. Each operates in isolation. There is no centralized intelligence layer. No unified diagnostics. No lifecycle analytics. No real-time visibility across stakeholders.
+Closing: Adapy was built to become the missing infrastructure layer.
+
+SECTION 2 — PLATFORM OVERVIEW
+H2: One Brain. Multiple Layers. Unified Intelligence.
+Body:
+At the center of the platform is the Adapy Smart Hub. The Smart Hub serves as the intelligent control and monitoring core of the adaptive vehicle.
+Bullets: From this central layer, Adapy connects:
+- Equipment control systems
+- Harness integrations
+- Wireless controllers
+- Safety monitoring modules
+- Environmental sensors
+- Cloud intelligence dashboards
+Closing: The result is a connected mobility ecosystem.
+
+SECTION 3 — ARCHITECTURE (HOW IT WORKS)
+H2: How the Platform Works
+H3: Layer 1 — The Intelligence Core (Adapy Smart Hub)
+Bullets:
+- Centralizes control signals
+- Monitors equipment activity
+- Logs usage data
+- Communicates with safety modules
+- Connects securely to the cloud
+Closing: It transforms standalone devices into a coordinated system.
+
+H3: Layer 2 — Control Integration
+Subhead: Adaptive equipment integrates through:
+H4: Harness Kits
+Copy: Purpose-built integrations for specific equipment models. Multiple harness kits can operate simultaneously within one installation.
+H4: Wireless Controllers
+Copy: Used where physical harness placement is not feasible. All control inputs route through the Smart Hub.
+
+H3: Layer 3 — Safety & Monitoring Modules
+Copy: The platform expands through modular intelligence components, such as:
+- Temperature monitoring
+- Voltage & battery protection
+- Carbon monoxide detection
+- Equipment activity tracking
+- GPS & location services
+Closing: These modules create a layered safety architecture inside the vehicle.
+
+H3: Layer 4 — Cloud Intelligence
+Copy: Data from the vehicle securely transmits to the Adapy Cloud, enabling role-based dashboards for:
+- Dealers
+- CDRS professionals
+- Manufacturers
+- Fleet operators
+Closing: Each stakeholder receives relevant, permission-based visibility.
+
+SECTION 4 — WHAT MAKES IT DIFFERENT
+H2: Built Specifically for Adaptive Mobility
+Copy:
+Adapy is not a generic IoT device. It was engineered for mobility equipment integration, vehicle-based adaptive environments, and multi-stakeholder visibility.
+Bullets (supports language only; avoid absolute claims if not verified):
+- Supports multiple devices per vehicle
+- Supports multiple vehicles per organization
+- Designed to scale from single installs to fleet deployments
+- Permission-based visibility by role
+
+SECTION 5 — SCALABILITY
+H2: From Individual Vehicles to Enterprise Networks
+Copy:
+The same platform architecture supports single adaptive vehicles, multi-location dealer networks, state-level mobility programs, and national NEMT fleets. No system redesign required. The Smart Hub remains the core. The cloud expands as needed.
+
+SECTION 6 — SECURITY & DATA STRUCTURE
+H2: Secure by Design
+Copy:
+Include security-forward language without overclaiming certifications. Mention:
+- Role-based access controls
+- Encrypted device-to-cloud communication
+- Segmented dashboard visibility
+- Secure device authentication
+Closing: Adaptive mobility data remains protected and structured.
+
+SECTION 7 — ECOSYSTEM DIAGRAM (CONTENT)
+H2: One Platform, Visualized
+Describe the diagram:
+Center: Adapy Smart Hub
+Connected to: Harness Kits, Wireless Controllers, Safety Modules
+Above: Adapy Cloud
+Branching to: Dealer Dashboard, CDRS Portal, Manufacturer Analytics, Fleet Management
+Note: Provide a short caption for the diagram.
+
+SECTION 8 — PLATFORM BENEFITS
+H2: Platform Outcomes
+Use 4 short benefit cards or blocks:
+- Control — Unified command across equipment.
+- Safety — Proactive environmental and operational monitoring.
+- Intelligence — Usage data and diagnostics.
+- Visibility — Lifecycle insight across stakeholders.
+
+FINAL CTA SECTION
+H2: Build on the Adapy Platform
+Copy:
+Whether integrating a single vehicle or deploying across a fleet, the Adapy Smart Mobility Platform provides the connected infrastructure layer modern adaptive environments require.
+CTAs:
+- Request a Demo
+- Contact Our Team
+
+LINK TARGETS (SUGGESTED SLUGS)
+- /platform
+- /hardware
+- /solutions
+- /contact
+- /request-demo
+---
+
+DELIVERABLE FORMAT
+- First: SEO title + meta description
+- Then: Full page copy in a clean, structured layout (headings + paragraphs + bullets).
+- Then: CTA list (label + URL)
+- Then: Diagram caption + diagram spec bullets
