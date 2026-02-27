@@ -6,6 +6,7 @@ import riconLogo from "@assets/ricon_1772218412364.png";
 import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
 import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 import suregripLogo from "@assets/suregrip_1772224944728.png";
+import harmarLogo from "@assets/Screenshot_2026-02-27_at_1.43.14_PM_1772225061734.png";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
@@ -14,6 +15,7 @@ const logos = [
   { name: "Q'Straint", url: qstraintLogo },
   { name: "EZ Lock", url: ezlockLogo },
   { name: "Sure Grip", url: suregripLogo },
+  { name: "Harmar", url: harmarLogo },
 ];
 
 export function ScrollingLogos() {
