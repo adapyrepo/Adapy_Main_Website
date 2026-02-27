@@ -6,7 +6,7 @@ import riconLogo from "@assets/ricon_1772218412364.png";
 import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
 import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM-removebg-preview_1772225967882.png";
-import harmarLogo from "@assets/Screenshot_2026-02-27_at_1.43.14_PM_1772225061734.png";
+import harmarLogo from "@assets/Harmar_LogoT_PMS_1772226094357.webp";
 import atcMobilityLogo from "@assets/ATC_Mobility-Logo_1772225555801.webp";
 import adaptLogo from "@assets/adapt_1772225980081.png";
 
