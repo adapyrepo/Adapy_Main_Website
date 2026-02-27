@@ -1,0 +1,65 @@
+You are a senior UX/UI engineer and front-end developer. Redesign the TOP NAVIGATION (desktop + mobile) for Adapy.com using clean, modern “platform company” standards.
+
+GOAL
+- Make Adapy feel like a unified ecosystem/platform (not a product catalog).
+- Keep navigation simple (5–7 top-level items).
+- Provide clear paths for different audiences (dealers, CDRS, manufacturers, NEMT fleets, government/VA).
+- Mobile-first, fast, accessible (WCAG), and easy to maintain.
+
+INFORMATION ARCHITECTURE (REQUIRED)
+Top-level menu items (desktop):
+1) Platform
+2) Hardware (dropdown)
+3) Software (dropdown)
+4) Solutions (dropdown)
+5) About
+6) Contact
+Right side CTA button: “Request Demo”
+
+Dropdown contents:
+Hardware:
+- Smart Hub
+- Harness Integration
+- Wireless Controllers
+- Safety Modules
+
+Software:
+- Dealer Dashboard
+- CDRS Portal
+- Manufacturer Analytics
+
+Solutions:
+- Individual Adaptive Vehicles
+- Dealer Networks
+- NEMT Fleet Intelligence
+- Government & VA
+
+DESIGN REQUIREMENTS
+- Use the Adapy logo on the left.
+- Sticky header on scroll (subtle shadow).
+- Desktop: dropdown menus on hover + click (keyboard accessible).
+- Mobile: hamburger menu opens a full-height drawer; dropdowns become accordion sections.
+- Highlight the CTA “Request Demo” as a button.
+- Add small helper microcopy in dropdowns (1 short line) to reduce confusion (e.g., “Smart Hub — the brain of the adaptive vehicle”).
+- Active page state styling.
+- Include focus states, ARIA attributes, escape-to-close, and click-outside-to-close.
+- Ensure menu supports long labels without breaking layout.
+- Must prevent background scrolling when mobile drawer is open.
+
+TECHNICAL REQUIREMENTS
+- Implement in the current project stack (use whatever is already in the repo: React/Next.js preferred; if plain HTML/CSS/JS, do that).
+- Provide:
+  1) The component/code for the navigation
+  2) CSS (or Tailwind classes) for styling
+  3) Any small utility hooks needed (e.g., useOnClickOutside)
+  4) Instructions on where to place files and how to wire routes/links
+- Do not introduce heavy dependencies. If you must, justify it and keep it lightweight.
+
+OUTPUT FORMAT
+- First: brief explanation of the structure and interaction behavior.
+- Then: code blocks for the full implementation (desktop + mobile).
+- Then: a checklist of accessibility items implemented.
+
+IMPORTANT
+- Do not redesign the entire site—focus only on the top navigation and mobile menu.
+- Keep the look clean, confident, and “enterprise platform” style.

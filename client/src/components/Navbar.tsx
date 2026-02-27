@@ -1,169 +1,245 @@
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, Phone, Search, ShoppingBag } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 
+interface NavItem {
+  name: string;
+  href?: string;
+  dropdown?: {
+    title: string;
+    description: string;
+    href: string;
+  }[];
+}
+
+const navItems: NavItem[] = [
+  { name: "Platform", href: "/platform" },
+  {
+    name: "Hardware",
+    dropdown: [
+      { title: "Smart Hub", description: "The brain of the adaptive vehicle", href: "/hardware/smart-hub" },
+      { title: "Harness Integration", description: "Seamless equipment connectivity", href: "/hardware/harness" },
+      { title: "Wireless Controllers", description: "Flexible mounting-free control", href: "/hardware/wireless" },
+      { title: "Safety Modules", description: "Proactive environmental protection", href: "/hardware/safety" },
+    ],
+  },
+  {
+    name: "Software",
+    dropdown: [
+      { title: "Dealer Dashboard", description: "Operational visibility & tracking", href: "/software/dealer" },
+      { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
+      { title: "Manufacturer Analytics", description: "Real-world performance data", href: "/software/analytics" },
+    ],
+  },
+  {
+    name: "Solutions",
+    dropdown: [
+      { title: "Individual Adaptive Vehicles", description: "Personal mobility environments", href: "/solutions/individual" },
+      { title: "Dealer Networks", description: "Scale your installation workflow", href: "/solutions/dealers" },
+      { title: "NEMT Fleet Intelligence", description: "Fleet-scale safety & monitoring", href: "/solutions/nemt" },
+      { title: "Government & VA", description: "Compliance & reporting automation", href: "/solutions/government" },
+    ],
+  },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+];
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
-  const [textIndex, setTextIndex] = useState(0);
-
-  const benefitStatements = [
-    "Adaptive Equipment, Finally Unified",
-    "Too Many Remotes. Too Much Failure",
-    "Adaptive Tech Is Broken. We Fixed It.",
-    "Stop Juggling Controls.",
-    "Outdated Systems Don’t Belong in Modern Mobility.",
-    "Complexity Is the Enemy of Independence.",
-    "“Good Enough” Isn’t Good Enough Anymore.",
-    "This Is What Adaptive Tech Should Have Been.",
-    "We Didn’t Add Another Device. We Replaced the Problem.",
-    "Adaptive Equipment Should Work Together—or Not Exist at All.",
-    "One System. Zero Excuses.",
-    "This Is What Happens When Accessibility Is Taken Seriously.",
-    "If It Takes Multiple Remotes, It’s Already Failed.",
-    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
-  ];
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [benefitStatements.length]);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setActiveDropdown(null);
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isOpen]);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
-
-  const navLinks = [
-    { name: "Store", href: "/products" },
-    { name: "Products", href: "/products" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Support", href: "/contact" },
-  ];
+  }, [location, isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-black/10 backdrop-blur-md border-b border-white/10 transition-all duration-300 hover:bg-black/20">
-      {/* Top Bar */}
-      <div className="bg-black/20 py-3 px-4 md:px-6">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          {/* Logo & Rotating Text */}
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-              <img
-                src={adapyLogo}
-                alt="Adapy"
-                className="h-6 md:h-8 w-auto invert brightness-0"
-              />
-            </Link>
+    <header
+      ref={navRef}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
+        scrolled 
+          ? "bg-black/90 backdrop-blur-lg border-white/10 shadow-lg py-2" 
+          : "bg-black/20 backdrop-blur-md border-white/10 py-4"
+      )}
+    >
+      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <img src={adapyLogo} alt="Adapy" className="h-8 w-auto invert brightness-0" />
+        </Link>
 
-            <div className="hidden lg:block h-6 overflow-hidden border-l border-white/20 pl-6">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={textIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="text-[13px] font-medium text-white/60 tracking-tight uppercase"
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-1">
+          {navItems.map((item) => (
+            <div
+              key={item.name}
+              className="relative group"
+              onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 text-[14px] font-medium transition-colors rounded-full",
+                    location === item.href ? "text-white bg-white/10" : "text-white/70 hover:text-white"
+                  )}
                 >
-                  {benefitStatements[textIndex]}
-                </motion.p>
+                  {item.name}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                  className={cn(
+                    "px-4 py-2 text-[14px] font-medium flex items-center gap-1 transition-colors rounded-full",
+                    activeDropdown === item.name ? "text-white bg-white/10" : "text-white/70 hover:text-white"
+                  )}
+                >
+                  {item.name}
+                  <ChevronDown className={cn("w-4 h-4 transition-transform", activeDropdown === item.name && "rotate-180")} />
+                </button>
+              )}
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {activeDropdown === item.name && item.dropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl"
+                  >
+                    <div className="grid gap-2">
+                      {item.dropdown.map((sub) => (
+                        <Link
+                          key={sub.title}
+                          href={sub.href}
+                          className="group/item p-3 rounded-xl hover:bg-white/5 transition-colors text-left"
+                        >
+                          <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                            {sub.title}
+                          </div>
+                          <div className="text-[12px] text-white/50 leading-tight mt-0.5">
+                            {sub.description}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </div>
-          </div>
+          ))}
+        </nav>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-6">
-            <a
-              href="tel:+18005550199"
-              className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-[#0071e3] transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span>1-800-555-0199</span>
-            </a>
-            <Link href="/contact">
-              <button className="hidden sm:block px-5 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[13px] hover:bg-[#0077ed] transition-all">
-                Get a Quote
-              </button>
-            </Link>
-            <a
-              href="https://admin.adapy.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="hidden sm:block px-5 py-2 bg-white/10 text-white border border-white/20 rounded-full font-medium text-[13px] hover:bg-white/20 transition-all">
-                Login
-              </button>
-            </a>
-            <button className="text-white/40 hover:text-white transition-colors">
-              <Search className="w-5 h-5" />
+        {/* Right CTA */}
+        <div className="flex items-center gap-4">
+          <Link href="/contact" className="hidden sm:block">
+            <button className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-semibold text-[14px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
+              Request Demo
             </button>
-          </div>
+          </Link>
+          
+          {/* Mobile Menu Toggle */}
+          <button
+            className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Main Nav Bar */}
-      <div className="h-11 px-4 md:px-6">
-        <div className="max-w-[1200px] mx-auto h-full flex justify-center items-center relative">
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-[12px] font-medium text-white/70 hover:text-white transition-colors uppercase tracking-widest"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile Toggle */}
-          <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2">
-            <button
-              className="text-white/70 hover:text-white transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-x-0 top-[110px] bg-black/90 backdrop-blur-xl border-b border-white/10 z-[99] md:hidden overflow-hidden"
-          >
-            <nav className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-semibold text-white/80 hover:text-white border-b border-white/5 pb-2"
-                >
-                  {link.name}
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[98] lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black z-[99] lg:hidden flex flex-col p-8 pt-24"
+            >
+              <div className="flex-1 overflow-y-auto">
+                <nav className="flex flex-col gap-6">
+                  {navItems.map((item) => (
+                    <div key={item.name} className="flex flex-col gap-4 text-left">
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          className="text-2xl font-bold text-white hover:text-[#0071e3] transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <>
+                          <div className="text-2xl font-bold text-white/40 uppercase tracking-widest text-xs">
+                            {item.name}
+                          </div>
+                          <div className="flex flex-col gap-4 pl-4 border-l border-white/10">
+                            {item.dropdown?.map((sub) => (
+                              <Link key={sub.title} href={sub.href} className="group">
+                                <div className="text-lg font-semibold text-white group-hover:text-[#0071e3] transition-colors">
+                                  {sub.title}
+                                </div>
+                                <div className="text-sm text-white/50">{sub.description}</div>
+                              </Link>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </nav>
+              </div>
+              
+              <div className="pt-8 border-t border-white/10">
+                <Link href="/contact" className="w-full block">
+                  <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all">
+                    Request Demo
+                  </button>
                 </Link>
-              ))}
-            </nav>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
