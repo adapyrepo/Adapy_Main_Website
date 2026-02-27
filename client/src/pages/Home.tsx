@@ -94,8 +94,8 @@ export default function Home() {
                 </span>
               </motion.div>
 
-              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[500px] mb-8 leading-relaxed">
-                Adapy connects and monitors your vehicle's mobility ecosystem through one unified platform.
+              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mb-8 leading-relaxed">
+                Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
