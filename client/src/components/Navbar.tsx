@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 
@@ -163,11 +163,15 @@ export function Navbar() {
 
         {/* Right CTA */}
         <div className="flex items-center gap-4">
-          <Link href="/contact" className="hidden sm:block">
-            <button className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-semibold text-[14px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
-              Request Demo
-            </button>
-          </Link>
+          <a 
+            href="https://admin.adapy.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hidden sm:flex items-center gap-2 px-4 py-2 text-white/70 hover:text-white transition-colors group"
+          >
+            <UserCircle className="w-5 h-5 group-hover:text-[#0071e3] transition-colors" />
+            <span className="text-[14px] font-medium">Login</span>
+          </a>
           
           {/* Mobile Menu Toggle */}
           <button
@@ -231,12 +235,16 @@ export function Navbar() {
                 </nav>
               </div>
               
-              <div className="pt-8 border-t border-white/10">
-                <Link href="/contact" className="w-full block">
-                  <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all">
-                    Request Demo
-                  </button>
-                </Link>
+              <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
+                <a 
+                  href="https://admin.adapy.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
+                >
+                  <UserCircle className="w-6 h-6" />
+                  Login
+                </a>
               </div>
             </motion.div>
           </>
