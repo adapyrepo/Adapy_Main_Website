@@ -78,15 +78,15 @@ export default function Home() {
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
-          <div className="flex-1 flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-24 relative">
-            <div className="max-w-[1000px] w-full flex flex-col items-center justify-center min-h-[180px]">
+          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-20 relative">
+            <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-start"
               >
-                <h1 className="text-[32px] md:text-[54px] lg:text-[72px] font-bold leading-[1.07] tracking-tight text-white mb-4 uppercase">
+                <h1 className="text-[28px] md:text-[48px] lg:text-[60px] font-bold leading-[1.1] tracking-tight text-white mb-4 uppercase">
                   Mobility Should Never Operate in Isolation.
                 </h1>
 
@@ -121,7 +121,7 @@ export default function Home() {
                   </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <div className="flex flex-col sm:flex-row gap-6 justify-start items-center">
                   <Link href="/platform">
                     <button className="px-10 py-4 bg-[#0071e3] text-white rounded-full font-bold text-[18px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20">
                       Explore the Platform
