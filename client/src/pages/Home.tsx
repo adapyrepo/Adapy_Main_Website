@@ -87,7 +87,7 @@ export default function Home() {
                 className="flex flex-col items-center"
               >
                 <h1 className="text-[32px] md:text-[54px] lg:text-[72px] font-bold leading-[1.07] tracking-tight text-white mb-4 uppercase">
-                  The Future of Connected Mobility.
+                  Mobility Should Never Operate in Isolation.
                 </h1>
 
                 <motion.div
@@ -101,8 +101,8 @@ export default function Home() {
                   </span>
                 </motion.div>
 
-                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[700px] mb-6 leading-relaxed">
-                  Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
+                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[750px] mb-6 leading-relaxed">
+                  Adapy transforms adaptive vehicles into intelligent, connected environments — delivering proactive safety, unified control, and lifecycle visibility.
                 </p>
 
                 {/* Rotating Statements */}
