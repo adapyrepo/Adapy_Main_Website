@@ -385,15 +385,15 @@ export default function Home() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#001d3d] z-[120] p-8 shadow-2xl flex flex-col border-l border-white/10"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-[120] p-8 shadow-2xl flex flex-col border-l border-black/10"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/10 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/5 to-transparent pointer-events-none" />
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-12">
-                  <h3 className="text-2xl font-bold text-white">How It Works</h3>
+                  <h3 className="text-2xl font-bold text-black">How It Works</h3>
                   <button 
                     onClick={() => setIsSliderOpen(false)}
-                    className="p-2 hover:bg-white/10 rounded-full text-white/70 hover:text-white transition-colors"
+                    className="p-2 hover:bg-black/5 rounded-full text-black/70 hover:text-black transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -406,27 +406,27 @@ export default function Home() {
                       onClick={() => setActiveVideo(video)}
                       className="group cursor-pointer space-y-4"
                     >
-                      <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black shadow-lg">
+                      <div className="relative aspect-video rounded-2xl overflow-hidden border border-black/5 bg-black shadow-md">
                         <img 
                           src={video.thumbnail} 
                           alt={video.title}
-                          className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-[#0071e3] text-white rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                          <div className="w-12 h-12 bg-[#0071e3] text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
                             <Play className="w-6 h-6 fill-current ml-1" />
                           </div>
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-white group-hover:text-[#0071e3] transition-colors">{video.title}</h4>
-                        <p className="text-white/60 text-sm leading-relaxed">{video.description}</p>
+                        <h4 className="text-lg font-bold text-black group-hover:text-[#0071e3] transition-colors">{video.title}</h4>
+                        <p className="text-black/60 text-sm leading-relaxed">{video.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-white/10">
+                <div className="mt-12 pt-8 border-t border-black/10">
                   <Link href="/contact" onClick={() => setIsSliderOpen(false)}>
                     <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20">
                       Find a Dealer
