@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, ChevronDown, UserCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
+import { MobilityTicker } from "./MobilityTicker";
 
 interface NavItem {
   name: string;
@@ -162,7 +163,10 @@ export function Navbar() {
         </nav>
 
         {/* Right CTA */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
+          <div className="hidden xl:block">
+            <MobilityTicker />
+          </div>
           <a 
             href="https://admin.adapy.com" 
             target="_blank" 
