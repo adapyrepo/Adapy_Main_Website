@@ -116,12 +116,12 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
                   <Link href="/platform">
                     <button className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-bold text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20">
-                      Explore the Platform
+                      Explore the Ecosystem
                     </button>
                   </Link>
                   <Link href="/contact">
                     <button className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]">
-                      Find a Dealer
+                      See How It Works
                     </button>
                   </Link>
                 </div>
