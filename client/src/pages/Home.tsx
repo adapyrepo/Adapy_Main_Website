@@ -79,14 +79,14 @@ export default function Home() {
 
         <div className="relative z-40 flex flex-col flex-1">
           <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-20 relative">
-            <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
+            <div className="max-w-[400px] w-full flex flex-col items-start justify-center min-h-[180px]">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-start"
               >
-                <h1 className="text-[28px] md:text-[48px] lg:text-[60px] font-bold leading-[1.1] tracking-tight text-white mb-4 uppercase">
+                <h1 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold leading-[1.1] tracking-tight text-white mb-3 uppercase">
                   Mobility Should Never Operate in Isolation.
                 </h1>
 
@@ -94,19 +94,19 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                  className="mb-6"
+                  className="mb-4"
                 >
-                  <span className="text-[14px] md:text-[18px] font-semibold tracking-[0.3em] text-[#0071e3] uppercase">
+                  <span className="text-[10px] md:text-[12px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
                     Intelligent Infrastructure for Adaptive Mobility
                   </span>
                 </motion.div>
 
-                <p className="text-[16px] md:text-[20px] text-white/70 max-w-[750px] mb-6 leading-relaxed">
+                <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-4 leading-relaxed">
                   Adapy transforms adaptive vehicles into intelligent, connected environments — delivering proactive safety, unified control, and lifecycle visibility.
                 </p>
 
                 {/* Rotating Statements */}
-                <div className="h-8 mb-10 overflow-hidden">
+                <div className="h-6 mb-6 overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={textIndex}
@@ -114,21 +114,21 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className="text-[13px] md:text-[15px] font-medium text-[#0071e3] tracking-wide uppercase italic"
+                      className="text-[11px] md:text-[12px] font-medium text-[#0071e3] tracking-wide uppercase italic"
                     >
                       {benefitStatements[textIndex]}
                     </motion.p>
                   </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-6 justify-start items-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
                   <Link href="/platform">
-                    <button className="px-10 py-4 bg-[#0071e3] text-white rounded-full font-bold text-[18px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20">
+                    <button className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-bold text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20">
                       Explore the Platform
                     </button>
                   </Link>
                   <Link href="/contact">
-                    <button className="px-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[18px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]">
+                    <button className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]">
                       Contact Our Team
                     </button>
                   </Link>
