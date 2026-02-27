@@ -3,29 +3,20 @@ import { useState, useEffect } from "react";
 import { Info } from "lucide-react";
 
 export function MobilityTicker() {
-  // Pre-built data with early declines and later momentum
-  const [data, setData] = useState([
-    120, 110, 95, 85, 75, 80, 70, 65, 75, 85, 
-    95, 110, 105, 120, 135, 130, 145, 160, 155, 170, 
-    185, 180, 195, 210, 205, 220, 235, 230, 245, 260
-  ]);
+  const [data, setData] = useState([45, 52, 48, 61, 55, 67, 72, 68, 81, 75, 88, 92, 85, 98, 105, 95, 110, 115, 108, 122, 128, 120, 135, 142, 138, 150, 155, 148, 162, 175]);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // Animate the sparkline data with volatility
+  // Animate the sparkline data
   useEffect(() => {
     const interval = setInterval(() => {
       setData(prev => {
         const newData = [...prev.slice(1)];
         const lastVal = prev[prev.length - 1];
-        
-        // Random variation with potential for sharp dips
-        const variation = (Math.random() - 0.45) * 45; 
-        
-        // Dynamic range for movement
-        const nextVal = Math.max(40, Math.min(280, lastVal + variation));
+        const variation = (Math.random() - 0.5) * 15;
+        const nextVal = Math.max(40, Math.min(200, lastVal + variation));
         return [...newData, nextVal];
       });
-    }, 1500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
   
