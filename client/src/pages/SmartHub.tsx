@@ -163,42 +163,74 @@ export default function SmartHub() {
       {/* Section 3: Ecosystem Diagram */}
       <section className="py-24 bg-black text-white overflow-hidden relative">
         <div className="container mx-auto px-6 max-w-6xl relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">How the Smart Hub Connects Everything</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-20 text-center text-white">How the Smart Hub Connects Everything</h2>
           
           <div className="relative flex flex-col items-center">
-            {/* Center Hub */}
-            <div className="z-20 p-8 bg-[#0071e3] rounded-[2.5rem] shadow-2xl shadow-[#0071e3]/40 mb-12 flex flex-col items-center">
-              <Cpu className="w-16 h-16 mb-4" />
-              <span className="text-xl font-bold">Smart Hub</span>
+            {/* Connection Lines (Desktop) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl hidden md:block pointer-events-none">
+              <svg className="w-full h-full" viewBox="0 0 800 400">
+                <defs>
+                  <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#0071e3" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#0071e3" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#0071e3" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <path d="M 150,200 L 400,200" stroke="url(#line-grad)" strokeWidth="2" fill="none" />
+                <path d="M 650,200 L 400,200" stroke="url(#line-grad)" strokeWidth="2" fill="none" />
+              </svg>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-20 w-full">
-              {/* Hardware Layer */}
-              <div className="space-y-6">
-                <h4 className="text-[#0071e3] font-bold uppercase tracking-widest text-sm text-center md:text-right">Hardware Integration</h4>
-                <div className="flex flex-wrap gap-4 justify-center md:justify-end">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center w-full relative">
+              {/* Left Side: Hardware */}
+              <div className="flex flex-col gap-6 items-center md:items-end">
+                <div className="text-[#0071e3] font-bold uppercase tracking-widest text-xs mb-2">Hardware Layer</div>
+                <div className="flex flex-col gap-3 items-center md:items-end w-full">
                   {["Harness Kits", "Wireless Controllers", "Safety Modules"].map((item, i) => (
-                    <div key={i} className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm font-medium">
+                    <motion.div 
+                      key={i}
+                      whileHover={{ x: -5 }}
+                      className="px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium w-full md:w-auto text-center md:text-right backdrop-blur-sm"
+                    >
                       {item}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Cloud Layer */}
-              <div className="space-y-6">
-                <h4 className="text-[#0071e3] font-bold uppercase tracking-widest text-sm text-center md:text-left">Cloud Intelligence</h4>
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              {/* Center: Smart Hub */}
+              <div className="flex flex-col items-center justify-center py-8">
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    boxShadow: ["0 0 20px rgba(0,113,227,0.2)", "0 0 40px rgba(0,113,227,0.4)", "0 0 20px rgba(0,113,227,0.2)"]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="p-10 bg-[#0071e3] rounded-[3rem] shadow-2xl shadow-[#0071e3]/40 flex flex-col items-center relative z-20"
+                >
+                  <Cpu className="w-16 h-16 mb-4 text-white" />
+                  <span className="text-xl font-bold text-white">Smart Hub</span>
+                </motion.div>
+              </div>
+
+              {/* Right Side: Cloud */}
+              <div className="flex flex-col gap-6 items-center md:items-start">
+                <div className="text-[#0071e3] font-bold uppercase tracking-widest text-xs mb-2">Cloud Intelligence</div>
+                <div className="flex flex-col gap-3 items-center md:items-start w-full">
                   {["Dealer Dashboard", "CDRS Portal", "Manufacturer Analytics", "Fleet Tools"].map((item, i) => (
-                    <div key={i} className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm font-medium">
+                    <motion.div 
+                      key={i}
+                      whileHover={{ x: 5 }}
+                      className="px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium w-full md:w-auto text-center md:text-left backdrop-blur-sm"
+                    >
                       {item}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <p className="mt-16 text-white/40 text-center text-sm italic">
+            <p className="mt-20 text-white/40 text-center text-sm italic max-w-lg">
               A cohesive ecosystem designed to protect mobility data and enable responsible monitoring.
             </p>
           </div>
