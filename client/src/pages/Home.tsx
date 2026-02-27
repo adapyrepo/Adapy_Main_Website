@@ -147,7 +147,7 @@ export default function Home() {
               >
                 <Link href="/contact">
                   <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
-                    WATCH THE VIDEO
+                    Explore the Platform
                   </button>
                 </Link>
                 <Link href="/products">
