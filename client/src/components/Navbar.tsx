@@ -39,11 +39,6 @@ export function Navbar() {
             <img src={adapyLogo} alt="Adapy" className="h-6 md:h-8 w-auto invert brightness-0" />
           </Link>
 
-          {/* Mission Statement */}
-          <p className="hidden lg:block text-[13px] font-medium text-white/40 tracking-tight uppercase">
-            Pioneering independence through smart technology
-          </p>
-
           {/* Right Actions */}
           <div className="flex items-center gap-6">
             <a href="tel:+18005550199" className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-[#0071e3] transition-colors">
