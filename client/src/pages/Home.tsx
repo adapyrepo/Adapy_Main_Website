@@ -97,7 +97,7 @@ export default function Home() {
                 </p>
 
                 {/* Rotating Statements */}
-                <div className="h-6 mb-6 overflow-hidden">
+                <div className="min-h-[40px] mb-6 overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={textIndex}
@@ -105,7 +105,7 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className="text-[11px] md:text-[12px] font-medium text-[#0071e3] tracking-wide uppercase italic"
+                      className="text-[11px] md:text-[12px] font-medium text-[#0071e3] tracking-wide uppercase italic leading-tight"
                     >
                       {benefitStatements[textIndex]}
                     </motion.p>
