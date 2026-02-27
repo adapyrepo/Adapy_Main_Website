@@ -44,7 +44,7 @@ export function MobilityTicker() {
           <Info className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </span>
         <div className="flex items-baseline gap-1.5">
-          <span className="text-[16px] font-mono font-bold text-white tracking-tight">75,566</span>
+          <span className="text-[16px] font-mono font-bold text-white tracking-tight">134,322</span>
           <span className="text-[10px] text-[#0071e3] font-bold">+12.4%</span>
         </div>
       </div>
@@ -84,7 +84,7 @@ export function MobilityTicker() {
               Let's Create a Million Moments of Mobility Together!
             </p>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              We've logged <span className="text-white font-bold">75,566</span> adaptive automation cycles—what we call Moments of Mobility—and we're just getting started. Each one represents a real user operating adaptive equipment through Adapy®.
+              We've logged <span className="text-white font-bold">134,322</span> adaptive automation cycles—what we call Moments of Mobility—and we're just getting started. Each one represents a real user operating adaptive equipment through Adapy®.
             </p>
             <div className="bg-white/5 rounded-xl p-3 border border-white/10 mb-4">
               <p className="text-[13px] text-white/90">
