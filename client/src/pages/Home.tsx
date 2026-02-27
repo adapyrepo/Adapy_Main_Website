@@ -87,7 +87,7 @@ export default function Home() {
                 className="flex flex-col items-center"
               >
                 <h1 className="text-[32px] md:text-[54px] lg:text-[72px] font-bold leading-[1.07] tracking-tight text-white mb-4 uppercase">
-                  One System. One Interface.
+                  The Connected Backbone of Adaptive Mobility.
                 </h1>
 
                 <motion.div
