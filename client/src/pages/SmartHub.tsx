@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
+import hubMockup from "@assets/mockup_new_1772231341293.png";
 import { 
   Cpu, 
   Zap, 
@@ -128,8 +129,16 @@ export default function SmartHub() {
                 Designed for multi-device installs, it offers "one hub, many integrations," replacing the clutter of fragmented controls with a single, reliable backbone.
               </p>
             </div>
-            <div className="bg-[#f5f5f7] rounded-[2.5rem] p-12 flex items-center justify-center">
-              <Cpu className="w-32 h-32 text-[#0071e3] animate-pulse" />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-[#0071e3]/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+              <motion.img 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                src={hubMockup} 
+                alt="Adapy Smart Hub and Mobile App" 
+                className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-700"
+              />
             </div>
           </div>
         </div>
