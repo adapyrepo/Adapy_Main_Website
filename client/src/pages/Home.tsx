@@ -369,6 +369,21 @@ export default function Home() {
 
       <Footer />
 
+      {/* Vertical Teaser Button */}
+      {!isSliderOpen && (
+        <motion.button
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          whileHover={{ x: -5 }}
+          onClick={() => setIsSliderOpen(true)}
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] bg-[#0071e3] text-white py-6 px-3 rounded-l-2xl shadow-2xl flex items-center gap-3 transition-colors hover:bg-[#0077ed]"
+          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+        >
+          <Play className="w-4 h-4 fill-current rotate-90" />
+          <span className="font-bold text-sm tracking-widest uppercase">See How It Works</span>
+        </motion.button>
+      )}
+
       {/* Video Slider Drawer */}
       <AnimatePresence>
         {isSliderOpen && (
