@@ -18,15 +18,43 @@ import {
   Thermometer,
   Battery,
   Navigation,
-  Lock
+  Lock,
+  X,
+  Play
 } from "lucide-react";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
+
+const learningVideos = [
+  {
+    id: "1",
+    title: "Smart Hub Overview",
+    description: "Learn how the Adapy Smart Hub centralizes your vehicle's controls.",
+    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+    videoUrl: "https://www.youtube.com/embed/IRsWYQFkg-8"
+  },
+  {
+    id: "2",
+    title: "Safety & Monitoring",
+    description: "Discover our proactive safety intelligence and sensor integration.",
+    thumbnail: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800",
+    videoUrl: "https://www.youtube.com/embed/IRsWYQFkg-8"
+  },
+  {
+    id: "3",
+    title: "Cloud Intelligence",
+    description: "How fleet operators use Adapy for real-time visibility.",
+    thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
+    videoUrl: "https://www.youtube.com/embed/IRsWYQFkg-8"
+  }
+];
 
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
   const [textIndex, setTextIndex] = useState(0);
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<typeof learningVideos[0] | null>(null);
 
   const benefitStatements = [
     "Adaptive Equipment, Finally Unified",
@@ -121,11 +149,12 @@ export default function Home() {
                       Explore the Ecosystem
                     </button>
                   </Link>
-                  <Link href="/contact">
-                    <button className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]">
-                      See How It Works
-                    </button>
-                  </Link>
+                  <button 
+                    onClick={() => setIsSliderOpen(true)}
+                    className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
+                  >
+                    See How It Works
+                  </button>
                 </div>
               </motion.div>
             </div>
@@ -339,6 +368,100 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Video Slider Drawer */}
+      <AnimatePresence>
+        {isSliderOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsSliderOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#1d1d1f] z-[120] p-8 shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-12">
+                <h3 className="text-2xl font-bold text-white">How It Works</h3>
+                <button 
+                  onClick={() => setIsSliderOpen(false)}
+                  className="p-2 hover:bg-white/10 rounded-full text-white/70 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto space-y-8 pr-2 custom-scrollbar">
+                {learningVideos.map((video) => (
+                  <div 
+                    key={video.id}
+                    onClick={() => setActiveVideo(video)}
+                    className="group cursor-pointer space-y-4"
+                  >
+                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black">
+                      <img 
+                        src={video.thumbnail} 
+                        alt={video.title}
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 bg-[#0071e3] text-white rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                          <Play className="w-6 h-6 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white group-hover:text-[#0071e3] transition-colors">{video.title}</h4>
+                      <p className="text-white/50 text-sm leading-relaxed">{video.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-white/10">
+                <Link href="/contact" onClick={() => setIsSliderOpen(false)}>
+                  <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all">
+                    Find a Dealer
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 md:p-8"
+          >
+            <button 
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-8 right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[210]"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="w-full max-w-5xl aspect-video relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+              <iframe
+                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1`}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
