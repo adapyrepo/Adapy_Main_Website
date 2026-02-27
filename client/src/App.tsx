@@ -10,6 +10,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Platform from "@/pages/Platform";
 import SmartHub from "@/pages/SmartHub";
+import HarnessIntegration from "@/pages/HarnessIntegration";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/platform" component={Platform} />
       <Route path="/hardware/smart-hub" component={SmartHub} />
+      <Route path="/hardware/harness-integration" component={HarnessIntegration} />
       <Route path="/products" component={Products} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />

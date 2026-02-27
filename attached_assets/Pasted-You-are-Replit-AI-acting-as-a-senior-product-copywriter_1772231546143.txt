@@ -1,0 +1,247 @@
+You are Replit AI acting as a senior product copywriter and UX content designer.
+
+Create the full website content for the “Harness Integration” page under the Hardware section of Adapy.com.
+
+CONTEXT
+
+Adapy harness kits allow specific adaptive equipment models to integrate into the Adapy Smart Hub platform. Harnesses function as intelligent signal passthrough interfaces, enabling control, monitoring, and optional cloud visibility while preserving original equipment functionality.
+
+Multiple harness kits can operate within a single vehicle install.
+
+This page must feel structured, scalable, and enterprise-ready — not like a parts catalog.
+
+CRITICAL RULES
+
+- Do NOT invent technical specs, voltage ranges, certifications, or compatibility claims.
+- Do NOT say “compatible with all equipment.”
+- Keep tone confident, professional, and infrastructure-focused.
+- Avoid turning this into a raw SKU list.
+- Organize harnesses by equipment category.
+- Use clean, scannable formatting.
+
+DELIVERABLE FORMAT
+
+1) SEO Title (≤ 60 characters)
+2) Meta Description (≤ 155 characters)
+3) Full structured page copy (H1/H2/H3)
+4) CTA list (button + slug)
+5) Suggested page components for development
+6) Optional FAQ (5 Q&A)
+
+PAGE STRUCTURE
+--------------------------------------------------
+
+HERO
+
+H1: Harness Integration
+
+Subheadline:
+Purpose-built harness kits that connect adaptive equipment directly into the Adapy Smart Hub ecosystem.
+
+Primary CTA: Request a Demo
+Secondary CTA: Explore the Smart Hub
+
+--------------------------------------------------
+
+SECTION 1 — WHAT HARNESS KITS DO
+
+H2: Intelligent Equipment Integration
+
+Explain:
+- Harness kits interface between adaptive equipment and the Smart Hub
+- Preserve original pendant controls
+- Enable monitoring and diagnostics
+- Support multi-device installs in one vehicle
+- Provide structured integration into the broader Adapy platform
+
+Clarify they are signal passthrough integrations — not replacements.
+
+--------------------------------------------------
+
+SECTION 2 — HOW IT WORKS
+
+H2: Designed for Seamless Integration
+
+Create 4 short blocks:
+
+1) Connect  
+Interfaces with supported equipment using structured harness pathways.
+
+2) Route  
+Control signals pass through the Smart Hub while maintaining normal operation.
+
+3) Monitor  
+System activity can be logged for visibility and diagnostics.
+
+4) Extend  
+Optional cloud connectivity enables role-based dashboard visibility.
+
+--------------------------------------------------
+
+SECTION 3 — AVAILABLE HARNESS INTEGRATIONS
+
+H2: Supported Equipment Integrations
+
+Organize by category:
+
+--------------------------------------------------
+LIFTS
+
+- BraunAbility UVL
+- BraunAbility ASL-250 Platform Lift
+- BraunAbility NCL-2 Century Series
+- BraunAbility Millennium Series
+- Bruno VSL-6000
+- Bruno VSL-4400-HW (JOEY)
+- Bruno Outsider ASL-250
+- Harmar AL500 Universal Powerchair Lift
+- Harmar AL625 Hybrid Van Lift
+- Ricon K-Series (KlearVue Classic Harness)
+- Ricon S-Series (Clearway S-Series Harness)
+
+Each listing format:
+Model Name
+Short description: Designed for integration with [model name] lift systems.
+
+--------------------------------------------------
+CRANE / HOIST SYSTEMS
+
+- Bruno PUL 1100 V1
+- Bruno PUL 1100 V2
+- Bruno VSL-6900
+- Harmar AL435 Premium 3 Axis Inside Lift
+- Harmar AL435T Tailgater 3-Axis Truck Lift
+- Harmar AL425HD Axis II
+- Harmar AL425 Axis II Lite
+- Harmar AL215 Axis I
+- Bruno SPACE-SAVER ASL-325
+- BraunAbility Chair Topper
+
+Short description:
+Designed for integration with inside and exterior crane/hoist systems.
+
+--------------------------------------------------
+SEAT CONTROLLERS / TRANSFER SEATS
+
+- BraunAbility Evo Driver Seat
+- BraunAbility Evo Passenger Seat
+- BraunAbility Evo Passenger Seat II
+- Adapt Solutions Asento XL
+- Adapt Solutions LINK
+- Glide N’ Go
+- Sure-Grip LiftiBoi SideXSide
+
+Short description:
+Enables Smart Hub integration with powered transfer seating systems.
+
+--------------------------------------------------
+TOPPERS / ROOF SYSTEMS
+
+- Bruno Pow’r Topper
+- Access-A-Top Topper
+- Truck Bed Topper
+
+Short description:
+Structured integration for powered topper and roof access systems.
+
+--------------------------------------------------
+DOOR / LOCK / BASE LOCK SYSTEMS
+
+- Q'Straint QLK Base Lock
+- EZLock Base Lock Controller
+- Dual Bus Doors (2 Relay)
+- ATC Conversions 4 Relay
+- Generic Conversion Van (3 Relay)
+- Vehicle Door Actuators V1.1
+
+Short description:
+Designed for automated door, locking, and vehicle access systems.
+
+--------------------------------------------------
+SPECIALTY / UTILITY
+
+- WARN WINCH
+- ATC Mobility Silverado
+- Truck/SUV Tailgate
+
+Short description:
+Specialized integrations for utility and conversion-based systems.
+
+--------------------------------------------------
+
+SECTION 4 — MULTI-DEVICE INSTALLS
+
+H2: Built for Complex Adaptive Environments
+
+Explain:
+- Many vehicles contain multiple adaptive systems.
+- The Smart Hub supports multiple harness kits simultaneously.
+- Creates unified monitoring across lifts, seats, toppers, and door systems.
+- Structured installs improve scalability and service visibility.
+
+--------------------------------------------------
+
+SECTION 5 — WHO BENEFITS
+
+H2: Why Structured Integration Matters
+
+Create 4 benefit cards:
+
+Dealers:
+Cleaner installs. Centralized diagnostics. Simplified service workflows.
+
+CDRS Professionals:
+Greater visibility. Improved confidence in equipment deployment.
+
+Manufacturers:
+Platform-ready compatibility with structured integration pathways.
+
+Fleet Operators:
+Unified monitoring across multiple adaptive systems and vehicles.
+
+--------------------------------------------------
+
+SECTION 6 — PLATFORM CONNECTION
+
+H2: Powered by the Adapy Smart Hub
+
+Short explanation that harness kits require the Smart Hub and operate as part of the broader Adapy ecosystem.
+
+CTA: View the Smart Hub (/hardware/smart-hub)
+
+--------------------------------------------------
+
+FINAL CTA STRIP
+
+H2: Ready to Integrate Your Equipment?
+
+Buttons:
+- Request a Demo (/request-demo)
+- Contact Our Team (/contact)
+- Explore the Platform (/platform)
+
+--------------------------------------------------
+
+INTERNAL LINKS
+
+Smart Hub: /hardware/smart-hub  
+Wireless Controllers: /hardware/wireless-controllers  
+Safety Modules: /hardware/safety-modules  
+Platform: /platform  
+Contact: /contact  
+Request Demo: /request-demo  
+
+--------------------------------------------------
+
+STYLE
+
+- Professional
+- Structured
+- Platform-driven
+- Scalable
+- Clean
+- No exaggerated claims
+- Avoid technical clutter
+- Avoid SKU overload formatting
+
+Produce the final structured page copy.
