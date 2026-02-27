@@ -87,32 +87,16 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="mb-2"
+                className="mb-4"
               >
                 <span className="text-[12px] md:text-[14px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
                   Intelligent Infrastructure for Adaptive Mobility
                 </span>
               </motion.div>
 
-              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
-                Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
+              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[500px] mb-8 leading-relaxed">
+                Adapy connects and monitors your vehicle's mobility ecosystem through one unified platform.
               </p>
-
-              {/* Rotating Statements */}
-              <div className="h-8 mb-6 overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={textIndex}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="text-[13px] md:text-[15px] font-medium text-white/50 tracking-wide uppercase italic"
-                  >
-                    {benefitStatements[textIndex]}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
                 <Link href="/products">
