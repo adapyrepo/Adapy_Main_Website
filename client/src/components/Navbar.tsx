@@ -50,6 +50,11 @@ export function Navbar() {
                 Get a Quote
               </button>
             </Link>
+            <Link href="/auth">
+              <button className="hidden sm:block px-5 py-2 bg-white/10 text-white border border-white/20 rounded-full font-medium text-[13px] hover:bg-white/20 transition-all">
+                Login
+              </button>
+            </Link>
             <button className="text-white/40 hover:text-white transition-colors">
               <Search className="w-5 h-5" />
             </button>
