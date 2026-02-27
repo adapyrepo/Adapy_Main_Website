@@ -1,0 +1,106 @@
+You are Replit AI acting as a senior product copywriter + UX content designer. Create the full website content for the “Smart Hub” page under the Hardware section of Adapy.com.
+
+IMPORTANT CONTEXT
+Adapy is a unified Smart Mobility Platform. The Smart Hub is the central “brain” of an adaptive vehicle. It connects to multiple harness kits (e.g., lift + roof system + other adaptive equipment), supports wireless controllers for hard-to-mount locations (like inside transfer seats), and connects to optional safety/monitoring modules (temp, voltage, battery cut-off, CO/CO2, GPS, etc.). Data can flow to cloud dashboards for dealers, CDRS, manufacturers, and fleets. This page is Hardware-focused, but must reinforce “platform” positioning and lead the user to Harness Integration, Wireless Controllers, Safety Modules, and the Platform page.
+
+CRITICAL RULES
+- Do NOT invent certifications, FCC IDs, ranges, voltages, or technical specs unless provided. Use benefit-focused language and “designed for / supports / enables” phrasing.
+- Avoid absolute claims like “works with all equipment” unless qualified.
+- Keep tone confident, professional, clean, and enterprise-ready.
+- Make the page scannable: short sections, bullets, clear headings.
+- Assume multiple audiences will read this page (dealers, CDRS, manufacturers, fleets, end users). Don’t over-technicalize.
+
+DELIVERABLES (OUTPUT FORMAT REQUIRED)
+1) SEO Title (≤ 60 chars)
+2) Meta Description (≤ 155 chars)
+3) Full page copy with H1/H2/H3 sections
+4) CTA list (button label + URL slug)
+5) Suggested “page components” list for the developer (e.g., hero, feature cards, diagram block, FAQ, CTA strip)
+6) Optional: 5 FAQ Q/A pairs (non-technical, trust-building)
+
+PAGE STRUCTURE (USE THIS)
+---
+HERO
+H1: Adapy Smart Hub
+Subheadline: The intelligent control core that unifies adaptive equipment, safety monitoring, and cloud visibility in one vehicle ecosystem.
+Primary CTA: Request a Demo
+Secondary CTA: Explore the Platform
+
+SECTION 1 — WHAT IT IS
+H2: The Brain of the Adaptive Vehicle
+Copy: Explain that the Smart Hub is the central intelligence layer inside the vehicle that coordinates multiple adaptive devices, control interfaces, and safety modules. Emphasize “one hub, many integrations” and “designed for multi-device installs.”
+
+SECTION 2 — WHAT IT ENABLES (BENEFIT CARDS)
+H2: What the Smart Hub Enables
+Create 4–6 “cards” with a title + 1–2 sentences each (no hard specs):
+- Unified Control
+- Multi-Device Integration
+- Safety & Monitoring Expansion
+- Usage & Diagnostics Visibility
+- Secure Cloud Connectivity
+- Scalable from Individual to Fleet (optional)
+
+SECTION 3 — HOW IT FITS IN THE ECOSYSTEM (DIAGRAM BLOCK)
+H2: How the Smart Hub Connects Everything
+Provide a short diagram description (text only):
+Center: Smart Hub
+Connected: Harness Kits + Wireless Controllers + Safety Modules
+Cloud: Dealer Dashboard + CDRS Portal + Manufacturer Analytics + Fleet Tools
+Add a caption line that makes it feel cohesive.
+
+SECTION 4 — INTEGRATION PATHS (LINKED SECTIONS)
+H2: Integration Options
+H3: Harness Kits
+Copy: Purpose-built integrations for specific equipment models; multiple harness kits can coexist in a single install.
+CTA: View Harness Integration
+
+H3: Wireless Controllers
+Copy: For locations where a harness can’t mount; enables flexible control placement (e.g., inside transfer seats).
+CTA: View Wireless Controllers
+
+H3: Safety Modules
+Copy: Expand the system with environmental and vehicle monitoring modules (temp, voltage, battery cut-off, CO/CO2, GPS, etc.)—present as examples, not a definitive list.
+CTA: View Safety Modules
+
+SECTION 5 — WHO IT’S FOR (AUDIENCE BLOCK)
+H2: Built for the Mobility Ecosystem
+Provide 4 short subsections:
+- Dealers: install scalability, service visibility, streamlined lifecycle
+- CDRS Professionals: confidence, progress visibility, better outcomes
+- Manufacturers: optics on real-world performance and diagnostics (no overclaims)
+- Fleets / NEMT: safety triggers, vehicle/equipment monitoring, scalable deployment
+
+SECTION 6 — TRUST & DEPLOYMENT (SAFETY / SECURITY LANGUAGE)
+H2: Designed for Reliable, Secure Deployment
+Bullets (no certification claims):
+- Role-based access pathways through Adapy Cloud
+- Secure device authentication
+- Encrypted communications (if uncertain, phrase as “secure communication design”)
+- Structured data visibility by role
+Close with a line about protecting mobility data and enabling responsible monitoring.
+
+SECTION 7 — NEXT STEPS CTA STRIP
+H2: See the Smart Hub in Action
+Copy: Invite a demo or consultation.
+Buttons:
+- Request a Demo
+- Contact Our Team
+- Explore the Platform
+
+INTERNAL LINKS (USE THESE SLUGS)
+- Platform: /platform
+- Hardware landing: /hardware
+- Smart Hub: /hardware/smart-hub
+- Harness Integration: /hardware/harness-integration
+- Wireless Controllers: /hardware/wireless-controllers
+- Safety Modules: /hardware/safety-modules
+- Contact: /contact
+- Request Demo: /request-demo
+
+STYLE REQUIREMENTS
+- Use concise copy, avoid fluff.
+- Use consistent language: “Smart Hub,” “Adapy Cloud,” “platform.”
+- Use “adaptive vehicle” / “adaptive mobility environment.”
+- Avoid saying “medical device” unless legally confirmed; keep general.
+
+NOW PRODUCE THE FINAL CONTENT FOLLOWING THE DELIVERABLE FORMAT ABOVE.

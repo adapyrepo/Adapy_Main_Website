@@ -22,9 +22,9 @@ const navItems: NavItem[] = [
     name: "Hardware",
     dropdown: [
       { title: "Smart Hub", description: "The brain of the adaptive vehicle", href: "/hardware/smart-hub" },
-      { title: "Harness Integration", description: "Seamless equipment connectivity", href: "/hardware/harness" },
-      { title: "Wireless Controllers", description: "Flexible mounting-free control", href: "/hardware/wireless" },
-      { title: "Safety Modules", description: "Proactive environmental protection", href: "/hardware/safety" },
+      { title: "Harness Integration", description: "Seamless equipment connectivity", href: "/hardware/harness-integration" },
+      { title: "Wireless Controllers", description: "Flexible mounting-free control", href: "/hardware/wireless-controllers" },
+      { title: "Safety Modules", description: "Proactive environmental protection", href: "/hardware/safety-modules" },
     ],
   },
   {
