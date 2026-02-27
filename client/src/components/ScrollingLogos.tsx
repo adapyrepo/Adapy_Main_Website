@@ -2,7 +2,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
-import riconLogo from "@assets/ricon-logo-png-transparent_1772218202005.png";
+import riconLogo from "@assets/ricon_1772218412364.png";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
