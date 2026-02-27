@@ -4,12 +4,14 @@ import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
 import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
+import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
   { name: "Bruno", url: brunoLogo },
   { name: "Ricon", url: riconLogo },
   { name: "Q'Straint", url: qstraintLogo },
+  { name: "EZ Lock", url: ezlockLogo },
 ];
 
 export function ScrollingLogos() {
