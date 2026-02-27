@@ -70,11 +70,11 @@ export default function Home() {
             />
           </div>
           {/* Enhanced Overlay with Flashlight Effect */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px] z-10" />
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px] z-10" />
           <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0071e3]/20 blur-[150px] rounded-full opacity-60" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0071e3]/10 blur-[150px] rounded-full opacity-40" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-30" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
