@@ -1,0 +1,202 @@
+You are Replit AI acting as a senior product copywriter and UX content designer.
+
+Create the full website content for the “Wireless Controllers” page under the Hardware section of Adapy.com.
+
+CONTEXT
+
+Adapy Wireless Controllers are designed to integrate into the Adapy Smart Hub platform when traditional harness mounting is not feasible. These controllers are commonly used in locations such as inside transfer seats or specialty adaptive environments where wiring constraints exist.
+
+Wireless Controllers extend the Smart Hub ecosystem, allowing flexible control placement while maintaining structured integration into the broader platform.
+
+This page must reinforce platform positioning — Wireless Controllers are not standalone devices; they are part of the Adapy Smart Mobility ecosystem.
+
+CRITICAL RULES
+
+- Do NOT invent wireless range specs, battery life, encryption claims, or certifications.
+- Do NOT claim universal compatibility.
+- Keep tone professional, clean, enterprise-level.
+- Avoid heavy technical detail unless confirmed.
+- Emphasize flexibility, scalability, and integration.
+- Make it clear Wireless Controllers require the Smart Hub.
+
+DELIVERABLE FORMAT
+
+1) SEO Title (≤ 60 characters)
+2) Meta Description (≤ 155 characters)
+3) Full structured page copy (H1/H2/H3)
+4) CTA list (button + slug)
+5) Suggested page components for development
+6) Optional FAQ (5 Q&A)
+
+PAGE STRUCTURE
+--------------------------------------------------
+
+HERO
+
+H1: Wireless Controllers
+
+Subheadline:
+Flexible control integration for adaptive environments where traditional wiring isn’t possible.
+
+Primary CTA: Request a Demo
+Secondary CTA: Explore the Smart Hub
+
+--------------------------------------------------
+
+SECTION 1 — WHY WIRELESS
+
+H2: When Wiring Isn’t an Option
+
+Explain:
+- Some adaptive environments limit harness placement.
+- Transfer seats and specialty equipment may not support traditional wired integration.
+- Wireless Controllers provide a structured alternative.
+- Maintains centralized control through the Smart Hub.
+
+Position wireless as a solution to real-world installation challenges.
+
+--------------------------------------------------
+
+SECTION 2 — HOW IT WORKS
+
+H2: Integrated — Not Isolated
+
+Explain in 4 short blocks:
+
+1) Connect  
+Wireless Controllers communicate with the Adapy Smart Hub.
+
+2) Route  
+Control signals are processed through the Smart Hub, not directly bypassed.
+
+3) Coordinate  
+Multiple devices can operate within one ecosystem.
+
+4) Expand  
+Wireless Controllers can work alongside harness kits and safety modules.
+
+Reinforce platform-first architecture.
+
+--------------------------------------------------
+
+SECTION 3 — APPLICATIONS
+
+H2: Designed for Adaptive Mobility Environments
+
+Provide structured examples (not overclaims):
+
+Transfer Seats  
+Allows embedded or concealed control integration.
+
+Specialty Equipment  
+Supports environments where physical harness routing is impractical.
+
+Retrofit Scenarios  
+Enables integration without extensive rewiring.
+
+Complex Multi-System Installs  
+Works alongside wired harness kits within one vehicle.
+
+--------------------------------------------------
+
+SECTION 4 — BENEFITS
+
+H2: Why Wireless Integration Matters
+
+Create 4–6 benefit cards:
+
+Flexible Placement  
+Enables control placement where wiring access is limited.
+
+Cleaner Installs  
+Reduces physical routing complexity.
+
+Unified Control  
+All signals route through the Smart Hub.
+
+Expandable Architecture  
+Works alongside harness kits and monitoring modules.
+
+Structured Visibility  
+Optional cloud connectivity through the Adapy platform.
+
+--------------------------------------------------
+
+SECTION 5 — WHO BENEFITS
+
+H2: Built for the Mobility Ecosystem
+
+Dealers  
+More flexible install options and reduced wiring constraints.
+
+CDRS Professionals  
+Improved customization for client-specific adaptive layouts.
+
+Manufacturers  
+Integration pathway for systems where wired access is limited.
+
+Fleet Operators  
+Scalable integration across varied vehicle configurations.
+
+--------------------------------------------------
+
+SECTION 6 — PLATFORM CONNECTION
+
+H2: Powered by the Adapy Smart Hub
+
+Short explanation:
+Wireless Controllers require the Adapy Smart Hub and function as part of the larger Smart Mobility ecosystem. They do not replace the Hub — they extend its reach.
+
+CTA:
+View the Smart Hub (/hardware/smart-hub)
+
+--------------------------------------------------
+
+SECTION 7 — SAFETY & STRUCTURE
+
+H2: Designed for Structured Deployment
+
+Bullets:
+- Integrated into Smart Hub control architecture
+- Designed for coordinated multi-device environments
+- Compatible with Adapy safety and monitoring modules
+- Structured cloud connectivity (if enabled)
+
+Keep language cautious and non-technical.
+
+--------------------------------------------------
+
+FINAL CTA STRIP
+
+H2: Need Flexible Integration?
+
+Buttons:
+- Request a Demo (/request-demo)
+- Contact Our Team (/contact)
+- Explore the Platform (/platform)
+
+--------------------------------------------------
+
+INTERNAL LINKS
+
+Smart Hub: /hardware/smart-hub
+Harness Integration: /hardware/harness-integration
+Safety Modules: /hardware/safety-modules
+Platform: /platform
+Contact: /contact
+Request Demo: /request-demo
+
+--------------------------------------------------
+
+STYLE
+
+- Professional
+- Structured
+- Platform-driven
+- Clean
+- Confident
+- Avoid fluff
+- Avoid technical overclaims
+- Keep paragraphs short and scannable
+
+Produce the final structured page copy.
