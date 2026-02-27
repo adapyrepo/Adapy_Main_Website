@@ -444,7 +444,7 @@ export default function Home() {
                 <div className="mt-12 pt-8 border-t border-black/10">
                   <Link href="/contact" onClick={() => setIsSliderOpen(false)}>
                     <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20">
-                      Find a Dealer
+                      Request a Demo
                     </button>
                   </Link>
                 </div>
