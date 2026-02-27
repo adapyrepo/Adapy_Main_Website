@@ -290,21 +290,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION: USER TESTIMONIALS REMOVED - REPLACED BY SCROLLER */}
-
-      {/* SECTION 8 — WHY ADAPY */}
-      <section className="py-24 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Trusted Partners</span>
-            <h2 className="text-3xl font-bold tracking-tight text-black">Industry-Leading Integration</h2>
-          </div>
-          <div className="opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-            <ScrollingLogos />
-          </div>
-        </div>
-      </section>
-
       <section className="py-32 bg-black text-white text-center overflow-hidden relative">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
