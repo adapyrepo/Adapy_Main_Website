@@ -118,6 +118,9 @@ export default function Home() {
                 <span className="font-bold">One System.</span>{" "}
                 <span className="font-normal opacity-90">One Interface.</span>
               </h1>
+              <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
+                Adapy connects, controls, and monitors adaptive mobility equipment through one unified platform — delivering safety, visibility, and performance across the entire vehicle ecosystem.
+              </p>
 
               {/* Dynamic Subtext */}
               <div className="h-10 md:h-12 flex items-start justify-center">
