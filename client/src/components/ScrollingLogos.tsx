@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
-import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
+import qstraintLogo from "@assets/QSTRAINT-logo-300x81-removebg-preview_1772226148510.png";
 import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM-removebg-preview_1772225967882.png";
 import harmarLogo from "@assets/Harmar_LogoT_PMS_1772226094357.webp";
