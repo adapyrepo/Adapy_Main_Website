@@ -46,7 +46,7 @@ export function ScrollingLogos() {
   };
 
   return (
-    <div className="bg-transparent py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
+    <div className="bg-black/90 py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
       <button 
         onClick={() => handleManualScroll('left')}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
