@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
-import qstraintLogo from "@assets/Q-straint-logo_1772218515352.webp";
+import qstraintLogo from "@assets/QSTRAINT-logo-300x81_1772218616410.jpg";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
