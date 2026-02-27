@@ -13,14 +13,21 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
 
   const benefitStatements = [
-    "You controlled all your adaptive equipment from one simple interface?",
-    "You could do more on your own, with less effort and frustration?",
-    "You experienced Fewer buttons. Fewer barriers. More independence?",
-    "Your technology adapted to you—not the other way around?",
-    "You could Switch between devices without switching controls?",
-    "You could access Smarter data for safer, more reliable equipment use?",
-    "You had confidence knowing your equipment is monitored and supported?",
-    "You had Predictive maintenance alerts, and were always informed?",
+    "Adaptive Equipment, Finally Unified",
+    "Too Many Remotes. Too Much Failure",
+    "Adaptive Tech Is Broken. We Fixed It.",
+    "Stop Juggling Controls.",
+    "Outdated Systems Don’t Belong in Modern Mobility.",
+    "Complexity Is the Enemy of Independence.",
+    "“Good Enough” Isn’t Good Enough Anymore.",
+    "This Is What Adaptive Tech Should Have Been.",
+    "We Didn’t Add Another Device. We Replaced the Problem.",
+    "Adaptive Equipment Should Work Together—or Not Exist at All.",
+    "One System. Zero Excuses.",
+    "This Is What Happens When Accessibility Is Taken Seriously.",
+    "If It Takes Multiple Remotes, It’s Already Failed.",
+    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
+    "",
   ];
 
   useEffect(() => {
@@ -32,7 +39,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
-      <Navbar />
+      <div className="absolute top-0 left-0 right-0 z-50">
+        <Navbar />
+      </div>
 
       {/* Hero Section */}
       <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden">
@@ -94,10 +103,8 @@ export default function Home() {
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
               {/* Static Header */}
               <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
-                <span className="font-bold">Mobility</span>{" "}
-                <span className="font-normal opacity-90">
-                  shouldn't be complicated
-                </span>
+                <span className="font-bold">One System.</span>{" "}
+                <span className="font-normal opacity-90">One Interface.</span>
               </h1>
 
               {/* Dynamic Subtext */}
@@ -125,12 +132,12 @@ export default function Home() {
               >
                 <Link href="/contact">
                   <button className="px-[22px] py-[11px] bg-[#0071e3] text-white rounded-full font-normal text-[17px] hover:bg-[#0077ed] transition-all transform active:scale-[0.97]">
-                    Learn more
+                    WATCH THE VIDEO
                   </button>
                 </Link>
                 <Link href="/products">
                   <button className="px-[22px] py-[11px] bg-transparent border border-[#0071e3] text-[#0071e3] rounded-full font-normal text-[17px] hover:bg-[#0071e3] hover:text-white transition-all active:scale-[0.97]">
-                    Buy
+                    CHAT WITH OUR BOT
                   </button>
                 </Link>
               </motion.div>

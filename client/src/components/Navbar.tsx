@@ -30,9 +30,9 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-black/5">
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-black/10 backdrop-blur-md border-b border-white/10 transition-all duration-300 hover:bg-black/20">
       {/* Top Bar */}
-      <div className="bg-[#1d1d1f] py-3 px-4 md:px-6">
+      <div className="bg-black/20 py-3 px-4 md:px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Logo */}
           <Link href="/" className="hover:opacity-80 transition-opacity">
@@ -40,7 +40,7 @@ export function Navbar() {
           </Link>
 
           {/* Mission Statement */}
-          <p className="hidden lg:block text-[13px] font-medium text-white/60 tracking-tight uppercase">
+          <p className="hidden lg:block text-[13px] font-medium text-white/40 tracking-tight uppercase">
             Pioneering independence through smart technology
           </p>
 
@@ -55,7 +55,7 @@ export function Navbar() {
                 Get a Quote
               </button>
             </Link>
-            <button className="text-white/60 hover:text-white transition-colors">
+            <button className="text-white/40 hover:text-white transition-colors">
               <Search className="w-5 h-5" />
             </button>
           </div>
@@ -71,7 +71,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-[12px] font-medium text-black/80 hover:text-black transition-colors uppercase tracking-widest"
+                className="text-[12px] font-medium text-white/70 hover:text-white transition-colors uppercase tracking-widest"
               >
                 {link.name}
               </Link>
@@ -81,7 +81,7 @@ export function Navbar() {
           {/* Mobile Toggle */}
           <div className="md:hidden absolute right-0 top-1/2 -translate-y-1/2">
             <button
-              className="text-black/80 hover:text-black transition-colors"
+              className="text-white/70 hover:text-white transition-colors"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -97,14 +97,14 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-x-0 top-[110px] bg-white border-b border-black/5 z-[99] md:hidden overflow-hidden"
+            className="fixed inset-x-0 top-[110px] bg-black/90 backdrop-blur-xl border-b border-white/10 z-[99] md:hidden overflow-hidden"
           >
             <nav className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-semibold text-black/80 hover:text-black border-b border-black/5 pb-2"
+                  className="text-lg font-semibold text-white/80 hover:text-white border-b border-white/5 pb-2"
                 >
                   {link.name}
                 </Link>
