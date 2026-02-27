@@ -289,6 +289,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION: USER TESTIMONIALS */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-20">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">User Voices</span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Real People. Real Independence.</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah J.",
+                role: "Adaptive Vehicle Owner",
+                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
+                quote: "Adapy unified all my equipment into one simple interface. It changed how I interact with my van daily.",
+                videoUrl: "#"
+              },
+              {
+                name: "Michael R.",
+                role: "NEMT Fleet Manager",
+                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+                quote: "The safety monitoring and GPS tracking give us peace of mind. We can proactively manage our fleet's health.",
+                videoUrl: "#"
+              },
+              {
+                name: "David K.",
+                role: "Mobility Dealer",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
+                quote: "The Adapy platform is the missing layer in the industry. It makes every installation cleaner and smarter.",
+                videoUrl: "#"
+              }
+            ].map((testimonial, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative bg-[#f5f5f7] rounded-[2.5rem] overflow-hidden border border-black/[0.05]"
+              >
+                <div className="aspect-[4/5] relative">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                  
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button className="w-16 h-16 bg-[#0071e3] text-white rounded-full flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform">
+                      <Zap className="w-8 h-8 fill-current" />
+                    </button>
+                  </div>
+
+                  <div className="absolute bottom-8 left-8 right-8 text-white">
+                    <h4 className="text-xl font-bold mb-1">{testimonial.name}</h4>
+                    <p className="text-white/60 text-sm uppercase tracking-wider font-semibold">{testimonial.role}</p>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-black/60 leading-relaxed italic">"{testimonial.quote}"</p>
+                  <button className="mt-6 text-[#0071e3] font-bold flex items-center gap-2 text-sm hover:underline">
+                    Watch Testimonial <Activity className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 8 — WHY ADAPY */}
       <section className="py-32 bg-black text-white text-center overflow-hidden relative">
         <div className="absolute inset-0 opacity-20">
