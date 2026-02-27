@@ -7,7 +7,7 @@ import qstraintLogo from "@assets/QSTRAINT-logo-300x81-removebg-preview_17722261
 import ezlockLogo from "@assets/ezklock_1772218764750.webp";
 import suregripLogo from "@assets/Screenshot_2026-02-27_at_1.53.46_PM-removebg-preview_1772225967882.png";
 import harmarLogo from "@assets/Harmar_LogoT_PMS_1772226094357.webp";
-import atcMobilityLogo from "@assets/ATC_Mobility-Logo_1772225555801.webp";
+import atcMobilityLogo from "@assets/ATC_Mobility-Logo_1772231199262.webp";
 import adaptLogo from "@assets/adapt_1772225980081.png";
 
 const logos = [
