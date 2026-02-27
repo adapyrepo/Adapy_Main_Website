@@ -89,7 +89,7 @@ export default function Home() {
                 className="mb-2"
               >
                 <span className="text-[12px] md:text-[14px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
-                  Intelligent Mobility Infrastructure for Adaptive Vehicles
+                  Intelligent Infrastructure for Adaptive Mobility
                 </span>
               </motion.div>
               <p className="text-[14px] md:text-[16px] text-white/70 max-w-[600px] mt-2 mb-4 leading-relaxed">
