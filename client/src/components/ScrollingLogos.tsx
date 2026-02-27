@@ -1,10 +1,11 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
+import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 
 const logos = [
   { name: "BraunAbility", url: braunabilityLogo },
-  { name: "Brand 2", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+2" },
+  { name: "Bruno", url: brunoLogo },
   { name: "Brand 3", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+3" },
   { name: "Brand 4", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+4" },
   { name: "Brand 5", url: "https://placehold.co/200x80/000000/FFFFFF?text=BRAND+5" },
