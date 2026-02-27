@@ -101,6 +101,18 @@ export default function Home() {
             <div className="absolute left-0 bottom-0 w-[600px] h-[400px] bg-black/40 blur-[100px] -z-10 pointer-events-none rounded-tr-[100px]" />
 
             <div className="max-w-[800px] w-full flex flex-col items-start justify-center min-h-[180px]">
+              {/* Mobility Intelligence Platform Heading */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="mb-2"
+              >
+                <span className="text-[12px] md:text-[14px] font-semibold tracking-[0.2em] text-[#0071e3] uppercase">
+                  Mobility Intelligence Platform
+                </span>
+              </motion.div>
+
               {/* Static Header */}
               <h1 className="text-[20px] md:text-[32px] lg:text-[40px] leading-[1.07] tracking-[-0.022em] text-white mb-1 uppercase">
                 <span className="font-bold">One System.</span>{" "}
