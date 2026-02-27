@@ -297,7 +297,7 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-6 max-w-3xl relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-12 leading-[1.1]">The Future of Adaptive Mobility Is Connected</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             {["Control", "Safety", "Intelligence", "Visibility"].map((word, i) => (
               <div key={i} className="flex flex-col items-center">
                 <div className="w-1 h-12 bg-[#0071e3] mb-4" />
@@ -305,6 +305,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <div className="mb-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+            <ScrollingLogos />
+          </div>
+
           <p className="text-xl text-white/60 mb-12">Adapy creates the digital infrastructure layer the adaptive industry has been missing. All unified.</p>
         </div>
       </section>

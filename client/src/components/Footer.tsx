@@ -24,16 +24,6 @@ export function Footer() {
 
   return (
     <footer className="bg-foreground text-background py-24 border-t border-white/10">
-      <div className="container mx-auto px-6 mb-24">
-        <div className="text-center mb-12">
-          <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Trusted Partners</span>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-8">Industry-Leading Integration</h2>
-          <div className="opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <ScrollingLogos />
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-24 mb-16">
           <div className="md:col-span-2">
