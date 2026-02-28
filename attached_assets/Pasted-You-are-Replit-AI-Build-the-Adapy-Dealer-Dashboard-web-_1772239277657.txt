@@ -1,0 +1,142 @@
+You are Replit AI. Build the “Adapy Dealer Dashboard” web app (MVP + scalable architecture) for adaptive mobility dealers using Adapy’s Pathways dealer platform concepts.
+
+CONTEXT (what Adapy promises dealers)
+Base the core modules and language on Adapy’s dealer platform/Pathways feature set: Real-Time Equipment Data, Automated Maintenance Alerts, Workflow Tracking & Status, Remote Troubleshooting, Service History Log, Fleet-Wide Analytics, plus dealer benefits like “Warranty Justification Reports,” “VA & Voc-Rehab Friendly,” and lifecycle support from install to ongoing service. Source: https://adapy.com/dealers
+
+PRIMARY GOAL
+A powerful dashboard that lets a dealer manage a fleet of customer vehicles/equipment that are connected to Adapy hardware, capturing usage sessions and diagnostics, and turning that data into maintenance schedules, alerts, documentation, and service revenue.
+
+BUILD THIS AS A REAL PRODUCT
+- Multi-tenant (each dealer org has its own data). Optional: allow a “Dealer Group” parent org.
+- Role-based access control (RBAC): Owner/Admin, Service Manager, Technician, Sales/Account Rep, Read-only.
+- Audit logs for sensitive actions (view/export reports, change maintenance rules, firmware actions, user access changes).
+- Responsive UI (desktop-first, but works on mobile).
+- Use a clean modern component library and charting for analytics.
+
+DATA MODEL (minimum tables/collections)
+1) Dealers
+2) DealerUsers (role, permissions, last_login)
+3) Customers (end user / wheelchair user, but store minimal PII; allow notes)
+4) Vehicles (VIN optional; make/model/year; customer_id)
+5) Equipment (type: lift/crane/transfer seat/etc; manufacturer/model/serial; vehicle_id; install_date; warranty_start/end; firmware_version; connectivity status)
+6) EquipmentSessions (usage sessions): start_time, end_time, duration, session_type (raise/lower/transfer/etc), success/fail, error_code, signal_strength, battery/voltage metrics if available
+7) Diagnostics (timestamped snapshots): fault codes, sensor readings, relay states, connectivity logs
+8) MaintenanceRules (by equipment type/manufacturer/model; intervals by time, cycles, or hours; rule versioning)
+9) MaintenanceEvents (scheduled/overdue/completed; technician; parts used; notes)
+10) ServiceTickets (triage queue): created_from (alert/manual), priority, status, assignment, timeline comments
+11) Notifications (in-app + email/SMS push placeholders): template, channel, recipient, sent_at, status
+12) Documents/Reports (stored PDFs or generated files + metadata): warranty justification, funding justification, service history, diagnostics report
+
+INGESTION LAYER (mock + ready for real device data)
+- Implement a simple API endpoint to receive device telemetry and sessions:
+  POST /api/telemetry
+  Payload includes dealer_id, equipment_id, timestamp, session/diagnostic fields.
+- Store incoming events, normalize into EquipmentSessions/Diagnostics.
+- Provide a simulator tool inside the admin area to generate sample sessions and faults (so the app is demo-ready).
+
+CORE DASHBOARD MODULES (must implement)
+A) Overview / Command Center
+- Tiles: Active devices, Offline devices, Overdue maintenance, Open tickets, Recent alerts, Last 24h sessions
+- “At risk” list: devices with frequent faults, high cycle counts, declining signal, or repeated failures
+- Quick actions: Create ticket, Generate report, Schedule maintenance, Remote troubleshoot (mock)
+
+B) Fleet & Equipment Management
+- Searchable list of customers/vehicles/equipment
+- Equipment detail page:
+  - Live status (online/offline, last seen, firmware version)
+  - Usage sessions timeline (filters by date/type/success)
+  - Diagnostics history (fault codes and readings)
+  - Maintenance schedule + next due
+  - Service history log (completed maintenance + parts)
+  - Notes and attachments
+
+C) Automated Maintenance Alerts
+- Rule engine: define maintenance triggers by
+  - time since install/last service
+  - number of cycles (usage sessions count)
+  - cumulative runtime
+  - fault code thresholds
+- Alert generation → creates Notification + optional ServiceTicket
+- Dealer-configurable alert routing: which roles get which alerts
+
+D) Workflow Tracking & Status
+- Simple pipeline boards for:
+  - Installations: New → Scheduled → Installed → Verified → Closed
+  - Service tickets: New → Diagnosing → Waiting Parts → Scheduled → Completed
+- Assignments, due dates, internal comments, status history
+
+E) Remote Troubleshooting (MVP as “diagnostic console”; actions mocked)
+- Show current faults and connectivity logs
+- Provide “Run checks” buttons:
+  - Ping device
+  - Request diagnostics snapshot
+  - Queue firmware update (mock)
+  - Restart device (mock)
+- Log every action to audit log
+NOTE: These are mocked now but architect so real commands can be wired later.
+
+F) Service History Log
+- Automatically append events when maintenance completed, parts replaced, or remote actions run
+- Exportable service history report per equipment/vehicle
+
+G) Fleet-Wide Analytics
+- Charts:
+  - sessions/day, failure rate, most-used equipment types
+  - maintenance adherence (on-time vs overdue)
+  - top fault codes
+  - “service opportunity” indicators: approaching maintenance thresholds, frequent use, expiring warranty
+- Filters: date range, equipment type, manufacturer, technician
+
+DOCUMENTATION / REPORTING (critical to include)
+1) Warranty Justification Report
+- Pull: fault codes, session failures, diagnostics snapshots, service events, timelines
+- One-click generate PDF with dealer header, equipment identifiers, narrative summary, supporting tables
+2) Funding / Justification Documentation (Voc-Rehab / VA friendly packet)
+- Generate a standardized packet:
+  - Equipment overview and benefit summary
+  - Usage proof (sessions, cycle counts)
+  - Maintenance and reliability history
+  - Safety/independence impact notes (dealer-entered)
+- Allow dealer to add a short “Clinician-facing” narrative and attach external docs
+3) Exports
+- CSV export for sessions, maintenance, tickets
+- PDF export for service history
+
+NOTIFICATIONS
+- In-app notification center with read/unread
+- Email notifications via provider placeholder (log to console in dev)
+- SMS/push as optional stubs (design the interface; no need to fully integrate)
+
+SECURITY / COMPLIANCE BASICS
+- RBAC enforcement on every route/action
+- Input validation on APIs
+- Rate limiting on telemetry endpoint (basic)
+- Audit logging for exports, report generation, remote actions, permission changes
+- Minimal PII storage; make PII fields optional; support “redacted view” for read-only roles
+
+TECH STACK
+Choose a modern full-stack approach that runs cleanly on Replit (your choice), but must include:
+- Auth (email/password + magic link optional)
+- Database migrations/ORM
+- Server API + frontend
+- PDF generation for reports (server-side)
+
+SEED DATA + DEMO MODE
+- Create one demo dealer with 10 customers, 20 vehicles, 50 equipment items, and realistic sessions/diagnostics/maintenance history.
+- Provide “Simulate fault” and “Simulate heavy usage week” buttons.
+
+DELIVERABLES
+1) Working app with the modules above
+2) Clear README: setup, env vars, running locally on Replit, demo login
+3) “Architecture notes” doc: where telemetry and real remote commands would plug in later
+4) Basic test coverage for critical logic (maintenance rule evaluation, alert creation, RBAC guards)
+
+ACCEPTANCE CRITERIA (must pass)
+- I can log in as Dealer Admin and see the Overview tiles populated with seed data.
+- Clicking an equipment item shows sessions timeline, diagnostics, maintenance schedule, and service history.
+- Creating/updating maintenance rules generates alerts when thresholds are crossed.
+- Generating a Warranty Justification PDF works and includes real seeded events.
+- RBAC prevents a Read-only user from exporting or running remote actions.
+- Telemetry POST endpoint can ingest sample payloads and update analytics.
+
+Build it now.
