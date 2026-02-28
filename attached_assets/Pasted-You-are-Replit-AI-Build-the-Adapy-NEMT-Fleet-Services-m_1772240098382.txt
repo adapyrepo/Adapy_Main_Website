@@ -1,0 +1,267 @@
+You are Replit AI.
+
+Build the “Adapy NEMT / Fleet Services” module inside the Adapy Software platform.
+
+This is NOT generic GPS fleet tracking.  
+This is a mobility-specific safety intelligence system for wheelchair-accessible NEMT vehicles.
+
+The goal is to create the most advanced adaptive-equipment-aware fleet monitoring dashboard in the industry.
+
+----------------------------------------
+PRIMARY OBJECTIVE
+----------------------------------------
+
+Develop a Fleet Command Center that monitors:
+
+1) Vehicle-level telematics
+2) Adaptive mobility equipment inside the vehicle
+3) Passenger safety risk indicators
+4) Preventive maintenance automation
+5) Incident documentation & defensibility tools
+
+This must be enterprise-ready and scalable.
+
+----------------------------------------
+ARCHITECTURE REQUIREMENTS
+----------------------------------------
+
+• Multi-tenant (each fleet operator is isolated)
+• Role-Based Access Control (RBAC)
+  - Fleet Admin
+  - Safety Officer
+  - Dispatch
+  - Maintenance Manager
+  - Read-Only Auditor
+• Audit logs for:
+  - Report exports
+  - Alert rule changes
+  - Safety overrides
+  - Remote device actions
+• Telemetry ingestion endpoint:
+  POST /api/fleet/telemetry
+• Rate limiting and input validation
+• Clean modern dashboard UI (desktop-first, mobile responsive)
+• Real-time updates (polling or websocket-ready architecture)
+
+----------------------------------------
+DATA MODEL (Minimum)
+----------------------------------------
+
+Organizations
+Users
+Vehicles
+Drivers (optional)
+Passengers (minimal PII)
+Equipment (lifts, ramps, transfer seats, securement systems)
+EquipmentSessions
+VehicleTelemetry
+Diagnostics
+MaintenanceRules
+MaintenanceEvents
+FleetAlerts
+IncidentReports
+Notifications
+AuditLogs
+
+----------------------------------------
+CORE DASHBOARD MODULES
+----------------------------------------
+
+1) FLEET COMMAND CENTER
+
+Display real-time tiles:
+- Vehicles Online / Offline
+- Vehicles Idling
+- High-Risk Alerts
+- Equipment Faults
+- Overdue Maintenance
+- Active Safety Events
+- Vehicles Running > X minutes
+- Vehicles with Lift Failure Today
+
+Include map view placeholder (no full GIS required yet).
+
+----------------------------------------
+
+2) ADAPTIVE EQUIPMENT MONITORING
+
+Per vehicle view must show:
+- Lift cycle count
+- Last usage session
+- Session success/failure rate
+- Fault codes
+- Interrupted cycles
+- Door open/close states
+- Battery/voltage health (if available)
+- Firmware version
+- Connectivity status
+
+EquipmentSessions table must track:
+- start_time
+- end_time
+- duration
+- session_type (raise/lower/etc)
+- success/failure
+- error_code
+- signal_strength
+- voltage metrics
+
+----------------------------------------
+
+3) VEHICLE SAFETY MONITORING
+
+Track:
+- Ignition on/off
+- Idle duration
+- Engine running status
+- Movement detection
+- Door status
+- After-hours activity
+- Battery irregularities
+
+Generate alerts for:
+- Engine running > configurable threshold
+- Ignition on + no movement
+- Vehicle active after scheduled hours
+- Prolonged idle in enclosed risk scenarios
+- Low battery risk
+
+----------------------------------------
+
+4) PASSENGER SAFETY ALERT SYSTEM
+
+Generate real-time alerts for:
+- Lift malfunction before transport
+- Equipment failure during loading/unloading
+- Offline device > X minutes
+- Overcurrent or stall events
+- Repeated session failures
+- Critical fault codes
+
+Alert routing rules:
+- Assignable to roles
+- Email (log only in dev)
+- In-app notification center
+- Escalation tiers
+
+----------------------------------------
+
+5) PREVENTIVE MAINTENANCE ENGINE
+
+Create maintenance rules based on:
+- Lift cycle counts
+- Runtime hours
+- Time since last service
+- Fault frequency threshold
+
+Auto-generate:
+- MaintenanceEvents
+- Service tickets
+- Overdue alerts
+
+Include comparison:
+- Pre-maintenance failure rate
+- Post-maintenance performance
+
+----------------------------------------
+
+6) ANALYTICS & REPORTING
+
+Include charts for:
+- Fleet-wide lift usage trends
+- Vehicles with highest utilization
+- Fault code frequency
+- Maintenance compliance %
+- Idle time heatmaps
+- Equipment reliability comparison by manufacturer
+- Average daily sessions per vehicle
+- Vehicles approaching lifecycle thresholds
+
+----------------------------------------
+
+7) INCIDENT RECONSTRUCTION REPORT
+
+Allow Fleet Admin to generate:
+
+- Timestamped equipment state
+- Vehicle telemetry at event time
+- Diagnostic snapshot
+- Maintenance history
+- Fault code history
+- Narrative field
+
+Export to PDF.
+
+----------------------------------------
+
+8) ALERT RULE ENGINE
+
+Allow admin to configure:
+- Idle threshold (minutes)
+- Offline threshold
+- Fault escalation level
+- After-hours definitions
+- Maintenance intervals
+- Escalation routing
+
+All changes logged to AuditLogs.
+
+----------------------------------------
+
+9) DEMO / SIMULATOR MODE
+
+Create a seeded demo fleet:
+- 25 vehicles
+- 40 pieces of equipment
+- Realistic usage sessions
+- Some with high idle risk
+- Some with lift failures
+- Some with overdue maintenance
+
+Add simulation buttons:
+- “Simulate Engine Left Running”
+- “Simulate Lift Fault”
+- “Simulate High Usage Week”
+- “Simulate Offline Vehicle”
+
+----------------------------------------
+
+10) REPORTS (Must Generate PDF + CSV)
+
+Include at least these reports:
+
+1. Fleet Safety Overview Report
+2. High-Risk Vehicles Report
+3. Lift Usage & Cycle Report
+4. Idle Time Analysis Report
+5. Fault Code Frequency Report
+6. Maintenance Compliance Report
+7. Warranty Evidence Report
+8. Incident Reconstruction Report
+9. Equipment Reliability Comparison Report
+10. Lifecycle Forecast Report
+
+----------------------------------------
+
+ACCEPTANCE CRITERIA
+
+- Fleet Admin logs in and sees live dashboard with seeded data.
+- Alerts auto-generate when thresholds crossed.
+- Maintenance rules trigger events.
+- Incident Reconstruction PDF exports correctly.
+- Read-only users cannot edit rules or export sensitive reports.
+- Telemetry endpoint updates analytics.
+
+----------------------------------------
+
+DELIVERABLES
+
+1) Working NEMT Fleet Services module
+2) README with setup instructions
+3) Architecture notes for scaling (websocket + device commands)
+4) Basic unit tests for rule engine & alert generation
+
+Build this as a production-grade mobility fleet safety platform.
+
+Do not build generic fleet tracking.
+This must focus on wheelchair-accessible vehicles and adaptive equipment intelligence.

@@ -15,6 +15,7 @@ import WirelessControllers from "@/pages/WirelessControllers";
 import SafetyModules from "@/pages/SafetyModules";
 import DealerDashboard from "@/pages/DealerDashboard";
 import CDRSPortal from "@/pages/CDRSPortal";
+import NEMTFleet from "@/pages/NEMTFleet";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/hardware/safety-modules" component={SafetyModules} />
       <Route path="/software/dealer" component={DealerDashboard} />
       <Route path="/software/cdrs" component={CDRSPortal} />
+      <Route path="/solutions/nemt" component={NEMTFleet} />
       <Route path="/products" component={Products} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
