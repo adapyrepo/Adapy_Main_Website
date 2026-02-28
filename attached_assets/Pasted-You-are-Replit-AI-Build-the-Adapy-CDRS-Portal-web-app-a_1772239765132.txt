@@ -1,0 +1,203 @@
+You are Replit AI. Build the “Adapy CDRS Portal” web app — a clinician-first dashboard for Certified Driver Rehabilitation Specialists (CDRS) and OTs who prescribe/verify adaptive mobility solutions and want objective, defensible outcomes data.
+
+WHY THIS EXISTS (CDRS reality)
+CDRS professionals evaluate functional limitations, recommend adaptive driving devices, and support safe vehicle access/operation decisions. The portal must help a CDRS document needs, training progress, and real-world outcomes with objective usage/diagnostics data. :contentReference[oaicite:0]{index=0}
+
+This portal also must integrate cleanly with mobility dealers and align with industry best-practice documentation and recordkeeping expectations in adaptive mobility work (e.g., systematic documentation, traceability/records retained, assessment considerations, fittings often in presence of DRS/CDRS). :contentReference[oaicite:1]{index=1}
+
+Adapy product grounding:
+Adapy’s dealer platform highlights real-time equipment data, remote diagnostics/troubleshooting, service history logging, and fleet-wide analytics — those capabilities should be repurposed for a clinician portal focused on patient independence and safety outcomes. :contentReference[oaicite:2]{index=2}
+
+PRIMARY GOAL (product outcomes)
+Make a CDRS want Adapy in every patient’s vehicle by delivering:
+- objective proof of independence & accessibility outcomes
+- time-of-day / usage patterns that match real life
+- safety & reliability visibility (faults/maintenance) that reduces risk and improves confidence
+- one-click, payer-ready documentation packets (VR/VA/insurance-friendly)
+- collaboration with dealers (install/service) without drowning clinicians in dealer workflows
+
+NON-NEGOTIABLE: REPORTS
+The portal MUST include at least 10 clinician-facing reports that can be generated per patient and over a caseload, with charts + narrative summary + export to PDF and CSV. Include at minimum these 12 reports:
+
+1) Independence Uptime Report
+   - Days with successful access/egress sessions vs missed days
+   - Trendline by week/month
+   - “Independence score” derived from successful sessions, reduced failures, reduced caregiver assists (clinician-entered)
+
+2) Accessibility & Use Success Report
+   - Success/failure rate by equipment type (lift, transfer seat, ramp/door, etc.)
+   - Failure reasons (fault codes vs user cancels vs environmental)
+
+3) Time-of-Day Utilization Heatmap
+   - Sessions by hour-of-day and day-of-week
+   - Identifies real-life participation windows and barriers
+
+4) Community Participation Proxy Report
+   - Out-of-home session patterns (use session timestamps + optional location tags if enabled)
+   - “Activity days/week” proxy (no precise GPS required for MVP)
+
+5) Training Progress & Competency Report
+   - Training plan checklist (skills)
+   - Session success over time post-training milestones
+   - Clinician can certify “independent with equipment” when thresholds met
+
+6) Safety Risk Signals Report
+   - Repeat failures, abnormal stop events, unusual session retries
+   - Offline duration and “critical alert” history
+   - Clearly labels “clinical attention recommended” flags (not medical diagnosis)
+
+7) Reliability & Maintenance Impact Report
+   - Correlate maintenance completion with improved success rates and reduced faults
+   - Before/after comparisons around service dates
+
+8) Device & Equipment Prescription Adherence Report
+   - Compare prescribed equipment settings (clinician-entered baseline) to actual usage patterns
+   - Identifies under-use or over-dependence on certain features
+
+9) Funding / Justification Packet (VR/VA/Insurance)
+   - Auto-assembled packet with:
+     - patient goals & barriers (clinician narrative)
+     - objective usage sessions and success rates
+     - safety and reliability evidence
+     - service history highlights
+   - One-click “Clinician Summary Letter” with editable template
+
+10) Warranty / Service Evidence Report (Clinician-facing)
+   - When equipment issues impede independence, generate a timeline of failures and diagnostics to support dealer/manufacturer warranty action
+
+11) Caregiver Burden Reduction Report (Clinician-entered + data-supported)
+   - Quick weekly caregiver-assist survey (optional)
+   - Correlate with increased successful independent sessions
+
+12) Outcomes Dashboard (Caseload View)
+   - Compare outcomes across all patients:
+     - independence score
+     - success rates
+     - usage frequency
+     - safety flags
+   - Filter by diagnosis category, equipment type, dealer, and funding source
+
+REPORT DESIGN REQUIREMENTS
+Every report must include:
+- Patient identifiers (minimal PII), equipment identifiers
+- Date range selector
+- Key KPIs with definitions
+- Visualizations (charts/heatmaps)
+- A narrative “Clinical Interpretation” section (clinician editable)
+- Export: PDF + CSV
+- Share controls: “Share with Dealer” + “Share with Funding Agency” (role-gated)
+
+CORE PORTAL MODULES (must implement)
+A) Clinician Command Center
+- Caseload snapshot tiles:
+  - Patients active this week
+  - Patients with reduced use
+  - High failure rate equipment
+  - Overdue maintenance impacting outcomes
+  - Offline devices > X days
+- Alerts prioritized as “Clinical Attention” vs “Service Needed”
+
+B) Patient Profiles (clinician-first)
+- Functional goals (structured fields + narrative)
+- Equipment prescription summary (what was recommended + why)
+- Connected equipment list + status
+- Quick view: independence score, usage trend, last successful session, current risk flags
+- Notes and attachments (evals, letters, photos)
+
+C) Objective Data Explorer (sessions + diagnostics simplified)
+- Timeline of sessions (filter by equipment + success)
+- “Explain this failure” view:
+  - show device fault codes, last maintenance, connectivity status
+  - recommended next step:
+    - “Service ticket to dealer”
+    - “Training follow-up”
+    - “Re-evaluate equipment fit”
+
+D) Documentation Builder (the “make life easy” feature)
+- Letter templates:
+  - VR justification summary
+  - VA/FSS style justification cover letter
+  - Medical necessity support letter (clinician phrasing; user-editable)
+- Auto pulls KPIs and charts from the last 30/90 days
+- Stores versions and exports signed PDFs (signature capture optional)
+
+E) Dealer Collaboration (without making CDRS chase people)
+- Secure “Dealer Share Links” for specific reports/tickets (time-limited)
+- Service requests:
+  - clinician creates a “Service Request” tied to a patient + equipment
+  - includes objective evidence
+  - statuses: Sent → Scheduled → Completed → Verified
+- Messaging thread per service request (basic)
+
+F) Settings & Governance
+- RBAC: CDRS Admin, CDRS Clinician, Assistant, Read-only Student
+- Audit log for: report exports, share links, service requests, role changes
+- Data minimization controls: hide PII by default, show only when needed
+
+DATA MODEL (minimum tables/collections)
+1) Orgs (CDRS practices)
+2) Users (role, permissions)
+3) Patients (minimal PII: initials or patient_code; optional full name; contact optional)
+4) PatientGoals (structured + narrative)
+5) Dealers (linked for collaboration)
+6) Vehicles (optional VIN; make/model/year)
+7) Equipment (type, manufacturer/model/serial, install_date, warranty dates, firmware, last_seen, online/offline)
+8) Sessions (start/end, duration, session_type, success/fail, error_code, signal/voltage metrics)
+9) Diagnostics (timestamped snapshots, fault codes, readings)
+10) ServiceRequests (priority, status, assignment to dealer/tech, evidence attachments)
+11) MaintenanceEvents (scheduled/completed; dealer references)
+12) Reports (type, parameters, generated_by, file path, share token)
+13) Notifications (in-app + email placeholder)
+14) AuditLogs (who did what, when)
+
+INGESTION (mock + future ready)
+- POST /api/telemetry (same concept as dealer):
+  - includes org_id, patient_id, equipment_id, timestamp, session/diagnostics fields
+- Normalize events into Sessions + Diagnostics
+- Include demo simulator:
+  - “simulate morning routine” (high success)
+  - “simulate device fault week” (failures + offline)
+  - “simulate training improvement” (success rate climbs)
+
+SECURITY / COMPLIANCE BASICS (do this)
+- Strong RBAC checks on every route/action
+- Audit logging for exports/shares
+- Share links expire and are scoped to a single report
+- Input validation and rate-limiting on telemetry API
+- Minimal PII by default; allow patient_code-only workflows
+- Clear UI language: “This is operational equipment data supporting mobility outcomes” (not medical diagnosis)
+
+TECH STACK
+Pick a Replit-friendly modern stack that includes:
+- Auth (email/password; optional magic link)
+- Database migrations/ORM
+- Server API + frontend
+- PDF generation server-side
+- Charting/heatmap visualizations
+- Clean, clinical UI theme (fast to read, not “techy”)
+
+SEED DATA (demo that sells)
+Create a demo CDRS org with:
+- 30 patients, 40 vehicles, 80 equipment items
+- realistic sessions (morning/afternoon peaks), varied success/failure patterns
+- at least 10 pre-generated reports ready to click
+- a few “before vs after” stories:
+  - training improved independence
+  - maintenance fixed failures
+  - a patient’s usage increased over 60 days
+
+DELIVERABLES
+1) Working portal with modules above
+2) A Reports page listing the 12 reports with one-click generate + export
+3) README: env vars, demo credentials, how to run
+4) Architecture notes: how real dealer/service integrations and device command/control would plug in later (commands can be mocked now)
+
+ACCEPTANCE CRITERIA
+- I can log in and immediately see caseload risk + independence trends.
+- Patient profile shows usage timeline + independence score + key alerts.
+- I can generate at least 12 reports, each with charts + narrative + PDF export.
+- I can create a Service Request and attach objective evidence; the status workflow works.
+- Read-only role cannot export or create share links.
+- Telemetry endpoint ingests sample payloads and updates patient dashboards.
+
+Build it now.
