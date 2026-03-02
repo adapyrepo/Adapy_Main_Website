@@ -154,7 +154,7 @@ export default function Home() {
                     onClick={() => setIsSliderOpen(true)}
                     className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
                   >
-                    Request Demo
+                    Join Now Free!
                   </button>
                 </div>
               </motion.div>
@@ -445,7 +445,7 @@ export default function Home() {
                 <div className="mt-12 pt-8 border-t border-black/10">
                   <Link href="/contact" onClick={() => setIsSliderOpen(false)}>
                     <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20">
-                      Request a Demo
+                      Join Now Free!
                     </button>
                   </Link>
                 </div>
