@@ -77,7 +77,7 @@ const userProfiles = [
   {
     image: userPhoto4,
     name: "Wheelchair Cranes",
-    role: "Fully Support Bruno & Harmar Cranes",
+    role: "Fully Support Bruno & Harmar",
     quote: "My truck adaptation is done! Having Adapy controls for my lift and seat makes every journey so much easier. Truly life-changing."
   }
 ];
