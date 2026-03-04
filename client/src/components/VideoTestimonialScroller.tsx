@@ -6,29 +6,36 @@ const testimonialVideos = [
     id: "v1",
     title: "Independence Regained",
     name: "James L.",
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "https://img.youtube.com/vi/Tn9fraklLJI/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/Tn9fraklLJI"
   },
   {
     id: "v2",
     title: "Seamless Integration",
     name: "Maria S.",
-    thumbnail: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "https://img.youtube.com/vi/evUjxSpwRFU/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/evUjxSpwRFU"
   },
   {
     id: "v3",
     title: "Safety First",
     name: "Robert T.",
-    thumbnail: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "https://img.youtube.com/vi/kZqKEZl_ry4/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/kZqKEZl_ry4"
   },
   {
     id: "v4",
     title: "Tech that Works",
     name: "Sarah K.",
-    thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "https://img.youtube.com/vi/5j15vtWhsoU/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/5j15vtWhsoU"
+  },
+  {
+    id: "v5",
+    title: "Adapy Innovation",
+    name: "Mark D.",
+    thumbnail: "https://img.youtube.com/vi/pr9ZNydjFAs/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/pr9ZNydjFAs"
   }
 ];
 
