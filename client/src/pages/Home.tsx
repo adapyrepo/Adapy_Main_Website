@@ -71,7 +71,7 @@ const userProfiles = [
   {
     image: userPhoto3,
     name: "Transfer Seats",
-    role: "Fully supports Adapt Solutions, BraunAbility, Bruno, etc.",
+    role: "Fully Support BraunAbility and Ricon Lifts",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
   {
