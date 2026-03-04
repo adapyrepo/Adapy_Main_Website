@@ -82,13 +82,13 @@ export default function SmartHub() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-[#f5f5f7]">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-[#8c8c8c]">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
           <img 
             src={hubWireframe} 
             alt="" 
-            className="w-full h-full object-cover lg:object-contain object-right"
+            className="w-full h-full object-cover lg:object-contain object-right mix-blend-multiply"
           />
         </div>
 
