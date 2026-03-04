@@ -84,11 +84,11 @@ export default function SmartHub() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#f5f5f7]">
         {/* Background Image */}
-        <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-2/3 h-full opacity-10 pointer-events-none hidden lg:block">
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <img 
             src={hubWireframe} 
             alt="" 
-            className="w-full h-full object-contain mix-blend-multiply"
+            className="w-full h-full object-cover lg:object-contain object-right"
           />
         </div>
 
