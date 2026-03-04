@@ -12,7 +12,7 @@ import {
   Share2
 } from "lucide-react";
 import { Link } from "wouter";
-import appMockup from "@assets/DSC02786-removebg_1772663656247.png";
+import appMockup from "@assets/adapy_home_phone_1772663805994.png";
 
 export default function IndividualSolutions() {
   const benefits = [
