@@ -77,7 +77,7 @@ const userProfiles = [
   {
     image: userPhoto4,
     name: "Savannah Reed",
-    role: "Fully Supports Tundra Conversions",
+    role: "Fully Support BraunAbility and Ricon Lifts",
     quote: "My truck adaptation is done! Having Adapy controls for my lift and seat makes every journey so much easier. Truly life-changing."
   }
 ];
