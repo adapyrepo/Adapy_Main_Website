@@ -70,7 +70,7 @@ const userProfiles = [
   },
   {
     image: userPhoto3,
-    name: "Transfer Seats",
+    name: "Wheelchair Lifts",
     role: "Fully Support BraunAbility and Ricon Lifts",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
