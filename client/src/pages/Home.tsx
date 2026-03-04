@@ -50,7 +50,7 @@ const learningVideos = [
 ];
 
 import userPhoto1 from "@assets/modifier_1772655358581.png";
-import userPhoto2 from "@assets/generated_images/generated_image_1.png";
+import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
 import userPhoto3 from "@assets/generated_images/generated_image_2.png";
 import userPhoto4 from "@assets/generated_images/generated_image_3.png";
 
