@@ -159,7 +159,7 @@ export default function HarnessIntegration() {
               <img 
                 src={hubWireframe} 
                 alt="Harness Integration" 
-                className="w-full h-full object-cover relative z-10"
+                className="w-full h-full object-cover object-[20%_center] relative z-10"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/5 to-transparent z-20 pointer-events-none" />
             </div>
