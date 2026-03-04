@@ -21,14 +21,14 @@ const testimonialVideos = [
     title: "Safety First",
     name: "Robert T.",
     thumbnail: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
-    videoUrl: "https://www.youtube.com/embed/Tn9fraklLJI"
+    videoUrl: "https://www.youtube.com/embed/kZqKEZl_ry4"
   },
   {
     id: "v4",
     title: "Tech that Works",
     name: "Sarah K.",
     thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
-    videoUrl: "https://www.youtube.com/embed/evUjxSpwRFU"
+    videoUrl: "https://www.youtube.com/embed/5j15vtWhsoU"
   }
 ];
 
