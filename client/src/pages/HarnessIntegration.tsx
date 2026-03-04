@@ -155,11 +155,11 @@ export default function HarnessIntegration() {
                 <p className="text-sm italic pt-4">Clarification: Harness kits are signal passthrough integrations — not equipment replacements.</p>
               </div>
             </div>
-            <div className="bg-black rounded-[2.5rem] p-0 flex items-center justify-center relative overflow-hidden aspect-square border-4 border-[#0071e3]/30 shadow-2xl">
+            <div className="bg-black rounded-[2.5rem] p-8 flex items-center justify-center relative overflow-hidden aspect-square border-4 border-[#0071e3]/30 shadow-2xl">
               <img 
                 src={hubWireframe} 
                 alt="Harness Integration" 
-                className="w-full h-full object-cover scale-125 relative z-10"
+                className="w-full h-full object-contain relative z-10"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/10 to-transparent z-20 pointer-events-none" />
             </div>
