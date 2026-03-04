@@ -64,6 +64,14 @@ export default function IndividualSolutions() {
                 </button>
               </Link>
             </div>
+            <div className="flex flex-wrap justify-center gap-6 mt-12 opacity-80 hover:opacity-100 transition-opacity">
+              <a href="#" className="hover:scale-105 transition-transform bg-black rounded-xl p-0.5 border border-white/10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" className="h-10 w-auto" />
+              </a>
+              <a href="#" className="hover:scale-105 transition-transform bg-black rounded-xl p-0.5 border border-white/10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="h-10 w-auto" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
