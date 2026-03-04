@@ -70,8 +70,8 @@ const userProfiles = [
   },
   {
     image: userPhoto3,
-    name: "John Anderson",
-    role: "Fully Supports Pickup Truck Conversions",
+    name: "Transfer Seats",
+    role: "Fully supports Turny Evo, Adapt Solutions and others.",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
   {
