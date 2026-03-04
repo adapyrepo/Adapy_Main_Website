@@ -7,6 +7,11 @@ import { insertSubscriberSchema } from "@shared/schema";
 import type { InsertSubscriber } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
+import award1 from "@assets/Globee_Award_1772663910071.png";
+import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
+import award3 from "@assets/SR_50_Award_1772663910072.png";
+import award4 from "@assets/US_patent_Award_1772663910072.png";
+import award5 from "@assets/UTU_Award_1772663910072.png";
 import { ScrollingLogos } from "@/components/ScrollingLogos";
 
 export function Footer() {
@@ -32,6 +37,14 @@ export function Footer() {
               Pioneering automation in adaptive mobility. Empowering independence through smart technology.
             </p>
             
+            <div className="flex flex-wrap gap-6 mb-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+              <img src={award1} alt="Globee Award" className="h-12 w-auto invert" />
+              <img src={award2} alt="Plaza Pitch Award" className="h-12 w-auto invert" />
+              <img src={award3} alt="SR 50 Award" className="h-12 w-auto invert" />
+              <img src={award4} alt="US Patent" className="h-12 w-auto invert" />
+              <img src={award5} alt="UTU Award" className="h-12 w-auto invert" />
+            </div>
+
             <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md relative">
               <input
                 {...form.register("email")}
