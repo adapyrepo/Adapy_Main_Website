@@ -52,7 +52,7 @@ const learningVideos = [
 import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
 import userPhoto3 from "@assets/MOBILITY_1772656176863.png";
-import userPhoto4 from "@assets/Screenshot_2026-03-04_at_1.31.56_PM_1772656324820.png";
+import userPhoto4 from "@assets/Screenshot_2026-03-04_at_1.33.58_PM_1772656449413.png";
 
 const userProfiles = [
   {
@@ -397,7 +397,7 @@ export default function Home() {
                 <img
                   src={profile.image}
                   alt={profile.name}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[27%_center]' : i === 2 ? 'object-[30%_center]' : i === 3 ? 'object-center' : ''}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[27%_center]' : i === 2 ? 'object-[30%_center]' : i === 3 ? 'object-[center_20%]' : ''}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
