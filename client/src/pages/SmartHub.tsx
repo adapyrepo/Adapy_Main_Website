@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
 import hubMockup from "@assets/mockup_new_1772231341293.png";
+import hubWireframe from "@assets/adapy_hub_1772654723239.png";
 import { 
   Cpu, 
   Zap, 
@@ -82,6 +83,15 @@ export default function SmartHub() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#f5f5f7]">
+        {/* Background Image */}
+        <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-2/3 h-full opacity-10 pointer-events-none hidden lg:block">
+          <img 
+            src={hubWireframe} 
+            alt="" 
+            className="w-full h-full object-contain mix-blend-multiply"
+          />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <motion.div
@@ -110,9 +120,6 @@ export default function SmartHub() {
               </div>
             </motion.div>
           </div>
-        </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-10 pointer-events-none hidden lg:block">
-          <Cpu className="w-full h-full text-[#0071e3]" />
         </div>
       </section>
 
