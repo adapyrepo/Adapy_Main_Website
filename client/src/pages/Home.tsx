@@ -64,8 +64,8 @@ const userProfiles = [
   },
   {
     image: userPhoto2,
-    name: "Wheelchair Cranes",
-    role: "Fully supports Bruno & Harmar Cranes",
+    name: "Transfer Seats",
+    role: "Supports the majority of transfer seats/platforms",
     quote: "The unified control system means I no longer have to worry about multiple remotes. Everything just works."
   },
   {
