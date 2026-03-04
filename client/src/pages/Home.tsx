@@ -58,26 +58,26 @@ import phoneHand from "@assets/DSC02786-removebg_1772656599209.png";
 const userProfiles = [
   {
     image: userPhoto1,
-    name: "Marcus Thorne",
-    role: "Adventure Enthusiast",
+    name: "ATC Mobility",
+    role: "Fully Supports ATC Mobility Conversions",
     quote: "Adapy gives me the confidence to take my truck anywhere. The integration is so clean, it feels like it was built into the chassis from day one."
   },
   {
     image: userPhoto2,
-    name: "Sarah Miller",
-    role: "Independent Traveler",
+    name: "Compassion Mobility",
+    role: "Fully Supports Compassion Mobility Conversions",
     quote: "The unified control system means I no longer have to worry about multiple remotes. Everything just works."
   },
   {
     image: userPhoto3,
-    name: "Andrew Evans",
-    role: "Daily Commuter",
+    name: "John Anderson",
+    role: "Fully Supports Pickup Truck Conversions",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
   {
     image: userPhoto4,
     name: "Savannah Reed",
-    role: "Tundra Owner",
+    role: "Fully Supports Tundra Conversions",
     quote: "My truck adaptation is done! Having Adapy controls for my lift and seat makes every journey so much easier. Truly life-changing."
   }
 ];
