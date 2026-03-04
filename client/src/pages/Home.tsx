@@ -397,7 +397,7 @@ export default function Home() {
                 <img
                   src={profile.image}
                   alt={profile.name}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[15%_center]' : ''}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[18%_center]' : ''}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
