@@ -37,14 +37,6 @@ export function Footer() {
               Pioneering automation in adaptive mobility. Empowering independence through smart technology.
             </p>
             
-            <div className="flex flex-wrap gap-8 mb-10 opacity-90 hover:opacity-100 transition-all duration-500 items-center">
-              <img src={award1} alt="Globee Award" className="h-20 w-auto brightness-0 invert" />
-              <img src={award2} alt="Plaza Pitch Award" className="h-20 w-auto brightness-0 invert" />
-              <img src={award3} alt="SR 50 Award" className="h-20 w-auto brightness-0 invert" />
-              <img src={award4} alt="US Patent" className="h-20 w-auto brightness-0 invert" />
-              <img src={award5} alt="UTU Award" className="h-20 w-auto brightness-0 invert" />
-            </div>
-
             <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md relative">
               <input
                 {...form.register("email")}

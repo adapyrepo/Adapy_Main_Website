@@ -83,6 +83,11 @@ const userProfiles = [
 ];
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
+import award1 from "@assets/Globee_Award_1772663910071.png";
+import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
+import award3 from "@assets/SR_50_Award_1772663910072.png";
+import award4 from "@assets/US_patent_Award_1772663910072.png";
+import award5 from "@assets/UTU_Award_1772663910072.png";
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -198,6 +203,18 @@ export default function Home() {
       </section>
 
       {/* SECTION 1 — THE INDUSTRY GAP */}
+      <section className="py-24 bg-white text-black border-b border-black/[0.05]">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 hover:opacity-100 transition-opacity duration-700">
+            <img src={award1} alt="Globee Award" className="h-16 md:h-24 w-auto grayscale" />
+            <img src={award2} alt="Plaza Pitch Award" className="h-16 md:h-24 w-auto grayscale" />
+            <img src={award3} alt="SR 50 Award" className="h-16 md:h-24 w-auto grayscale" />
+            <img src={award4} alt="US Patent" className="h-16 md:h-24 w-auto grayscale" />
+            <img src={award5} alt="UTU Award" className="h-16 md:h-24 w-auto grayscale" />
+          </div>
+        </div>
+      </section>
+
       <section className="py-32 bg-white text-black">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
