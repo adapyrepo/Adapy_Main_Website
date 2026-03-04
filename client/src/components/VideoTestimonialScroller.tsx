@@ -5,7 +5,7 @@ const testimonialVideos = [
   {
     id: "v1",
     title: "Independence Regained",
-    name: "Marty O'Conner",
+    name: "Marty O'Conner - Host of Wheels Talks Podcast",
     thumbnail: "https://img.youtube.com/vi/Tn9fraklLJI/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/Tn9fraklLJI"
   },
