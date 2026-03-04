@@ -82,13 +82,13 @@ export default function SmartHub() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-black">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-[#f5f5f7]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
           <img 
             src={hubWireframe} 
             alt="" 
-            className="w-full h-full object-cover lg:object-contain object-right invert"
+            className="w-full h-full object-cover lg:object-contain object-right"
           />
         </div>
 
@@ -100,10 +100,10 @@ export default function SmartHub() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Hardware Core</span>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-white">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-black">
                 Adapy Smart Hub
               </h1>
-              <p className="text-xl md:text-2xl text-white/60 mb-10 leading-relaxed max-w-2xl">
+              <p className="text-xl md:text-2xl text-black/60 mb-10 leading-relaxed max-w-2xl">
                 The intelligent control core that unifies adaptive equipment, safety monitoring, and cloud visibility in one vehicle ecosystem.
               </p>
               <div className="flex flex-wrap gap-4">
