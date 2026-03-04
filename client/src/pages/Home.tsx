@@ -51,7 +51,7 @@ const learningVideos = [
 
 import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
-import userPhoto3 from "@assets/MOBILITY_1772656176863.png";
+import userPhoto3 from "@assets/adapy_copy_1772660123249.png";
 import userPhoto4 from "@assets/Screenshot_2026-03-04_at_1.33.58_PM_1772656449413.png";
 import phoneHand from "@assets/DSC02786-removebg_1772656599209.png";
 
