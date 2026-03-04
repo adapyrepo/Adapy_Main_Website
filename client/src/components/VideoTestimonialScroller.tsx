@@ -5,7 +5,7 @@ const testimonialVideos = [
   {
     id: "v1",
     title: "Independence Regained",
-    name: "James L.",
+    name: "Marty O'Conner",
     thumbnail: "https://img.youtube.com/vi/Tn9fraklLJI/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/Tn9fraklLJI"
   },
@@ -26,14 +26,14 @@ const testimonialVideos = [
   {
     id: "v4",
     title: "Tech that Works",
-    name: "Sarah K.",
+    name: "Drew Evans",
     thumbnail: "https://img.youtube.com/vi/5j15vtWhsoU/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/5j15vtWhsoU"
   },
   {
     id: "v5",
     title: "Adapy Innovation",
-    name: "Mark D.",
+    name: "Bobby Helco",
     thumbnail: "https://img.youtube.com/vi/pr9ZNydjFAs/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/pr9ZNydjFAs"
   }
