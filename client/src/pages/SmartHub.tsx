@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
 import hubMockup from "@assets/mockup_new_1772231341293.png";
-import hubWireframe from "@assets/adapy_hub_2-removebg-preview_1772655063415.png";
+import hubWireframe from "@assets/Screenshot_2026-03-04_at_3.03.20_PM_1772661815249.png";
 import { 
   Cpu, 
   Zap, 
