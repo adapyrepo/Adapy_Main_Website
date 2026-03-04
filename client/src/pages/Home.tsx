@@ -76,8 +76,8 @@ const userProfiles = [
   },
   {
     image: userPhoto4,
-    name: "Wheelchair Lifts",
-    role: "Fully Support BraunAbility and Ricon Lifts",
+    name: "Wheelchair Cranes",
+    role: "Fully Support Bruno & Harmar Cranes",
     quote: "My truck adaptation is done! Having Adapy controls for my lift and seat makes every journey so much easier. Truly life-changing."
   }
 ];
@@ -441,7 +441,7 @@ export default function Home() {
             </Link>
             <Link href="/contact">
               <button className="px-10 py-5 bg-black text-white rounded-full font-bold text-lg hover:bg-black/90 transition-all shadow-lg hover:scale-105 active:scale-95">
-                Contact Our Team
+                Join Now
               </button>
             </Link>
           </div>
