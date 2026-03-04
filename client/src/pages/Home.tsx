@@ -64,7 +64,7 @@ const userProfiles = [
   },
   {
     image: userPhoto2,
-    name: "Compassion Mobility",
+    name: "Bruno & Harmar Cranes",
     role: "Fully Supports Compassion Mobility Conversions",
     quote: "The unified control system means I no longer have to worry about multiple remotes. Everything just works."
   },
