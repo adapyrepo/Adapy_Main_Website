@@ -98,10 +98,21 @@ export default function Home() {
               frameBorder="0"
             />
           </div>
-          {/* Enhanced Overlay with Flashlight Effect */}
-          <div className="absolute inset-0 bg-black/10 backdrop-blur-[0.5px] z-10" />
+          {/* Enhanced Overlay with Spotlight Effect */}
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px] z-10" />
           <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0071e3]/10 blur-[150px] rounded-full opacity-30" />
+            <motion.div 
+              animate={{
+                background: [
+                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.15), transparent 80%)",
+                  "radial-gradient(600px circle at 40% 40%, rgba(0,113,227,0.15), transparent 80%)",
+                  "radial-gradient(600px circle at 60% 60%, rgba(0,113,227,0.15), transparent 80%)",
+                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.15), transparent 80%)"
+                ]
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0"
+            />
           </div>
           {/* Targeted Vignette: Darker bottom-left, lighter elsewhere */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.4)_40%,transparent_70%)] z-30" />
