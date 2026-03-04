@@ -69,7 +69,7 @@ const userProfiles = [
   },
   {
     image: userPhoto3,
-    name: "John Anderson",
+    name: "Andrew Evans",
     role: "Daily Commuter",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
