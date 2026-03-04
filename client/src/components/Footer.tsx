@@ -27,6 +27,14 @@ export function Footer() {
     });
   };
 
+  const awards = [
+    { src: award1, alt: "Globee Award" },
+    { src: award2, alt: "Plaza Pitch Award" },
+    { src: award3, alt: "SR 50 Award" },
+    { src: award4, alt: "US Patent" },
+    { src: award5, alt: "UTU Award" },
+  ];
+
   return (
     <footer className="bg-foreground text-background py-24 border-t border-white/10">
       <div className="container mx-auto px-6">
@@ -72,6 +80,19 @@ export function Footer() {
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 pt-8 mb-12">
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-50 hover:opacity-100 transition-opacity duration-500">
+            {awards.map((award, i) => (
+              <img 
+                key={i}
+                src={award.src} 
+                alt={award.alt} 
+                className="h-12 md:h-16 w-auto brightness-0 invert" 
+              />
+            ))}
           </div>
         </div>
 
