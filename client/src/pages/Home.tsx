@@ -49,6 +49,38 @@ const learningVideos = [
   }
 ];
 
+import userPhoto1 from "@assets/generated_images/generated_image_0.png";
+import userPhoto2 from "@assets/generated_images/generated_image_1.png";
+import userPhoto3 from "@assets/generated_images/generated_image_2.png";
+import userPhoto4 from "@assets/generated_images/generated_image_3.png";
+
+const userProfiles = [
+  {
+    image: userPhoto1,
+    name: "Alex Johnson",
+    role: "Daily Commuter",
+    quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
+  },
+  {
+    image: userPhoto2,
+    name: "Sarah Miller",
+    role: "Independent Traveler",
+    quote: "The unified control system means I no longer have to worry about multiple remotes. Everything just works."
+  },
+  {
+    image: userPhoto3,
+    name: "David Chen",
+    role: "Tech Enthusiast",
+    quote: "As a developer, I appreciate the clean interface and the proactive safety features. It's the future of mobility."
+  },
+  {
+    image: userPhoto4,
+    name: "Elena Rodriguez",
+    role: "Fleet Manager",
+    quote: "Managing our fleet has never been easier. The real-time visibility and diagnostics are game-changers."
+  }
+];
+
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
@@ -338,6 +370,44 @@ export default function Home() {
           </div>
 
           <p className="text-xl text-white/60 mb-12">Adapy creates the digital infrastructure layer the adaptive industry has been missing. All unified.</p>
+        </div>
+      </section>
+
+      {/* USER PROFILES SECTION */}
+      <section className="py-32 bg-white overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Real Impact</span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Designed for People, Powered by Intelligence.</h2>
+            <p className="text-xl text-black/60 leading-relaxed">
+              We build technology that disappears into the background, so you can focus on the foreground of your life.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {userProfiles.map((profile, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative aspect-[9/16] rounded-[2rem] overflow-hidden bg-[#f5f5f7]"
+              >
+                <img
+                  src={profile.image}
+                  alt={profile.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <p className="text-sm font-medium text-white/70 mb-2 italic">"{profile.quote}"</p>
+                  <h4 className="text-xl font-bold">{profile.name}</h4>
+                  <p className="text-xs font-bold tracking-widest uppercase text-[#0071e3] mt-1">{profile.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
