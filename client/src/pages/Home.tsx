@@ -82,6 +82,8 @@ const userProfiles = [
   }
 ];
 
+import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
+
 export default function Home() {
   const { data: products } = useProducts();
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
@@ -421,6 +423,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <VideoTestimonialScroller onVideoSelect={(video) => setActiveVideo(video)} />
 
       {/* FINAL CTA */}
       <section className="py-32 bg-white text-center">
