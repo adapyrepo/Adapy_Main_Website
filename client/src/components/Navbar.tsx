@@ -28,20 +28,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    name: "Software",
-    dropdown: [
-      { title: "Dealer Dashboard", description: "Operational visibility & tracking", href: "/software/dealer" },
-      { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
-      { title: "Manufacturer Analytics", description: "Real-world performance data", href: "/software/analytics" },
-    ],
-  },
-  {
     name: "Solutions",
     dropdown: [
       { title: "Individual Adaptive Vehicles", description: "Personal mobility environments", href: "/solutions/individual" },
-      { title: "Dealer Networks", description: "Scale your installation workflow", href: "/solutions/dealers" },
       { title: "NEMT Fleet Intelligence", description: "Fleet-scale safety & monitoring", href: "/solutions/nemt" },
       { title: "Government & VA", description: "Compliance & reporting automation", href: "/solutions/government" },
+      { title: "Dealer & Manufacturer", description: "Operational visibility & analytics", href: "/solutions/dealers" },
+      { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
     ],
   },
   { name: "About", href: "/about" },
