@@ -53,6 +53,7 @@ import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
 import userPhoto3 from "@assets/MOBILITY_1772656176863.png";
 import userPhoto4 from "@assets/Screenshot_2026-03-04_at_1.33.58_PM_1772656449413.png";
+import phoneHand from "@assets/DSC02786-removebg_1772656599209.png";
 
 const userProfiles = [
   {
@@ -354,6 +355,16 @@ export default function Home() {
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
+        
+        {/* Phone Hand Background Asset */}
+        <div className="absolute right-0 bottom-0 w-1/3 h-full opacity-20 pointer-events-none hidden lg:block translate-x-10 translate-y-20">
+          <img 
+            src={phoneHand} 
+            alt="" 
+            className="w-full h-full object-contain object-right-bottom"
+          />
+        </div>
+
         <div className="container mx-auto px-6 max-w-3xl relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-12 leading-[1.1]">The Future of Adaptive Mobility Is Connected</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
