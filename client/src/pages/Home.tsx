@@ -99,15 +99,15 @@ export default function Home() {
             />
           </div>
           {/* Enhanced Overlay with Spotlight Effect */}
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px] z-10" />
+          <div className="absolute inset-0 bg-black/5 backdrop-blur-[0.5px] z-10" />
           <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
             <motion.div 
               animate={{
                 background: [
-                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.15), transparent 80%)",
-                  "radial-gradient(600px circle at 40% 40%, rgba(0,113,227,0.15), transparent 80%)",
-                  "radial-gradient(600px circle at 60% 60%, rgba(0,113,227,0.15), transparent 80%)",
-                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.15), transparent 80%)"
+                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.1), transparent 80%)",
+                  "radial-gradient(600px circle at 40% 40%, rgba(0,113,227,0.1), transparent 80%)",
+                  "radial-gradient(600px circle at 60% 60%, rgba(0,113,227,0.1), transparent 80%)",
+                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.1), transparent 80%)"
                 ]
               }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -115,8 +115,8 @@ export default function Home() {
             />
           </div>
           {/* Targeted Vignette: Darker bottom-left, lighter elsewhere */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.4)_40%,transparent_70%)] z-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-30" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.2)_40%,transparent_70%)] z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20 z-30" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
