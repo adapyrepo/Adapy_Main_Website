@@ -12,14 +12,14 @@ const testimonialVideos = [
   {
     id: "v2",
     title: "Seamless Integration",
-    name: "Maria S.",
+    name: "Tom Willis",
     thumbnail: "https://img.youtube.com/vi/evUjxSpwRFU/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/evUjxSpwRFU"
   },
   {
     id: "v3",
     title: "Safety First",
-    name: "Robert T.",
+    name: "Pro Angler Clay Dyer",
     thumbnail: "https://img.youtube.com/vi/kZqKEZl_ry4/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/kZqKEZl_ry4"
   },
