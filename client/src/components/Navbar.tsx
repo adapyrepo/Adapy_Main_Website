@@ -163,10 +163,13 @@ export function Navbar() {
         </nav>
 
         {/* Right CTA */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <div className="hidden xl:block">
             <MobilityTicker />
           </div>
+          <Link href="/contact" className="hidden sm:flex items-center justify-center px-4 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20">
+            Join
+          </Link>
           <a 
             href="https://admin.adapy.com" 
             target="_blank" 
@@ -240,6 +243,12 @@ export function Navbar() {
               </div>
               
               <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
+                <Link
+                  href="/contact"
+                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-[#0077ed] transition-all"
+                >
+                  Join
+                </Link>
                 <a 
                   href="https://admin.adapy.com" 
                   target="_blank" 
