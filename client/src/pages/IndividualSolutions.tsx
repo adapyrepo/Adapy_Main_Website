@@ -12,6 +12,7 @@ import {
   Share2
 } from "lucide-react";
 import { Link } from "wouter";
+import appMockup from "@assets/adapy_1772663534946.png";
 
 export default function IndividualSolutions() {
   const benefits = [
@@ -80,12 +81,12 @@ export default function IndividualSolutions() {
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="bg-black rounded-[3rem] p-12 aspect-[9/16] max-w-sm mx-auto flex items-center justify-center relative overflow-hidden shadow-2xl">
-              <div className="relative z-10 text-center">
-                <Smartphone className="w-24 h-24 text-white opacity-20 mb-4 mx-auto" />
-                <p className="text-white/40 text-sm font-medium uppercase tracking-widest">Adapy App Interface</p>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0071e3]/40 to-transparent" />
+            <div className="relative flex items-center justify-center">
+              <img 
+                src={appMockup} 
+                alt="Adapy App Interface" 
+                className="w-full h-auto max-w-md drop-shadow-2xl transition-transform duration-700 hover:scale-105"
+              />
             </div>
             <div>
               <h2 className="text-4xl font-bold mb-8">Intelligence in Your Pocket</h2>
