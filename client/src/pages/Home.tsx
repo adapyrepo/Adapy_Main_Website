@@ -49,7 +49,7 @@ const learningVideos = [
   }
 ];
 
-import userPhoto1 from "@assets/generated_images/generated_image_0.png";
+import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/generated_images/generated_image_1.png";
 import userPhoto3 from "@assets/generated_images/generated_image_2.png";
 import userPhoto4 from "@assets/generated_images/generated_image_3.png";
@@ -57,9 +57,9 @@ import userPhoto4 from "@assets/generated_images/generated_image_3.png";
 const userProfiles = [
   {
     image: userPhoto1,
-    name: "Alex Johnson",
-    role: "Daily Commuter",
-    quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
+    name: "Marcus Thorne",
+    role: "Adventure Enthusiast",
+    quote: "Adapy gives me the confidence to take my truck anywhere. The integration is so clean, it feels like it was built into the chassis from day one."
   },
   {
     image: userPhoto2,
