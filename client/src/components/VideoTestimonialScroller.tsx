@@ -36,7 +36,14 @@ const testimonialVideos = [
     name: "Bobby Helco",
     thumbnail: "https://img.youtube.com/vi/pr9ZNydjFAs/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/pr9ZNydjFAs"
-  }
+  },
+  {
+    id: "v6",
+    title: "Adaptive Freedom",
+    name: "Nathan Walters",
+    thumbnail: "https://img.youtube.com/vi/yROiXDY6LyU/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/yROiXDY6LyU"
+  },
 ];
 
 export function VideoTestimonialScroller({ onVideoSelect }: { onVideoSelect: (video: any) => void }) {
@@ -48,7 +55,7 @@ export function VideoTestimonialScroller({ onVideoSelect }: { onVideoSelect: (vi
       <div className="relative flex whitespace-nowrap overflow-hidden">
         <motion.div
           animate={{
-            x: [0, -1500], // Adjust based on total width of cards (5 * 300px)
+            x: [0, -1800], // Adjust based on total width of cards (5 * 300px)
           }}
           transition={{
             duration: 40,
