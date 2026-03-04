@@ -71,7 +71,7 @@ const userProfiles = [
   {
     image: userPhoto3,
     name: "Transfer Seats",
-    role: "Fully supports Turny Evo, Adapt Solutions and others.",
+    role: "Fully supports Adapt Solutions, BraunAbility, Bruno, etc.",
     quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
   {
