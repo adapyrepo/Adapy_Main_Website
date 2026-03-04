@@ -51,7 +51,7 @@ const learningVideos = [
 
 import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
-import userPhoto3 from "@assets/generated_images/generated_image_2.png";
+import userPhoto3 from "@assets/MOBILITY_1772656176863.png";
 import userPhoto4 from "@assets/generated_images/generated_image_3.png";
 
 const userProfiles = [
@@ -69,9 +69,9 @@ const userProfiles = [
   },
   {
     image: userPhoto3,
-    name: "David Chen",
-    role: "Tech Enthusiast",
-    quote: "As a developer, I appreciate the clean interface and the proactive safety features. It's the future of mobility."
+    name: "John Anderson",
+    role: "Daily Commuter",
+    quote: "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined."
   },
   {
     image: userPhoto4,
@@ -397,7 +397,7 @@ export default function Home() {
                 <img
                   src={profile.image}
                   alt={profile.name}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[27%_center]' : ''}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? 'object-[75%_center]' : i === 1 ? 'object-[27%_center]' : i === 2 ? 'object-[30%_center]' : ''}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
