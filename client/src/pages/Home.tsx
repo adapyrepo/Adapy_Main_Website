@@ -357,11 +357,11 @@ export default function Home() {
         </div>
         
         {/* Phone Hand Background Asset */}
-        <div className="absolute right-0 bottom-0 w-1/3 h-full opacity-20 pointer-events-none hidden lg:block translate-x-10 translate-y-20">
+        <div className="absolute right-0 bottom-0 w-1/3 h-full opacity-60 pointer-events-none hidden lg:block translate-x-10 translate-y-20">
           <img 
             src={phoneHand} 
             alt="" 
-            className="w-full h-full object-contain object-right-bottom"
+            className="w-full h-full object-contain object-right-bottom brightness-125"
           />
         </div>
 
