@@ -431,7 +431,7 @@ export default function Home() {
         <div className="container mx-auto px-6 max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Embrace The Future</h2>
           <p className="text-xl text-black/60 mb-12 leading-relaxed">
-            Whether you are a dealer, manufacturer, healthcare professional, or fleet operator — Adapy provides the intelligent infrastructure to power modern adaptive mobility.
+            Whether you are a user, dealer, manufacturer, healthcare professional, or fleet operator — Adapy provides the intelligent infrastructure to power modern adaptive mobility.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/products">
