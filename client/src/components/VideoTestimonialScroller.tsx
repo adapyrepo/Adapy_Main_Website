@@ -41,8 +41,8 @@ const testimonialVideos = [
     id: "v6",
     title: "Adaptive Freedom",
     name: "Nathan Walters",
-    thumbnail: "https://img.youtube.com/vi/yROiXDY6LyU/maxresdefault.jpg",
-    videoUrl: "https://www.youtube.com/embed/yROiXDY6LyU"
+    thumbnail: "https://img.youtube.com/vi/v3797WrXHHU/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/v3797WrXHHU"
   },
 ];
 
