@@ -134,25 +134,9 @@ export default function Home() {
 
                 {/* Subheading Removed */}
 
-                <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-4 leading-relaxed">
+                <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-6 leading-relaxed">
                   Adapy transforms adaptive vehicles into intelligent, connected environments — delivering proactive safety, unified control, and lifecycle visibility.
                 </p>
-
-                {/* Rotating Statements */}
-                <div className="min-h-[40px] mb-6 overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.p
-                      key={textIndex}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className="text-[11px] md:text-[12px] font-medium text-[#0071e3] tracking-wide uppercase italic leading-tight"
-                    >
-                      {benefitStatements[textIndex]}
-                    </motion.p>
-                  </AnimatePresence>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
                   <button 
