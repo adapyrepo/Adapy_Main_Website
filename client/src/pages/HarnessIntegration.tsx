@@ -14,7 +14,7 @@ import {
   Smartphone
 } from "lucide-react";
 
-import hubWireframe from "@assets/Screenshot_2026-03-04_at_3.03.20_PM_1772661815249.png";
+import hubWireframe from "@assets/Screenshot_2026-03-04_at_3.10.09_PM_1772662224386.png";
 
 const categories = [
   {
