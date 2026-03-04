@@ -14,6 +14,8 @@ import {
   Smartphone
 } from "lucide-react";
 
+import hubWireframe from "@assets/Screenshot_2026-03-04_at_3.03.20_PM_1772661815249.png";
+
 const categories = [
   {
     title: "Lifts",
@@ -153,8 +155,12 @@ export default function HarnessIntegration() {
                 <p className="text-sm italic pt-4">Clarification: Harness kits are signal passthrough integrations — not equipment replacements.</p>
               </div>
             </div>
-            <div className="bg-black rounded-[2.5rem] p-12 flex items-center justify-center relative overflow-hidden">
-              <Layers className="w-32 h-32 text-[#0071e3] relative z-10" />
+            <div className="bg-black rounded-[2.5rem] p-4 flex items-center justify-center relative overflow-hidden aspect-square">
+              <img 
+                src={hubWireframe} 
+                alt="Harness Integration" 
+                className="w-full h-full object-contain relative z-10"
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/20 to-transparent" />
             </div>
           </div>
