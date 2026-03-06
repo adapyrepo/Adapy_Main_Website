@@ -31,7 +31,7 @@ const learningVideos = [
     title: "Smart Hub Overview",
     description: "Learn how the Adapy Smart Hub centralizes your vehicle's controls.",
     thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-    videoUrl: "https://www.youtube.com/embed/IRsWYQFkg-8"
+    videoUrl: "https://www.youtube.com/embed/r3H0GJ4h2-I"
   },
   {
     id: "2",
