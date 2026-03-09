@@ -92,6 +92,7 @@ const userProfiles = [
 ];
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
+import heroVideo from "@assets/Adapy_BG_video_(1)_1773087296929.mp4";
 import award1 from "@assets/Globee_Award_1772663910071.png";
 import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
 import award3 from "@assets/SR_50_Award_1772663910072.png";
@@ -139,16 +140,17 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-black">
-        {/* YouTube Background Video */}
+        {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <div className="video-background-container bg-black">
-            <iframe
-              className="video-background-iframe scale-110"
-              src="https://www.youtube.com/embed/yROiXDY6LyU?autoplay=1&mute=1&controls=0&loop=1&playlist=yROiXDY6LyU&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3&enablejsapi=1&vq=hd1080"
-              allow="autoplay; encrypted-media"
-              frameBorder="0"
-            />
-          </div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           {/* Enhanced Overlay with Spotlight Effect */}
           <div className="absolute inset-0 bg-black/5 backdrop-blur-[0.5px] z-10" />
           <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
