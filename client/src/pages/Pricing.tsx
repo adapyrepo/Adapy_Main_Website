@@ -33,7 +33,7 @@ const pricingTiers = [
     price: "$24",
     period: "/month",
     setupFee: "$1,895",
-    description: "Perfect for individual users and small teams",
+    description: "Perfect for indiviudal users that want the latest in smart control and reporting",
     cta: "Start Free Trial",
     ctaLink: "/contact",
     highlighted: false,
