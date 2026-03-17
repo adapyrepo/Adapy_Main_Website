@@ -52,6 +52,7 @@ const navItems: NavItemExtended[] = [
       { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
     ],
   },
+  { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   {
     name: "Resources",
