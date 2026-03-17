@@ -15,7 +15,7 @@ const pricingTiers = [
     features: [
       { name: "Basic wheelchair controls", included: true },
       { name: "Mobile app access", included: true },
-      { name: "Up to 5 devices", included: true },
+      { name: "Up to 3 devices", included: true },
       { name: "Standard support", included: true },
       { name: "Cloud connectivity", included: false },
       { name: "Advanced analytics", included: false },
