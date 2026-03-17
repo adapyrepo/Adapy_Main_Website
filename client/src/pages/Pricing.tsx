@@ -71,7 +71,7 @@ const pricingTiers = [
   },
   {
     name: "NEMT",
-    price: "Flexible pricing",
+    price: "Fleet Pricing Available",
     description: "Enterprise solution for NEMT fleets and large organizations",
     cta: "Contact Sales",
     ctaLink: "/contact",
