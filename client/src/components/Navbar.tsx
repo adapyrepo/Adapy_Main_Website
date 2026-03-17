@@ -299,7 +299,7 @@ export function Navbar() {
                                     <LayoutDashboard className="w-5 h-5" />
                                   </div>
                                   <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
-                                    Driving Rehabilitation Specialist
+                                    Driving Rehab Specialist
                                   </div>
                                 </Link>
                                 <Link href="/solutions/nemt" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
