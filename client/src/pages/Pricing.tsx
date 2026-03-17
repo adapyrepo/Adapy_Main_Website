@@ -52,7 +52,7 @@ const pricingTiers = [
   },
   {
     name: "Pro",
-    price: "$85",
+    price: "$48",
     period: "/month",
     description: "For growing teams and fleet operators",
     cta: "Start Free Trial",
