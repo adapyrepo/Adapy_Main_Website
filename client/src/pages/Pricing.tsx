@@ -76,6 +76,7 @@ const pricingTiers = [
     name: "NEMT",
     price: "Fleet Pricing Available",
     setupFee: "$2,495",
+    monthlyPerVehicle: "$38/month per vehicle",
     description: "Enterprise solution for NEMT fleets and large organizations",
     cta: "Contact Sales",
     ctaLink: "/contact",
@@ -166,6 +167,7 @@ export default function Pricing() {
                       <div className={cn("font-bold mb-1", tier.isNEMT ? "text-2xl" : "text-5xl")}>{tier.price}</div>
                       {tier.period && <div className="text-white/60 text-sm">{tier.period}</div>}
                       <div className="text-white/60 text-xs mt-2">Setup fee: {tier.setupFee}</div>
+                      {tier.monthlyPerVehicle && <div className="text-white/60 text-xs">{tier.monthlyPerVehicle}</div>}
                     </div>
 
                     <Link
