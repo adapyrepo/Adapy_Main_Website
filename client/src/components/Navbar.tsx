@@ -16,8 +16,30 @@ interface NavItem {
   }[];
 }
 
-const navItems: NavItem[] = [
-  { name: "Platform", href: "/platform" },
+interface NavItemExtended extends NavItem {
+  features?: {
+    title: string;
+    description?: string;
+    href?: string;
+  }[];
+}
+
+const navItems: NavItemExtended[] = [
+  {
+    name: "Platform",
+    dropdown: [
+      { title: "Platform Overview", description: "Unified control architecture", href: "/platform" },
+      { title: "Hardware", description: "Smart Hub & integrations", href: "/hardware/smart-hub" },
+      { title: "Mobile App", description: "Control on the go", href: "/products" },
+      { title: "Dashboard", description: "Fleet intelligence & monitoring", href: "/products" },
+    ],
+    features: [
+      { title: "Compatible Devices", href: "#" },
+      { title: "Safety", href: "#" },
+      { title: "Intelligence", href: "#" },
+      { title: "Visibility", href: "#" },
+    ],
+  },
   {
     name: "Hardware",
     dropdown: [
@@ -138,24 +160,64 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl"
+                    className={cn(
+                      "absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl",
+                      item.name === "Platform" ? "w-96" : "w-72"
+                    )}
                   >
-                    <div className="grid gap-2">
-                      {item.dropdown.map((sub) => (
-                        <Link
-                          key={sub.title}
-                          href={sub.href}
-                          className="group/item p-3 rounded-xl hover:bg-white/5 transition-colors text-left"
-                        >
-                          <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
-                            {sub.title}
+                    {item.name === "Platform" ? (
+                      <div className="grid grid-cols-2 gap-8">
+                        <div>
+                          <h3 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Platform</h3>
+                          <div className="grid gap-2">
+                            {item.dropdown.map((sub) => (
+                              <Link
+                                key={sub.title}
+                                href={sub.href}
+                                className="group/item p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                              >
+                                <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                  {sub.title}
+                                </div>
+                              </Link>
+                            ))}
                           </div>
-                          <div className="text-[12px] text-white/50 leading-tight mt-0.5">
-                            {sub.description}
+                        </div>
+                        <div>
+                          <h3 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Key Features</h3>
+                          <div className="grid gap-2">
+                            {item.features?.map((feature) => (
+                              <a
+                                key={feature.title}
+                                href={feature.href}
+                                className="group/item p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                              >
+                                <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                  {feature.title}
+                                </div>
+                              </a>
+                            ))}
                           </div>
-                        </Link>
-                      ))}
-                    </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid gap-2">
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.title}
+                            href={sub.href}
+                            className="group/item p-3 rounded-xl hover:bg-white/5 transition-colors text-left"
+                          >
+                            <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                              {sub.title}
+                            </div>
+                            <div className="text-[12px] text-white/50 leading-tight mt-0.5">
+                              {sub.description}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
