@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
-import About from "@/pages/About";
+import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
 import Platform from "@/pages/Platform";
 import SmartHub from "@/pages/SmartHub";
@@ -32,7 +32,7 @@ function Router() {
       <Route path="/solutions/individual" component={IndividualSolutions} />
       <Route path="/solutions/nemt" component={NEMTFleet} />
       <Route path="/products" component={Products} />
-      <Route path="/about" component={About} />
+      <Route path="/blog" component={Blog} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>

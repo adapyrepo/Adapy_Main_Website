@@ -37,8 +37,16 @@ const navItems: NavItem[] = [
       { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
     ],
   },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Blog", href: "/blog" },
+  {
+    name: "Resources",
+    dropdown: [
+      { title: "Help Center", description: "Getting started & troubleshooting", href: "/resources/help" },
+      { title: "Documentation", description: "Technical guides & API reference", href: "/resources/docs" },
+      { title: "Community", description: "Connect with other Adapy users", href: "/resources/community" },
+      { title: "Contact Us", description: "Reach out with any questions", href: "/contact" },
+    ],
+  },
 ];
 
 export function Navbar() {
