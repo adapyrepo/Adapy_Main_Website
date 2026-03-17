@@ -302,6 +302,14 @@ export function Navbar() {
                                     Rehabilitation Specialist
                                   </div>
                                 </Link>
+                                <Link href="/solutions/nemt" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <LayoutDashboard className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    NEMT
+                                  </div>
+                                </Link>
                               </>
                             ) : (
                               item.features?.map((feature) => (
