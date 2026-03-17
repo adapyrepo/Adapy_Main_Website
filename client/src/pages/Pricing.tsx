@@ -159,7 +159,7 @@ export default function Pricing() {
                     <p className="text-white/60 text-sm mb-6 h-10">{tier.description}</p>
 
                     <div className="mb-6">
-                      <div className="text-5xl font-bold mb-1">{tier.price}</div>
+                      <div className={cn("font-bold mb-1", tier.isNEMT ? "text-2xl" : "text-5xl")}>{tier.price}</div>
                       {tier.period && <div className="text-white/60 text-sm">{tier.period}</div>}
                     </div>
 
