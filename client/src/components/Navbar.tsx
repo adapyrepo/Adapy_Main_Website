@@ -168,8 +168,8 @@ export function Navbar() {
                     )}
                   >
                     {item.name === "Platform" ? (
-                      <div className="grid grid-cols-2 gap-12">
-                        <div>
+                      <div className="grid grid-cols-2 gap-0 -mx-6 -my-6">
+                        <div className="bg-white/[0.02] px-6 py-6 rounded-l-2xl">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
                           <div className="grid gap-4">
                             {item.dropdown.map((sub) => (
@@ -190,7 +190,7 @@ export function Navbar() {
                             ))}
                           </div>
                         </div>
-                        <div>
+                        <div className="bg-white/[0.04] px-6 py-6 rounded-r-2xl">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Key Features</h3>
                           <div className="grid gap-4">
                             {item.features?.map((feature) => (
