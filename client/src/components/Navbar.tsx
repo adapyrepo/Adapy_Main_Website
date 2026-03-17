@@ -66,11 +66,19 @@ const navItems: NavItemExtended[] = [
     name: "Resources",
     columns: [
       {
-        title: "Developer Resources",
+        title: "User Resources",
         items: [
           { title: "Learn", href: "/resources/learn", icon: <Lightbulb className="w-5 h-5" /> },
           { title: "Docs", href: "/resources/docs", icon: <Book className="w-5 h-5" /> },
           { title: "Integrations", href: "/resources/integrations", icon: <Plug className="w-5 h-5" /> },
+        ],
+      },
+      {
+        title: "Dealer Resources",
+        items: [
+          { title: "Dealer Certification", href: "/resources/dealer-certification", icon: <Code className="w-5 h-5" /> },
+          { title: "Installation Docs", href: "/resources/installation-docs", icon: <Wrench className="w-5 h-5" /> },
+          { title: "Supported Equipment", href: "/resources/supported-equipment", icon: <Database className="w-5 h-5" /> },
         ],
       },
       {
@@ -84,14 +92,6 @@ const navItems: NavItemExtended[] = [
           { title: "Contact Us", href: "/contact", icon: <MessageSquare className="w-5 h-5" /> },
         ],
       },
-      {
-        title: "Dealer Resources",
-        items: [
-          { title: "Dealer Certification", href: "/resources/dealer-certification", icon: <Code className="w-5 h-5" /> },
-          { title: "Installation Docs", href: "/resources/installation-docs", icon: <Wrench className="w-5 h-5" /> },
-          { title: "Supported Equipment", href: "/resources/supported-equipment", icon: <Database className="w-5 h-5" /> },
-        ],
-      },
     ],
   },
 ];
@@ -100,7 +100,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware" | "mobileapp" | "dashboard">("default");
-  const [resourcesSubmenu, setResourcesSubmenu] = useState<"developer" | "community" | "dealer">("developer");
+  const [resourcesSubmenu, setResourcesSubmenu] = useState<"user" | "dealer" | "community">("user");
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
@@ -202,12 +202,12 @@ export function Navbar() {
                               <button
                                 key={column.title}
                                 onClick={() => {
-                                  if (column.title === "Developer Resources") {
-                                    setResourcesSubmenu(resourcesSubmenu === "developer" ? "developer" : "developer");
-                                  } else if (column.title === "Community Resources") {
-                                    setResourcesSubmenu(resourcesSubmenu === "community" ? "community" : "community");
+                                  if (column.title === "User Resources") {
+                                    setResourcesSubmenu("user");
                                   } else if (column.title === "Dealer Resources") {
-                                    setResourcesSubmenu(resourcesSubmenu === "dealer" ? "dealer" : "dealer");
+                                    setResourcesSubmenu("dealer");
+                                  } else if (column.title === "Community Resources") {
+                                    setResourcesSubmenu("community");
                                   }
                                 }}
                                 className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left w-full"
@@ -224,11 +224,11 @@ export function Navbar() {
                         </div>
                         <div className="bg-white/[0.08] px-6 py-6 rounded-r-2xl">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
-                            {resourcesSubmenu === "developer" ? "Developer Resources" : resourcesSubmenu === "community" ? "Community Resources" : "Dealer Resources"}
+                            {resourcesSubmenu === "user" ? "User Resources" : resourcesSubmenu === "dealer" ? "Dealer Resources" : "Community Resources"}
                           </h3>
                           <div className="grid gap-4">
-                            {resourcesSubmenu === "developer"
-                              ? item.columns.find(c => c.title === "Developer Resources")?.items.map((resource) => (
+                            {resourcesSubmenu === "user"
+                              ? item.columns.find(c => c.title === "User Resources")?.items.map((resource) => (
                                 <Link
                                   key={resource.title}
                                   href={resource.href}
@@ -242,8 +242,8 @@ export function Navbar() {
                                   </div>
                                 </Link>
                               ))
-                              : resourcesSubmenu === "community"
-                              ? item.columns.find(c => c.title === "Community Resources")?.items.map((resource) => (
+                              : resourcesSubmenu === "dealer"
+                              ? item.columns.find(c => c.title === "Dealer Resources")?.items.map((resource) => (
                                 <Link
                                   key={resource.title}
                                   href={resource.href}
@@ -257,7 +257,7 @@ export function Navbar() {
                                   </div>
                                 </Link>
                               ))
-                              : item.columns.find(c => c.title === "Dealer Resources")?.items.map((resource) => (
+                              : item.columns.find(c => c.title === "Community Resources")?.items.map((resource) => (
                                 <Link
                                   key={resource.title}
                                   href={resource.href}
