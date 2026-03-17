@@ -100,6 +100,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware" | "mobileapp" | "dashboard">("default");
+  const [resourcesSubmenu, setResourcesSubmenu] = useState<"developer" | "community" | "dealer">("developer");
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
@@ -189,18 +190,74 @@ export function Navbar() {
                     transition={{ duration: 0.2 }}
                     className={cn(
                       "absolute top-full mt-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl",
-                      item.name === "Platform" ? "left-0 w-[600px]" : item.name === "Resources" ? "left-1/2 -translate-x-1/2 w-[800px]" : "left-1/2 -translate-x-1/2 w-72"
+                      (item.name === "Platform" || item.name === "Resources") ? (item.name === "Platform" ? "left-0 w-[600px]" : "left-1/2 -translate-x-1/2 w-[600px]") : "left-1/2 -translate-x-1/2 w-72"
                     )}
                   >
                     {item.name === "Resources" && item.columns ? (
-                      <div className="grid grid-cols-3 gap-12">
-                        {item.columns.map((column) => (
-                          <div key={column.title}>
-                            <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
-                              {column.title}
-                            </h3>
-                            <div className="grid gap-4">
-                              {column.items.map((resource) => (
+                      <div className="grid grid-cols-2 gap-0 -mx-6 -my-6">
+                        <div className="bg-white/[0.03] px-6 py-6 rounded-l-2xl border-r border-white/10">
+                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Resources</h3>
+                          <div className="grid gap-4">
+                            {item.columns.map((column) => (
+                              <button
+                                key={column.title}
+                                onClick={() => {
+                                  if (column.title === "Developer Resources") {
+                                    setResourcesSubmenu(resourcesSubmenu === "developer" ? "developer" : "developer");
+                                  } else if (column.title === "Community Resources") {
+                                    setResourcesSubmenu(resourcesSubmenu === "community" ? "community" : "community");
+                                  } else if (column.title === "Dealer Resources") {
+                                    setResourcesSubmenu(resourcesSubmenu === "dealer" ? "dealer" : "dealer");
+                                  }
+                                }}
+                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left w-full"
+                              >
+                                <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                  {column.title === "Developer Resources" ? <Lightbulb className="w-5 h-5" /> : column.title === "Community Resources" ? <Users className="w-5 h-5" /> : <Building2 className="w-5 h-5" />}
+                                </div>
+                                <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                  {column.title}
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="bg-white/[0.08] px-6 py-6 rounded-r-2xl">
+                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
+                            {resourcesSubmenu === "developer" ? "Developer Resources" : resourcesSubmenu === "community" ? "Community Resources" : "Dealer Resources"}
+                          </h3>
+                          <div className="grid gap-4">
+                            {resourcesSubmenu === "developer"
+                              ? item.columns.find(c => c.title === "Developer Resources")?.items.map((resource) => (
+                                <Link
+                                  key={resource.title}
+                                  href={resource.href}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {resource.icon}
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    {resource.title}
+                                  </div>
+                                </Link>
+                              ))
+                              : resourcesSubmenu === "community"
+                              ? item.columns.find(c => c.title === "Community Resources")?.items.map((resource) => (
+                                <Link
+                                  key={resource.title}
+                                  href={resource.href}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {resource.icon}
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    {resource.title}
+                                  </div>
+                                </Link>
+                              ))
+                              : item.columns.find(c => c.title === "Dealer Resources")?.items.map((resource) => (
                                 <Link
                                   key={resource.title}
                                   href={resource.href}
@@ -214,9 +271,8 @@ export function Navbar() {
                                   </div>
                                 </Link>
                               ))}
-                            </div>
                           </div>
-                        ))}
+                        </div>
                       </div>
                     ) : item.name === "Platform" ? (
                       <div className="grid grid-cols-2 gap-0 -mx-6 -my-6">
