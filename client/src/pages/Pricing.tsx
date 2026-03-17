@@ -8,6 +8,7 @@ const pricingTiers = [
   {
     name: "Free",
     price: "$0",
+    setupFee: "$2,495",
     description: "Get started with essential mobility features",
     cta: "Get Started",
     ctaLink: "/contact",
@@ -31,6 +32,7 @@ const pricingTiers = [
     name: "Essential",
     price: "$24",
     period: "/month",
+    setupFee: "$2,495",
     description: "Perfect for individual users and small teams",
     cta: "Start Free Trial",
     ctaLink: "/contact",
@@ -54,6 +56,7 @@ const pricingTiers = [
     name: "Pro",
     price: "$48",
     period: "/month",
+    setupFee: "$2,495",
     description: "For growing teams and fleet operators",
     cta: "Start Free Trial",
     ctaLink: "/contact",
@@ -72,6 +75,7 @@ const pricingTiers = [
   {
     name: "NEMT",
     price: "Fleet Pricing Available",
+    setupFee: "$2,495",
     description: "Enterprise solution for NEMT fleets and large organizations",
     cta: "Contact Sales",
     ctaLink: "/contact",
@@ -161,6 +165,7 @@ export default function Pricing() {
                     <div className="mb-6">
                       <div className={cn("font-bold mb-1", tier.isNEMT ? "text-2xl" : "text-5xl")}>{tier.price}</div>
                       {tier.period && <div className="text-white/60 text-sm">{tier.period}</div>}
+                      <div className="text-white/60 text-xs mt-2">Setup fee: {tier.setupFee}</div>
                     </div>
 
                     <Link
