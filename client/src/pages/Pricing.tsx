@@ -75,7 +75,7 @@ const pricingTiers = [
   {
     name: "NEMT",
     price: "Fleet Pricing Available",
-    setupFee: "$2,495",
+    setupFee: "$3,495",
     monthlyPerVehicle: "$38/month per vehicle",
     description: "Enterprise solution for NEMT fleets and large organizations",
     cta: "Contact Sales",
