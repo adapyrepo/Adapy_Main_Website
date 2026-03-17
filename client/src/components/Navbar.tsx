@@ -166,7 +166,7 @@ export function Navbar() {
                     transition={{ duration: 0.2 }}
                     className={cn(
                       "absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl",
-                      item.name === "Platform" ? "w-96" : "w-72"
+                      item.name === "Platform" ? "w-[600px]" : "w-72"
                     )}
                   >
                     {item.name === "Platform" ? (
