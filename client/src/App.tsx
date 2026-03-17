@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import Pricing from "@/pages/Pricing";
 import Platform from "@/pages/Platform";
 import SmartHub from "@/pages/SmartHub";
 import HarnessIntegration from "@/pages/HarnessIntegration";
@@ -23,6 +24,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/platform" component={Platform} />
+      <Route path="/pricing" component={Pricing} />
       <Route path="/hardware/smart-hub" component={SmartHub} />
       <Route path="/hardware/harness-integration" component={HarnessIntegration} />
       <Route path="/hardware/wireless-controllers" component={WirelessControllers} />
