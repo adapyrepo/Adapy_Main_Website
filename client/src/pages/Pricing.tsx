@@ -30,7 +30,7 @@ const pricingTiers = [
   },
   {
     name: "Essential",
-    price: "$24",
+    price: "$15",
     period: "/month",
     setupFee: "$1,895",
     description: "Smart Controls & Reporting",
