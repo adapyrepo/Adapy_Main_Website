@@ -13,7 +13,7 @@ const pricingTiers = [
     ctaLink: "/contact",
     highlighted: false,
     features: [
-      { name: "Basic wheelchair controls", included: true },
+      { name: "Adaptive Equipment Controls", included: true },
       { name: "Mobile app access", included: true },
       { name: "Up to 3 devices", included: true },
       { name: "Standard support", included: true },
@@ -36,7 +36,7 @@ const pricingTiers = [
     ctaLink: "/contact",
     highlighted: false,
     features: [
-      { name: "Advanced wheelchair controls", included: true },
+      { name: "Advanced adaptive equipment controls", included: true },
       { name: "Mobile app access", included: true },
       { name: "Up to 25 devices", included: true },
       { name: "GPS Tracking", included: true },
