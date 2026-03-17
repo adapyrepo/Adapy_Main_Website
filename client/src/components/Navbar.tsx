@@ -68,7 +68,7 @@ const navItems: NavItemExtended[] = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware">("default");
+  const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware" | "mobileapp">("default");
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
@@ -167,10 +167,16 @@ export function Navbar() {
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
                           <div className="grid gap-4">
                             {item.dropdown.map((sub) => (
-                              sub.title === "Hardware" ? (
+                              (sub.title === "Hardware" || sub.title === "Mobile App") ? (
                                 <button
                                   key={sub.title}
-                                  onClick={() => setPlatformSubmenu(platformSubmenu === "hardware" ? "default" : "hardware")}
+                                  onClick={() => {
+                                    if (sub.title === "Hardware") {
+                                      setPlatformSubmenu(platformSubmenu === "hardware" ? "default" : "hardware");
+                                    } else if (sub.title === "Mobile App") {
+                                      setPlatformSubmenu(platformSubmenu === "mobileapp" ? "default" : "mobileapp");
+                                    }
+                                  }}
                                   className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left w-full"
                                 >
                                   <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
@@ -203,7 +209,7 @@ export function Navbar() {
                         </div>
                         <div className="bg-white/[0.08] px-6 py-6 rounded-r-2xl">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
-                            {platformSubmenu === "hardware" ? "Hardware" : "Key Features"}
+                            {platformSubmenu === "hardware" ? "Hardware" : platformSubmenu === "mobileapp" ? "Mobile App" : "Key Features"}
                           </h3>
                           <div className="grid gap-4">
                             {platformSubmenu === "hardware" ? (
@@ -240,6 +246,33 @@ export function Navbar() {
                                     Safety Modules
                                   </div>
                                 </Link>
+                              </>
+                            ) : platformSubmenu === "mobileapp" ? (
+                              <>
+                                <Link href="/products" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Smartphone className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Overview
+                                  </div>
+                                </Link>
+                                <a href="#" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Smartphone className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Download iOS
+                                  </div>
+                                </a>
+                                <a href="#" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Smartphone className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Download Android
+                                  </div>
+                                </a>
                               </>
                             ) : (
                               item.features?.map((feature) => (
