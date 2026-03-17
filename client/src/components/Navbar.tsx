@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronDown, UserCircle } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle, Grid3x3, Smartphone, LayoutDashboard, Zap, Shield, Brain, Eye, Radio } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 import { MobilityTicker } from "./MobilityTicker";
@@ -13,6 +13,7 @@ interface NavItem {
     title: string;
     description: string;
     href: string;
+    icon?: React.ReactNode;
   }[];
 }
 
@@ -21,6 +22,7 @@ interface NavItemExtended extends NavItem {
     title: string;
     description?: string;
     href?: string;
+    icon?: React.ReactNode;
   }[];
 }
 
@@ -28,16 +30,16 @@ const navItems: NavItemExtended[] = [
   {
     name: "Platform",
     dropdown: [
-      { title: "Platform Overview", description: "Unified control architecture", href: "/platform" },
-      { title: "Hardware", description: "Smart Hub & integrations", href: "/hardware/smart-hub" },
-      { title: "Mobile App", description: "Control on the go", href: "/products" },
-      { title: "Dashboard", description: "Fleet intelligence & monitoring", href: "/products" },
+      { title: "Platform Overview", description: "Unified control architecture", href: "/platform", icon: <Grid3x3 className="w-5 h-5" /> },
+      { title: "Hardware", description: "Smart Hub & integrations", href: "/hardware/smart-hub", icon: <Radio className="w-5 h-5" /> },
+      { title: "Mobile App", description: "Control on the go", href: "/products", icon: <Smartphone className="w-5 h-5" /> },
+      { title: "Dashboard", description: "Fleet intelligence & monitoring", href: "/products", icon: <LayoutDashboard className="w-5 h-5" /> },
     ],
     features: [
-      { title: "Compatible Devices", href: "#" },
-      { title: "Safety", href: "#" },
-      { title: "Intelligence", href: "#" },
-      { title: "Visibility", href: "#" },
+      { title: "Compatible Devices", href: "#", icon: <Zap className="w-5 h-5" /> },
+      { title: "Safety", href: "#", icon: <Shield className="w-5 h-5" /> },
+      { title: "Intelligence", href: "#", icon: <Brain className="w-5 h-5" /> },
+      { title: "Visibility", href: "#", icon: <Eye className="w-5 h-5" /> },
     ],
   },
   {
@@ -166,32 +168,40 @@ export function Navbar() {
                     )}
                   >
                     {item.name === "Platform" ? (
-                      <div className="grid grid-cols-2 gap-8">
+                      <div className="grid grid-cols-2 gap-12">
                         <div>
-                          <h3 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Platform</h3>
-                          <div className="grid gap-2">
+                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
+                          <div className="grid gap-4">
                             {item.dropdown.map((sub) => (
                               <Link
                                 key={sub.title}
                                 href={sub.href}
-                                className="group/item p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
                               >
-                                <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
-                                  {sub.title}
+                                <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                  {sub.icon}
+                                </div>
+                                <div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    {sub.title}
+                                  </div>
                                 </div>
                               </Link>
                             ))}
                           </div>
                         </div>
                         <div>
-                          <h3 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Key Features</h3>
-                          <div className="grid gap-2">
+                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Key Features</h3>
+                          <div className="grid gap-4">
                             {item.features?.map((feature) => (
                               <a
                                 key={feature.title}
                                 href={feature.href}
-                                className="group/item p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
                               >
+                                <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                  {feature.icon}
+                                </div>
                                 <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
                                   {feature.title}
                                 </div>
