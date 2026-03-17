@@ -153,7 +153,7 @@ export function Navbar() {
             <div
               key={item.name}
               className="relative group"
-              onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
+              onMouseEnter={() => (item.dropdown || item.columns) && setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               {item.href ? (
@@ -181,7 +181,7 @@ export function Navbar() {
 
               {/* Dropdown Menu */}
               <AnimatePresence>
-                {activeDropdown === item.name && item.dropdown && (
+                {activeDropdown === item.name && (item.dropdown || item.columns) && (
                   <motion.div
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
