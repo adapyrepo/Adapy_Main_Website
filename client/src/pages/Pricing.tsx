@@ -34,7 +34,7 @@ const pricingTiers = [
     period: "/month",
     setupFee: "$1,895",
     description: "Smart Controls & Reporting",
-    cta: "Start Free Trial",
+    cta: "Get Started",
     ctaLink: "/contact",
     highlighted: false,
     features: [
@@ -58,7 +58,7 @@ const pricingTiers = [
     period: "/month",
     setupFee: "$2,495",
     description: "Enjoy Smart Controls & Reporting",
-    cta: "Start Free Trial",
+    cta: "Get Started",
     ctaLink: "/contact",
     highlighted: true,
     features: [
