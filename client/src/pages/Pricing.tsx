@@ -57,7 +57,7 @@ const pricingTiers = [
     price: "$48",
     period: "/month",
     setupFee: "$2,495",
-    description: "Enjoy the peace of mind knowing your vehicle is connected to the latest in smart mobility",
+    description: "Smart Controls, Reporting & Monitoring",
     cta: "Start Free Trial",
     ctaLink: "/contact",
     highlighted: true,
