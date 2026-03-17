@@ -168,18 +168,17 @@ export function Navbar() {
           <div className="hidden xl:block">
             <MobilityTicker />
           </div>
-          <Link href="/contact" className="hidden sm:flex items-center justify-center px-4 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20">
-            Join
-          </Link>
           <a 
             href="https://admin.adapy.com" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="hidden sm:flex items-center gap-2 px-4 py-2 text-white/70 hover:text-white transition-colors group"
+            className="hidden sm:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
           >
-            <UserCircle className="w-5 h-5 group-hover:text-[#0071e3] transition-colors" />
             <span className="text-[14px] font-medium">Login</span>
           </a>
+          <Link href="/contact" className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20">
+            Get started
+          </Link>
           
           {/* Mobile Menu Toggle */}
           <button
@@ -244,21 +243,20 @@ export function Navbar() {
               </div>
               
               <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
-                <Link
-                  href="/contact"
-                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-[#0077ed] transition-all"
-                >
-                  Join
-                </Link>
                 <a 
                   href="https://admin.adapy.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
+                  className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-white/10 transition-all"
                 >
-                  <UserCircle className="w-6 h-6" />
                   Login
                 </a>
+                <Link
+                  href="/contact"
+                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-[#0077ed] transition-all"
+                >
+                  Get started
+                </Link>
               </div>
             </motion.div>
           </>
