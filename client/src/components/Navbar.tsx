@@ -76,6 +76,7 @@ const navItems: NavItemExtended[] = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware">("default");
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export function Navbar() {
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
+    setPlatformSubmenu("default");
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -173,40 +175,96 @@ export function Navbar() {
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
                           <div className="grid gap-4">
                             {item.dropdown.map((sub) => (
-                              <Link
-                                key={sub.title}
-                                href={sub.href}
-                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
-                              >
-                                <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
-                                  {sub.icon}
-                                </div>
-                                <div>
-                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
-                                    {sub.title}
+                              sub.title === "Hardware" ? (
+                                <button
+                                  key={sub.title}
+                                  onClick={() => setPlatformSubmenu(platformSubmenu === "hardware" ? "default" : "hardware")}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left w-full"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {sub.icon}
                                   </div>
-                                </div>
-                              </Link>
+                                  <div>
+                                    <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                      {sub.title}
+                                    </div>
+                                  </div>
+                                </button>
+                              ) : (
+                                <Link
+                                  key={sub.title}
+                                  href={sub.href}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {sub.icon}
+                                  </div>
+                                  <div>
+                                    <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                      {sub.title}
+                                    </div>
+                                  </div>
+                                </Link>
+                              )
                             ))}
                           </div>
                         </div>
                         <div className="bg-white/[0.08] px-6 py-6 rounded-r-2xl">
-                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Key Features</h3>
+                          <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
+                            {platformSubmenu === "hardware" ? "Hardware" : "Key Features"}
+                          </h3>
                           <div className="grid gap-4">
-                            {item.features?.map((feature) => (
-                              <a
-                                key={feature.title}
-                                href={feature.href}
-                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
-                              >
-                                <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
-                                  {feature.icon}
-                                </div>
-                                <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
-                                  {feature.title}
-                                </div>
-                              </a>
-                            ))}
+                            {platformSubmenu === "hardware" ? (
+                              <>
+                                <Link href="/hardware/smart-hub" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Radio className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Smart Hub
+                                  </div>
+                                </Link>
+                                <Link href="/hardware/harness-integration" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Radio className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Harness Integration
+                                  </div>
+                                </Link>
+                                <Link href="/hardware/wireless-controllers" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Radio className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Wireless Controllers
+                                  </div>
+                                </Link>
+                                <Link href="/hardware/safety-modules" className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left">
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    <Radio className="w-5 h-5" />
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    Safety Modules
+                                  </div>
+                                </Link>
+                              </>
+                            ) : (
+                              item.features?.map((feature) => (
+                                <a
+                                  key={feature.title}
+                                  href={feature.href}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {feature.icon}
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    {feature.title}
+                                  </div>
+                                </a>
+                              ))
+                            )}
                           </div>
                         </div>
                       </div>
