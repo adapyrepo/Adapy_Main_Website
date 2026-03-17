@@ -169,14 +169,14 @@ export function Navbar() {
                   >
                     {item.name === "Platform" ? (
                       <div className="grid grid-cols-2 gap-0 -mx-6 -my-6">
-                        <div className="bg-white/[0.02] px-6 py-6 rounded-l-2xl">
+                        <div className="bg-white/[0.03] px-6 py-6 rounded-l-2xl border-r border-white/10">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
                           <div className="grid gap-4">
                             {item.dropdown.map((sub) => (
                               <Link
                                 key={sub.title}
                                 href={sub.href}
-                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
                               >
                                 <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
                                   {sub.icon}
@@ -190,14 +190,14 @@ export function Navbar() {
                             ))}
                           </div>
                         </div>
-                        <div className="bg-white/[0.04] px-6 py-6 rounded-r-2xl">
+                        <div className="bg-white/[0.08] px-6 py-6 rounded-r-2xl">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Key Features</h3>
                           <div className="grid gap-4">
                             {item.features?.map((feature) => (
                               <a
                                 key={feature.title}
                                 href={feature.href}
-                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors text-left"
+                                className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
                               >
                                 <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
                                   {feature.icon}
