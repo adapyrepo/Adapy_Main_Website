@@ -8,7 +8,7 @@ const pricingTiers = [
   {
     name: "Free",
     price: "$0",
-    setupFee: "$2,495",
+    setupFee: "$1,795",
     description: "Get started with essential mobility features",
     cta: "Get Started",
     ctaLink: "/contact",
@@ -56,7 +56,7 @@ const pricingTiers = [
     name: "Pro",
     price: "$48",
     period: "/month",
-    setupFee: "$2,495",
+    setupFee: "$2,895",
     description: "For growing teams and fleet operators",
     cta: "Start Free Trial",
     ctaLink: "/contact",
