@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronDown, UserCircle, Grid3x3, Smartphone, LayoutDashboard, Zap, Shield, Brain, Eye, Radio } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle, Grid3x3, Smartphone, LayoutDashboard, Zap, Shield, Brain, Eye, Radio, Lightbulb, Book, Plug, Users, Mic, Users2, Building2, User, MessageSquare, Code, Wrench, Lock, Database } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 import { MobilityTicker } from "./MobilityTicker";
@@ -23,6 +23,14 @@ interface NavItemExtended extends NavItem {
     description?: string;
     href?: string;
     icon?: React.ReactNode;
+  }[];
+  columns?: {
+    title: string;
+    items: {
+      title: string;
+      href: string;
+      icon: React.ReactNode;
+    }[];
   }[];
 }
 
@@ -56,14 +64,34 @@ const navItems: NavItemExtended[] = [
   { name: "Blog", href: "/blog" },
   {
     name: "Resources",
-    dropdown: [
-      { title: "Help Center", description: "Getting started & troubleshooting", href: "/resources/help" },
-      { title: "Documentation", description: "Technical guides & API reference", href: "/resources/docs" },
-      { title: "Community", description: "Connect with other Adapy users", href: "/resources/community" },
-      { title: "Dealer Certification", description: "Dealer Resources", href: "/resources/dealer-certification" },
-      { title: "Installation Docs", description: "Dealer Resources", href: "/resources/installation-docs" },
-      { title: "Supported Equipment", description: "Dealer Resources", href: "/resources/supported-equipment" },
-      { title: "Contact Us", description: "Reach out with any questions", href: "/contact" },
+    columns: [
+      {
+        title: "Developer Resources",
+        items: [
+          { title: "Learn", href: "/resources/learn", icon: <Lightbulb className="w-5 h-5" /> },
+          { title: "Docs", href: "/resources/docs", icon: <Book className="w-5 h-5" /> },
+          { title: "Integrations", href: "/resources/integrations", icon: <Plug className="w-5 h-5" /> },
+        ],
+      },
+      {
+        title: "Community Resources",
+        items: [
+          { title: "Case Studies", href: "/resources/case-studies", icon: <Users className="w-5 h-5" /> },
+          { title: "Podcast", href: "/resources/podcast", icon: <Mic className="w-5 h-5" /> },
+          { title: "Community", href: "/resources/community", icon: <Users2 className="w-5 h-5" /> },
+          { title: "Partner Resources", href: "/resources/partner", icon: <Building2 className="w-5 h-5" /> },
+          { title: "Hire an Expert", href: "/resources/hire-expert", icon: <User className="w-5 h-5" /> },
+          { title: "Contact Us", href: "/contact", icon: <MessageSquare className="w-5 h-5" /> },
+        ],
+      },
+      {
+        title: "Dealer Resources",
+        items: [
+          { title: "Dealer Certification", href: "/resources/dealer-certification", icon: <Code className="w-5 h-5" /> },
+          { title: "Installation Docs", href: "/resources/installation-docs", icon: <Wrench className="w-5 h-5" /> },
+          { title: "Supported Equipment", href: "/resources/supported-equipment", icon: <Database className="w-5 h-5" /> },
+        ],
+      },
     ],
   },
 ];
@@ -161,10 +189,36 @@ export function Navbar() {
                     transition={{ duration: 0.2 }}
                     className={cn(
                       "absolute top-full mt-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl",
-                      item.name === "Platform" ? "left-0 w-[600px]" : "left-1/2 -translate-x-1/2 w-72"
+                      item.name === "Platform" ? "left-0 w-[600px]" : item.name === "Resources" ? "left-1/2 -translate-x-1/2 w-[800px]" : "left-1/2 -translate-x-1/2 w-72"
                     )}
                   >
-                    {item.name === "Platform" ? (
+                    {item.name === "Resources" && item.columns ? (
+                      <div className="grid grid-cols-3 gap-12">
+                        {item.columns.map((column) => (
+                          <div key={column.title}>
+                            <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">
+                              {column.title}
+                            </h3>
+                            <div className="grid gap-4">
+                              {column.items.map((resource) => (
+                                <Link
+                                  key={resource.title}
+                                  href={resource.href}
+                                  className="group/item flex items-start gap-3 p-2 rounded-lg hover:bg-white/10 transition-colors text-left"
+                                >
+                                  <div className="text-white/50 group-hover/item:text-[#0071e3] transition-colors flex-shrink-0 mt-0.5">
+                                    {resource.icon}
+                                  </div>
+                                  <div className="text-[14px] font-semibold text-white group-hover/item:text-[#0071e3] transition-colors">
+                                    {resource.title}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : item.name === "Platform" ? (
                       <div className="grid grid-cols-2 gap-0 -mx-6 -my-6">
                         <div className="bg-white/[0.03] px-6 py-6 rounded-l-2xl border-r border-white/10">
                           <h3 className="text-[11px] font-bold text-white/40 uppercase tracking-[0.15em] mb-6">Platform</h3>
