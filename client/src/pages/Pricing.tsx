@@ -76,6 +76,7 @@ const pricingTiers = [
     cta: "Contact Sales",
     ctaLink: "/contact",
     highlighted: false,
+    isNEMT: true,
     features: [
       { name: "White-label solutions", included: true },
       { name: "Unlimited devices & users", included: true },
@@ -140,7 +141,9 @@ export default function Pricing() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={cn(
                     "rounded-2xl p-8 relative overflow-hidden",
-                    tier.highlighted
+                    tier.isNEMT
+                      ? "bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 border border-blue-700/50 shadow-2xl"
+                      : tier.highlighted
                       ? "bg-gradient-to-br from-white/10 to-white/5 border border-white/20 shadow-2xl scale-105 md:scale-110"
                       : "bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
                   )}
@@ -164,7 +167,9 @@ export default function Pricing() {
                       href={tier.ctaLink}
                       className={cn(
                         "block w-full py-3 px-6 rounded-lg font-semibold text-center transition-colors mb-8 text-sm",
-                        tier.highlighted
+                        tier.isNEMT
+                          ? "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/50"
+                          : tier.highlighted
                           ? "bg-blue-600 hover:bg-blue-700 text-white"
                           : "bg-white/10 hover:bg-white/20 text-white border border-white/10"
                       )}
