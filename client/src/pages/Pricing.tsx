@@ -40,11 +40,7 @@ const pricingTiers = [
     features: [
       { name: "Advanced adaptive equipment controls", included: true },
       { name: "Mobile app access", included: true },
-      { name: "Up to 25 devices", included: true },
-      { name: "GPS Tracking", included: true },
-      { name: "Emergency Alert", included: true },
-      { name: "Air Quality Sensor", included: true },
-      { name: "Temperature Sensor", included: true },
+      { name: "Up to 5 devices", included: true },
       { name: "Cloud connectivity", included: true },
       { name: "Basic analytics", included: true },
       { name: "Email support", included: true },
