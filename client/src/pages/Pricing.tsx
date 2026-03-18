@@ -61,7 +61,7 @@ const pricingTiers = [
     price: "$25",
     period: "/month",
     setupFee: "$1,995",
-    description: "Enjoy Smart Controls & Reporting",
+    description: "Enjoy Smart Contrls, Reporting & Alerts",
     cta: "Get Started",
     ctaLink: "/contact",
     highlighted: true,
