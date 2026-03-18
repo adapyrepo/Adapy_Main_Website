@@ -52,8 +52,9 @@ const pricingTiers = [
       { name: "Air Quality Sensor", included: false },
       { name: "Battery Monitor", included: false },
       { name: "GPS Tracking", included: false },
+      { name: "Detailed Analytics", included: false },
+      { name: "Custom Integrations", included: false },
       { name: "Priority email & chat support", included: false },
-      { name: "Custom integrations", included: false },
     ],
   },
   {
