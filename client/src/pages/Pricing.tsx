@@ -43,6 +43,7 @@ const pricingTiers = [
       { name: "Up to 5 devices", included: true },
       { name: "Cloud connectivity", included: true },
       { name: "Basic analytics", included: true },
+      { name: "Maintenance Reports", included: true },
       { name: "Email support", included: true },
       { name: "Priority support", included: false },
       { name: "Custom integrations", included: false },
