@@ -80,6 +80,7 @@ const pricingTiers = [
       { name: "Battery Monitor", included: true },
       { name: "GPS Tracking", included: true },
       { name: "Detailed Analytics", included: true },
+      { name: "Custom Integrations", included: true },
       { name: "Priority email & chat support", included: true },
     ],
   },
