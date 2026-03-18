@@ -54,7 +54,7 @@ const pricingTiers = [
   },
   {
     name: "Pro",
-    price: "$48",
+    price: "$25",
     period: "/month",
     setupFee: "$2,495",
     description: "Enjoy Smart Controls & Reporting",
