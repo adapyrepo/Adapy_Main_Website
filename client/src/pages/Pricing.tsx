@@ -182,7 +182,7 @@ export default function Pricing() {
                       {!tier.isNEMT && (
                         <>
                           {tier.period && <div className="text-white/60 text-sm">{tier.period}</div>}
-                          <div className="text-white/60 text-xs mt-2">Adapy Smart Mobility Kit: {tier.setupFee}</div>
+                          <div className="text-white/60 text-xs mt-2">{tier.name === "Pro" ? "Adapy Smart Mobility Kit & Monitor Kit" : "Adapy Smart Mobility Kit"}: {tier.setupFee}</div>
                           <div className="text-blue-400 text-xs mt-1">Ships Next Day</div>
                         </>
                       )}
