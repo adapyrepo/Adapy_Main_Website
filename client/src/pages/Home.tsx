@@ -488,8 +488,19 @@ export default function Home() {
             )}
           </div>
 
-          <div className="mb-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-            <ScrollingLogos />
+          <div className="mb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Left side text */}
+            <div className="flex-shrink-0 text-center lg:text-left">
+              <div className="text-3xl md:text-4xl font-bold">
+                <span className="block text-white/80">Supporting today's</span>
+                <span className="block text-[#0071e3] font-bold">top brands</span>
+              </div>
+            </div>
+            
+            {/* Right side scrolling logos */}
+            <div className="flex-1 w-full opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+              <ScrollingLogos />
+            </div>
           </div>
 
           <p className="text-xl text-white/60 mb-12">
