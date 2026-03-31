@@ -501,9 +501,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             {/* Left side text */}
             <div className="flex-shrink-0">
-              <div className="text-4xl md:text-5xl font-bold">
-                <span className="block text-white/80">Supporting today's</span>
-                <span className="block text-[#0071e3] font-bold">top brands</span>
+              <div className="text-4xl md:text-5xl font-bold leading-tight">
+                <span className="block text-white/80">Driving innovation</span>
+                <span className="block text-white/80">across adaptive</span>
+                <span className="block text-[#0071e3] font-bold">mobility brands</span>
               </div>
             </div>
             
