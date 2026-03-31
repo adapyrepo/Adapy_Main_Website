@@ -58,34 +58,94 @@ export default function NEMTFleet() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-[#f8fafc]">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Mobility Fleet Intelligence</span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
-              NEMT & Fleet Services
-            </h1>
-            <p className="text-xl md:text-2xl text-black/60 mb-10 leading-relaxed mx-auto max-w-2xl">
-              Advanced adaptive-equipment-aware safety monitoring for wheelchair-accessible NEMT fleets.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact">
-                <button className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold hover:bg-[#0077ed] transition-all shadow-lg">
-                  Request a Demo
-                </button>
-              </Link>
-              <Link href="/platform">
-                <button className="px-8 py-4 bg-black text-white rounded-full font-bold hover:bg-black/90 transition-all shadow-lg">
-                  Explore the Platform
-                </button>
-              </Link>
-            </div>
-          </motion.div>
+      <section className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-black">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-black to-black" />
+        
+        {/* Glowing accent circles */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl opacity-50" />
+        <div className="absolute bottom-40 left-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl opacity-30" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+            {/* Left side - Text content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Mobility Fleet Intelligence</span>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.2] text-white">
+                NEMT & Fleet Services
+              </h1>
+              <p className="text-xl md:text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
+                Advanced adaptive-equipment-aware safety monitoring for wheelchair-accessible NEMT fleets.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact">
+                  <button className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold hover:bg-[#0077ed] transition-all shadow-lg hover:shadow-blue-500/50">
+                    Request a Demo
+                  </button>
+                </Link>
+                <Link href="/platform">
+                  <button className="px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-bold hover:bg-white/20 transition-all">
+                    Explore the Platform
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right side - Glowing dashboard */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              {/* Outer glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/20 rounded-3xl blur-3xl" />
+              
+              {/* Monitor frame */}
+              <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-1 shadow-2xl border border-slate-700">
+                {/* Inner glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-3xl blur-2xl opacity-50" />
+                
+                {/* Screen content */}
+                <div className="relative bg-[#0f172a] rounded-2xl overflow-hidden">
+                  {/* Monitor bezel */}
+                  <div className="h-12 bg-gradient-to-b from-slate-700 to-slate-800 border-b border-slate-600 flex items-center px-6 gap-3">
+                    <div className="flex gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                    </div>
+                  </div>
+                  
+                  {/* Dashboard mockup */}
+                  <div className="aspect-video bg-gradient-to-br from-slate-900 to-black relative overflow-hidden p-8">
+                    {/* Grid background */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="grid grid-cols-8 gap-4 h-full w-full">
+                        {Array.from({ length: 32 }).map((_, i) => (
+                          <div key={i} className="border border-blue-500/20" />
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Dashboard elements with glow */}
+                    <div className="relative z-10 space-y-4">
+                      <div className="h-8 bg-gradient-to-r from-blue-500/30 to-transparent rounded-lg" />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="h-24 bg-gradient-to-br from-blue-500/20 to-blue-500/5 rounded-lg border border-blue-500/30" />
+                        <div className="h-24 bg-gradient-to-br from-purple-500/20 to-purple-500/5 rounded-lg border border-purple-500/30" />
+                      </div>
+                      <div className="h-12 bg-gradient-to-r from-green-500/20 to-transparent rounded-lg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
