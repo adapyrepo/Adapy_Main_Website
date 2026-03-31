@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollingLogos } from "@/components/ScrollingLogos";
 import { Link } from "wouter";
 import { 
   Truck, 
@@ -302,6 +303,26 @@ export default function NEMTFleet() {
                <div className="absolute inset-0 opacity-20 pointer-events-none">
                  <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-[#0071e3] blur-[100px] rounded-full" />
                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Connected Ecosystem Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+            {/* Left side text */}
+            <div className="flex-shrink-0 lg:max-w-xs">
+              <div className="text-4xl md:text-5xl font-bold">
+                <span className="block text-black/80">Supporting today's</span>
+                <span className="block text-[#0071e3] font-bold">top brands</span>
+              </div>
+            </div>
+            
+            {/* Right side scrolling logos */}
+            <div className="flex-1 w-full">
+              <ScrollingLogos />
             </div>
           </div>
         </div>
