@@ -488,25 +488,30 @@ export default function Home() {
             )}
           </div>
 
-          <div className="mb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <p className="text-xl text-white/60 mb-12">
+            Adapy creates the digital infrastructure layer the adaptive industry
+            has been missing. All unified.
+          </p>
+        </div>
+      </section>
+
+      {/* Supporting Top Brands Section */}
+      <section className="py-24 bg-black text-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             {/* Left side text */}
-            <div className="flex-shrink-0 text-center lg:text-left">
-              <div className="text-3xl md:text-4xl font-bold">
+            <div className="flex-shrink-0">
+              <div className="text-4xl md:text-5xl font-bold">
                 <span className="block text-white/80">Supporting today's</span>
                 <span className="block text-[#0071e3] font-bold">top brands</span>
               </div>
             </div>
             
             {/* Right side scrolling logos */}
-            <div className="flex-1 w-full opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+            <div className="flex-1 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
               <ScrollingLogos />
             </div>
           </div>
-
-          <p className="text-xl text-white/60 mb-12">
-            Adapy creates the digital infrastructure layer the adaptive industry
-            has been missing. All unified.
-          </p>
         </div>
       </section>
 
