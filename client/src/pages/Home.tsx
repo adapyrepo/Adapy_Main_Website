@@ -773,8 +773,8 @@ export default function Home() {
 
                 {/* Centered Content */}
                 <div className="text-center">
-                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Tell us about yourself</h2>
-                  <p className="text-black/60 mb-12 text-lg">So we can tailor your Adapy experience</p>
+                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Let's Build Your Adapy System</h2>
+                  <p className="text-black/60 mb-12 text-lg">Choose your role to see how Adapy works for you</p>
                   
                   <div className="flex flex-col gap-6 max-w-2xl mx-auto">
                     <Link href="/contact">
@@ -782,7 +782,7 @@ export default function Home() {
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
-                        I would like to learn about Adapy products for my own personal use
+                        👤 Personal Use
                       </button>
                     </Link>
                     <Link href="/contact">
@@ -790,7 +790,7 @@ export default function Home() {
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
-                        I am a dealer and I would like to offer Adapy to my customers
+                        🏪 Dealer
                       </button>
                     </Link>
                     <Link href="/contact">
@@ -798,7 +798,7 @@ export default function Home() {
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
-                        I am a CDRS professional, and I would like to know how Adapy can help my patients
+                        🧠 CDRS / OT
                       </button>
                     </Link>
                     <Link href="/contact">
@@ -806,7 +806,15 @@ export default function Home() {
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
-                        I run an NEMT company and I want to empower my fleet with Adapy
+                        🚐 NEMT Fleet
+                      </button>
+                    </Link>
+                    <Link href="/contact">
+                      <button 
+                        onClick={() => setIsRoleSelectorOpen(false)}
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                      >
+                        🏭 Manufacturer
                       </button>
                     </Link>
                   </div>
