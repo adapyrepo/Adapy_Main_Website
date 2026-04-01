@@ -748,7 +748,7 @@ export default function Home() {
                       onClick={() => setIsRoleSelectorOpen(false)}
                       className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
                     >
-                      <span className="group-hover:text-[#0071e3] transition-colors">End User – Personal Adaptive Equipment</span>
+                      <span className="group-hover:text-[#0071e3] transition-colors">I would like to learn about Adapy products for my own personal use</span>
                     </button>
                   </Link>
                   <Link href="/contact">
@@ -756,7 +756,7 @@ export default function Home() {
                       onClick={() => setIsRoleSelectorOpen(false)}
                       className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
                     >
-                      <span className="group-hover:text-[#0071e3] transition-colors">Equipment Dealer or Mobility Provider</span>
+                      <span className="group-hover:text-[#0071e3] transition-colors">I am a dealer and I would like to offer Adapy to my customers</span>
                     </button>
                   </Link>
                   <Link href="/contact">
@@ -764,7 +764,7 @@ export default function Home() {
                       onClick={() => setIsRoleSelectorOpen(false)}
                       className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
                     >
-                      <span className="group-hover:text-[#0071e3] transition-colors">Certified Driving Rehabilitation Specialist (CDRS)</span>
+                      <span className="group-hover:text-[#0071e3] transition-colors">I am a CDRS professional, and I would like to learn more about Adapy</span>
                     </button>
                   </Link>
                   <Link href="/contact">
@@ -772,7 +772,7 @@ export default function Home() {
                       onClick={() => setIsRoleSelectorOpen(false)}
                       className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
                     >
-                      <span className="group-hover:text-[#0071e3] transition-colors">Non-Emergency Medical Transportation (NEMT) Provider</span>
+                      <span className="group-hover:text-[#0071e3] transition-colors">I run an NEMT company and I would like to learn more about Adapy</span>
                     </button>
                   </Link>
                 </div>
