@@ -3,24 +3,52 @@ import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sarah J.",
-    role: "Adaptive Vehicle Owner",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
-    quote: "Adapy unified all my equipment into one simple interface. It changed how I interact with my van daily.",
+    name: "Cody Howell",
+    role: "President, Howell Ventures, Ltd. (SureGrip)",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    quote: "Adapy's products address a significant need in the industry by providing adaptive equipment solutions that prioritize safety, reliability, and accessibility.",
     videoUrl: "#"
   },
   {
-    name: "Michael R.",
-    role: "NEMT Fleet Manager",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-    quote: "The safety monitoring and GPS tracking give us peace of mind. We can proactively manage our fleet's health.",
+    name: "Brandon Higgs, OTR, MSOT, CDRS",
+    role: "H&T Drivers Rehabilitation Specialists, LLC",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+    quote: "It is clear that Adapy's technology represents a significant advancement in the accessibility and functionality of adaptive equipment.",
     videoUrl: "#"
   },
   {
-    name: "David K.",
-    role: "Mobility Dealer",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
-    quote: "The Adapy platform is the missing layer in the industry. It makes every installation cleaner and smarter.",
+    name: "Craig E. Rogers, CDRS, CDI, CDLE",
+    role: "Alabama Department of Rehabilitation Services",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
+    quote: "I am encouraged by Adapy's engagement with States like Alabama and Texas, where the implementation of new technology is critical for CDRS professionals.",
+    videoUrl: "#"
+  },
+  {
+    name: "Shawn Carver",
+    role: "General Manager, Mobility Works",
+    image: "https://images.unsplash.com/photo-1519085360771-9852f59a3579?auto=format&fit=crop&q=80&w=800",
+    quote: "It is clear that your product meets a critical need in enhancing the safety, functionality, and data-driven management of adaptive equipment.",
+    videoUrl: "#"
+  },
+  {
+    name: "Brian K. Griffin",
+    role: "President, Griffin Mobility",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    quote: "Adapy's technology fills a vital gap in the adaptive equipment market by offering solutions that not only improve accessibility but also deliver functionality and freedom.",
+    videoUrl: "#"
+  },
+  {
+    name: "Russ Newton",
+    role: "President, NMEDA Canada/ Board Member NMEDA USA",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+    quote: "Throughout my tenure as NMEDA Canada President, few innovations match the potential impact of Adapy's solutions.",
+    videoUrl: "#"
+  },
+  {
+    name: "Marc Andrus RRT, MBA",
+    role: "Homecare Surveyor for the Joint Commission",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
+    quote: "I believe there is a substantial need in the market for Adapy and the services it provides for safe and convenient mobility.",
     videoUrl: "#"
   }
 ];
