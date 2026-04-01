@@ -782,7 +782,7 @@ export default function Home() {
                   <p className="text-black/60 mb-12 text-lg">Choose your role to see how Adapy works for you</p>
                   
                   <div className="flex flex-col gap-6 max-w-2xl mx-auto">
-                    <Link href="/contact">
+                    <Link href="/user-funnel">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"

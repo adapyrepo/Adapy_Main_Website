@@ -1,0 +1,273 @@
+I need you to build a dedicated individual user funnel for Adapy that loads when the user selects the wheelchair-user / personal-use option from the existing homepage popup selector.
+
+Important context:
+- The homepage CTA and popup selector already exist.
+- The existing selector currently includes a personal-use option.
+- This funnel is for the wheelchair user / end user.
+- The primary goal is to capture a qualified lead and help connect that person with a dealer in their area.
+- In many cases, the end user may not pay directly for Adapy. Funding may come through the VA, Vocational Rehabilitation, Workforce Services, or other programs.
+- Because of that, the funnel should not feel like a hard sales page. It should feel supportive, hopeful, simple, and low pressure.
+- The user should feel educated, understood, and encouraged to inquire.
+- Keep the existing Adapy premium dark design language, blue accents, strong typography, rounded buttons, modern spacing, and mobile responsiveness.
+
+Primary conversion goal:
+Get the wheelchair user to submit an inquiry / qualification request so we can follow up, educate them, and connect them with a dealer or pathway in their area.
+
+Core strategy:
+This funnel should not feel like “buy this product.”
+It should feel like:
+“A simpler path to independence may already be available to you.”
+Use a soft but compelling qualification hook rather than a direct sales hook.
+
+Routing behavior:
+- When the user clicks the existing personal-use option, route them to this new dedicated user funnel page.
+- If appropriate, rename the selector label from generic “Personal Use” to something more direct like:
+  “I use a wheelchair”
+  or
+  “I want to learn if Adapy can work for me”
+- If changing the selector text is easy, do it.
+- If not, keep the current selector but route it to this new page.
+
+Page structure:
+
+Section 1 — Hero
+Headline:
+“Stop Juggling Controls. Start Moving Freely.”
+
+Subheadline:
+“Adapy brings your vehicle’s adaptive equipment into one simple, connected system—designed around your independence.”
+
+Primary CTA button:
+“See If You Qualify”
+
+Secondary CTA button:
+“Watch How It Works”
+
+Add a supportive micro-line under the CTAs:
+“You may qualify for Adapy through programs such as the VA or Vocational Rehabilitation.”
+
+Hero guidance:
+- Make it emotional but professional
+- Use supportive language, not hype
+- Keep the focus on independence, simplicity, confidence, and dignity
+- The page should feel welcoming and low pressure
+- Keep the primary CTA visually dominant
+- Keep visual styling consistent with Adapy branding
+
+Section 2 — Daily Struggle / Pain Validation
+This section should acknowledge the real daily challenges wheelchair users face with multiple adaptive controls and disconnected systems.
+
+Headline:
+“Adaptive mobility should feel simpler.”
+
+Intro copy:
+“For many wheelchair users, everyday vehicle access means managing multiple controls, extra steps, and unnecessary complexity. Adapy was designed to help reduce that burden.”
+
+Create 4 pain-point cards or list items:
+1. Multiple remotes and controls
+2. Inconsistent equipment experiences
+3. Extra dependence for simple actions
+4. More complexity than there should be
+
+Each item should have short, empathetic supporting text.
+Do not make it overly negative. The goal is to make the user feel understood.
+
+Section 3 — The Solution
+Headline:
+“One System. A Simpler Experience.”
+
+Body copy:
+“Adapy helps bring adaptive equipment into one connected experience, giving users a more streamlined and intuitive way to interact with their vehicle environment.”
+
+Create 3-4 benefit cards:
+- Simpler control experience
+- More independence
+- Better consistency
+- Built around real-world adaptive mobility
+
+Use clean icons and simple copy.
+Avoid overly technical language.
+
+Section 4 — How It Works
+Create a simple 3-step process section.
+
+Step 1:
+“Tell Us About Your Setup”
+Short copy: “Answer a few simple questions so we can understand your needs.”
+
+Step 2:
+“We Review Your Options”
+Short copy: “We help determine the best next step based on your location, goals, and possible funding path.”
+
+Step 3:
+“We Help Connect You”
+Short copy: “If there is a fit, we help connect you with the right dealer or next step in your area.”
+
+This section is important because users need to know what happens next.
+
+Section 5 — Funding / Qualification Section
+This is one of the most important sections and should reduce cost anxiety.
+
+Headline:
+“You May Already Qualify”
+
+Body copy:
+“In many cases, Adapy may be pursued through programs such as the VA, Vocational Rehabilitation, Workforce Services, or other funding pathways. We can help you begin the process and understand your next steps.”
+
+Add 3 reassuring points:
+- Funding pathways may be available
+- We help guide the process
+- We can connect you with local next steps when possible
+
+Important:
+Do not make legal or guaranteed claims.
+Use language like “may qualify,” “may be available,” and “can help guide.”
+
+Section 6 — Demo / Education Section
+Add a section for a short product demo or walkthrough.
+
+Headline:
+“See How Adapy Works”
+
+Body copy:
+“Watch how Adapy creates a more connected and simplified adaptive mobility experience.”
+
+If no actual video is embedded yet, create a polished placeholder section for a future video embed.
+The “Watch How It Works” CTA should scroll here.
+
+Section 7 — Soft Conversion Form / Qualification Intake
+This is the primary lead capture section.
+
+Headline:
+“See If Adapy May Be a Fit for You”
+
+Subheadline:
+“Tell us a little about your situation and our team can help guide the next step.”
+
+Important conversion requirement:
+This should feel like a supportive intake form, not a sales form.
+Keep it warm, simple, and low pressure.
+
+Preferred form experience:
+Use a multi-step or well-grouped form if possible so it feels easier to complete.
+
+Recommended fields:
+Step 1:
+- First Name
+- Last Name
+- Email
+- Phone
+
+Step 2:
+- City
+- State / Province
+- Country
+
+Step 3:
+- Which best describes your current situation?
+  Options:
+  - I use adaptive mobility equipment now
+  - I am exploring options for myself
+  - I am working with the VA
+  - I am working with Vocational Rehabilitation / Workforce Services
+  - I’m not sure where to start
+
+Step 4:
+- What adaptive equipment do you currently use or need help with?
+  (short text area)
+- Is there anything you want us to know about your situation?
+  (optional text area)
+
+Primary form button:
+“See If I Qualify”
+
+Below the form button, add a reassurance line:
+“This does not obligate you to purchase anything.”
+
+Optional:
+Add a consent checkbox for contact if needed.
+
+Section 8 — What Happens Next
+After the form section, create a clear next-steps section or a confirmation flow design.
+
+Headline:
+“What Happens Next?”
+
+Use 3 steps:
+1. “We review your inquiry”
+2. “We help identify the best next step”
+3. “We connect you with support, education, or a dealer when available”
+
+This section reduces friction and uncertainty.
+
+Section 9 — FAQ
+Create a short FAQ accordion with supportive answers.
+
+Questions:
+1. “Do I need to know if I qualify before reaching out?”
+2. “Can Adapy help if I am working with the VA?”
+3. “What if I am still exploring my options?”
+4. “Will someone help me understand the process?”
+5. “Do I need to buy directly from Adapy?”
+
+Answers should be clear, simple, supportive, and reduce anxiety.
+Do not overpromise.
+Use wording that encourages inquiry.
+
+Tone and messaging requirements:
+- Supportive
+- Empowering
+- Professional
+- Hopeful
+- Trustworthy
+- Low pressure
+- Avoid hard-sell language
+- Avoid making it feel like a generic contact page
+- Avoid excessive technical jargon
+- Avoid aggressive urgency
+
+Urgency/scarcity approach:
+Use very light urgency only.
+Examples of acceptable supporting copy:
+- “Availability may vary by location and dealer coverage.”
+- “Submitting an inquiry helps us identify the best path available in your area.”
+- “The sooner we understand your needs, the sooner we can help guide next steps.”
+
+Do not use fake countdowns or aggressive scarcity tactics.
+
+Design requirements:
+- Match existing Adapy style
+- Dark premium background
+- Blue accent buttons
+- Clean whitespace
+- Rounded cards
+- Strong readability
+- Mobile first / fully responsive
+- CTA repeated throughout the page
+- Keep it uncluttered and emotionally reassuring
+
+Behavior requirements:
+- The primary CTA “See If You Qualify” should scroll to the form
+- The secondary CTA “Watch How It Works” should scroll to the demo section
+- Add analytics hooks / tracking events:
+  - user_selected
+  - user_watch_demo_clicked
+  - user_qualify_cta_clicked
+  - user_form_started
+  - user_form_submitted
+
+Technical requirements:
+- Reuse current components where appropriate
+- Clean modular code
+- If routing exists, make this a dedicated user funnel route
+- Update the existing personal-use selector action so it navigates to this new page
+- Maintain good performance and accessibility
+- Make form labels clear and usable
+
+Final deliverables:
+1. Build the dedicated wheelchair-user / individual-user funnel page
+2. Connect the existing personal-use selector to this page
+3. Add the demo section placeholder if needed
+4. Add the multi-step or grouped qualification form
+5. Maintain current Adapy branding and responsiveness
+6. Write production-ready clean code
