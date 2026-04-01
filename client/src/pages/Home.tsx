@@ -776,7 +776,7 @@ export default function Home() {
                   <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Tell us about yourself</h2>
                   <p className="text-black/60 mb-12 text-lg">So we can tailor your Adapy experience</p>
                   
-                  <div className="space-y-8 max-w-2xl mx-auto">
+                  <div className="space-y-12 max-w-2xl mx-auto">
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
