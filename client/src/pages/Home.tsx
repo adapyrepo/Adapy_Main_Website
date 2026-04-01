@@ -21,6 +21,11 @@ import {
   Lock,
   X,
   Play,
+  User,
+  Store,
+  Brain,
+  Ambulance,
+  Cog,
 } from "lucide-react";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
@@ -780,41 +785,46 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
-                        👤 Personal Use
+                        <User className="w-5 h-5 flex-shrink-0" />
+                        Personal Use
                       </button>
                     </Link>
                     <Link href="/dealer-funnel">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
-                        🏪 Dealer
+                        <Store className="w-5 h-5 flex-shrink-0" />
+                        Dealer
                       </button>
                     </Link>
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
-                        🧠 CDRS / OT
+                        <Brain className="w-5 h-5 flex-shrink-0" />
+                        CDRS / OT
                       </button>
                     </Link>
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
-                        🚐 NEMT Fleet
+                        <Ambulance className="w-5 h-5 flex-shrink-0" />
+                        NEMT Fleet
                       </button>
                     </Link>
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
-                        🏭 Manufacturer
+                        <Cog className="w-5 h-5 flex-shrink-0" />
+                        Manufacturer
                       </button>
                     </Link>
                   </div>
