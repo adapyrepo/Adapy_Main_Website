@@ -5,7 +5,7 @@ import { useState } from "react";
 const testimonials = [
   {
     name: "Marc Andrus RRT, MBA",
-    role: "Homecare Surveyor for the Joint Commission",
+    role: "Surveyor for the Joint Commission",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
     quote: "I believe there is a substantial need in the market for Adapy and the services it provides for safe and convenient mobility.",
     videoUrl: "#"
