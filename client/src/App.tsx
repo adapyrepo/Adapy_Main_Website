@@ -15,6 +15,7 @@ import HarnessIntegration from "@/pages/HarnessIntegration";
 import WirelessControllers from "@/pages/WirelessControllers";
 import SafetyModules from "@/pages/SafetyModules";
 import DealerDashboard from "@/pages/DealerDashboard";
+import DealerFunnel from "@/pages/DealerFunnel";
 import CDRSPortal from "@/pages/CDRSPortal";
 import IndividualSolutions from "@/pages/IndividualSolutions";
 import NEMTFleet from "@/pages/NEMTFleet";
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/hardware/harness-integration" component={HarnessIntegration} />
       <Route path="/hardware/wireless-controllers" component={WirelessControllers} />
       <Route path="/hardware/safety-modules" component={SafetyModules} />
+      <Route path="/dealer-funnel" component={DealerFunnel} />
       <Route path="/software/dealer" component={DealerDashboard} />
       <Route path="/software/cdrs" component={CDRSPortal} />
       <Route path="/solutions/individual" component={IndividualSolutions} />

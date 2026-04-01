@@ -785,7 +785,7 @@ export default function Home() {
                         👤 Personal Use
                       </button>
                     </Link>
-                    <Link href="/contact">
+                    <Link href="/dealer-funnel">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
