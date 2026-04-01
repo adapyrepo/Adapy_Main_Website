@@ -9,6 +9,12 @@ import {
   TrendingUp,
   Headphones,
   ArrowRight,
+  Activity,
+  AlertCircle,
+  FileText,
+  Wrench,
+  BarChart3,
+  ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -24,9 +30,9 @@ export default function DealerFunnel() {
 
   const benefits = [
     {
-      icon: <TrendingUp className="w-8 h-8 text-[#0071e3]" />,
-      title: "Differentiate Your Dealership",
-      desc: "Stand out with a connected adaptive technology platform that simplifies the user experience.",
+      icon: <Activity className="w-8 h-8 text-[#0071e3]" />,
+      title: "Real-Time Equipment Data",
+      desc: "Live connectivity status and operational telemetry from every Adapy-connected vehicle in your fleet.",
     },
     {
       icon: <Zap className="w-8 h-8 text-[#0071e3]" />,
@@ -42,6 +48,39 @@ export default function DealerFunnel() {
       icon: <Headphones className="w-8 h-8 text-[#0071e3]" />,
       title: "Dealer Support Included",
       desc: "Get onboarding, training, and support to help your team sell and install with confidence.",
+    },
+  ];
+
+  const dashboardFeatures = [
+    {
+      icon: <Activity className="w-6 h-6 text-[#0071e3]" />,
+      title: "Real-Time Equipment Data",
+      description: "Live connectivity status and operational telemetry from every Adapy-connected vehicle in your fleet.",
+    },
+    {
+      icon: <AlertCircle className="w-6 h-6 text-[#0071e3]" />,
+      title: "Automated Maintenance Alerts",
+      description: "Proactive notifications based on cycle counts, runtime, or diagnostic fault codes.",
+    },
+    {
+      icon: <FileText className="w-6 h-6 text-[#0071e3]" />,
+      title: "Warranty Justification",
+      description: "One-click PDF reports combining session logs and diagnostics to streamline warranty claims.",
+    },
+    {
+      icon: <Wrench className="w-6 h-6 text-[#0071e3]" />,
+      title: "Remote Troubleshooting",
+      description: "View real-time relay states and sensor readings to diagnose issues without a truck roll.",
+    },
+    {
+      icon: <BarChart3 className="w-6 h-6 text-[#0071e3]" />,
+      title: "Fleet-Wide Analytics",
+      description: "Identify service opportunities and track equipment reliability across your entire customer base.",
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-[#0071e3]" />,
+      title: "VA & Voc-Rehab Friendly",
+      description: "Standardized reporting packets designed to meet the rigorous documentation needs of funding sources.",
     },
   ];
 
@@ -147,6 +186,46 @@ export default function DealerFunnel() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dashboard Features Section */}
+      <section className="py-32 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-20">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              Adapy Dealer Dashboard
+            </span>
+            <h2 className="text-5xl font-bold text-black mb-6">
+              A Powerful Command Center for Your Service Department
+            </h2>
+            <p className="text-xl text-black/60 max-w-3xl mx-auto">
+              Turn equipment data into maintenance revenue with real-time fleet monitoring and proactive service alerts.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dashboardFeatures.map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 bg-white rounded-3xl border border-black/[0.05] hover:shadow-lg transition-shadow"
+              >
+                <div className="mb-6 p-3 bg-[#f5f5f7] rounded-2xl w-fit">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold text-black mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-black/60 leading-relaxed text-sm">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

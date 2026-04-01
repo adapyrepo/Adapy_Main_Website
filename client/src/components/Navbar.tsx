@@ -56,7 +56,7 @@ const navItems: NavItemExtended[] = [
       { title: "Individual Adaptive Vehicles", description: "Personal mobility environments", href: "/solutions/individual" },
       { title: "NEMT Fleet Intelligence", description: "Fleet-scale safety & monitoring", href: "/solutions/nemt" },
       { title: "Government & VA", description: "Compliance & reporting automation", href: "/solutions/government" },
-      { title: "Mobility Dealers", description: "Scale your installation workflow", href: "/software/dealer" },
+      { title: "Mobility Dealers", description: "Scale your installation workflow", href: "/dealer-funnel" },
       { title: "CDRS Portal", description: "Client equipment visibility", href: "/software/cdrs" },
     ],
   },
