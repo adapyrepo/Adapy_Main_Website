@@ -749,68 +749,56 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="bg-white rounded-3xl p-8 md:p-12 max-w-3xl w-full shadow-2xl"
+                className="bg-white rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl relative"
               >
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  {/* Left Side - Text and Buttons */}
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">Tell us about yourself</h2>
-                    <p className="text-black/60 mb-8 text-lg">So we can tailor your Adapy experience</p>
-                    
-                    <div className="space-y-3">
-                      <Link href="/contact">
-                        <button 
-                          onClick={() => setIsRoleSelectorOpen(false)}
-                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
-                        >
-                          I would like to learn about Adapy products for my own personal use
-                        </button>
-                      </Link>
-                      <Link href="/contact">
-                        <button 
-                          onClick={() => setIsRoleSelectorOpen(false)}
-                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
-                        >
-                          I am a dealer and I would like to offer Adapy to my customers
-                        </button>
-                      </Link>
-                      <Link href="/contact">
-                        <button 
-                          onClick={() => setIsRoleSelectorOpen(false)}
-                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
-                        >
-                          I am a CDRS professional, and I would like to know how Adapy can help my patients
-                        </button>
-                      </Link>
-                      <Link href="/contact">
-                        <button 
-                          onClick={() => setIsRoleSelectorOpen(false)}
-                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
-                        >
-                          I run an NEMT company and I want to empower my fleet with Adapy
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Right Side - Visual Accent */}
-                  <div className="hidden md:flex items-center justify-center">
-                    <div className="w-32 h-40 bg-gradient-to-br from-[#0071e3]/20 to-[#0071e3]/5 rounded-2xl flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-5xl font-bold text-[#0071e3] mb-2">Adapy</div>
-                        <div className="text-xs text-black/40 uppercase tracking-widest">Connected Mobility</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Close Button */}
                 <button
                   onClick={() => setIsRoleSelectorOpen(false)}
-                  className="absolute top-4 right-4 p-2 text-black/40 hover:text-black transition-colors"
+                  className="absolute top-6 right-6 p-2 text-black/40 hover:text-black transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
+
+                {/* Centered Content */}
+                <div className="text-center">
+                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Tell us about yourself</h2>
+                  <p className="text-black/60 mb-12 text-lg">So we can tailor your Adapy experience</p>
+                  
+                  <div className="space-y-4 max-w-xl mx-auto">
+                    <Link href="/contact">
+                      <button 
+                        onClick={() => setIsRoleSelectorOpen(false)}
+                        className="w-full p-4 bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-base leading-relaxed"
+                      >
+                        I would like to learn about Adapy products for my own personal use
+                      </button>
+                    </Link>
+                    <Link href="/contact">
+                      <button 
+                        onClick={() => setIsRoleSelectorOpen(false)}
+                        className="w-full p-4 bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-base leading-relaxed"
+                      >
+                        I am a dealer and I would like to offer Adapy to my customers
+                      </button>
+                    </Link>
+                    <Link href="/contact">
+                      <button 
+                        onClick={() => setIsRoleSelectorOpen(false)}
+                        className="w-full p-4 bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-base leading-relaxed"
+                      >
+                        I am a CDRS professional, and I would like to know how Adapy can help my patients
+                      </button>
+                    </Link>
+                    <Link href="/contact">
+                      <button 
+                        onClick={() => setIsRoleSelectorOpen(false)}
+                        className="w-full p-4 bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-base leading-relaxed"
+                      >
+                        I run an NEMT company and I want to empower my fleet with Adapy
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </motion.div>
             </div>
 
