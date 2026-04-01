@@ -80,7 +80,7 @@ export function TestimonialScroller() {
               <div 
                 key={i} 
                 onClick={() => setSelectedTestimonial(t)}
-                className="inline-flex items-center gap-6 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl min-w-[400px] h-[140px] hover:bg-white/10 transition-colors cursor-pointer group/card"
+                className="inline-flex items-center gap-6 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl min-w-[400px] h-[120px] hover:bg-white/10 transition-colors cursor-pointer group/card"
               >
                 <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                   <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
