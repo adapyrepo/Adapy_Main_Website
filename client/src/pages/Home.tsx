@@ -109,6 +109,10 @@ export default function Home() {
     (typeof learningVideos)[0] | null
   >(null);
 
+  const handleGetStartedClick = () => {
+    setIsRoleSelectorOpen(true);
+  };
+
   const benefitStatements = [
     "Adaptive Equipment, Finally Unified",
     "Too Many Remotes. Too Much Failure",
@@ -136,7 +140,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
       <div className="absolute top-0 left-0 right-0 z-50">
-        <Navbar />
+        <Navbar onGetStarted={handleGetStartedClick} />
       </div>
 
       {/* Hero Section */}

@@ -96,7 +96,11 @@ const navItems: NavItemExtended[] = [
   },
 ];
 
-export function Navbar() {
+interface NavbarProps {
+  onGetStarted?: () => void;
+}
+
+export function Navbar({ onGetStarted }: NavbarProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [platformSubmenu, setPlatformSubmenu] = useState<"default" | "hardware" | "mobileapp" | "dashboard">("default");
@@ -481,9 +485,18 @@ export function Navbar() {
           >
             <span className="text-[14px] font-medium">Login</span>
           </a>
-          <Link href="/contact" className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20">
-            Get started
-          </Link>
+          {onGetStarted ? (
+            <button 
+              onClick={onGetStarted}
+              className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
+            >
+              Get started
+            </button>
+          ) : (
+            <Link href="/contact" className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20">
+              Get started
+            </Link>
+          )}
           
           {/* Mobile Menu Toggle */}
           <button
