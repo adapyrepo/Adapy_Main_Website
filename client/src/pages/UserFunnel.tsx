@@ -10,6 +10,10 @@ import {
   Heart,
   ArrowRight,
   AlertCircle,
+  Settings,
+  Bell,
+  History,
+  HeartPulse,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -62,23 +66,23 @@ export default function UserFunnel() {
   const benefits = [
     {
       icon: <Smartphone className="w-8 h-8 text-[#0071e3]" />,
-      title: "Simpler Control Experience",
-      desc: "One app, one interface, less to think about—so you can focus on your life.",
+      title: "Simplified Control",
+      desc: "One app for all your equipment. No more juggling multiple remotes for your lift, seat, and doors.",
     },
     {
-      icon: <Heart className="w-8 h-8 text-[#0071e3]" />,
-      title: "More Independence",
-      desc: "Reduce dependence on others and take control of your mobility on your terms.",
+      icon: <Settings className="w-8 h-8 text-[#0071e3]" />,
+      title: "Predictive Maintenance",
+      desc: "Get alerts before issues arise. We track equipment cycles and battery health to keep you moving.",
     },
     {
-      icon: <Zap className="w-8 h-8 text-[#0071e3]" />,
-      title: "Better Consistency",
-      desc: "Adaptive equipment that works predictably, every single time.",
+      icon: <Bell className="w-8 h-8 text-[#0071e3]" />,
+      title: "Safety Notifications",
+      desc: "Real-time alerts for CO detection, extreme temperatures, and battery voltage drops.",
     },
     {
-      icon: <Users className="w-8 h-8 text-[#0071e3]" />,
-      title: "Built for You",
-      desc: "Designed around real-world adaptive mobility—not generic solutions.",
+      icon: <History className="w-8 h-8 text-[#0071e3]" />,
+      title: "Digital Service History",
+      desc: "Always know when your vehicle was last serviced. Access complete logs for your dealer in seconds.",
     },
   ];
 
