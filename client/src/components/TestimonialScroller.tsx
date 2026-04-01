@@ -27,7 +27,7 @@ const testimonials = [
   {
     name: "Shawn Carver",
     role: "General Manager, Mobility Works",
-    image: "https://images.unsplash.com/photo-1519085360771-9852f59a3579?auto=format&fit=crop&q=80&w=800",
+    image: "/images/shawn-carver.jpeg",
     quote: "Your product meets a critical need in enhancing the safety, functionality, and data-driven management of adaptive equipment.",
     videoUrl: "#"
   },
