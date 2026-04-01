@@ -222,7 +222,7 @@ export default function Home() {
                     onClick={() => setIsRoleSelectorOpen(true)}
                     className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
                   >
-                    Get Started
+                    Watch 2-Min Demo
                   </button>
                 </div>
               </motion.div>
@@ -701,7 +701,7 @@ export default function Home() {
                     }}
                     className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20"
                   >
-                    Get Started
+                    Watch 2-Min Demo
                   </button>
                 </div>
               </div>
