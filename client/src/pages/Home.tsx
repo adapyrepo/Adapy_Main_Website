@@ -772,7 +772,7 @@ export default function Home() {
                       onClick={() => setIsRoleSelectorOpen(false)}
                       className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
                     >
-                      <span className="group-hover:text-[#0071e3] transition-colors">I run an NEMT company and I would like to learn more about Adapy</span>
+                      <span className="group-hover:text-[#0071e3] transition-colors">I run an NEMT company and I want to empower my fleet with Adapy</span>
                     </button>
                   </Link>
                 </div>
