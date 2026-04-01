@@ -104,6 +104,7 @@ export default function Home() {
   const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
   const [textIndex, setTextIndex] = useState(0);
   const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<
     (typeof learningVideos)[0] | null
   >(null);
@@ -201,10 +202,10 @@ export default function Home() {
                     Explore the Ecosystem
                   </button>
                   <button
-                    onClick={() => setIsSliderOpen(true)}
+                    onClick={() => setIsRoleSelectorOpen(true)}
                     className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
                   >
-                    Join Now Free!
+                    Get Started
                   </button>
                 </div>
               </motion.div>
@@ -676,11 +677,15 @@ export default function Home() {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-black/10">
-                  <Link href="/contact" onClick={() => setIsSliderOpen(false)}>
-                    <button className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20">
-                      Join Now Free!
-                    </button>
-                  </Link>
+                  <button 
+                    onClick={() => {
+                      setIsSliderOpen(false);
+                      setIsRoleSelectorOpen(true);
+                    }}
+                    className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20"
+                  >
+                    Get Started
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -711,6 +716,65 @@ export default function Home() {
                 allowFullScreen
               />
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Role Selector Modal */}
+      <AnimatePresence>
+        {isRoleSelectorOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsRoleSelectorOpen(false)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[250] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-2">Tell us about yourself</h2>
+              <p className="text-black/60 mb-8">So we can tailor your experience</p>
+              
+              <div className="space-y-3">
+                <Link href="/contact">
+                  <button 
+                    onClick={() => setIsRoleSelectorOpen(false)}
+                    className="w-full p-4 text-left bg-white border-2 border-[#0071e3] text-black rounded-2xl font-medium hover:bg-[#0071e3]/5 transition-colors"
+                  >
+                    I would like to learn about Adapy products for my own personal use
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button 
+                    onClick={() => setIsRoleSelectorOpen(false)}
+                    className="w-full p-4 text-left bg-white border-2 border-[#0071e3] text-black rounded-2xl font-medium hover:bg-[#0071e3]/5 transition-colors"
+                  >
+                    I am a dealer and I would like to offer Adapy to my customers
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button 
+                    onClick={() => setIsRoleSelectorOpen(false)}
+                    className="w-full p-4 text-left bg-white border-2 border-[#0071e3] text-black rounded-2xl font-medium hover:bg-[#0071e3]/5 transition-colors"
+                  >
+                    I am a CDRS professional, and I would like to learn more about Adapy
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button 
+                    onClick={() => setIsRoleSelectorOpen(false)}
+                    className="w-full p-4 text-left bg-white border-2 border-[#0071e3] text-black rounded-2xl font-medium hover:bg-[#0071e3]/5 transition-colors"
+                  >
+                    I run an NEMT company and I would like to learn more about Adapy
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
