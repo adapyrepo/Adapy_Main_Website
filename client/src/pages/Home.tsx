@@ -780,7 +780,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center"
+                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
                       >
                         I would like to learn about Adapy products for my own personal use
                       </button>
@@ -788,7 +788,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center"
+                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
                       >
                         I am a dealer and I would like to offer Adapy to my customers
                       </button>
@@ -796,7 +796,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center"
+                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
                       >
                         I am a CDRS professional, and I would like to know how Adapy can help my patients
                       </button>
@@ -804,7 +804,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center"
+                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
                       >
                         I run an NEMT company and I want to empower my fleet with Adapy
                       </button>
