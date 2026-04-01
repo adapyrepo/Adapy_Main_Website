@@ -211,7 +211,7 @@ export default function Home() {
                   and lifecycle visibility.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-start items-center">
+                <div className="flex flex-row gap-4 justify-start items-center whitespace-nowrap">
                   <button
                     onClick={() => setIsSliderOpen(true)}
                     className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-bold text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20"
@@ -761,26 +761,26 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="bg-white rounded-3xl p-6 md:p-8 max-w-6xl w-full shadow-2xl relative"
+                className="bg-white rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl relative"
               >
                 {/* Close Button */}
                 <button
                   onClick={() => setIsRoleSelectorOpen(false)}
-                  className="absolute top-4 right-4 p-2 text-black/40 hover:text-black transition-colors"
+                  className="absolute top-6 right-6 p-2 text-black/40 hover:text-black transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </button>
 
                 {/* Centered Content */}
                 <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-bold text-black mb-2">Tell us about yourself</h2>
-                  <p className="text-black/60 mb-8 text-sm">So we can tailor your Adapy experience</p>
+                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Tell us about yourself</h2>
+                  <p className="text-black/60 mb-12 text-lg">So we can tailor your Adapy experience</p>
                   
-                  <div className="flex flex-col gap-4 w-full">
+                  <div className="flex flex-col gap-6 max-w-2xl mx-auto">
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
                         I would like to learn about Adapy products for my own personal use
                       </button>
@@ -788,7 +788,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
                         I am a dealer and I would like to offer Adapy to my customers
                       </button>
@@ -796,7 +796,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
                         I am a CDRS professional, and I would like to know how Adapy can help my patients
                       </button>
@@ -804,7 +804,7 @@ export default function Home() {
                     <Link href="/contact">
                       <button 
                         onClick={() => setIsRoleSelectorOpen(false)}
-                        className="w-full min-h-[44px] py-2 px-6 border-2 border-black text-black rounded-xl font-medium hover:bg-black hover:text-white transition-all text-xs leading-tight flex items-center justify-center whitespace-nowrap"
+                        className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center"
                       >
                         I run an NEMT company and I want to empower my fleet with Adapy
                       </button>
