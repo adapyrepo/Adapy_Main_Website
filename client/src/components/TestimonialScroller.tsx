@@ -4,6 +4,20 @@ import { useState } from "react";
 
 const testimonials = [
   {
+    name: "Russ Newton",
+    role: "President, NMEDA Canada/ Board Member NMEDA USA",
+    image: "/images/russ-newton.jpeg",
+    quote: "Throughout my tenure as NMEDA Canada President, few innovations match the potential impact of Adapy's solutions.",
+    videoUrl: "#"
+  },
+  {
+    name: "Craig E. Rogers, CDRS, CDI, CDLE",
+    role: "Alabama Department of Rehabilitation Services",
+    image: "/images/craig-rogers.png",
+    quote: "I am encouraged by Adapy's engagement with States like Alabama and Texas, where the implementation of new technology is critical for CDRS professionals.",
+    videoUrl: "#"
+  },
+  {
     name: "Cody Howell",
     role: "President, Howell Ventures, Ltd. (SureGrip)",
     image: "/images/cody-howell.png",
@@ -18,13 +32,6 @@ const testimonials = [
     videoUrl: "#"
   },
   {
-    name: "Craig E. Rogers, CDRS, CDI, CDLE",
-    role: "Alabama Department of Rehabilitation Services",
-    image: "/images/craig-rogers.png",
-    quote: "I am encouraged by Adapy's engagement with States like Alabama and Texas, where the implementation of new technology is critical for CDRS professionals.",
-    videoUrl: "#"
-  },
-  {
     name: "Shawn Carver",
     role: "General Manager, Mobility Works",
     image: "/images/shawn-carver.jpeg",
@@ -36,13 +43,6 @@ const testimonials = [
     role: "President, Griffin Mobility",
     image: "/images/brian-griffin.png",
     quote: "Adapy's technology fills a vital gap in the adaptive equipment market by offering solutions that not only improve accessibility but also deliver functionality and freedom.",
-    videoUrl: "#"
-  },
-  {
-    name: "Russ Newton",
-    role: "President, NMEDA Canada/ Board Member NMEDA USA",
-    image: "/images/russ-newton.jpeg",
-    quote: "Throughout my tenure as NMEDA Canada President, few innovations match the potential impact of Adapy's solutions.",
     videoUrl: "#"
   },
   {
