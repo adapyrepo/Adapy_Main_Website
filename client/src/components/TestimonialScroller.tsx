@@ -20,7 +20,7 @@ const testimonials = [
   {
     name: "Craig E. Rogers, CDRS, CDI, CDLE",
     role: "Alabama Department of Rehabilitation Services",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
+    image: "/images/craig-rogers.png",
     quote: "I am encouraged by Adapy's engagement with States like Alabama and Texas, where the implementation of new technology is critical for CDRS professionals.",
     videoUrl: "#"
   },
