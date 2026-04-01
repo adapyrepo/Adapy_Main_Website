@@ -761,7 +761,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="bg-white rounded-3xl p-6 md:p-8 max-w-3xl w-full shadow-2xl relative"
+                className="bg-white rounded-3xl p-6 md:p-8 max-w-6xl w-full shadow-2xl relative"
               >
                 {/* Close Button */}
                 <button
