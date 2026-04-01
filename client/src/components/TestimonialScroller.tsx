@@ -6,7 +6,7 @@ const testimonials = [
   {
     name: "Cody Howell",
     role: "President, Howell Ventures, Ltd. (SureGrip)",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    image: "/images/cody-howell.png",
     quote: "Adapy's products address a significant need in the industry by providing adaptive equipment solutions that prioritize safety, reliability, and accessibility.",
     videoUrl: "#"
   },
