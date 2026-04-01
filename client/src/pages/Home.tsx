@@ -92,6 +92,7 @@ const userProfiles = [
 ];
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
+import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 import heroVideo from "@assets/Adapy_BG_video_(1)_1773087296929.mp4";
 import award1 from "@assets/Globee_Award_1772663910071.png";
 import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
@@ -732,56 +733,95 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsRoleSelectorOpen(false)}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[250] flex items-center justify-center p-4"
+            className="fixed inset-0 bg-slate-900 z-[250] overflow-hidden flex flex-col"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+            {/* Header with Logo */}
+            <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-b border-white/10 px-6 py-6 flex items-center justify-center">
+              <img src={adapyLogo} alt="Adapy" className="h-8 w-auto invert brightness-0" />
+            </div>
+
+            {/* Main Content */}
+            <div 
+              className="flex-1 flex items-center justify-center p-6 md:p-12 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl border border-white/10 relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/10 via-transparent to-transparent pointer-events-none" />
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Tell us about yourself</h2>
-                <p className="text-white/60 mb-8 text-lg">So we can tailor your experience</p>
-                
-                <div className="space-y-3">
-                  <Link href="/contact">
-                    <button 
-                      onClick={() => setIsRoleSelectorOpen(false)}
-                      className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
-                    >
-                      <span className="group-hover:text-[#0071e3] transition-colors">I would like to learn about Adapy products for my own personal use</span>
-                    </button>
-                  </Link>
-                  <Link href="/contact">
-                    <button 
-                      onClick={() => setIsRoleSelectorOpen(false)}
-                      className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
-                    >
-                      <span className="group-hover:text-[#0071e3] transition-colors">I am a dealer and I would like to offer Adapy to my customers</span>
-                    </button>
-                  </Link>
-                  <Link href="/contact">
-                    <button 
-                      onClick={() => setIsRoleSelectorOpen(false)}
-                      className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
-                    >
-                      <span className="group-hover:text-[#0071e3] transition-colors">I am a CDRS professional, and I would like to know how Adapy can help my patients</span>
-                    </button>
-                  </Link>
-                  <Link href="/contact">
-                    <button 
-                      onClick={() => setIsRoleSelectorOpen(false)}
-                      className="w-full p-4 text-left bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-medium hover:bg-white/10 hover:border-[#0071e3]/50 transition-all group"
-                    >
-                      <span className="group-hover:text-[#0071e3] transition-colors">I run an NEMT company and I want to empower my fleet with Adapy</span>
-                    </button>
-                  </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="bg-white rounded-3xl p-8 md:p-12 max-w-3xl w-full shadow-2xl"
+              >
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  {/* Left Side - Text and Buttons */}
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">Tell us about yourself</h2>
+                    <p className="text-black/60 mb-8 text-lg">So we can tailor your Adapy experience</p>
+                    
+                    <div className="space-y-3">
+                      <Link href="/contact">
+                        <button 
+                          onClick={() => setIsRoleSelectorOpen(false)}
+                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
+                        >
+                          I would like to learn about Adapy products for my own personal use
+                        </button>
+                      </Link>
+                      <Link href="/contact">
+                        <button 
+                          onClick={() => setIsRoleSelectorOpen(false)}
+                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
+                        >
+                          I am a dealer and I would like to offer Adapy to my customers
+                        </button>
+                      </Link>
+                      <Link href="/contact">
+                        <button 
+                          onClick={() => setIsRoleSelectorOpen(false)}
+                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
+                        >
+                          I am a CDRS professional, and I would like to know how Adapy can help my patients
+                        </button>
+                      </Link>
+                      <Link href="/contact">
+                        <button 
+                          onClick={() => setIsRoleSelectorOpen(false)}
+                          className="w-full p-3 text-left bg-[#0071e3] text-white rounded-xl font-medium hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 text-sm"
+                        >
+                          I run an NEMT company and I want to empower my fleet with Adapy
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Side - Visual Accent */}
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-32 h-40 bg-gradient-to-br from-[#0071e3]/20 to-[#0071e3]/5 rounded-2xl flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-[#0071e3] mb-2">Adapy</div>
+                        <div className="text-xs text-black/40 uppercase tracking-widest">Connected Mobility</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsRoleSelectorOpen(false)}
+                  className="absolute top-4 right-4 p-2 text-black/40 hover:text-black transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Footer */}
+            <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-t border-white/10 px-6 py-4 flex items-center justify-between text-white/60 text-xs">
+              <div>© 2026 Adapy. All rights reserved.</div>
+              <div className="flex gap-4">
+                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-white transition-colors">Terms</a>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
