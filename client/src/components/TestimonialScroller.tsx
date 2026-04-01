@@ -65,13 +65,13 @@ export function TestimonialScroller() {
           <motion.div
             className="flex whitespace-nowrap gap-8 items-center"
             animate={{
-              x: [0, -1200],
+              x: [0, -3000],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 40,
+                duration: 100,
                 ease: "linear",
               },
             }}
