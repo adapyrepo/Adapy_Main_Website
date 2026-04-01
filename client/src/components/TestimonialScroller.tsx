@@ -41,7 +41,7 @@ const testimonials = [
   {
     name: "Russ Newton",
     role: "President, NMEDA Canada/ Board Member NMEDA USA",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+    image: "/images/russ-newton.jpeg",
     quote: "Throughout my tenure as NMEDA Canada President, few innovations match the potential impact of Adapy's solutions.",
     videoUrl: "#"
   },
