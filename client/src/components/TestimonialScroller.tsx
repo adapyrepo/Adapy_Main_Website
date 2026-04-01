@@ -1,5 +1,6 @@
 import { motion, useAnimationControls } from "framer-motion";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -55,46 +56,82 @@ const testimonials = [
 
 export function TestimonialScroller() {
   const controls = useAnimationControls();
+  const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   return (
-    <div className="bg-transparent py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
-      <div className="relative flex items-center">
-        <motion.div
-          className="flex whitespace-nowrap gap-8 items-center"
-          animate={{
-            x: [0, -1200],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
-        >
-          {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
-            <div 
-              key={i} 
-              className="inline-flex items-center gap-6 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl min-w-[400px] hover:bg-white/10 transition-colors cursor-pointer group/card"
-            >
-              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity">
-                  <Play className="w-6 h-6 text-white fill-current" />
+    <>
+      <div className="bg-transparent py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
+        <div className="relative flex items-center">
+          <motion.div
+            className="flex whitespace-nowrap gap-8 items-center"
+            animate={{
+              x: [0, -1200],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40,
+                ease: "linear",
+              },
+            }}
+          >
+            {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+              <div 
+                key={i} 
+                onClick={() => setSelectedTestimonial(t)}
+                className="inline-flex items-center gap-6 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl min-w-[400px] hover:bg-white/10 transition-colors cursor-pointer group/card"
+              >
+                <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity">
+                    <Play className="w-6 h-6 text-white fill-current" />
+                  </div>
+                </div>
+                <div className="flex flex-col whitespace-normal">
+                  <p className="text-white/80 text-sm italic line-clamp-2 mb-1">"{t.quote}"</p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-white font-bold text-xs">{t.name}</span>
+                    <span className="text-white/40 text-[10px] uppercase tracking-wider">{t.role}</span>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col whitespace-normal">
-                <p className="text-white/80 text-sm italic line-clamp-2 mb-1">"{t.quote}"</p>
-                <div className="flex items-center gap-2">
-                  <span className="text-white font-bold text-xs">{t.name}</span>
-                  <span className="text-white/40 text-[10px] uppercase tracking-wider">{t.role}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </div>
+
+      {/* Modal */}
+      {selectedTestimonial && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setSelectedTestimonial(null)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-slate-900 rounded-3xl border border-white/10 p-8 md:p-12 max-w-2xl w-full shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <img src={selectedTestimonial.image} alt={selectedTestimonial.name} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <div className="text-white font-bold">{selectedTestimonial.name}</div>
+                  <div className="text-white/60 text-sm">{selectedTestimonial.role}</div>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedTestimonial(null)}
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <p className="text-white/80 text-lg italic leading-relaxed">"{selectedTestimonial.quote}"</p>
+          </motion.div>
+        </div>
+      )}
+    </>
   );
 }
