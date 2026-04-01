@@ -1,0 +1,187 @@
+I need you to update my Adapy website funnel flow.
+
+Context:
+- The homepage already has a CTA and a popup selector.
+- The popup already includes a “Dealer” option.
+- When a user clicks “Dealer”, I want them routed into a dedicated dealer micro-funnel experience instead of a generic page.
+- Keep the existing Adapy visual style, branding, premium feel, dark theme, blue accents, rounded buttons, clean typography, and modern responsive layout.
+
+Goal:
+Build a high-converting dealer micro-funnel for Adapy that is designed to move mobility dealers toward requesting an Adapy account / dealer onboarding.
+
+Core objective:
+The page should make it immediately clear that Adapy helps dealers:
+- add a premium offering
+- simplify adaptive mobility control for customers
+- differentiate from competitors
+- create new revenue opportunities
+- get supported with training and onboarding
+
+Required page flow:
+Create a dedicated Dealer landing page or modal-expanded step that loads immediately after the user clicks “Dealer”.
+
+Section 1 — Hero
+Headline:
+“Grow Your Dealership with Adapy”
+
+Subheadline:
+“Offer a smarter adaptive mobility experience with connected controls, streamlined setup, and a premium technology platform built for modern mobility dealers.”
+
+Primary CTA button:
+“Request Dealer Access”
+
+Secondary CTA button:
+“Watch Dealer Demo”
+
+Add a short urgency/scarcity line under the buttons:
+“We are currently onboarding a limited number of new dealer partners.”
+
+Hero section requirements:
+- maintain premium visual styling
+- include a product-oriented visual area on the right if possible
+- keep copy concise and high-conversion
+- make primary CTA visually dominant
+
+Section 2 — Why Dealers Add Adapy
+Create a 3- or 4-card benefit section with icons.
+
+Use these benefit points:
+1. “Differentiate Your Dealership”
+   Short copy: “Stand out with a connected adaptive technology platform that simplifies the user experience.”
+2. “Increase Revenue Opportunities”
+   Short copy: “Add a premium solution that creates new upsell and install opportunities.”
+3. “Simplify the Customer Experience”
+   Short copy: “Reduce control complexity by bringing multiple adaptive functions into one intelligent system.”
+4. “Dealer Support Included”
+   Short copy: “Get onboarding, training, and support to help your team sell and install with confidence.”
+
+Section 3 — How It Works
+Create a simple 3-step horizontal process section.
+
+Step 1:
+“Apply for Dealer Access”
+Short copy: “Tell us about your dealership and market.”
+
+Step 2:
+“Review the Platform”
+Short copy: “See how Adapy works, what it supports, and how it fits your customers.”
+
+Step 3:
+“Launch with Support”
+Short copy: “Get onboarding, training, and the next steps to start offering Adapy.”
+
+Section 4 — Social Proof / Momentum
+Create a clean credibility section with short proof statements.
+
+Use copy similar to:
+- “Dealers are already installing Adapy in multiple markets.”
+- “Expanding dealer presence in the U.S. and Canada.”
+- “Built for the adaptive mobility industry.”
+
+If needed, use placeholder testimonial cards with realistic structure but clearly written so I can replace them later.
+
+Example placeholder:
+“Adapy gave us a modern, streamlined solution we can confidently introduce to customers.”
+— Dealer Partner
+
+Section 5 — Scarcity / Offer Section
+This section should drive action.
+
+Headline:
+“Now Accepting New Dealer Partners”
+
+Body copy:
+“We are selectively expanding our dealer network and prioritizing partners who want to lead with innovation in adaptive mobility.”
+
+Bullet points:
+- Dealer onboarding access
+- Platform walkthrough
+- Training and support
+- Opportunity to be considered for future lead distribution
+
+Primary CTA:
+“Request Dealer Access”
+
+Add a small note below:
+“Limited onboarding capacity available.”
+
+Section 6 — Lead Capture Form / Request Access
+Add a polished lead form or request-access form section.
+
+Form fields:
+- Dealership Name
+- First Name
+- Last Name
+- Email
+- Phone
+- City
+- State/Province
+- Country
+- Current adaptive products carried
+- Estimated monthly adaptive installs
+- Message / Notes
+
+Button text:
+“Submit Dealer Request”
+
+Important:
+The form should feel premium and low-friction, not overly long or intimidating.
+Use smart spacing, modern input styling, and mobile responsiveness.
+
+Section 7 — FAQ
+Add a short FAQ section for dealers with expandable accordion items.
+
+Questions:
+1. “Who is Adapy a fit for?”
+2. “Do you provide dealer onboarding?”
+3. “How do dealers get started?”
+4. “Can I see a demo before committing?”
+5. “What happens after I request access?”
+
+Use concise answers focused on building confidence and reducing friction.
+
+Behavior requirements:
+- When “Dealer” is clicked in the existing selector, route directly to this new dealer funnel page.
+- Smooth scrolling for CTA buttons.
+- “Watch Dealer Demo” should scroll to a video/demo section placeholder if no video is embedded yet.
+- “Request Dealer Access” should scroll to the lead form.
+- Make all sections responsive for desktop, tablet, and mobile.
+- Preserve the site’s current header/footer unless better UX requires minimizing distractions.
+- Prefer reducing nav leakage on this funnel page if possible. Keep users focused on conversion.
+
+Design requirements:
+- Use existing Adapy branding/colors/styles
+- Dark premium background
+- Strong contrast
+- Clean spacing
+- Rounded cards/buttons
+- Subtle motion/hover effects
+- Professional and credible, not flashy
+- Conversion-focused layout
+- Keep the page fast and uncluttered
+
+Conversion strategy requirements:
+- This page should not feel informational only.
+- It should feel like a guided next step for serious dealers.
+- Use light urgency, not hype.
+- Encourage immediate action without sounding pushy.
+- Make the CTA repeated throughout the page.
+
+Technical requirements:
+- Reuse current components where possible
+- Keep code clean and modular
+- If routing is already present, create a dedicated dealer funnel route
+- If the popup currently only closes on selection, update the Dealer selection action to navigate to the new Dealer funnel
+- Add placeholder hooks for analytics/events:
+  - dealer_selected
+  - dealer_demo_clicked
+  - dealer_request_access_clicked
+  - dealer_form_submitted
+
+Final deliverables:
+1. Build the dealer micro-funnel UI
+2. Connect the Dealer selector to the new funnel
+3. Add clean placeholder demo section if video is not ready
+4. Add the request-access form
+5. Maintain current Adapy style and responsiveness
+6. Write clean production-ready code
