@@ -34,7 +34,7 @@ const testimonials = [
   {
     name: "Brian K. Griffin",
     role: "President, Griffin Mobility",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    image: "/images/brian-griffin.png",
     quote: "Adapy's technology fills a vital gap in the adaptive equipment market by offering solutions that not only improve accessibility but also deliver functionality and freedom.",
     videoUrl: "#"
   },
