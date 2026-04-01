@@ -4,6 +4,13 @@ import { useState } from "react";
 
 const testimonials = [
   {
+    name: "Marc Andrus RRT, MBA",
+    role: "Homecare Surveyor for the Joint Commission",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
+    quote: "I believe there is a substantial need in the market for Adapy and the services it provides for safe and convenient mobility.",
+    videoUrl: "#"
+  },
+  {
     name: "Russ Newton",
     role: "President, NMEDA Canada/ Board Member NMEDA USA",
     image: "/images/russ-newton.jpeg",
@@ -43,13 +50,6 @@ const testimonials = [
     role: "President, Griffin Mobility",
     image: "/images/brian-griffin.png",
     quote: "Adapy's technology fills a vital gap in the adaptive equipment market by offering solutions that not only improve accessibility but also deliver functionality and freedom.",
-    videoUrl: "#"
-  },
-  {
-    name: "Marc Andrus RRT, MBA",
-    role: "Homecare Surveyor for the Joint Commission",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800",
-    quote: "I believe there is a substantial need in the market for Adapy and the services it provides for safe and convenient mobility.",
     videoUrl: "#"
   }
 ];
