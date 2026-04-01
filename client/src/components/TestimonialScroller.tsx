@@ -13,7 +13,7 @@ const testimonials = [
   {
     name: "Brandon Higgs, OTR, MSOT, CDRS",
     role: "H&T Drivers Rehabilitation Specialists, LLC",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+    image: "/images/brandon-higgs.jpeg",
     quote: "Adapy's platform offers an innovative approach to integrating adaptive equipment, providing a higher level of accessibility, customization, and freedom for individuals with disabilities.",
     videoUrl: "#"
   },
