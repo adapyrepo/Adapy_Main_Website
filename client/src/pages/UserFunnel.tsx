@@ -52,15 +52,15 @@ export default function UserFunnel() {
     setSubmitMessage("");
     try {
       const response = await fetch(
-        "https://zxjxflneozbhwbixcvic.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Form-Api-Key":
-              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
           },
           body: JSON.stringify({
+            _form_slug: "qualify-form",
+            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
             first_name: formData.first_name,
             last_name: formData.last_name,
             email: formData.email,
@@ -84,7 +84,7 @@ export default function UserFunnel() {
       setFormStep(5);
       window.setTimeout(() => {
         window.location.href = data.redirect_url || "https://www.adapy.com";
-      }, 1800);
+      }, 2000);
     } catch (error) {
       setSubmitError(error instanceof TypeError ? "Network request failed. Please try again." : error instanceof Error ? error.message : "Something went wrong.");
     } finally {
@@ -561,16 +561,11 @@ export default function UserFunnel() {
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
                   >
                     <option value="">Select an option</option>
-                    <option value="using">I use adaptive mobility equipment now</option>
-                    <option value="exploring">
-                      I am exploring options for myself
-                    </option>
-                    <option value="va">I am working with the VA</option>
-                    <option value="vr">
-                      I am working with Vocational Rehabilitation / Workforce
-                      Services
-                    </option>
-                    <option value="unsure">I'm not sure where to start</option>
+                    <option value="I use adaptive mobility equipment now">I use adaptive mobility equipment now</option>
+                    <option value="I am exploring options for myself">I am exploring options for myself</option>
+                    <option value="I am working with the VA">I am working with the VA</option>
+                    <option value="I am working with Vocational Rehabilitation/Workforce Services">I am working with Vocational Rehabilitation/Workforce Services</option>
+                    <option value="I'm not sure where to start">I'm not sure where to start</option>
                   </select>
                 </div>
                 <div className="flex gap-4">
