@@ -86,7 +86,7 @@ export default function UserFunnel() {
         window.location.href = data.redirect_url || "https://www.adapy.com";
       }, 1800);
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "Something went wrong.");
+      setSubmitError(error instanceof TypeError ? "Network request failed. Please try again." : error instanceof Error ? error.message : "Something went wrong.");
     } finally {
       setIsSubmitting(false);
     }
@@ -482,6 +482,7 @@ export default function UserFunnel() {
                   className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
                 />
                 <button
+                  type="button"
                   onClick={() => setFormStep(2)}
                   className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
                 >
@@ -523,12 +524,14 @@ export default function UserFunnel() {
                 />
                 <div className="flex gap-4">
                   <button
+                    type="button"
                     onClick={() => setFormStep(1)}
                     className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
                   <button
+                    type="button"
                     onClick={() => setFormStep(3)}
                     className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
                   >
@@ -572,12 +575,14 @@ export default function UserFunnel() {
                 </div>
                 <div className="flex gap-4">
                   <button
+                    type="button"
                     onClick={() => setFormStep(2)}
                     className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
                   <button
+                    type="button"
                     onClick={() => setFormStep(4)}
                     className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
                   >
@@ -611,12 +616,14 @@ export default function UserFunnel() {
                 </div>
                 <div className="flex gap-4">
                   <button
+                    type="button"
                     onClick={() => setFormStep(3)}
                     className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
                   <button
+                    type="button"
                     onClick={() => handleSubmit()}
                     disabled={isSubmitting}
                     className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
