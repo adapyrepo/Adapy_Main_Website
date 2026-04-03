@@ -20,17 +20,19 @@ import { useState } from "react";
 export default function UserFunnel() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formStep, setFormStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [submitMessage, setSubmitMessage] = useState("");
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
     city: "",
     state: "",
     country: "",
     situation: "",
-    equipment: "",
-    additionalInfo: "",
+    adaptive_equipment: "",
   });
 
   const scrollToSection = (id: string) => {
@@ -42,6 +44,52 @@ export default function UserFunnel() {
 
   const handleFormChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitError("");
+    setSubmitMessage("");
+    try {
+      const response = await fetch(
+        "https://zxjxflneozbhwbixcvic.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Form-Api-Key":
+              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+          },
+          body: JSON.stringify({
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+            phone: formData.phone,
+            city: formData.city,
+            state: formData.state,
+            country: formData.country,
+            situation: formData.situation,
+            adaptive_equipment: formData.adaptive_equipment,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setSubmitMessage(data.message || "Thank you! We will be in touch shortly.");
+      setFormStep(5);
+      window.setTimeout(() => {
+        window.location.href = data.redirect_url || "https://www.adapy.com";
+      }, 1800);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Something went wrong.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const painPoints = [
@@ -407,15 +455,15 @@ export default function UserFunnel() {
                   <input
                     type="text"
                     placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={(e) => handleFormChange("firstName", e.target.value)}
+                    value={formData.first_name}
+                    onChange={(e) => handleFormChange("first_name", e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
                   />
                   <input
                     type="text"
                     placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={(e) => handleFormChange("lastName", e.target.value)}
+                    value={formData.last_name}
+                    onChange={(e) => handleFormChange("last_name", e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
                   />
                 </div>
@@ -428,7 +476,7 @@ export default function UserFunnel() {
                 />
                 <input
                   type="tel"
-                  placeholder="Phone (optional)"
+                  placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(e) => handleFormChange("phone", e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
@@ -555,20 +603,9 @@ export default function UserFunnel() {
                     with?
                   </label>
                   <textarea
-                    value={formData.equipment}
-                    onChange={(e) => handleFormChange("equipment", e.target.value)}
+                    value={formData.adaptive_equipment}
+                    onChange={(e) => handleFormChange("adaptive_equipment", e.target.value)}
                     placeholder="e.g., wheelchair lift, transfer seat, hand controls..."
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7] min-h-[100px]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-black mb-3">
-                    Anything else you want us to know? (optional)
-                  </label>
-                  <textarea
-                    value={formData.additionalInfo}
-                    onChange={(e) => handleFormChange("additionalInfo", e.target.value)}
-                    placeholder="Share any additional context that might help us support you..."
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7] min-h-[100px]"
                   />
                 </div>
@@ -580,12 +617,23 @@ export default function UserFunnel() {
                     Back
                   </button>
                   <button
-                    onClick={() => setFormStep(5)}
-                    className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    onClick={() => handleSubmit()}
+                    disabled={isSubmitting}
+                    className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    See If I Qualify
+                    {isSubmitting ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      "See If I Qualify"
+                    )}
                   </button>
                 </div>
+                {submitError && (
+                  <p className="text-sm text-red-600">{submitError}</p>
+                )}
               </motion.div>
             )}
 
@@ -603,8 +651,7 @@ export default function UserFunnel() {
                   Thanks for reaching out!
                 </h3>
                 <p className="text-black/60 text-lg mb-8">
-                  Our team will review your information and reach out within 24
-                  hours with next steps and support options in your area.
+                  {submitMessage || "Our team will review your information and reach out within 24 hours with next steps and support options in your area."}
                 </p>
                 <p className="text-sm text-black/50">
                   You can expect to hear from us soon.
