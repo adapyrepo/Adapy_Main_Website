@@ -640,11 +640,11 @@ export default function DealerFunnel() {
                     required
                   >
                     <option value="">Select an option</option>
-                    <option value="I use adaptive mobility equipment now">I use adaptive mobility equipment now</option>
-                    <option value="I am exploring options for myself">I am exploring options for myself</option>
-                    <option value="I am working with the VA">I am working with the VA</option>
-                    <option value="I am working with Vocational Rehabilitation/Workforce Services">I am working with Vocational Rehabilitation/Workforce Services</option>
-                    <option value="I'm not sure where to start">I'm not sure where to start</option>
+                    <option value="I currently sell adaptive mobility equipment">I currently sell adaptive mobility equipment</option>
+                    <option value="I am looking to add adaptive products to my lineup">I am looking to add adaptive products to my lineup</option>
+                    <option value="I am a fleet or commercial dealer exploring Adapy">I am a fleet or commercial dealer exploring Adapy</option>
+                    <option value="I was referred by an existing Adapy partner">I was referred by an existing Adapy partner</option>
+                    <option value="I'm not sure yet but want to learn more">I'm not sure yet but want to learn more</option>
                   </select>
                 </div>
                 <div>
