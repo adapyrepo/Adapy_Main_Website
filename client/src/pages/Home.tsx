@@ -196,20 +196,6 @@ export default function Home() {
                   Mobility Should Never Operate in Isolation.
                 </h1>
 
-                {/* Rotating Subheadline */}
-                <div className="h-[40px] md:h-[48px] mb-6 flex items-center">
-                  <motion.p
-                    key={textIndex}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-[16px] md:text-[20px] text-[#0071e3] font-semibold tracking-wide"
-                  >
-                    {benefitStatements[textIndex]}
-                  </motion.p>
-                </div>
-
                 <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-6 leading-relaxed">
                   Adapy transforms adaptive vehicles into intelligent, connected
                   environments — delivering proactive safety, unified control,
