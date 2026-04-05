@@ -1,0 +1,80 @@
+<form id="adapy-lead-form" action="https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form" method="POST">
+  <input type="hidden" name="_api_key" value="31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d" />
+  <input type="hidden" name="_form_slug" value="qualify-form" />
+  <div class="form-group">
+    <label for="first_name">First Name *</label>
+    <input type="text" id="first_name" name="first_name" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="last_name">Last Name *</label>
+    <input type="text" id="last_name" name="last_name" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number *</label>
+    <input type="phone" id="phone" name="phone" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="city">City *</label>
+    <input type="text" id="city" name="city" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="state">State *</label>
+    <input type="text" id="state" name="state" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="country">Country *</label>
+    <input type="text" id="country" name="country" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="situation">Situation *</label>
+    <select id="situation" name="situation" required>
+      <option value="">Select...</option>
+      <option value="I use adaptive mobility equipment now">I use adaptive mobility equipment now</option>
+      <option value="I am exploring options for myself">I am exploring options for myself</option>
+      <option value="I am working with the VA">I am working with the VA</option>
+      <option value="I am working with Vocational Rehabilitation/Workforce Services">I am working with Vocational Rehabilitation/Workforce Services</option>
+      <option value="I'm not sure where to start">I'm not sure where to start</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="adaptive_equipment">Adaptive equipment</label>
+    <textarea id="adaptive_equipment" name="adaptive_equipment" placeholder=""></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById('adapy-lead-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  const data = {};
+  new FormData(form).forEach((v, k) => data[k] = v);
+  try {
+    const res = await fetch('https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success) {
+      form.innerHTML = '<p style="color:green">' + json.message + '</p>';
+      setTimeout(() => window.location = 'https://www.adapy.com', 2000);
+    } else {
+      alert('Error: ' + json.error);
+      btn.disabled = false;
+      btn.textContent = 'Submit';
+    }
+  } catch(err) {
+    alert('Submission failed. Please try again.');
+    btn.disabled = false;
+    btn.textContent = 'Submit';
+  }
+});
+</script>

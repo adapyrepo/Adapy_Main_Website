@@ -20,6 +20,77 @@ import { useState } from "react";
 
 export default function DealerFunnel() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    company_name: "",
+    city: "",
+    state: "",
+    country: "",
+    situation: "",
+    adaptive_equipment: "",
+  });
+
+  const handleFormChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const handleSubmit = async () => {
+    const required = ["first_name", "last_name", "email", "phone", "company_name", "city", "state", "country", "situation"] as const;
+    const missing = required.filter((f) => !formData[f].trim());
+    if (missing.length > 0) {
+      setSubmitError("Please fill in all required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError("");
+    setSubmitMessage("");
+    try {
+      const response = await fetch(
+        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            _form_slug: "qualify-form",
+            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            ...formData,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setSubmitMessage(data.message || "Thank you! We will be in touch shortly.");
+      setSubmitSuccess(true);
+      window.setTimeout(() => {
+        window.location.href = data.redirect_url || "https://www.adapy.com";
+      }, 2000);
+    } catch (error) {
+      setSubmitError(
+        error instanceof TypeError
+          ? "Network request failed. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "Something went wrong.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -436,20 +507,180 @@ export default function DealerFunnel() {
           </div>
 
           <div className="bg-white rounded-3xl p-8 md:p-12 border border-black/[0.05]">
-            <div className="space-y-6">
-              <div className="p-8 bg-[#f5f5f7] rounded-2xl border-2 border-dashed border-black/10">
-                <p className="text-black/60 text-center">
-                  📋 Contact form placeholder
+            {submitSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-12"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-[#0071e3]" />
+                </div>
+                <h3 className="text-3xl font-bold text-black mb-4">
+                  Application Received!
+                </h3>
+                <p className="text-black/60 text-lg mb-8">
+                  {submitMessage || "Our dealer partnerships team will review your application and be in touch within 24 hours."}
                 </p>
-                <p className="text-black/40 text-center text-sm mt-2">
-                  Your custom form will be integrated here
+                <p className="text-sm text-black/50">
+                  Redirecting you shortly...
+                </p>
+              </motion.div>
+            ) : (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">First Name *</label>
+                    <input
+                      data-testid="input-first-name"
+                      type="text"
+                      placeholder="First Name"
+                      value={formData.first_name}
+                      onChange={(e) => handleFormChange("first_name", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">Last Name *</label>
+                    <input
+                      data-testid="input-last-name"
+                      type="text"
+                      placeholder="Last Name"
+                      value={formData.last_name}
+                      onChange={(e) => handleFormChange("last_name", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">Email Address *</label>
+                  <input
+                    data-testid="input-email"
+                    type="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) => handleFormChange("email", e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                    required
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">Phone Number *</label>
+                    <input
+                      data-testid="input-phone"
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={(e) => handleFormChange("phone", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">Company / Dealership Name *</label>
+                    <input
+                      data-testid="input-company"
+                      type="text"
+                      placeholder="Company Name"
+                      value={formData.company_name}
+                      onChange={(e) => handleFormChange("company_name", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">City *</label>
+                    <input
+                      data-testid="input-city"
+                      type="text"
+                      placeholder="City"
+                      value={formData.city}
+                      onChange={(e) => handleFormChange("city", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">State *</label>
+                    <input
+                      data-testid="input-state"
+                      type="text"
+                      placeholder="State / Province"
+                      value={formData.state}
+                      onChange={(e) => handleFormChange("state", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">Country *</label>
+                    <input
+                      data-testid="input-country"
+                      type="text"
+                      placeholder="Country"
+                      value={formData.country}
+                      onChange={(e) => handleFormChange("country", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">Situation *</label>
+                  <select
+                    data-testid="select-situation"
+                    value={formData.situation}
+                    onChange={(e) => handleFormChange("situation", e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                    required
+                  >
+                    <option value="">Select an option</option>
+                    <option value="I use adaptive mobility equipment now">I use adaptive mobility equipment now</option>
+                    <option value="I am exploring options for myself">I am exploring options for myself</option>
+                    <option value="I am working with the VA">I am working with the VA</option>
+                    <option value="I am working with Vocational Rehabilitation/Workforce Services">I am working with Vocational Rehabilitation/Workforce Services</option>
+                    <option value="I'm not sure where to start">I'm not sure where to start</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">Adaptive Equipment (optional)</label>
+                  <textarea
+                    data-testid="textarea-equipment"
+                    value={formData.adaptive_equipment}
+                    onChange={(e) => handleFormChange("adaptive_equipment", e.target.value)}
+                    placeholder="Tell us about the adaptive equipment you currently work with..."
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7] min-h-[100px]"
+                  />
+                </div>
+                <button
+                  data-testid="button-submit-dealer"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Request Dealer Access"
+                  )}
+                </button>
+                {submitError && (
+                  <p data-testid="text-submit-error" className="text-sm text-red-600 text-center">{submitError}</p>
+                )}
+                <p className="text-center text-black/50 text-sm">
+                  ✓ Your information is kept confidential. We'll be in touch within 24 hours.
                 </p>
               </div>
-
-              <p className="text-center text-black/60 text-sm">
-                We'll collect information about your dealership, current adaptive product offerings, and volume to ensure a great fit.
-              </p>
-            </div>
+            )}
           </div>
         </div>
       </section>
