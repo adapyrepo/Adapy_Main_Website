@@ -168,9 +168,9 @@ export default function NEMTFleet() {
   ];
 
   const comparisonRows = [
-    { label: "Dispatch", traditional: true, adapy: false },
-    { label: "Scheduling", traditional: true, adapy: false },
-    { label: "Billing", traditional: true, adapy: false },
+    { label: "Dispatch", traditional: true, adapy: true },
+    { label: "Scheduling", traditional: true, adapy: true },
+    { label: "Billing", traditional: true, adapy: true },
     { label: "GPS Tracking", traditional: true, adapy: true },
     { label: "Carbon Monoxide Monitoring", traditional: false, adapy: true },
     { label: "Adaptive Equipment Monitoring", traditional: false, adapy: true },
@@ -215,12 +215,12 @@ export default function NEMTFleet() {
 
   const faqs = [
     {
-      q: "Is Adapy a dispatch platform?",
-      a: "No. Adapy is not dispatch, scheduling, or billing software. Adapy is the intelligence and monitoring layer that works inside the vehicle—tracking safety conditions, equipment usage, and environmental data that dispatch platforms cannot see.",
+      q: "Does Adapy handle dispatch, scheduling, and billing?",
+      a: "Yes. Adapy covers all the standard fleet management functions—dispatch, scheduling, billing, and GPS tracking—so you can run your operations from one platform. But Adapy goes further by adding real-time in-vehicle monitoring for safety conditions, equipment usage, and environmental data that other NEMT platforms simply do not track.",
     },
     {
       q: "Does Adapy replace my existing NEMT software?",
-      a: "No. Adapy complements your existing NEMT platform. Your dispatch software manages trips. Adapy monitors what happens during those trips—carbon monoxide, equipment usage, battery health, temperature, and more.",
+      a: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing—plus a full layer of in-vehicle intelligence. You get everything your current software does, along with carbon monoxide monitoring, equipment usage tracking, battery health, temperature data, and more.",
     },
     {
       q: "What kinds of vehicles can Adapy monitor?",
@@ -287,8 +287,8 @@ export default function NEMTFleet() {
               </div>
 
               <div className="flex items-center gap-6 text-sm text-white/50">
-                <span>Fleet Software Tracks Trips.</span>
-                <span className="text-[#0071e3] font-bold">Adapy Tracks What Actually Matters.</span>
+                <span>Other Fleet Software Stops at Dispatch.</span>
+                <span className="text-[#0071e3] font-bold">Adapy Runs the Fleet and Monitors the Vehicle.</span>
               </div>
             </motion.div>
           </div>
@@ -332,10 +332,10 @@ export default function NEMTFleet() {
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-6">
-              Adapy Is Not Fleet Management Software
+              Fleet Management + In-Vehicle Intelligence
             </h2>
             <p className="text-xl text-white/60 max-w-3xl mx-auto">
-              Traditional NEMT platforms manage trips. Adapy monitors what is happening inside the vehicle.
+              Traditional NEMT platforms stop at dispatch, scheduling, and billing. Adapy delivers all of that—plus real-time monitoring of what is actually happening inside each vehicle.
             </p>
           </div>
 
@@ -353,17 +353,19 @@ export default function NEMTFleet() {
             </div>
 
             <div className="p-8 rounded-3xl bg-[#0071e3]/10 border border-[#0071e3]/30">
-              <h3 className="text-xl font-bold text-[#0071e3] mb-6">Adapy</h3>
+              <h3 className="text-xl font-bold text-[#0071e3] mb-6">Adapy — Everything + More</h3>
               <ul className="space-y-4">
                 {[
+                  "Scheduling & Dispatch",
+                  "Billing & Invoicing",
+                  "GPS Tracking",
                   "Carbon Monoxide Monitoring",
                   "Adaptive Equipment Monitoring",
                   "Battery Voltage Monitoring",
                   "Temperature Monitoring",
                   "Vehicle Intelligence",
                   "Safety Data & Reports",
-                  "Equipment Usage Data",
-                  "Condition Monitoring",
+                  "Predictive Maintenance",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-white/80">
                     <Check className="w-5 h-5 text-[#0071e3] flex-shrink-0" />
@@ -375,7 +377,7 @@ export default function NEMTFleet() {
           </div>
 
           <p className="text-center text-white/50 mt-12 text-lg italic max-w-2xl mx-auto">
-            "NEMT software helps run the trip. Adapy helps protect what happens during the trip."
+            "Other NEMT software stops at the trip. Adapy runs the trip and monitors what happens during it."
           </p>
         </div>
       </section>
@@ -417,7 +419,7 @@ export default function NEMTFleet() {
               Traditional NEMT Platforms vs. Adapy
             </h2>
             <p className="text-xl text-black/60">
-              See where your current software ends—and where Adapy begins.
+              Adapy includes everything traditional platforms offer—plus the safety and monitoring layer they're missing.
             </p>
           </div>
 
@@ -457,7 +459,7 @@ export default function NEMTFleet() {
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-black mb-6">
-              Why NEMT Companies Add Adapy
+              Why NEMT Companies Switch to Adapy
             </h2>
             <p className="text-xl text-black/60 max-w-3xl mx-auto">
               Protect passengers. Protect drivers. Protect your company.
@@ -490,7 +492,7 @@ export default function NEMTFleet() {
               See What Your Fleet Is Missing
             </h2>
             <p className="text-xl text-black/60">
-              Request a demo and learn how Adapy gives NEMT operators visibility beyond dispatch, GPS, and trip data.
+              Request a demo to see how Adapy combines full fleet management with in-vehicle safety intelligence—all in one platform.
             </p>
           </div>
 
@@ -509,9 +511,6 @@ export default function NEMTFleet() {
                 </h3>
                 <p className="text-black/60 text-lg mb-8">
                   {submitMessage || "Our team will review your request and be in touch within 24 hours."}
-                </p>
-                <p className="text-sm text-black/50">
-                  Redirecting you shortly...
                 </p>
               </motion.div>
             ) : (
@@ -640,7 +639,7 @@ export default function NEMTFleet() {
                   <p data-testid="text-submit-error" className="text-sm text-red-600 text-center">{submitError}</p>
                 )}
                 <p className="text-center text-black/50 text-sm">
-                  See how Adapy helps NEMT operators gain visibility beyond dispatch, GPS, and trip data.
+                  See how Adapy combines fleet management with in-vehicle safety intelligence.
                 </p>
               </div>
             )}
@@ -693,10 +692,10 @@ export default function NEMTFleet() {
       <section className="py-24 bg-black text-white text-center">
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Dispatch Software Runs the Route. Adapy Monitors the Risk.
+            One Platform. Full Fleet Management. Complete In-Vehicle Intelligence.
           </h2>
           <p className="text-xl text-white/70 mb-8">
-            Add the intelligence layer your NEMT vehicles have been missing.
+            Stop using separate tools. Adapy runs your fleet and monitors what happens inside every vehicle.
           </p>
           <button
             data-testid="button-final-cta"
