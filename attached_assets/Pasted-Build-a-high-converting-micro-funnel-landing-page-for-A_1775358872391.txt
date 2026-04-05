@@ -1,0 +1,248 @@
+Build a high-converting micro funnel landing page for Adapy’s NEMT product.
+
+PROJECT GOAL:
+This page is meant to generate inbound leads from NEMT companies. The goal is to clearly position Adapy as different from traditional fleet management, dispatch, and scheduling software. This page should feel modern, credible, safety-focused, and conversion-driven.
+
+CORE POSITIONING:
+Adapy is NOT dispatch software.
+Adapy is NOT scheduling software.
+Adapy is NOT billing software.
+Adapy is the intelligence and monitoring layer inside the vehicle.
+
+Traditional NEMT software manages trips.
+Adapy monitors what is happening inside the vehicle.
+
+ADAPY NEMT PRODUCT CAPABILITIES TO FEATURE:
+- Carbon monoxide monitoring
+- Adaptive equipment usage monitoring
+- GPS tracking
+- Battery voltage monitoring
+- Temperature monitoring
+- Real-time vehicle/environment awareness
+- Safety monitoring
+- Predictive service/maintenance insights
+- Visibility into wheelchair-accessible vehicle equipment usage and health
+
+TARGET AUDIENCE:
+NEMT operators, fleet owners, wheelchair transport companies, medical transport businesses, compliance-minded NEMT administrators, and transportation companies concerned about passenger safety, risk reduction, and fleet reliability.
+
+PRIMARY MARKETING MESSAGE:
+“What you don’t see in your NEMT vehicles is what can cost you the most.”
+
+SECONDARY POSITIONING:
+If fleet software tells you where your vehicle is, Adapy tells you what is happening inside it.
+
+DESIGN STYLE:
+- Clean, premium, professional
+- Modern SaaS look
+- Strong trust-building design
+- Mobile responsive
+- Conversion-focused
+- Use subtle motion/hover effects if appropriate
+- Use strong section spacing and hierarchy
+- Use cards/icons for feature blocks
+- Make the page feel like a serious B2B safety/compliance solution
+- Avoid clutter
+- Use a layout that feels polished and investor/dealer ready
+
+PAGE STRUCTURE:
+
+1. HERO SECTION
+Headline options to choose from or A/B test:
+- “What You Don’t See in Your NEMT Vehicles Is What’s Costing You the Most”
+- “Every NEMT Vehicle Should Have a Black Box. Most Don’t.”
+- “Fleet Software Tracks Trips. Adapy Tracks What Actually Matters.”
+
+Subheadline:
+“Real-time monitoring for carbon monoxide, adaptive equipment usage, GPS, battery health, temperature, and in-vehicle safety—built specifically for NEMT fleets.”
+
+Primary CTA button:
+- “Book a Demo”
+Secondary CTA button:
+- “See How Adapy Works”
+
+Include a hero visual concept that communicates:
+- Traditional NEMT software handles dispatch/scheduling
+- Adapy handles safety, monitoring, and intelligence inside the vehicle
+
+2. PROBLEM SECTION
+Section title:
+“The Hidden Risks in Every NEMT Vehicle”
+
+Messaging should explain that most NEMT companies can track trips and vehicles, but still lack visibility into:
+- Carbon monoxide exposure
+- Lift/equipment usage
+- Battery problems
+- Temperature issues
+- In-vehicle events and conditions
+- Safety/compliance blind spots
+
+Add a short pain-driven paragraph that makes it clear:
+A completed trip does not automatically mean a safe trip.
+
+3. DIFFERENTIATOR SECTION
+Section title:
+“Adapy Is Not Fleet Management Software”
+
+Add a strong contrast between:
+Traditional NEMT software:
+- Scheduling
+- Dispatch
+- Billing
+- Basic GPS
+
+Adapy:
+- Carbon monoxide monitoring
+- Adaptive equipment monitoring
+- Battery voltage monitoring
+- Temperature monitoring
+- Vehicle intelligence
+- Safety data
+- Equipment usage data
+- Condition monitoring
+
+Include this exact style of idea:
+“NEMT software helps run the trip. Adapy helps protect what happens during the trip.”
+
+4. FEATURES SECTION
+Section title:
+“What Adapy Monitors”
+
+Create feature cards for:
+- Carbon Monoxide
+- Adaptive Equipment Usage
+- GPS + Vehicle Context
+- Battery Voltage
+- Temperature
+- Service & Maintenance Insights
+
+Each card should explain the business value, not just the feature itself.
+
+Examples:
+Carbon Monoxide:
+Help protect passengers and drivers from invisible in-vehicle danger.
+
+Adaptive Equipment Usage:
+Track lift and mobility equipment usage to improve accountability, maintenance, and reliability.
+
+Battery Voltage:
+Catch voltage issues before they become breakdowns or service interruptions.
+
+Temperature:
+Monitor environmental conditions that affect passenger comfort and safety.
+
+5. COMPARISON SECTION
+Section title:
+“Traditional NEMT Platforms vs. Adapy”
+
+Build a clean comparison table.
+
+Columns:
+- Traditional NEMT Software
+- Adapy
+
+Rows:
+- Dispatch
+- Scheduling
+- Billing
+- GPS Tracking
+- Carbon Monoxide Monitoring
+- Adaptive Equipment Monitoring
+- Battery Voltage Monitoring
+- Temperature Monitoring
+- Predictive Service Insight
+- In-Vehicle Safety Visibility
+
+Traditional NEMT software should show strength in dispatch/scheduling/billing/GPS.
+Adapy should show strength in monitoring, safety, equipment visibility, and in-vehicle intelligence.
+
+6. ROI / BUSINESS CASE SECTION
+Section title:
+“Why NEMT Companies Add Adapy”
+
+Focus on business outcomes:
+- Reduce liability exposure
+- Strengthen safety oversight
+- Improve fleet reliability
+- Document critical vehicle conditions
+- Gain visibility beyond dispatch data
+- Reduce avoidable service problems
+- Protect passengers, drivers, and the company
+
+Use strong B2B messaging. This section should feel like it speaks to ownership and operations leadership.
+
+7. LEAD CAPTURE SECTION
+Section title:
+“See What Your Fleet Is Missing”
+
+Create a lead form with:
+- First Name
+- Last Name
+- Company Name
+- Email
+- Phone
+- Fleet Size
+- Number of Wheelchair-Accessible Vehicles
+- State
+- Optional Notes
+
+CTA button:
+- “Request a Demo”
+Alternative CTA:
+- “Get a Fleet Risk Review”
+
+Add a short trust-building line below the form:
+“See how Adapy helps NEMT operators gain visibility beyond dispatch, GPS, and trip data.”
+
+8. FINAL CTA SECTION
+Headline:
+“Dispatch Software Runs the Route. Adapy Monitors the Risk.”
+
+Support text:
+“Add the intelligence layer your NEMT vehicles have been missing.”
+
+CTA:
+- “Book a Demo”
+
+COPY TONE:
+- Professional
+- Direct
+- Credible
+- Confident
+- Safety-focused
+- Avoid hypey startup language
+- Do not sound generic
+- Should feel custom-tailored to NEMT operators
+
+IMPORTANT COPY DIRECTION:
+Drive home that Adapy is different because it monitors what happens INSIDE the vehicle.
+Keep reinforcing:
+- passenger safety
+- operator visibility
+- equipment awareness
+- risk reduction
+- compliance support
+- real-time vehicle intelligence
+
+TECHNICAL REQUIREMENTS:
+- Build as a polished responsive landing page
+- Include all copy directly in the page
+- Use reusable sections/components where appropriate
+- Make the lead form functional in layout, even if backend is mocked
+- Add placeholder hooks for CRM/form integration
+- Use a premium SaaS-style layout
+- Include icons where helpful
+- Ensure strong mobile design
+- Make CTA buttons prominent throughout
+- Optimize for lead generation, not for education only
+
+OPTIONAL BONUS:
+At the bottom, add a short FAQ with questions like:
+- Is Adapy a dispatch platform?
+- Does Adapy replace my existing NEMT software?
+- What kinds of vehicles can Adapy monitor?
+- Can Adapy help with safety and maintenance visibility?
+
+OUTPUT:
+Generate the full landing page with strong copywriting, polished design, and thoughtful UX.
+Do not make it generic. Make it specifically for Adapy and specifically for NEMT lead generation.
