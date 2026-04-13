@@ -98,7 +98,7 @@ const userProfiles = [
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
-import heroVideo from "@assets/Adapy_BG_video_(1)_1773087296929.mp4";
+const heroVideo = "/hero-video.mp4";
 import award1 from "@assets/Globee_Award_1772663910071.png";
 import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
 import award3 from "@assets/SR_50_Award_1772663910072.png";
@@ -158,26 +158,12 @@ export default function Home() {
             muted
             loop
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-60"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          {/* Enhanced Overlay with Spotlight Effect */}
-          <div className="absolute inset-0 bg-black/5 backdrop-blur-[0.5px] z-10" />
-          <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-            <motion.div
-              animate={{
-                background: [
-                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.1), transparent 80%)",
-                  "radial-gradient(600px circle at 40% 40%, rgba(0,113,227,0.1), transparent 80%)",
-                  "radial-gradient(600px circle at 60% 60%, rgba(0,113,227,0.1), transparent 80%)",
-                  "radial-gradient(600px circle at 50% 50%, rgba(0,113,227,0.1), transparent 80%)",
-                ],
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0"
-            />
-          </div>
+          <div className="absolute inset-0 bg-black/10 z-10" />
           {/* Targeted Vignette: Darker bottom-left, lighter elsewhere */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.2)_40%,transparent_70%)] z-30" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20 z-30" />
@@ -476,6 +462,7 @@ export default function Home() {
           <img
             src={phoneHand}
             alt=""
+            loading="lazy"
             className="w-full h-full object-contain object-right-bottom brightness-125"
           />
         </div>
@@ -554,6 +541,7 @@ export default function Home() {
                 <img
                   src={profile.image}
                   alt={profile.name}
+                  loading="lazy"
                   className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? "object-[75%_center]" : i === 1 ? "object-[27%_center]" : i === 2 ? "object-[50%_center]" : i === 3 ? "object-[center_20%]" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
@@ -664,6 +652,7 @@ export default function Home() {
                         <img
                           src={video.thumbnail}
                           alt={video.title}
+                          loading="lazy"
                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
                         <div className="absolute inset-0 flex items-center justify-center">

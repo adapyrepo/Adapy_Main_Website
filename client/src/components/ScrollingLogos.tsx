@@ -1,5 +1,3 @@
-import { motion, useAnimationControls } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import braunabilityLogo from "@assets/braunability_1772217975241.png";
 import brunoLogo from "@assets/bussani-mobility-bruno_logo_1772218097103.png";
 import riconLogo from "@assets/ricon_1772218412364.png";
@@ -23,74 +21,25 @@ const logos = [
 ];
 
 export function ScrollingLogos() {
-  const controls = useAnimationControls();
-
-  const handleManualScroll = (direction: 'left' | 'right') => {
-    controls.stop();
-    controls.start({
-      x: direction === 'left' ? 0 : -1000,
-      transition: { duration: 2, ease: "easeOut" }
-    }).then(() => {
-      controls.start({
-        x: [0, -1000],
-        transition: {
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 80,
-            ease: "linear",
-          },
-        }
-      });
-    });
-  };
-
   return (
-    <div className="bg-black/90 py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
-      <button 
-        onClick={() => handleManualScroll('left')}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
-      
+    <div className="bg-black/90 py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative">
       <div className="relative flex items-center">
-        <motion.div
-          className="flex whitespace-nowrap gap-12 items-center"
-          animate={controls}
-          initial={{ x: 0 }}
-          onViewportEnter={() => {
-            controls.start({
-              x: [0, -1000],
-              transition: {
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 80,
-                  ease: "linear",
-                },
-              }
-            });
-          }}
+        <div
+          className="flex whitespace-nowrap gap-12 items-center animate-scroll-logos motion-reduce:animate-none"
+          style={{ willChange: "transform" }}
         >
           {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
             <div key={i} className="flex items-center justify-center h-8 md:h-12 w-40 mx-4">
               <img
                 src={logo.url}
                 alt={logo.name}
+                loading="lazy"
                 className="max-h-full max-w-full object-contain grayscale invert opacity-70 hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
-
-      <button 
-        onClick={() => handleManualScroll('right')}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
     </div>
   );
 }

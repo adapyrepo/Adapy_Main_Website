@@ -1,5 +1,5 @@
-import { motion, useAnimationControls } from "framer-motion";
-import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Play, X } from "lucide-react";
 import { useState } from "react";
 
 const testimonials = [
@@ -55,35 +55,24 @@ const testimonials = [
 ];
 
 export function TestimonialScroller() {
-  const controls = useAnimationControls();
   const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   return (
     <>
       <div className="bg-transparent py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
         <div className="relative flex items-center">
-          <motion.div
-            className="flex whitespace-nowrap gap-8 items-center"
-            animate={{
-              x: [0, -3000],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 100,
-                ease: "linear",
-              },
-            }}
+          <div
+            className="flex whitespace-nowrap gap-8 items-center animate-scroll-testimonials motion-reduce:animate-none"
+            style={{ willChange: "transform" }}
           >
             {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <div 
                 key={i} 
                 onClick={() => setSelectedTestimonial(t)}
-                className="inline-flex items-center gap-6 bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-2xl min-w-[400px] h-[120px] hover:bg-white/10 transition-colors cursor-pointer group/card"
+                className="inline-flex items-center gap-6 bg-white/5 border border-white/10 p-4 rounded-2xl min-w-[400px] h-[120px] hover:bg-white/10 transition-colors cursor-pointer group/card"
               >
                 <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                  <img src={t.image} alt={t.name} loading="lazy" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity">
                     <Play className="w-6 h-6 text-white fill-current" />
                   </div>
@@ -97,13 +86,12 @@ export function TestimonialScroller() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Modal */}
       {selectedTestimonial && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setSelectedTestimonial(null)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setSelectedTestimonial(null)}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}

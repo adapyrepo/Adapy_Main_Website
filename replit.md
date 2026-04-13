@@ -16,7 +16,7 @@ Preferred communication style: Simple, everyday language.
 - **State Management**: TanStack Query (React Query) for server state and caching
 - **Styling**: Tailwind CSS with CSS variables for theming, using an Apple-inspired monochrome design
 - **Component Library**: shadcn/ui components built on Radix UI primitives
-- **Animations**: Framer Motion for scroll animations and transitions
+- **Animations**: Framer Motion for entrance animations; CSS @keyframes for infinite scroll animations (logos, testimonials, video testimonials) for GPU compositor performance
 - **Forms**: React Hook Form with Zod validation via @hookform/resolvers
 
 ### Backend Architecture

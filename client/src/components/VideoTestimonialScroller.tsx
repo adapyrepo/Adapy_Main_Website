@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 
 const testimonialVideos = [
@@ -53,16 +52,9 @@ export function VideoTestimonialScroller({ onVideoSelect }: { onVideoSelect: (vi
         <h3 className="text-2xl font-bold tracking-tight">Video Testimonials</h3>
       </div>
       <div className="relative flex whitespace-nowrap overflow-hidden">
-        <motion.div
-          animate={{
-            x: [0, -1800], // Adjust based on total width of cards (5 * 300px)
-          }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="flex gap-6 px-6"
+        <div
+          className="flex gap-6 px-6 animate-scroll-videos motion-reduce:animate-none"
+          style={{ willChange: "transform" }}
         >
           {[...testimonialVideos, ...testimonialVideos].map((video, idx) => (
             <div
@@ -74,10 +66,11 @@ export function VideoTestimonialScroller({ onVideoSelect }: { onVideoSelect: (vi
                 <img
                   src={video.thumbnail}
                   alt={video.title}
+                  loading="lazy"
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform">
                     <Play className="w-6 h-6 text-white fill-current ml-1" />
                   </div>
                 </div>
@@ -88,7 +81,7 @@ export function VideoTestimonialScroller({ onVideoSelect }: { onVideoSelect: (vi
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
