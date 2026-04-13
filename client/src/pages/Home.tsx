@@ -159,14 +159,13 @@ export default function Home() {
             loop
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/10 z-10" />
-          {/* Targeted Vignette: Darker bottom-left, lighter elsewhere */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.2)_40%,transparent_70%)] z-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20 z-30" />
+          {/* Targeted Vignette: Darker bottom-left for text readability */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.1)_40%,transparent_70%)] z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10 z-30" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
