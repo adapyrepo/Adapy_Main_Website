@@ -1,360 +1,763 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Link } from "wouter";
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowLeft,
+  CheckCircle,
+  User,
+  Wrench,
+  Store,
+  FileText,
+  ChevronDown,
+} from "lucide-react";
+import { useState } from "react";
 
-const pricingTiers = [
-  {
-    name: "Free",
-    price: "$0",
-    setupFee: "$1,495",
-    description: "Get started with essential mobility features",
-    cta: "Get Started",
-    ctaLink: "/contact",
-    highlighted: false,
-    features: [
-      { name: "Adaptive Equipment Controls", included: true },
-      { name: "Mobile app access", included: true },
-      { name: "Up to 3 devices", included: true },
-      { name: "Standard support", included: true },
-      { name: "Dashboard Access", included: false },
-      { name: "Maintenance Reporting", included: false },
-      { name: "GPS Tracking", included: false },
-      { name: "Emergency Alert", included: false },
-      { name: "Temperature Sensor", included: false },
-      { name: "Battery Sensor", included: false },
-      { name: "Basic Analytics", included: false },
-      { name: "Custom integrations", included: false },
-    ],
-  },
-  {
-    name: "Essential",
-    price: "$15",
-    period: "/month",
-    setupFee: "$1,495",
-    description: "Smart Controls & Reporting",
-    cta: "Get Started",
-    ctaLink: "/contact",
-    highlighted: false,
-    features: [
-      { name: "Advanced adaptive equipment controls", included: true },
-      { name: "Mobile app access", included: true },
-      { name: "Up to 5 devices", included: true },
-      { name: "Cloud connectivity", included: true },
-      { name: "Basic analytics", included: true },
-      { name: "Maintenance Reports", included: true },
-      { name: "Push Notifications", included: false },
-      { name: "Dealer Updates", included: false },
-      { name: "Service Connect", included: false },
-      { name: "Emergency Alert System", included: false },
-      { name: "Temperature Sensor", included: false },
-      { name: "Air Quality Sensor", included: false },
-      { name: "Battery Monitor", included: false },
-      { name: "GPS Tracking", included: false },
-      { name: "Detailed Analytics", included: false },
-      { name: "Custom Integrations", included: false },
-      { name: "Priority email & chat support", included: false },
-    ],
-  },
-  {
-    name: "Pro",
-    price: "$25",
-    period: "/month",
-    setupFee: "$1,995",
-    description: "Enjoy Smart Contrls, Reporting & Alerts",
-    cta: "Get Started",
-    ctaLink: "/contact",
-    highlighted: true,
-    features: [
-      { name: "Advanced adaptive equipment control", included: true },
-      { name: "Mobile app access", included: true },
-      { name: "Unlimited devices", included: true },
-      { name: "Cloud connectivity", included: true },
-      { name: "Maintenance Reports", included: true },
-      { name: "Push Notifications", included: true },
-      { name: "Dealer Updates", included: true },
-      { name: "Service Connect", included: true },
-      { name: "Emergency Alert System", included: true },
-      { name: "Temperature Sensor", included: true },
-      { name: "Air Quality Sensor", included: true },
-      { name: "Battery Monitor", included: true },
-      { name: "GPS Tracking", included: true },
-      { name: "Detailed Analytics", included: true },
-      { name: "Custom Integrations", included: true },
-      { name: "Priority email & chat support", included: true },
-    ],
-  },
-  {
-    name: "NEMT",
-    price: "Fleet Pricing Available",
-    setupFee: "$3,495",
-    monthlyPerVehicle: "$38/month per vehicle",
-    description: "Enterprise solution for NEMT fleets and large organizations",
-    cta: "Contact Sales",
-    ctaLink: "/contact",
-    highlighted: false,
-    isNEMT: true,
-    features: [
-      { name: "White-label solutions", included: true },
-      { name: "Unlimited devices & users", included: true },
-      { name: "Custom fleet management tools", included: true },
-      { name: "Advanced compliance reporting", included: true },
-      { name: "Real-time fleet tracking", included: true },
-      { name: "24/7 dedicated support", included: true },
-      { name: "Dedicated infrastructure", included: true },
-      { name: "Full API & custom integrations", included: true },
-    ],
-  },
+const equipmentOptions = [
+  "Wheelchair Lift",
+  "Wheelchair Ramp",
+  "Transfer Seat",
+  "Hand Controls",
+  "Pedal Extensions",
+  "Steering Aids",
+  "Left Foot Accelerator",
+  "Wheelchair Securement System",
+  "Scooter Lift",
+  "Roof-Mounted Carrier",
+  "Lowered Floor Conversion",
+  "Other",
 ];
 
-const allFeatures = [
-  "Wheelchair controls",
-  "Device management",
-  "Mobile app",
-  "Cloud connectivity",
-  "Analytics",
-  "Support level",
-  "Customization",
-  "Compliance tools",
+const vehicleTypes = [
+  "Sedan",
+  "SUV",
+  "Minivan",
+  "Full-Size Van",
+  "Pickup Truck",
+  "Commercial Vehicle",
+  "Other",
+];
+
+const howDidYouHear = [
+  "Google Search",
+  "Social Media",
+  "Dealer Referral",
+  "Friend or Family",
+  "Trade Show or Event",
+  "Online Article or Blog",
+  "Other",
+];
+
+const steps = [
+  { id: 1, label: "Contact Info", icon: User },
+  { id: 2, label: "Your Vehicle & Equipment", icon: Wrench },
+  { id: 3, label: "Dealer & Details", icon: Store },
+  { id: 4, label: "Review & Submit", icon: FileText },
 ];
 
 export default function Pricing() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [stepErrors, setStepErrors] = useState<Record<string, string>>({});
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    company_name: "",
+    vehicle_type: "",
+    vehicle_year: "",
+    vehicle_make_model: "",
+    equipment: [] as string[],
+    equipment_other: "",
+    num_vehicles: "1",
+    dealer_name: "",
+    dealer_location: "",
+    has_dealer: "",
+    how_heard: "",
+    timeline: "",
+    additional_notes: "",
+  });
+
+  const handleChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value });
+    if (stepErrors[field]) {
+      const updated = { ...stepErrors };
+      delete updated[field];
+      setStepErrors(updated);
+    }
+  };
+
+  const toggleEquipment = (item: string) => {
+    const current = formData.equipment;
+    const updated = current.includes(item)
+      ? current.filter((e) => e !== item)
+      : [...current, item];
+    setFormData({ ...formData, equipment: updated });
+    if (stepErrors["equipment"]) {
+      const errs = { ...stepErrors };
+      delete errs["equipment"];
+      setStepErrors(errs);
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const errors: Record<string, string> = {};
+
+    if (step === 1) {
+      if (!formData.first_name.trim()) errors.first_name = "Required";
+      if (!formData.last_name.trim()) errors.last_name = "Required";
+      if (!formData.email.trim()) errors.email = "Required";
+      if (!formData.phone.trim()) errors.phone = "Required";
+    }
+
+    if (step === 2) {
+      if (!formData.vehicle_type) errors.vehicle_type = "Required";
+      if (formData.equipment.length === 0) errors.equipment = "Select at least one";
+    }
+
+    if (step === 3) {
+      if (!formData.has_dealer) errors.has_dealer = "Required";
+    }
+
+    setStepErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const nextStep = () => {
+    if (validateStep(currentStep)) {
+      setCurrentStep((s) => Math.min(s + 1, 4));
+    }
+  };
+
+  const prevStep = () => {
+    setStepErrors({});
+    setCurrentStep((s) => Math.max(s - 1, 1));
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      const equipmentList = formData.equipment.join(", ") +
+        (formData.equipment_other ? `, ${formData.equipment_other}` : "");
+
+      const response = await fetch(
+        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            _form_slug: "qualify-form",
+            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+            phone: formData.phone,
+            company_name: formData.company_name || "N/A",
+            situation: `Quote Request — ${formData.vehicle_type} — Equipment: ${equipmentList}`,
+            dealer_name: formData.dealer_name || "No dealer specified",
+            dealer_location: formData.dealer_location || "N/A",
+            vehicle_year: formData.vehicle_year || "N/A",
+            vehicle_make_model: formData.vehicle_make_model || "N/A",
+            num_vehicles: formData.num_vehicles,
+            has_dealer: formData.has_dealer,
+            how_heard: formData.how_heard || "N/A",
+            timeline: formData.timeline || "N/A",
+            additional_notes: formData.additional_notes || "N/A",
+          }),
+        },
+      );
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setShowConfirmation(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof TypeError
+          ? "Network request failed. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "Something went wrong.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const inputClass = (field: string) =>
+    `w-full px-4 py-3 rounded-xl border ${stepErrors[field] ? "border-red-400" : "border-black/10"} focus:border-[#0071e3] focus:outline-none bg-white text-black`;
+
+  const labelClass = "block text-sm font-bold text-black mb-2";
+
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
-      <Navbar />
-      
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl sm:text-6xl font-bold mb-6"
-            >
-              Simple, Transparent Pricing
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-white/70 mb-8"
-            >
-              Choose the right plan for your mobility needs. All plans include 14-day free trial.
-            </motion.p>
-          </div>
-        </section>
+    <div className="min-h-screen bg-[#f5f5f7] text-foreground font-sans selection:bg-black selection:text-white">
+      <div className="absolute top-0 left-0 right-0 z-50">
+        <Navbar />
+      </div>
 
-        {/* Pricing Cards */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-              {pricingTiers.map((tier, index) => (
-                <motion.div
-                  key={tier.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={cn(
-                    "rounded-2xl p-8 relative overflow-hidden",
-                    tier.isNEMT
-                      ? "bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 border border-blue-700/50 shadow-2xl"
-                      : tier.highlighted
-                      ? "bg-gradient-to-br from-white/10 to-white/5 border border-white/20 shadow-2xl scale-105 md:scale-110"
-                      : "bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
-                  )}
-                >
-                  {tier.highlighted && (
-                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold py-2 text-center">
-                      Most Popular
-                    </div>
-                  )}
+      <section className="pt-32 pb-12 px-6 bg-black text-white text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Get Your Custom Quote
+          </h1>
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+            Tell us about your vehicle and equipment needs. We'll build a personalized quote and send it to you.
+          </p>
+        </motion.div>
+      </section>
 
-                  <div className={tier.highlighted ? "mt-8" : ""}>
-                    <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-                    <p className="text-white/60 text-sm mb-6 h-10">{tier.description}</p>
-
-                    <div className="mb-6">
-                      <div className={cn("font-bold mb-1", tier.isNEMT ? "text-2xl" : "text-5xl")}>{tier.price}</div>
-                      {tier.isNEMT && <div className="text-white/60 text-sm mt-1">upon request</div>}
-                      {!tier.isNEMT && (
-                        <>
-                          {tier.period && <div className="text-white/60 text-sm">{tier.period}</div>}
-                          <div className="text-white/60 text-xs mt-2">{tier.name === "Pro" ? "Adapy Smart Mobility Kit & Monitor Kit" : "Adapy Smart Mobility Kit"}: {tier.setupFee}</div>
-                          <div className="text-blue-400 text-xs mt-1">Ships Next Day</div>
-                        </>
-                      )}
-                    </div>
-
-                    <Link
-                      href={tier.ctaLink}
-                      className={cn(
-                        "block w-full py-3 px-6 rounded-lg font-semibold text-center transition-colors mb-8 text-sm",
-                        tier.isNEMT
-                          ? "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/50"
-                          : tier.highlighted
-                          ? "bg-blue-600 hover:bg-blue-700 text-white"
-                          : "bg-white/10 hover:bg-white/20 text-white border border-white/10"
-                      )}
+      <section className="py-12 px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center justify-between mb-12 px-4">
+            {steps.map((step, i) => {
+              const Icon = step.icon;
+              const isActive = currentStep === step.id;
+              const isComplete = currentStep > step.id;
+              return (
+                <div key={step.id} className="flex items-center flex-1">
+                  <div className="flex flex-col items-center">
+                    <div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
+                        isComplete
+                          ? "bg-[#0071e3] text-white"
+                          : isActive
+                            ? "bg-black text-white"
+                            : "bg-black/10 text-black/40"
+                      }`}
                     >
-                      {tier.cta}
-                    </Link>
+                      {isComplete ? (
+                        <CheckCircle className="w-6 h-6" />
+                      ) : (
+                        <Icon className="w-5 h-5" />
+                      )}
+                    </div>
+                    <span
+                      className={`text-xs mt-2 font-medium whitespace-nowrap ${
+                        isActive ? "text-black" : isComplete ? "text-[#0071e3]" : "text-black/40"
+                      }`}
+                    >
+                      {step.label}
+                    </span>
+                  </div>
+                  {i < steps.length - 1 && (
+                    <div
+                      className={`flex-1 h-[2px] mx-3 mt-[-18px] ${
+                        currentStep > step.id ? "bg-[#0071e3]" : "bg-black/10"
+                      }`}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
 
-                    <div className="space-y-4">
-                      {tier.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 mt-0.5">
-                            {feature.included ? (
-                              <Check className="w-5 h-5 text-blue-400" />
-                            ) : (
-                              <div className="w-5 h-5 rounded border border-white/20" />
-                            )}
-                          </div>
-                          <span
-                            className={cn(
-                              "text-sm",
-                              feature.included ? "text-white" : "text-white/40"
-                            )}
+          <div className="bg-white rounded-3xl p-8 md:p-12 border border-black/[0.05] shadow-sm">
+            <AnimatePresence mode="wait">
+              {currentStep === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-6"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-black mb-2">Your Contact Information</h2>
+                    <p className="text-black/60">We'll use this to send you your custom quote.</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={labelClass}>First Name *</label>
+                      <input
+                        data-testid="input-quote-first-name"
+                        type="text"
+                        placeholder="First Name"
+                        value={formData.first_name}
+                        onChange={(e) => handleChange("first_name", e.target.value)}
+                        className={inputClass("first_name")}
+                      />
+                      {stepErrors.first_name && <p className="text-red-500 text-xs mt-1">{stepErrors.first_name}</p>}
+                    </div>
+                    <div>
+                      <label className={labelClass}>Last Name *</label>
+                      <input
+                        data-testid="input-quote-last-name"
+                        type="text"
+                        placeholder="Last Name"
+                        value={formData.last_name}
+                        onChange={(e) => handleChange("last_name", e.target.value)}
+                        className={inputClass("last_name")}
+                      />
+                      {stepErrors.last_name && <p className="text-red-500 text-xs mt-1">{stepErrors.last_name}</p>}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={labelClass}>Email *</label>
+                      <input
+                        data-testid="input-quote-email"
+                        type="email"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={(e) => handleChange("email", e.target.value)}
+                        className={inputClass("email")}
+                      />
+                      {stepErrors.email && <p className="text-red-500 text-xs mt-1">{stepErrors.email}</p>}
+                    </div>
+                    <div>
+                      <label className={labelClass}>Phone *</label>
+                      <input
+                        data-testid="input-quote-phone"
+                        type="tel"
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={(e) => handleChange("phone", e.target.value)}
+                        className={inputClass("phone")}
+                      />
+                      {stepErrors.phone && <p className="text-red-500 text-xs mt-1">{stepErrors.phone}</p>}
+                    </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Company Name (optional)</label>
+                    <input
+                      data-testid="input-quote-company"
+                      type="text"
+                      placeholder="Company or Organization"
+                      value={formData.company_name}
+                      onChange={(e) => handleChange("company_name", e.target.value)}
+                      className={inputClass("company_name")}
+                    />
+                  </div>
+                </motion.div>
+              )}
+
+              {currentStep === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-6"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-black mb-2">Your Vehicle & Equipment</h2>
+                    <p className="text-black/60">Tell us about your vehicle and what adaptive equipment you use or need.</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className={labelClass}>Vehicle Type *</label>
+                      <div className="relative">
+                        <select
+                          data-testid="select-vehicle-type"
+                          value={formData.vehicle_type}
+                          onChange={(e) => handleChange("vehicle_type", e.target.value)}
+                          className={`${inputClass("vehicle_type")} appearance-none pr-10`}
+                        >
+                          <option value="">Select vehicle type</option>
+                          {vehicleTypes.map((v) => (
+                            <option key={v} value={v}>{v}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40 pointer-events-none" />
+                      </div>
+                      {stepErrors.vehicle_type && <p className="text-red-500 text-xs mt-1">{stepErrors.vehicle_type}</p>}
+                    </div>
+                    <div>
+                      <label className={labelClass}>Vehicle Year</label>
+                      <input
+                        data-testid="input-vehicle-year"
+                        type="text"
+                        placeholder="e.g. 2024"
+                        value={formData.vehicle_year}
+                        onChange={(e) => handleChange("vehicle_year", e.target.value)}
+                        className={inputClass("vehicle_year")}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Vehicle Make & Model</label>
+                    <input
+                      data-testid="input-vehicle-make-model"
+                      type="text"
+                      placeholder="e.g. Toyota Sienna, BraunAbility"
+                      value={formData.vehicle_make_model}
+                      onChange={(e) => handleChange("vehicle_make_model", e.target.value)}
+                      className={inputClass("vehicle_make_model")}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Number of Vehicles</label>
+                    <input
+                      data-testid="input-num-vehicles"
+                      type="text"
+                      placeholder="1"
+                      value={formData.num_vehicles}
+                      onChange={(e) => handleChange("num_vehicles", e.target.value)}
+                      className={inputClass("num_vehicles")}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Adaptive Equipment on Your Vehicle *</label>
+                    <p className="text-black/50 text-sm mb-3">Select all that apply</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {equipmentOptions.map((item) => {
+                        const selected = formData.equipment.includes(item);
+                        return (
+                          <button
+                            key={item}
+                            data-testid={`button-equipment-${item.toLowerCase().replace(/\s+/g, "-")}`}
+                            type="button"
+                            onClick={() => toggleEquipment(item)}
+                            className={`px-4 py-3 rounded-xl text-sm font-medium border transition-all text-left ${
+                              selected
+                                ? "bg-[#0071e3] text-white border-[#0071e3]"
+                                : "bg-[#f5f5f7] text-black border-black/10 hover:border-black/20"
+                            }`}
                           >
-                            {feature.name}
-                          </span>
-                        </div>
+                            {item}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {stepErrors.equipment && <p className="text-red-500 text-xs mt-2">{stepErrors.equipment}</p>}
+                  </div>
+                  {formData.equipment.includes("Other") && (
+                    <div>
+                      <label className={labelClass}>Please specify other equipment</label>
+                      <input
+                        data-testid="input-equipment-other"
+                        type="text"
+                        placeholder="Describe your equipment"
+                        value={formData.equipment_other}
+                        onChange={(e) => handleChange("equipment_other", e.target.value)}
+                        className={inputClass("equipment_other")}
+                      />
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
+              {currentStep === 3 && (
+                <motion.div
+                  key="step3"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-6"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-black mb-2">Dealer & Additional Details</h2>
+                    <p className="text-black/60">Help us understand your current setup and how we can best serve you.</p>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Do you currently work with a mobility dealer? *</label>
+                    <div className="flex gap-4">
+                      {["Yes", "No", "Not sure"].map((opt) => (
+                        <button
+                          key={opt}
+                          data-testid={`button-has-dealer-${opt.toLowerCase().replace(/\s+/g, "-")}`}
+                          type="button"
+                          onClick={() => handleChange("has_dealer", opt)}
+                          className={`px-6 py-3 rounded-xl font-medium border transition-all ${
+                            formData.has_dealer === opt
+                              ? "bg-black text-white border-black"
+                              : "bg-[#f5f5f7] text-black border-black/10 hover:border-black/20"
+                          }`}
+                        >
+                          {opt}
+                        </button>
                       ))}
+                    </div>
+                    {stepErrors.has_dealer && <p className="text-red-500 text-xs mt-2">{stepErrors.has_dealer}</p>}
+                  </div>
+                  {formData.has_dealer === "Yes" && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className={labelClass}>Dealer Name</label>
+                        <input
+                          data-testid="input-dealer-name"
+                          type="text"
+                          placeholder="Dealer or shop name"
+                          value={formData.dealer_name}
+                          onChange={(e) => handleChange("dealer_name", e.target.value)}
+                          className={inputClass("dealer_name")}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Dealer Location (City, State)</label>
+                        <input
+                          data-testid="input-dealer-location"
+                          type="text"
+                          placeholder="e.g. Orlando, FL"
+                          value={formData.dealer_location}
+                          onChange={(e) => handleChange("dealer_location", e.target.value)}
+                          className={inputClass("dealer_location")}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <label className={labelClass}>What's your timeline?</label>
+                    <div className="relative">
+                      <select
+                        data-testid="select-timeline"
+                        value={formData.timeline}
+                        onChange={(e) => handleChange("timeline", e.target.value)}
+                        className={`${inputClass("timeline")} appearance-none pr-10`}
+                      >
+                        <option value="">Select timeline</option>
+                        <option value="Immediately">Immediately</option>
+                        <option value="Within 1 month">Within 1 month</option>
+                        <option value="1-3 months">1-3 months</option>
+                        <option value="3-6 months">3-6 months</option>
+                        <option value="Just exploring">Just exploring</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40 pointer-events-none" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>How did you hear about Adapy?</label>
+                    <div className="relative">
+                      <select
+                        data-testid="select-how-heard"
+                        value={formData.how_heard}
+                        onChange={(e) => handleChange("how_heard", e.target.value)}
+                        className={`${inputClass("how_heard")} appearance-none pr-10`}
+                      >
+                        <option value="">Select one</option>
+                        {howDidYouHear.map((h) => (
+                          <option key={h} value={h}>{h}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40 pointer-events-none" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Anything else we should know?</label>
+                    <textarea
+                      data-testid="textarea-notes"
+                      value={formData.additional_notes}
+                      onChange={(e) => handleChange("additional_notes", e.target.value)}
+                      placeholder="Questions, special requirements, or anything else..."
+                      className={`${inputClass("additional_notes")} min-h-[100px]`}
+                    />
+                  </div>
+                </motion.div>
+              )}
+
+              {currentStep === 4 && (
+                <motion.div
+                  key="step4"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-black mb-2">Review Your Information</h2>
+                    <p className="text-black/60">Please confirm everything looks correct before submitting.</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="bg-[#f5f5f7] rounded-2xl p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-black flex items-center gap-2">
+                          <User className="w-4 h-4 text-[#0071e3]" /> Contact Info
+                        </h3>
+                        <button
+                          data-testid="button-edit-step-1"
+                          type="button"
+                          onClick={() => setCurrentStep(1)}
+                          className="text-[#0071e3] text-sm font-medium hover:underline"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div><span className="text-black/50">Name:</span> <span className="text-black font-medium">{formData.first_name} {formData.last_name}</span></div>
+                        <div><span className="text-black/50">Email:</span> <span className="text-black font-medium">{formData.email}</span></div>
+                        <div><span className="text-black/50">Phone:</span> <span className="text-black font-medium">{formData.phone}</span></div>
+                        {formData.company_name && <div><span className="text-black/50">Company:</span> <span className="text-black font-medium">{formData.company_name}</span></div>}
+                      </div>
+                    </div>
+
+                    <div className="bg-[#f5f5f7] rounded-2xl p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-black flex items-center gap-2">
+                          <Wrench className="w-4 h-4 text-[#0071e3]" /> Vehicle & Equipment
+                        </h3>
+                        <button
+                          data-testid="button-edit-step-2"
+                          type="button"
+                          onClick={() => setCurrentStep(2)}
+                          className="text-[#0071e3] text-sm font-medium hover:underline"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div><span className="text-black/50">Vehicle:</span> <span className="text-black font-medium">{formData.vehicle_type}{formData.vehicle_year ? ` (${formData.vehicle_year})` : ""}</span></div>
+                        {formData.vehicle_make_model && <div><span className="text-black/50">Make/Model:</span> <span className="text-black font-medium">{formData.vehicle_make_model}</span></div>}
+                        <div><span className="text-black/50">Vehicles:</span> <span className="text-black font-medium">{formData.num_vehicles}</span></div>
+                      </div>
+                      <div className="mt-4">
+                        <span className="text-black/50 text-sm">Equipment: </span>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {formData.equipment.map((e) => (
+                            <span key={e} className="px-3 py-1 bg-[#0071e3]/10 text-[#0071e3] rounded-full text-xs font-medium">
+                              {e}
+                            </span>
+                          ))}
+                          {formData.equipment_other && (
+                            <span className="px-3 py-1 bg-[#0071e3]/10 text-[#0071e3] rounded-full text-xs font-medium">
+                              {formData.equipment_other}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-[#f5f5f7] rounded-2xl p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-black flex items-center gap-2">
+                          <Store className="w-4 h-4 text-[#0071e3]" /> Dealer & Details
+                        </h3>
+                        <button
+                          data-testid="button-edit-step-3"
+                          type="button"
+                          onClick={() => setCurrentStep(3)}
+                          className="text-[#0071e3] text-sm font-medium hover:underline"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div><span className="text-black/50">Has dealer:</span> <span className="text-black font-medium">{formData.has_dealer}</span></div>
+                        {formData.dealer_name && <div><span className="text-black/50">Dealer:</span> <span className="text-black font-medium">{formData.dealer_name}</span></div>}
+                        {formData.dealer_location && <div><span className="text-black/50">Location:</span> <span className="text-black font-medium">{formData.dealer_location}</span></div>}
+                        {formData.timeline && <div><span className="text-black/50">Timeline:</span> <span className="text-black font-medium">{formData.timeline}</span></div>}
+                        {formData.how_heard && <div><span className="text-black/50">Heard from:</span> <span className="text-black font-medium">{formData.how_heard}</span></div>}
+                      </div>
+                      {formData.additional_notes && (
+                        <div className="mt-4 text-sm">
+                          <span className="text-black/50">Notes:</span>
+                          <p className="text-black font-medium mt-1">{formData.additional_notes}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+              )}
+            </AnimatePresence>
 
-        {/* Feature Comparison */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Detailed Comparison</h2>
-            
-            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-white/10">
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-white">Feature</th>
-                      {pricingTiers.map((tier) => (
-                        <th key={tier.name} className="px-6 py-4 text-center text-sm font-semibold text-white">
-                          {tier.name}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { label: "Wheelchair Controls", free: true, essential: true, pro: true, nemt: true },
-                      { label: "Device Management", free: true, essential: true, pro: true, nemt: true },
-                      { label: "Mobile App", free: true, essential: true, pro: true, nemt: true },
-                      { label: "Cloud Connectivity", free: false, essential: true, pro: true, nemt: true },
-                      { label: "Basic Analytics", free: false, essential: true, pro: true, nemt: true },
-                      { label: "Advanced Analytics", free: false, essential: false, pro: true, nemt: true },
-                      { label: "Email Support", free: true, essential: true, pro: true, nemt: true },
-                      { label: "Priority Support", free: false, essential: false, pro: true, nemt: true },
-                      { label: "24/7 Support", free: false, essential: false, pro: false, nemt: true },
-                      { label: "Custom Integrations", free: false, essential: false, pro: true, nemt: true },
-                      { label: "White-Label", free: false, essential: false, pro: false, nemt: true },
-                      { label: "Compliance Reporting", free: false, essential: false, pro: false, nemt: true },
-                    ].map((feature, idx) => (
-                      <tr key={idx} className="border-b border-white/10 hover:bg-white/[0.02] transition-colors">
-                        <td className="px-6 py-4 text-sm font-medium text-white">{feature.label}</td>
-                        {[
-                          feature.free,
-                          feature.essential,
-                          feature.pro,
-                          feature.nemt,
-                        ].map((included, tierIdx) => (
-                          <td key={tierIdx} className="px-6 py-4 text-center">
-                            {included ? (
-                              <Check className="w-5 h-5 text-blue-400 mx-auto" />
-                            ) : (
-                              <div className="w-5 h-5 rounded border border-white/20 mx-auto" />
-                            )}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="flex items-center justify-between mt-10 pt-8 border-t border-black/[0.05]">
+              {currentStep > 1 ? (
+                <button
+                  data-testid="button-prev-step"
+                  type="button"
+                  onClick={prevStep}
+                  className="flex items-center gap-2 px-6 py-3 text-black/60 font-medium hover:text-black transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" /> Back
+                </button>
+              ) : (
+                <div />
+              )}
+
+              {currentStep < 4 ? (
+                <button
+                  data-testid="button-next-step"
+                  type="button"
+                  onClick={nextStep}
+                  className="flex items-center gap-2 px-8 py-3 bg-black text-white rounded-full font-bold hover:bg-black/80 transition-all"
+                >
+                  Continue <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button
+                  data-testid="button-submit-quote"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="flex items-center gap-2 px-8 py-3 bg-[#0071e3] text-white rounded-full font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>Submit Quote Request <ArrowRight className="w-4 h-4" /></>
+                  )}
+                </button>
+              )}
+            </div>
+
+            {submitError && (
+              <p data-testid="text-submit-error" className="text-sm text-red-600 text-center mt-4">{submitError}</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {showConfirmation && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[300] flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white rounded-3xl p-8 md:p-12 max-w-lg w-full text-center shadow-2xl"
+            >
+              <div className="w-20 h-20 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-[#0071e3]" />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-            
-            <div className="space-y-6">
-              {[
-                {
-                  q: "Can I upgrade or downgrade my plan?",
-                  a: "Yes, you can change your plan at any time. Changes take effect at your next billing cycle.",
-                },
-                {
-                  q: "Do you offer annual discounts?",
-                  a: "Yes, we offer 20% off annual plans. Contact our sales team for more information.",
-                },
-                {
-                  q: "What payment methods do you accept?",
-                  a: "We accept all major credit cards, wire transfers, and custom payment arrangements for enterprise plans.",
-                },
-                {
-                  q: "Is there a long-term contract required?",
-                  a: "No, all plans are month-to-month. Enterprise NEMT plans may include custom terms.",
-                },
-                {
-                  q: "What's included in the free trial?",
-                  a: "Your free 14-day trial includes full access to your selected plan with all features enabled.",
-                },
-              ].map((faq, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
-                  <p className="text-white/70">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-3xl p-12 text-center">
-            <h2 className="text-4xl font-bold mb-4">Ready to get started?</h2>
-            <p className="text-xl text-white/70 mb-8">
-              Choose your plan and start your 14-day free trial today. No credit card required.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors"
+              <h2 className="text-3xl font-bold text-black mb-4">
+                Quote Request Received!
+              </h2>
+              <p className="text-black/60 text-lg mb-3">
+                Thank you, {formData.first_name}! Our team is reviewing your information and will send you a personalized quote soon.
+              </p>
+              <p className="text-black/50 text-sm mb-8">
+                You'll receive your quote at <strong className="text-black">{formData.email}</strong> within 1-2 business days.
+              </p>
+              <button
+                data-testid="button-confirmation-close"
+                type="button"
+                onClick={() => {
+                  setShowConfirmation(false);
+                  window.location.href = "/";
+                }}
+                className="px-8 py-3 bg-black text-white rounded-full font-bold hover:bg-black/80 transition-all"
               >
-                Get Started
-              </Link>
-              <Link
-                href="/contact"
-                className="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-semibold transition-colors border border-white/10"
-              >
-                Contact Sales
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
+                Back to Home
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
   );
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
 }
