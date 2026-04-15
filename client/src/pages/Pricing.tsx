@@ -328,7 +328,7 @@ export default function Pricing() {
                       {stepErrors.email && <p className="text-red-500 text-xs mt-1">{stepErrors.email}</p>}
                     </div>
                     <div>
-                      <label className={labelClass}>Phone Number</label>
+                      <label className={labelClass}>Phone Number *</label>
                       <input
                         data-testid="input-quote-phone"
                         type="tel"
