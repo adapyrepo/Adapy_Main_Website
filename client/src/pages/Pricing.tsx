@@ -38,6 +38,12 @@ const vehicleTypes = [
   "Other",
 ];
 
+const vehicleYears = [
+  "2027", "2026", "2025", "2024", "2023", "2022", "2021",
+  "2020", "2019", "2018", "2017", "2016", "2015", "2014",
+  "2013", "2012", "2011", "2010", "2000-2009",
+];
+
 const howDidYouHear = [
   "Google Search",
   "Social Media",
@@ -67,19 +73,19 @@ export default function Pricing() {
     last_name: "",
     email: "",
     phone: "",
-    company_name: "",
+    company: "",
     vehicle_type: "",
-    vehicle_year: "",
-    vehicle_make_model: "",
+    vehicle_year_optional: "",
+    vehicle_make_model_optional: "",
     equipment: [] as string[],
     equipment_other: "",
-    num_vehicles: "1",
-    dealer_name: "",
+    _umber_of__ehicles: "",
+    do_you_currently_work_with_a_mobility_dealer_required: "",
+    _ealer__ame__conditional_: "",
     dealer_location: "",
-    has_dealer: "",
-    how_heard: "",
-    timeline: "",
-    additional_notes: "",
+    timeline_optional: "",
+    how_did_you_hear_about_adapy_optional: "",
+    anything_else_we_should_know: "",
   });
 
   const handleChange = (field: string, value: string) => {
@@ -120,7 +126,7 @@ export default function Pricing() {
     }
 
     if (step === 3) {
-      if (!formData.has_dealer) errors.has_dealer = "Required";
+      if (!formData.do_you_currently_work_with_a_mobility_dealer_required) errors.do_you_currently_work_with_a_mobility_dealer_required = "Required";
     }
 
     setStepErrors(errors);
@@ -146,28 +152,28 @@ export default function Pricing() {
         (formData.equipment_other ? `, ${formData.equipment_other}` : "");
 
       const response = await fetch(
-        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/customquote",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            _form_slug: "qualify-form",
-            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            _form_slug: "customquote",
+            _api_key: "cd6003df2595f76b42ab4f200dd4d6a7da7d79a4728bdc6c845618b95cf88ffe",
             first_name: formData.first_name,
             last_name: formData.last_name,
             email: formData.email,
             phone: formData.phone,
-            company_name: formData.company_name || "N/A",
-            situation: `Quote Request — ${formData.vehicle_type} — Equipment: ${equipmentList}`,
-            dealer_name: formData.dealer_name || "No dealer specified",
-            dealer_location: formData.dealer_location || "N/A",
-            vehicle_year: formData.vehicle_year || "N/A",
-            vehicle_make_model: formData.vehicle_make_model || "N/A",
-            num_vehicles: formData.num_vehicles,
-            has_dealer: formData.has_dealer,
-            how_heard: formData.how_heard || "N/A",
-            timeline: formData.timeline || "N/A",
-            additional_notes: formData.additional_notes || "N/A",
+            company: formData.company || "",
+            vehicle_year_optional: formData.vehicle_year_optional || "",
+            vehicle_make_model_optional: formData.vehicle_make_model_optional || "",
+            _umber_of__ehicles: formData._umber_of__ehicles || "",
+            adaptive_equipment: equipmentList,
+            do_you_currently_work_with_a_mobility_dealer_required: formData.do_you_currently_work_with_a_mobility_dealer_required,
+            _ealer__ame__conditional_: formData._ealer__ame__conditional_ || "",
+            dealer_location: formData.dealer_location || "",
+            timeline_optional: formData.timeline_optional || "",
+            how_did_you_hear_about_adapy_optional: formData.how_did_you_hear_about_adapy_optional || "",
+            anything_else_we_should_know: formData.anything_else_we_should_know || "",
           }),
         },
       );
@@ -178,6 +184,11 @@ export default function Pricing() {
       }
 
       setShowConfirmation(true);
+      if (data.redirect_url) {
+        window.setTimeout(() => {
+          window.location.href = data.redirect_url;
+        }, 2000);
+      }
     } catch (error) {
       setSubmitError(
         error instanceof TypeError
@@ -305,7 +316,7 @@ export default function Pricing() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className={labelClass}>Email *</label>
+                      <label className={labelClass}>Email Address *</label>
                       <input
                         data-testid="input-quote-email"
                         type="email"
@@ -317,7 +328,7 @@ export default function Pricing() {
                       {stepErrors.email && <p className="text-red-500 text-xs mt-1">{stepErrors.email}</p>}
                     </div>
                     <div>
-                      <label className={labelClass}>Phone *</label>
+                      <label className={labelClass}>Phone Number</label>
                       <input
                         data-testid="input-quote-phone"
                         type="tel"
@@ -334,10 +345,10 @@ export default function Pricing() {
                     <input
                       data-testid="input-quote-company"
                       type="text"
-                      placeholder="Company or Organization"
-                      value={formData.company_name}
-                      onChange={(e) => handleChange("company_name", e.target.value)}
-                      className={inputClass("company_name")}
+                      placeholder="Company Name (Optional)"
+                      value={formData.company}
+                      onChange={(e) => handleChange("company", e.target.value)}
+                      className={inputClass("company")}
                     />
                   </div>
                 </motion.div>
@@ -376,41 +387,55 @@ export default function Pricing() {
                       {stepErrors.vehicle_type && <p className="text-red-500 text-xs mt-1">{stepErrors.vehicle_type}</p>}
                     </div>
                     <div>
-                      <label className={labelClass}>Vehicle Year</label>
-                      <input
-                        data-testid="input-vehicle-year"
-                        type="text"
-                        placeholder="e.g. 2024"
-                        value={formData.vehicle_year}
-                        onChange={(e) => handleChange("vehicle_year", e.target.value)}
-                        className={inputClass("vehicle_year")}
-                      />
+                      <label className={labelClass}>Vehicle Year (optional)</label>
+                      <div className="relative">
+                        <select
+                          data-testid="select-vehicle-year"
+                          value={formData.vehicle_year_optional}
+                          onChange={(e) => handleChange("vehicle_year_optional", e.target.value)}
+                          className={`${inputClass("vehicle_year_optional")} appearance-none pr-10`}
+                        >
+                          <option value="">Select...</option>
+                          {vehicleYears.map((y) => (
+                            <option key={y} value={y}>{y}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40 pointer-events-none" />
+                      </div>
                     </div>
                   </div>
                   <div>
-                    <label className={labelClass}>Vehicle Make & Model</label>
+                    <label className={labelClass}>Vehicle Make & Model (optional)</label>
                     <input
                       data-testid="input-vehicle-make-model"
                       type="text"
-                      placeholder="e.g. Toyota Sienna, BraunAbility"
-                      value={formData.vehicle_make_model}
-                      onChange={(e) => handleChange("vehicle_make_model", e.target.value)}
-                      className={inputClass("vehicle_make_model")}
+                      placeholder="Vehicle Make & Model (optional)"
+                      value={formData.vehicle_make_model_optional}
+                      onChange={(e) => handleChange("vehicle_make_model_optional", e.target.value)}
+                      className={inputClass("vehicle_make_model_optional")}
                     />
                   </div>
                   <div>
                     <label className={labelClass}>Number of Vehicles</label>
-                    <input
-                      data-testid="input-num-vehicles"
-                      type="text"
-                      placeholder="1"
-                      value={formData.num_vehicles}
-                      onChange={(e) => handleChange("num_vehicles", e.target.value)}
-                      className={inputClass("num_vehicles")}
-                    />
+                    <div className="relative">
+                      <select
+                        data-testid="select-num-vehicles"
+                        value={formData._umber_of__ehicles}
+                        onChange={(e) => handleChange("_umber_of__ehicles", e.target.value)}
+                        className={`${inputClass("_umber_of__ehicles")} appearance-none pr-10`}
+                      >
+                        <option value="">Select...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40 pointer-events-none" />
+                    </div>
                   </div>
                   <div>
-                    <label className={labelClass}>Adaptive Equipment on Your Vehicle *</label>
+                    <label className={labelClass}>Adaptive Equipment *</label>
                     <p className="text-black/50 text-sm mb-3">Select all that apply</p>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {equipmentOptions.map((item) => {
@@ -466,14 +491,14 @@ export default function Pricing() {
                   <div>
                     <label className={labelClass}>Do you currently work with a mobility dealer? *</label>
                     <div className="flex gap-4">
-                      {["Yes", "No", "Not sure"].map((opt) => (
+                      {["Yes", "No"].map((opt) => (
                         <button
                           key={opt}
-                          data-testid={`button-has-dealer-${opt.toLowerCase().replace(/\s+/g, "-")}`}
+                          data-testid={`button-has-dealer-${opt.toLowerCase()}`}
                           type="button"
-                          onClick={() => handleChange("has_dealer", opt)}
+                          onClick={() => handleChange("do_you_currently_work_with_a_mobility_dealer_required", opt)}
                           className={`px-6 py-3 rounded-xl font-medium border transition-all ${
-                            formData.has_dealer === opt
+                            formData.do_you_currently_work_with_a_mobility_dealer_required === opt
                               ? "bg-black text-white border-black"
                               : "bg-[#f5f5f7] text-black border-black/10 hover:border-black/20"
                           }`}
@@ -482,27 +507,27 @@ export default function Pricing() {
                         </button>
                       ))}
                     </div>
-                    {stepErrors.has_dealer && <p className="text-red-500 text-xs mt-2">{stepErrors.has_dealer}</p>}
+                    {stepErrors.do_you_currently_work_with_a_mobility_dealer_required && <p className="text-red-500 text-xs mt-2">{stepErrors.do_you_currently_work_with_a_mobility_dealer_required}</p>}
                   </div>
-                  {formData.has_dealer === "Yes" && (
+                  {formData.do_you_currently_work_with_a_mobility_dealer_required === "Yes" && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className={labelClass}>Dealer Name</label>
+                        <label className={labelClass}>Mobility Dealer Name</label>
                         <input
                           data-testid="input-dealer-name"
                           type="text"
-                          placeholder="Dealer or shop name"
-                          value={formData.dealer_name}
-                          onChange={(e) => handleChange("dealer_name", e.target.value)}
-                          className={inputClass("dealer_name")}
+                          placeholder="Name of your mobility dealer"
+                          value={formData._ealer__ame__conditional_}
+                          onChange={(e) => handleChange("_ealer__ame__conditional_", e.target.value)}
+                          className={inputClass("_ealer__ame__conditional_")}
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>Dealer Location (City, State)</label>
+                        <label className={labelClass}>Mobility Dealer Location</label>
                         <input
                           data-testid="input-dealer-location"
                           type="text"
-                          placeholder="e.g. Orlando, FL"
+                          placeholder="Mobility Dealer Location"
                           value={formData.dealer_location}
                           onChange={(e) => handleChange("dealer_location", e.target.value)}
                           className={inputClass("dealer_location")}
@@ -511,13 +536,13 @@ export default function Pricing() {
                     </div>
                   )}
                   <div>
-                    <label className={labelClass}>What's your timeline?</label>
+                    <label className={labelClass}>Timeline (optional)</label>
                     <div className="relative">
                       <select
                         data-testid="select-timeline"
-                        value={formData.timeline}
-                        onChange={(e) => handleChange("timeline", e.target.value)}
-                        className={`${inputClass("timeline")} appearance-none pr-10`}
+                        value={formData.timeline_optional}
+                        onChange={(e) => handleChange("timeline_optional", e.target.value)}
+                        className={`${inputClass("timeline_optional")} appearance-none pr-10`}
                       >
                         <option value="">Select timeline</option>
                         <option value="Immediately">Immediately</option>
@@ -530,13 +555,13 @@ export default function Pricing() {
                     </div>
                   </div>
                   <div>
-                    <label className={labelClass}>How did you hear about Adapy?</label>
+                    <label className={labelClass}>How did you hear about Adapy? (optional)</label>
                     <div className="relative">
                       <select
                         data-testid="select-how-heard"
-                        value={formData.how_heard}
-                        onChange={(e) => handleChange("how_heard", e.target.value)}
-                        className={`${inputClass("how_heard")} appearance-none pr-10`}
+                        value={formData.how_did_you_hear_about_adapy_optional}
+                        onChange={(e) => handleChange("how_did_you_hear_about_adapy_optional", e.target.value)}
+                        className={`${inputClass("how_did_you_hear_about_adapy_optional")} appearance-none pr-10`}
                       >
                         <option value="">Select one</option>
                         {howDidYouHear.map((h) => (
@@ -550,10 +575,10 @@ export default function Pricing() {
                     <label className={labelClass}>Anything else we should know?</label>
                     <textarea
                       data-testid="textarea-notes"
-                      value={formData.additional_notes}
-                      onChange={(e) => handleChange("additional_notes", e.target.value)}
+                      value={formData.anything_else_we_should_know}
+                      onChange={(e) => handleChange("anything_else_we_should_know", e.target.value)}
                       placeholder="Questions, special requirements, or anything else..."
-                      className={`${inputClass("additional_notes")} min-h-[100px]`}
+                      className={`${inputClass("anything_else_we_should_know")} min-h-[100px]`}
                     />
                   </div>
                 </motion.div>
@@ -592,7 +617,7 @@ export default function Pricing() {
                         <div><span className="text-black/50">Name:</span> <span className="text-black font-medium">{formData.first_name} {formData.last_name}</span></div>
                         <div><span className="text-black/50">Email:</span> <span className="text-black font-medium">{formData.email}</span></div>
                         <div><span className="text-black/50">Phone:</span> <span className="text-black font-medium">{formData.phone}</span></div>
-                        {formData.company_name && <div><span className="text-black/50">Company:</span> <span className="text-black font-medium">{formData.company_name}</span></div>}
+                        {formData.company && <div><span className="text-black/50">Company:</span> <span className="text-black font-medium">{formData.company}</span></div>}
                       </div>
                     </div>
 
@@ -611,9 +636,9 @@ export default function Pricing() {
                         </button>
                       </div>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div><span className="text-black/50">Vehicle:</span> <span className="text-black font-medium">{formData.vehicle_type}{formData.vehicle_year ? ` (${formData.vehicle_year})` : ""}</span></div>
-                        {formData.vehicle_make_model && <div><span className="text-black/50">Make/Model:</span> <span className="text-black font-medium">{formData.vehicle_make_model}</span></div>}
-                        <div><span className="text-black/50">Vehicles:</span> <span className="text-black font-medium">{formData.num_vehicles}</span></div>
+                        <div><span className="text-black/50">Vehicle:</span> <span className="text-black font-medium">{formData.vehicle_type}{formData.vehicle_year_optional ? ` (${formData.vehicle_year_optional})` : ""}</span></div>
+                        {formData.vehicle_make_model_optional && <div><span className="text-black/50">Make/Model:</span> <span className="text-black font-medium">{formData.vehicle_make_model_optional}</span></div>}
+                        {formData._umber_of__ehicles && <div><span className="text-black/50">Vehicles:</span> <span className="text-black font-medium">{formData._umber_of__ehicles}</span></div>}
                       </div>
                       <div className="mt-4">
                         <span className="text-black/50 text-sm">Equipment: </span>
@@ -647,16 +672,16 @@ export default function Pricing() {
                         </button>
                       </div>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div><span className="text-black/50">Has dealer:</span> <span className="text-black font-medium">{formData.has_dealer}</span></div>
-                        {formData.dealer_name && <div><span className="text-black/50">Dealer:</span> <span className="text-black font-medium">{formData.dealer_name}</span></div>}
+                        <div><span className="text-black/50">Has dealer:</span> <span className="text-black font-medium">{formData.do_you_currently_work_with_a_mobility_dealer_required}</span></div>
+                        {formData._ealer__ame__conditional_ && <div><span className="text-black/50">Dealer:</span> <span className="text-black font-medium">{formData._ealer__ame__conditional_}</span></div>}
                         {formData.dealer_location && <div><span className="text-black/50">Location:</span> <span className="text-black font-medium">{formData.dealer_location}</span></div>}
-                        {formData.timeline && <div><span className="text-black/50">Timeline:</span> <span className="text-black font-medium">{formData.timeline}</span></div>}
-                        {formData.how_heard && <div><span className="text-black/50">Heard from:</span> <span className="text-black font-medium">{formData.how_heard}</span></div>}
+                        {formData.timeline_optional && <div><span className="text-black/50">Timeline:</span> <span className="text-black font-medium">{formData.timeline_optional}</span></div>}
+                        {formData.how_did_you_hear_about_adapy_optional && <div><span className="text-black/50">Heard from:</span> <span className="text-black font-medium">{formData.how_did_you_hear_about_adapy_optional}</span></div>}
                       </div>
-                      {formData.additional_notes && (
+                      {formData.anything_else_we_should_know && (
                         <div className="mt-4 text-sm">
                           <span className="text-black/50">Notes:</span>
-                          <p className="text-black font-medium mt-1">{formData.additional_notes}</p>
+                          <p className="text-black font-medium mt-1">{formData.anything_else_we_should_know}</p>
                         </div>
                       )}
                     </div>
