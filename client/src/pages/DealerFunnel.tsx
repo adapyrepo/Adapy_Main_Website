@@ -4,17 +4,16 @@ import { motion } from "framer-motion";
 import {
   ChevronDown,
   CheckCircle,
-  Zap,
-  Users,
-  TrendingUp,
-  Headphones,
   ArrowRight,
-  Activity,
-  AlertCircle,
-  FileText,
-  Wrench,
+  FileWarning,
+  Search,
+  UserX,
+  TrendingDown,
+  Clock,
+  FileStack,
   BarChart3,
   ShieldCheck,
+  Bell,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -42,7 +41,17 @@ export default function DealerFunnel() {
   };
 
   const handleSubmit = async () => {
-    const required = ["first_name", "last_name", "email", "phone", "company_name", "city", "state", "country", "situation"] as const;
+    const required = [
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "company_name",
+      "city",
+      "state",
+      "country",
+      "situation",
+    ] as const;
     const missing = required.filter((f) => !formData[f].trim());
     if (missing.length > 0) {
       setSubmitError("Please fill in all required fields.");
@@ -62,7 +71,8 @@ export default function DealerFunnel() {
           },
           body: JSON.stringify({
             _form_slug: "qualify-form",
-            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            _api_key:
+              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
             ...formData,
           }),
         },
@@ -74,7 +84,9 @@ export default function DealerFunnel() {
         throw new Error(data.error || "Something went wrong.");
       }
 
-      setSubmitMessage(data.message || "Thank you! We will be in touch shortly.");
+      setSubmitMessage(
+        data.message || "Thank you! We will be in touch shortly.",
+      );
       setSubmitSuccess(true);
       window.setTimeout(() => {
         window.location.href = data.redirect_url || "https://www.adapy.com";
@@ -99,100 +111,82 @@ export default function DealerFunnel() {
     }
   };
 
-  const benefits = [
+  // Problem chapters drawn from real dealer pain.
+  const problemChapters = [
     {
-      icon: <Activity className="w-8 h-8 text-[#0071e3]" />,
-      title: "Real-Time Equipment Data",
-      desc: "Live connectivity status and operational telemetry from every Adapy-connected vehicle in your fleet.",
+      icon: <FileWarning className="w-7 h-7" />,
+      eyebrow: "Chapter 01 — Warranty Disputes",
+      title: "You can't win a warranty fight without data.",
+      body: "The lift fails. The customer is upset. You file the claim. The manufacturer asks, in writing, for proof the equipment was used within spec. You don't have it. No one does. The claim is denied — and you eat the part, the labor, and the relationship.",
+      stat: "% of adaptive equipment warranty claims rejected for insufficient documentation",
     },
     {
-      icon: <Zap className="w-8 h-8 text-[#0071e3]" />,
-      title: "Increase Revenue Opportunities",
-      desc: "Add a premium solution that creates new upsell and install opportunities.",
+      icon: <Search className="w-7 h-7" />,
+      eyebrow: "Chapter 02 — Blind Diagnostics",
+      title: "Every service call starts from zero.",
+      body: "Your tech rolls a truck to a customer's driveway with no telemetry, no failure history, no idea what the equipment was doing 10 minutes before it stopped. They open the panel and start guessing. The customer watches the bill grow.",
+      stat: "Average minutes per service visit spent reproducing the failure",
     },
     {
-      icon: <Users className="w-8 h-8 text-[#0071e3]" />,
-      title: "Simplify the Customer Experience",
-      desc: "Reduce control complexity by bringing multiple adaptive functions into one intelligent system.",
+      icon: <UserX className="w-7 h-7" />,
+      eyebrow: "Chapter 03 — The Blame Lands on You",
+      title: "Customers blame the dealer for hardware you never touched.",
+      body: "A pendant from a third-party manufacturer fails. A cable shorted out before the customer ever bought the vehicle. None of it was your install — but you sold them the system, so you own the problem. Without telemetry, you can't even prove what you didn't do.",
+      stat: "Share of negative dealer reviews tied to third-party component failures",
     },
     {
-      icon: <Headphones className="w-8 h-8 text-[#0071e3]" />,
-      title: "Dealer Support Included",
-      desc: "Get onboarding, training, and support to help your team sell and install with confidence.",
-    },
-  ];
-
-  const dashboardFeatures = [
-    {
-      icon: <Activity className="w-6 h-6 text-[#0071e3]" />,
-      title: "Real-Time Equipment Data",
-      description: "Live connectivity status and operational telemetry from every Adapy-connected vehicle in your fleet.",
+      icon: <TrendingDown className="w-7 h-7" />,
+      eyebrow: "Chapter 04 — Revenue You Can't See",
+      title: "You have no idea what's installed across your customer base.",
+      body: "Service contracts you could be selling. Aging equipment that should be replaced. Funding cycles closing in two months. Cross-sell opportunities sitting in vehicles you serviced last year. None of it is visible — so none of it gets quoted.",
+      stat: "Estimated annual upsell revenue lost per dealer due to lack of installed-base visibility",
     },
     {
-      icon: <AlertCircle className="w-6 h-6 text-[#0071e3]" />,
-      title: "Automated Maintenance Alerts",
-      description: "Proactive notifications based on cycle counts, runtime, or diagnostic fault codes.",
+      icon: <Clock className="w-7 h-7" />,
+      eyebrow: "Chapter 05 — Reactive Service",
+      title: "You hear about the problem when the customer is already stranded.",
+      body: "There is no preventive trigger. No usage threshold that pushes a service reminder. No motor-current trend line. The first time you learn something is wrong is when the phone rings — and by then the customer is in a parking lot, already angry. Auto-pilot maintenance push notifications would change the entire service economics of your shop.",
+      stat: "Cost difference between proactive and reactive service per incident",
     },
     {
-      icon: <FileText className="w-6 h-6 text-[#0071e3]" />,
-      title: "Warranty Justification",
-      description: "One-click PDF reports combining session logs and diagnostics to streamline warranty claims.",
-    },
-    {
-      icon: <Wrench className="w-6 h-6 text-[#0071e3]" />,
-      title: "Remote Troubleshooting",
-      description: "View real-time relay states and sensor readings to diagnose issues without a truck roll.",
-    },
-    {
-      icon: <BarChart3 className="w-6 h-6 text-[#0071e3]" />,
-      title: "Fleet-Wide Analytics",
-      description: "Identify service opportunities and track equipment reliability across your entire customer base.",
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6 text-[#0071e3]" />,
-      title: "VA & Voc-Rehab Friendly",
-      description: "Standardized reporting packets designed to meet the rigorous documentation needs of funding sources.",
+      icon: <FileStack className="w-7 h-7" />,
+      eyebrow: "Chapter 06 — Documentation Chaos",
+      title: "Every install is bespoke. Every warranty packet is manual.",
+      body: "Photographs in someone's phone. Install notes on paper. VA and Voc-Rehab justification rebuilt from scratch every time. Your team spends hours assembling packets that should generate themselves — and the funding agencies still ask for more.",
+      stat: "Hours per warranty/funding packet without standardized reporting",
     },
   ];
 
-  const steps = [
+  const solutionPoints = [
     {
-      number: "1",
-      title: "Apply for Dealer Access",
-      desc: "Tell us about your dealership and market.",
+      icon: <BarChart3 className="w-8 h-8 text-[#0071e3]" />,
+      title: "A live picture of your installed base",
+      desc: "Every Adapy-connected vehicle in one dashboard — telemetry, cycle counts, fault history, and service triggers across your entire customer base.",
     },
     {
-      number: "2",
-      title: "Review the Platform",
-      desc: "See how Adapy works, what it supports, and how it fits your customers.",
+      icon: <Bell className="w-8 h-8 text-[#0071e3]" />,
+      title: "Auto-pilot maintenance alerts",
+      desc: "Push notifications fire on usage thresholds and diagnostic codes — so service is something you sell ahead of, not react to.",
     },
     {
-      number: "3",
-      title: "Launch with Support",
-      desc: "Get onboarding, training, and the next steps to start offering Adapy.",
+      icon: <ShieldCheck className="w-8 h-8 text-[#0071e3]" />,
+      title: "One-click warranty & funding packets",
+      desc: "Standardized PDF reports built for manufacturer warranty disputes and VA / Voc-Rehab / Workforce Services justification.",
     },
   ];
 
   const faqs = [
     {
-      q: "Who is Adapy a fit for?",
-      a: "Adapy is designed for dealers and installers who want to offer their customers a premium, unified adaptive mobility control solution. If you serve the adaptive mobility market and want to differentiate your offerings, you're a perfect fit.",
+      q: "How does Adapy help with warranty disputes?",
+      a: "Every Adapy-connected device generates a usage and diagnostic record. When a manufacturer asks for proof of fault or proper use, you export a standardized packet in seconds — no manual assembly, no missing data.",
     },
     {
       q: "Do you provide dealer onboarding?",
-      a: "Yes. We provide comprehensive onboarding, training, and ongoing support to help your team successfully sell and install Adapy. Our dealer success team is committed to your launch.",
-    },
-    {
-      q: "How do dealers get started?",
-      a: "Start by requesting dealer access. We'll review your application, schedule a platform walkthrough, and guide you through the onboarding process. Once approved, you'll have access to all dealer resources and support.",
-    },
-    {
-      q: "Can I see a demo before committing?",
-      a: "Absolutely. We offer live platform demos and can walk you through real-world use cases relevant to your customer base. Contact us to schedule your personalized demo.",
+      a: "Yes. We provide onboarding, training, and ongoing support so your sales and service teams can sell, install, and support Adapy with confidence.",
     },
     {
       q: "What happens after I request access?",
-      a: "Our dealer partnerships team will contact you within 24 hours to confirm your request, answer initial questions, and schedule a platform review. From there, we'll guide you through onboarding at your pace.",
+      a: "Our dealer partnerships team will contact you within 24 hours to confirm your application, walk through the platform, and outline the onboarding path.",
     },
   ];
 
@@ -202,98 +196,141 @@ export default function DealerFunnel() {
         <Navbar />
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900">
-        <div className="absolute inset-0 opacity-30">
+      {/* HERO — dealer pain, not growth pitch */}
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                Grow Your Dealership with Adapy
+              <span className="inline-block text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-6">
+                For Mobility Dealers
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
+                The warranty was denied.
+                <span className="block text-white/70">
+                  And it&rsquo;s your problem now.
+                </span>
               </h1>
-              <p className="text-xl text-white/70 mb-8 leading-relaxed max-w-lg">
-                Offer a smarter adaptive mobility experience with connected controls, streamlined setup, and a premium technology platform built for modern mobility dealers.
+              <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
+                The manufacturer wanted usage data. You didn&rsquo;t have
+                it. The customer wants to know why their lift failed. You
+                can&rsquo;t tell them. You&rsquo;ve eaten the part, the
+                labor, and the review — and the next claim is already
+                opening.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button
-                  onClick={() => scrollToSection("form")}
-                  className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2"
-                >
-                  Request Dealer Access <ArrowRight className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => scrollToSection("demo")}
-                  className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all transform hover:scale-105 active:scale-95"
-                >
-                  Watch Dealer Demo
-                </button>
-              </div>
+              <button
+                onClick={() => scrollToSection("form")}
+                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
+                data-testid="button-hero-cta"
+              >
+                See How Adapy Changes That
+                <ArrowRight className="w-5 h-5" />
+              </button>
 
-              <p className="text-sm text-white/60">
-                ⏱️ We are currently onboarding a limited number of new dealer partners.
+              <p className="text-sm text-white/50 mt-6">
+                Currently onboarding a limited number of dealer partners.
               </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden lg:block"
-            >
-              <div className="relative w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-[#0071e3]/20 to-transparent border border-white/10 p-8">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <Zap className="w-24 h-24 text-[#0071e3] mx-auto mb-4 opacity-50" />
-                    <p className="text-white/60">Platform Overview</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Dashboard Features Section */}
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-20">
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              Adapy Dealer Dashboard
+      {/* PROBLEM NARRATIVE — six dealer-pain chapters (~70%) */}
+      <section className="py-32 bg-[#0a0a0a] text-white">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="mb-20 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
+              The Daily Reality In Your Shop
             </span>
-            <h2 className="text-5xl font-bold text-black mb-6">
-              A Powerful Command Center for Your Service Department
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              Six things adaptive mobility dealers stop accepting
+              eventually.
             </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto">
-              Turn equipment data into maintenance revenue with real-time fleet monitoring and proactive service alerts.
+            <p className="text-lg text-white/60 leading-relaxed">
+              Warranty disputes you can&rsquo;t win, service calls you
+              can&rsquo;t scope, customer blame you can&rsquo;t deflect.
+              The infrastructure to fix it has never existed — until now.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dashboardFeatures.map((feature, i) => (
+          <div className="space-y-6">
+            {problemChapters.map((chapter, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 lg:p-10 rounded-3xl bg-white/[0.03] border border-white/[0.06]"
+              >
+                <div className="lg:col-span-2 flex lg:block items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center flex-shrink-0">
+                    {chapter.icon}
+                  </div>
+                </div>
+                <div className="lg:col-span-10">
+                  <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-3">
+                    {chapter.eyebrow}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4 leading-tight">
+                    {chapter.title}
+                  </h3>
+                  <p className="text-white/65 leading-relaxed text-base md:text-lg mb-5">
+                    {chapter.body}
+                  </p>
+                  <p className="text-sm text-white/40 border-t border-white/10 pt-4">
+                    {chapter.stat}{" "}
+                    <span className="text-white/30">[source needed]</span>
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SOLUTION — compressed (~20%) */}
+      <section className="py-28 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="max-w-2xl mb-14">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              What Changes With Adapy
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
+              Three things that flip the dealer economics.
+            </h2>
+            <p className="text-lg text-black/60 leading-relaxed">
+              Adapy gives your service department the missing layer:
+              telemetry on every install, automated alerts that turn
+              service into a push channel, and standardized documentation
+              that wins warranty and funding fights you used to lose.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {solutionPoints.map((point, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 bg-white rounded-3xl border border-black/[0.05] hover:shadow-lg transition-shadow"
+                className="p-7 bg-white rounded-3xl border border-black/[0.05] shadow-sm"
               >
-                <div className="mb-6 p-3 bg-[#f5f5f7] rounded-2xl w-fit">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3">
-                  {feature.title}
+                <div className="mb-5">{point.icon}</div>
+                <h3 className="text-lg font-bold text-black mb-3 leading-snug">
+                  {point.title}
                 </h3>
                 <p className="text-black/60 leading-relaxed text-sm">
-                  {feature.description}
+                  {point.desc}
                 </p>
               </motion.div>
             ))}
@@ -301,403 +338,16 @@ export default function DealerFunnel() {
         </div>
       </section>
 
-      {/* Why Dealers Add Adapy */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-20">
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              Why Dealers Choose Adapy
-            </span>
-            <h2 className="text-5xl font-bold text-black mb-6">
-              Four Reasons to Add Adapy to Your Offerings
-            </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto">
-              Adapy gives dealers the tools, platform, and support they need to compete in modern adaptive mobility.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {benefits.map((benefit, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 bg-[#f5f5f7] rounded-3xl border border-black/[0.05]"
-              >
-                <div className="mb-4">{benefit.icon}</div>
-                <h3 className="text-2xl font-bold text-black mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-black/60 leading-relaxed">{benefit.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-32 bg-black text-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-20">
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              The Path Forward
-            </span>
-            <h2 className="text-5xl font-bold mb-6">
-              How to Get Started in 3 Simple Steps
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#0071e3] flex items-center justify-center text-white font-bold text-2xl mb-6">
-                    {step.number}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-white/60">{step.desc}</p>
-                </div>
-
-                {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[40%] h-1 bg-gradient-to-r from-[#0071e3] to-transparent" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof */}
-      <section className="py-24 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-8 rounded-2xl border border-black/[0.05]"
-            >
-              <p className="text-black/70 mb-4">
-                "Dealers are already installing Adapy in multiple markets."
-              </p>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-[#0071e3]" />
-                <span className="font-medium text-black">Rapid Adoption</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white p-8 rounded-2xl border border-black/[0.05]"
-            >
-              <p className="text-black/70 mb-4">
-                "Expanding dealer presence in the U.S. and Canada."
-              </p>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-[#0071e3]" />
-                <span className="font-medium text-black">Growing Network</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white p-8 rounded-2xl border border-black/[0.05]"
-            >
-              <p className="text-black/70 mb-4">
-                "Built for the adaptive mobility industry."
-              </p>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-[#0071e3]" />
-                <span className="font-medium text-black">Industry Focused</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scarcity / Offer Section */}
-      <section className="py-32 bg-black text-white">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-bold mb-6">
-              Now Accepting New Dealer Partners
-            </h2>
-            <p className="text-xl text-white/70 mb-8">
-              We are selectively expanding our dealer network and prioritizing partners who want to lead with innovation in adaptive mobility.
-            </p>
-
-            <ul className="text-left space-y-4 mb-12 max-w-2xl mx-auto">
-              {[
-                "Dealer onboarding access",
-                "Platform walkthrough",
-                "Training and support",
-                "Opportunity to be considered for future lead distribution",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-white/80">
-                  <CheckCircle className="w-5 h-5 text-[#0071e3] flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => scrollToSection("form")}
-              className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 mx-auto block mb-6"
-            >
-              Request Dealer Access
-            </button>
-
-            <p className="text-sm text-white/60">
-              ⏱️ Limited onboarding capacity available.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Demo Section Placeholder */}
-      <section id="demo" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              See Adapy in Action
-            </h2>
-            <p className="text-xl text-black/60">
-              Watch a 5-minute demo of the Adapy dealer platform.
-            </p>
-          </div>
-
-          <div className="aspect-video rounded-3xl overflow-hidden bg-black/5 border border-black/10 flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-black/60 mb-4">Video placeholder</p>
-              <p className="text-sm text-black/40">Your dealer demo video will be embedded here</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <section id="form" className="py-32 bg-[#f5f5f7]">
+      {/* Trimmed FAQ — placed BEFORE the form */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              Request Dealer Access
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Quick answers before you apply.
             </h2>
-            <p className="text-xl text-black/60">
-              Fill out the form below and our dealer partnerships team will be in touch within 24 hours.
-            </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 border border-black/[0.05]">
-            {submitSuccess ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-12"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-8 h-8 text-[#0071e3]" />
-                </div>
-                <h3 className="text-3xl font-bold text-black mb-4">
-                  Application Received!
-                </h3>
-                <p className="text-black/60 text-lg mb-8">
-                  {submitMessage || "Our dealer partnerships team will review your application and be in touch within 24 hours."}
-                </p>
-                <p className="text-sm text-black/50">
-                  Redirecting you shortly...
-                </p>
-              </motion.div>
-            ) : (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">First Name *</label>
-                    <input
-                      data-testid="input-first-name"
-                      type="text"
-                      placeholder="First Name"
-                      value={formData.first_name}
-                      onChange={(e) => handleFormChange("first_name", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">Last Name *</label>
-                    <input
-                      data-testid="input-last-name"
-                      type="text"
-                      placeholder="Last Name"
-                      value={formData.last_name}
-                      onChange={(e) => handleFormChange("last_name", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-black mb-2">Email Address *</label>
-                  <input
-                    data-testid="input-email"
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) => handleFormChange("email", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                    required
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">Phone Number *</label>
-                    <input
-                      data-testid="input-phone"
-                      type="tel"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={(e) => handleFormChange("phone", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">Company / Dealership Name *</label>
-                    <input
-                      data-testid="input-company"
-                      type="text"
-                      placeholder="Company Name"
-                      value={formData.company_name}
-                      onChange={(e) => handleFormChange("company_name", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">City *</label>
-                    <input
-                      data-testid="input-city"
-                      type="text"
-                      placeholder="City"
-                      value={formData.city}
-                      onChange={(e) => handleFormChange("city", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">State *</label>
-                    <input
-                      data-testid="input-state"
-                      type="text"
-                      placeholder="State / Province"
-                      value={formData.state}
-                      onChange={(e) => handleFormChange("state", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">Country *</label>
-                    <input
-                      data-testid="input-country"
-                      type="text"
-                      placeholder="Country"
-                      value={formData.country}
-                      onChange={(e) => handleFormChange("country", e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-black mb-2">Situation *</label>
-                  <select
-                    data-testid="select-situation"
-                    value={formData.situation}
-                    onChange={(e) => handleFormChange("situation", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
-                    required
-                  >
-                    <option value="">Select an option</option>
-                    <option value="I currently sell adaptive mobility equipment">I currently sell adaptive mobility equipment</option>
-                    <option value="I am looking to add adaptive products to my lineup">I am looking to add adaptive products to my lineup</option>
-                    <option value="I am a fleet or commercial dealer exploring Adapy">I am a fleet or commercial dealer exploring Adapy</option>
-                    <option value="I was referred by an existing Adapy partner">I was referred by an existing Adapy partner</option>
-                    <option value="I'm not sure yet but want to learn more">I'm not sure yet but want to learn more</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-black mb-2">Adaptive Equipment (optional)</label>
-                  <textarea
-                    data-testid="textarea-equipment"
-                    value={formData.adaptive_equipment}
-                    onChange={(e) => handleFormChange("adaptive_equipment", e.target.value)}
-                    placeholder="Tell us about the adaptive equipment you currently work with..."
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7] min-h-[100px]"
-                  />
-                </div>
-                <button
-                  data-testid="button-submit-dealer"
-                  type="button"
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    "Request Dealer Access"
-                  )}
-                </button>
-                {submitError && (
-                  <p data-testid="text-submit-error" className="text-sm text-red-600 text-center">{submitError}</p>
-                )}
-                <p className="text-center text-black/50 text-sm">
-                  ✓ Your information is kept confidential. We'll be in touch within 24 hours.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-black/60">
-              Have questions about becoming an Adapy dealer? We have answers.
-            </p>
-          </div>
-
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, i) => (
               <motion.div
                 key={i}
@@ -709,9 +359,10 @@ export default function DealerFunnel() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-8 py-6 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  data-testid={`button-faq-${i}`}
                 >
-                  <span className="text-lg font-bold text-black text-left">
+                  <span className="text-base font-bold text-black text-left">
                     {faq.q}
                   </span>
                   <ChevronDown
@@ -722,8 +373,10 @@ export default function DealerFunnel() {
                 </button>
 
                 {openFaq === i && (
-                  <div className="px-8 pb-6 pt-0 border-t border-black/[0.05]">
-                    <p className="text-black/70 leading-relaxed">{faq.a}</p>
+                  <div className="px-6 pb-5 pt-0 border-t border-black/[0.05]">
+                    <p className="text-black/70 leading-relaxed text-sm">
+                      {faq.a}
+                    </p>
                   </div>
                 )}
               </motion.div>
@@ -732,21 +385,269 @@ export default function DealerFunnel() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 bg-black text-white text-center">
+      {/* Compressed scarcity nudge — banner near the form */}
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-6 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Grow with Adapy?
-          </h2>
-          <p className="text-xl text-white/70 mb-8">
-            Join a growing network of innovative dealers transforming adaptive mobility.
-          </p>
-          <button
-            onClick={() => scrollToSection("form")}
-            className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 inline-flex items-center gap-2"
-          >
-            Request Dealer Access <ArrowRight className="w-5 h-5" />
-          </button>
+          <div className="rounded-3xl border border-[#0071e3]/20 bg-[#0071e3]/[0.04] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center">
+              <Clock className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-black mb-1">
+                Limited dealer onboarding slots open right now.
+              </h3>
+              <p className="text-sm text-black/60 leading-relaxed">
+                We&rsquo;re selectively expanding the dealer network with
+                partners who want to lead in adaptive mobility. Onboarding
+                includes platform walkthrough, training, and consideration
+                for future lead distribution.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FORM — the final ask (~10%) */}
+      <section id="form" className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Request dealer access.
+            </h2>
+            <p className="text-base text-black/60">
+              Our partnerships team will follow up within 24 hours.
+            </p>
+          </div>
+
+          <div className="bg-[#f5f5f7] rounded-3xl p-8 md:p-10 border border-black/[0.05]">
+            {submitSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-10"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-[#0071e3]" />
+                </div>
+                <h3 className="text-2xl font-bold text-black mb-4">
+                  Application received.
+                </h3>
+                <p className="text-black/60 text-base mb-6">
+                  {submitMessage ||
+                    "Our dealer partnerships team will review your application and be in touch within 24 hours."}
+                </p>
+                <p className="text-sm text-black/50">
+                  Redirecting you shortly...
+                </p>
+              </motion.div>
+            ) : (
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      First Name *
+                    </label>
+                    <input
+                      data-testid="input-first-name"
+                      type="text"
+                      placeholder="First Name"
+                      value={formData.first_name}
+                      onChange={(e) =>
+                        handleFormChange("first_name", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Last Name *
+                    </label>
+                    <input
+                      data-testid="input-last-name"
+                      type="text"
+                      placeholder="Last Name"
+                      value={formData.last_name}
+                      onChange={(e) =>
+                        handleFormChange("last_name", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    data-testid="input-email"
+                    type="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) => handleFormChange("email", e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                    required
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      data-testid="input-phone"
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        handleFormChange("phone", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Company / Dealership Name *
+                    </label>
+                    <input
+                      data-testid="input-company"
+                      type="text"
+                      placeholder="Company Name"
+                      value={formData.company_name}
+                      onChange={(e) =>
+                        handleFormChange("company_name", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      City *
+                    </label>
+                    <input
+                      data-testid="input-city"
+                      type="text"
+                      placeholder="City"
+                      value={formData.city}
+                      onChange={(e) => handleFormChange("city", e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      State *
+                    </label>
+                    <input
+                      data-testid="input-state"
+                      type="text"
+                      placeholder="State / Province"
+                      value={formData.state}
+                      onChange={(e) =>
+                        handleFormChange("state", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Country *
+                    </label>
+                    <input
+                      data-testid="input-country"
+                      type="text"
+                      placeholder="Country"
+                      value={formData.country}
+                      onChange={(e) =>
+                        handleFormChange("country", e.target.value)
+                      }
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Situation *
+                  </label>
+                  <select
+                    data-testid="select-situation"
+                    value={formData.situation}
+                    onChange={(e) =>
+                      handleFormChange("situation", e.target.value)
+                    }
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                    required
+                  >
+                    <option value="">Select an option</option>
+                    <option value="I currently sell adaptive mobility equipment">
+                      I currently sell adaptive mobility equipment
+                    </option>
+                    <option value="I am looking to add adaptive products to my lineup">
+                      I am looking to add adaptive products to my lineup
+                    </option>
+                    <option value="I am a fleet or commercial dealer exploring Adapy">
+                      I am a fleet or commercial dealer exploring Adapy
+                    </option>
+                    <option value="I was referred by an existing Adapy partner">
+                      I was referred by an existing Adapy partner
+                    </option>
+                    <option value="I'm not sure yet but want to learn more">
+                      I&rsquo;m not sure yet but want to learn more
+                    </option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Adaptive Equipment (optional)
+                  </label>
+                  <textarea
+                    data-testid="textarea-equipment"
+                    value={formData.adaptive_equipment}
+                    onChange={(e) =>
+                      handleFormChange("adaptive_equipment", e.target.value)
+                    }
+                    placeholder="Tell us about the adaptive equipment you currently work with..."
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white min-h-[100px]"
+                  />
+                </div>
+                <button
+                  data-testid="button-submit-dealer"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Request Dealer Access"
+                  )}
+                </button>
+                {submitError && (
+                  <p
+                    data-testid="text-submit-error"
+                    className="text-sm text-red-600 text-center"
+                  >
+                    {submitError}
+                  </p>
+                )}
+                <p className="text-center text-black/50 text-sm">
+                  ✓ Your information is kept confidential. We&rsquo;ll be
+                  in touch within 24 hours.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
