@@ -339,7 +339,7 @@ export default function Home() {
                 {
                   icon: <Scale className="w-6 h-6" />,
                   title: "Medicaid audit failures",
-                  body: "NEMT operators can&rsquo;t document vehicle safety at time of trip.",
+                  body: "NEMT operators can\u2019t document vehicle safety at time of trip.",
                 },
                 {
                   icon: <AlertTriangle className="w-6 h-6" />,
@@ -353,10 +353,9 @@ export default function Home() {
                 >
                   <div className="text-[#0071e3] mb-3">{item.icon}</div>
                   <h4 className="font-bold text-white mb-1">{item.title}</h4>
-                  <p
-                    className="text-sm text-white/60 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: item.body }}
-                  />
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {item.body}
+                  </p>
                 </div>
               ))}
               <p className="text-xs text-white/40 pt-2">
@@ -578,24 +577,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
-      {/* Vertical Teaser Button */}
-      {!isSliderOpen && (
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          whileHover={{ x: -5 }}
-          onClick={() => setIsSliderOpen(true)}
-          className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] bg-[#0071e3] text-white py-4 px-2 rounded-l-xl shadow-2xl flex items-center gap-2 transition-colors hover:bg-[#0077ed]"
-          style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-          data-testid="button-video-slider-open"
-        >
-          <Play className="w-3 h-3 fill-current rotate-90" />
-          <span className="font-bold text-[10px] tracking-widest uppercase">
-            See How It Works
-          </span>
-        </motion.button>
-      )}
 
       {/* Video Slider Drawer */}
       <AnimatePresence>
