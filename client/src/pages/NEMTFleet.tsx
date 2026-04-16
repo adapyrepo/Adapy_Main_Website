@@ -108,7 +108,6 @@ export default function NEMTFleet() {
     }
   };
 
-  // Seven problem chapters drawn from the brief
   const problemChapters = [
     {
       icon: <Wind className="w-7 h-7" />,
@@ -122,7 +121,7 @@ export default function NEMTFleet() {
       icon: <Activity className="w-7 h-7" />,
       eyebrow: "Chapter 02 — Lift Failure Mid-Route",
       title: "The lift jams between pickups. The route is already broken.",
-      body: "A passenger is half-loaded. The driver is on the phone with dispatch. The next three trips slip. The hospital marks the patient as a no-show. The Medicaid trip won&rsquo;t bill. And the operator absorbs every minute of cascading cost.",
+      body: "A passenger is half-loaded. The driver is on the phone with dispatch. The next three trips slip. The hospital marks the patient as a no-show. The Medicaid trip won't bill. And the operator absorbs every minute of cascading cost.",
       stat: "Average revenue lost per mid-route lift failure",
     },
     {
@@ -163,7 +162,6 @@ export default function NEMTFleet() {
     },
   ];
 
-  // Anatomy of a bad day timeline
   const badDay = [
     {
       time: "5:42am",
@@ -197,7 +195,6 @@ export default function NEMTFleet() {
     },
   ];
 
-  // Compressed solution block
   const monitoringPoints = [
     {
       icon: <Wind className="w-7 h-7 text-[#0071e3]" />,
@@ -237,7 +234,6 @@ export default function NEMTFleet() {
         <Navbar />
       </div>
 
-      {/* HERO — sharpened invisible-risk statement, single CTA */}
       <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
@@ -267,8 +263,8 @@ export default function NEMTFleet() {
               <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
                 Carbon monoxide. Lift failures. Cabin temperature. Battery
                 health. The risks that hurt NEMT operators most are the
-                ones traditional fleet software doesn&rsquo;t track — and
-                can&rsquo;t document when an auditor or attorney asks.
+                ones traditional fleet software doesn't track — and
+                can't document when an auditor or attorney asks.
               </p>
 
               <button
@@ -289,7 +285,6 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      {/* PROBLEM NARRATIVE — seven chapters (~70%) */}
       <section className="py-32 bg-[#0a0a0a] text-white">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-20 max-w-2xl">
@@ -342,7 +337,6 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      {/* ANATOMY OF A BAD DAY — narrative timeline */}
       <section className="py-32 bg-black text-white">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-16 max-w-2xl">
@@ -390,12 +384,11 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      {/* SOLUTION — compressed (~20%) */}
       <section className="py-28 bg-[#f5f5f7]">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="max-w-2xl mb-14">
             <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              What We Monitor &amp; Why It Matters
+              What We Monitor & Why It Matters
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
               Three things that change the math on a bad day.
@@ -431,7 +424,6 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      {/* Trimmed FAQ — placed BEFORE the form */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-10">
@@ -478,7 +470,6 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      {/* Compact urgency banner near the form */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="rounded-3xl border border-[#0071e3]/20 bg-[#0071e3]/[0.04] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
@@ -490,16 +481,15 @@ export default function NEMTFleet() {
                 The next bad day is already on its way.
               </h3>
               <p className="text-sm text-black/60 leading-relaxed">
-                Tell us about your fleet. We&rsquo;ll show you the
+                Tell us about your fleet. We'll show you the
                 monitoring layer that prevents the incident — and
-                documents the trip when prevention isn&rsquo;t enough.
+                documents the trip when prevention isn't enough.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FORM — final ask (~10%) */}
       <section id="form" className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-10">
