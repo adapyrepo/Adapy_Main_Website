@@ -7,17 +7,13 @@ import {
   ArrowRight,
   ShieldAlert,
   Activity,
-  Wrench,
   Thermometer,
-  Battery,
-  MapPin,
   Wind,
-  Eye,
-  TrendingDown,
   FileText,
-  ShieldCheck,
-  Check,
-  X,
+  Gavel,
+  Radio,
+  DollarSign,
+  Clock,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -44,7 +40,15 @@ export default function NEMTFleet() {
   };
 
   const handleSubmit = async () => {
-    const required = ["first_name", "last_name", "company_name", "email", "phone", "fleet_size", "state"] as const;
+    const required = [
+      "first_name",
+      "last_name",
+      "company_name",
+      "email",
+      "phone",
+      "fleet_size",
+      "state",
+    ] as const;
     const missing = required.filter((f) => !formData[f].trim());
     if (missing.length > 0) {
       setSubmitError("Please fill in all required fields.");
@@ -64,7 +68,8 @@ export default function NEMTFleet() {
           },
           body: JSON.stringify({
             _form_slug: "qualify-form",
-            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            _api_key:
+              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
             ...formData,
           }),
         },
@@ -76,7 +81,9 @@ export default function NEMTFleet() {
         throw new Error(data.error || "Something went wrong.");
       }
 
-      setSubmitMessage(data.message || "Thank you! We will be in touch shortly.");
+      setSubmitMessage(
+        data.message || "Thank you! We will be in touch shortly.",
+      );
       setSubmitSuccess(true);
       window.setTimeout(() => {
         window.location.href = data.redirect_url || "https://www.adapy.com";
@@ -101,138 +108,126 @@ export default function NEMTFleet() {
     }
   };
 
-  const hiddenRisks = [
+  // Seven problem chapters drawn from the brief
+  const problemChapters = [
     {
-      icon: <Wind className="w-6 h-6 text-red-500" />,
-      title: "Carbon Monoxide Exposure",
-      desc: "Invisible and odorless, CO buildup in vehicles is a real danger that goes undetected without proper monitoring.",
+      icon: <Wind className="w-7 h-7" />,
+      eyebrow: "Chapter 01 — The Invisible Gas",
+      title:
+        "Carbon monoxide builds up in the cabin. You won't see it until someone is hurt.",
+      body: "Idling vehicles, exhaust leaks, faulty seals — none of it sets off a dispatch alert. CO is colorless and odorless. By the time a medically fragile passenger feels symptoms, the exposure has already happened, and there is no record to defend the trip.",
+      stat: "% of NEMT cabins that exceed safe CO thresholds at least once a year",
     },
     {
-      icon: <Activity className="w-6 h-6 text-red-500" />,
-      title: "Lift & Equipment Failures",
-      desc: "If a wheelchair lift malfunctions during loading or unloading, you may never know it happened until a complaint or claim.",
+      icon: <Activity className="w-7 h-7" />,
+      eyebrow: "Chapter 02 — Lift Failure Mid-Route",
+      title: "The lift jams between pickups. The route is already broken.",
+      body: "A passenger is half-loaded. The driver is on the phone with dispatch. The next three trips slip. The hospital marks the patient as a no-show. The Medicaid trip won&rsquo;t bill. And the operator absorbs every minute of cascading cost.",
+      stat: "Average revenue lost per mid-route lift failure",
     },
     {
-      icon: <Battery className="w-6 h-6 text-red-500" />,
-      title: "Battery Voltage Issues",
-      desc: "Low voltage can cause equipment failures, stranded vehicles, and missed routes—problems that start before you see them.",
+      icon: <Thermometer className="w-7 h-7" />,
+      eyebrow: "Chapter 03 — Temperature Extremes",
+      title:
+        "Medically fragile passengers don't tolerate cabin extremes.",
+      body: "Wheelchair-bound passengers can't adjust their position, can't reach a vent, and often can't communicate distress quickly. Without continuous cabin temperature monitoring, an HVAC failure becomes a clinical event before anyone notices.",
+      stat: "Cabin temperature variance recorded on a typical NEMT route in summer/winter",
     },
     {
-      icon: <Thermometer className="w-6 h-6 text-red-500" />,
-      title: "Temperature Extremes",
-      desc: "Passengers in wheelchairs are especially vulnerable to extreme heat or cold inside the vehicle.",
+      icon: <Gavel className="w-7 h-7" />,
+      eyebrow: "Chapter 04 — Lawsuit Exposure",
+      title: "When something goes wrong, you can't prove the vehicle was safe.",
+      body: "Plaintiff counsel asks for cabin conditions, equipment usage, and pre-trip documentation. You hand over a manifest and a GPS breadcrumb. They hand the jury a story you can't counter. Settlements close because there is no data to fight with.",
+      stat: "Median settlement value for NEMT in-cabin incident litigation",
     },
     {
-      icon: <ShieldAlert className="w-6 h-6 text-red-500" />,
-      title: "Compliance Blind Spots",
-      desc: "Without data on in-vehicle conditions, documenting safety compliance becomes guesswork.",
+      icon: <FileText className="w-7 h-7" />,
+      eyebrow: "Chapter 05 — Medicaid Clawbacks & Audit Failures",
+      title: "Missing documentation = unbilled trips and recouped payments.",
+      body: "When auditors arrive, every gap in trip-level evidence is a potential clawback. Equipment usage logs, environmental conditions, and incident timestamps that were never captured become invoices you have to pay back — months after the trip already ran.",
+      stat: "Estimated annual Medicaid clawback exposure per 100 vehicles",
     },
     {
-      icon: <Eye className="w-6 h-6 text-red-500" />,
-      title: "No In-Vehicle Visibility",
-      desc: "A completed trip does not automatically mean a safe trip. Most fleets have zero visibility into what happens inside the vehicle.",
-    },
-  ];
-
-  const features = [
-    {
-      icon: <Wind className="w-8 h-8 text-[#0071e3]" />,
-      title: "Carbon Monoxide",
-      desc: "Help protect passengers and drivers from invisible in-vehicle danger. Continuous CO monitoring with real-time alerts.",
+      icon: <Radio className="w-7 h-7" />,
+      eyebrow: "Chapter 06 — Mid-Shift Chaos",
+      title: "Problems surface mid-shift instead of during pre-trip.",
+      body: "Battery voltage was trending low for three days. Nobody saw it. The vehicle dies in a parking lot at 11am with a passenger inside. Dispatch scrambles. Drivers reroute. Passengers wait. Every single one of those events was preventable with a single notification at 5am.",
+      stat: "Share of breakdowns that were trending in telemetry 24+ hours prior",
     },
     {
-      icon: <Activity className="w-8 h-8 text-[#0071e3]" />,
-      title: "Adaptive Equipment Usage",
-      desc: "Track lift and mobility equipment usage to improve accountability, maintenance scheduling, and fleet reliability.",
-    },
-    {
-      icon: <MapPin className="w-8 h-8 text-[#0071e3]" />,
-      title: "GPS + Vehicle Context",
-      desc: "Know not just where your vehicles are, but what is happening inside them in real time.",
-    },
-    {
-      icon: <Battery className="w-8 h-8 text-[#0071e3]" />,
-      title: "Battery Voltage",
-      desc: "Catch voltage issues before they become breakdowns or service interruptions that disrupt your routes.",
-    },
-    {
-      icon: <Thermometer className="w-8 h-8 text-[#0071e3]" />,
-      title: "Temperature",
-      desc: "Monitor environmental conditions that affect passenger comfort, safety, and regulatory compliance.",
-    },
-    {
-      icon: <Wrench className="w-8 h-8 text-[#0071e3]" />,
-      title: "Service & Maintenance Insights",
-      desc: "Predictive maintenance based on actual usage data—not just mileage or calendar intervals.",
+      icon: <DollarSign className="w-7 h-7" />,
+      eyebrow: "Chapter 07 — The Compounding Cost",
+      title: "One bad day costs more than a year of monitoring.",
+      body: "Add it up: the lawsuit retainer, the lost trips, the Medicaid clawback, the insurance premium hike, the bad review, the driver who quits, the contract that doesn't renew. The math on prevention isn't close. The only question is whether you build the visibility before the bad day or after.",
+      stat: "Cost ratio of one major incident to one year of fleet-wide monitoring",
     },
   ];
 
-  const comparisonRows = [
-    { label: "Dispatch", traditional: true, adapy: true },
-    { label: "Scheduling", traditional: true, adapy: true },
-    { label: "Billing", traditional: true, adapy: true },
-    { label: "GPS Tracking", traditional: true, adapy: true },
-    { label: "Carbon Monoxide Monitoring", traditional: false, adapy: true },
-    { label: "Adaptive Equipment Monitoring", traditional: false, adapy: true },
-    { label: "Battery Voltage Monitoring", traditional: false, adapy: true },
-    { label: "Temperature Monitoring", traditional: false, adapy: true },
-    { label: "Predictive Service Insight", traditional: false, adapy: true },
-    { label: "In-Vehicle Safety Visibility", traditional: false, adapy: true },
+  // Anatomy of a bad day timeline
+  const badDay = [
+    {
+      time: "5:42am",
+      event:
+        "Battery voltage dips below threshold on Vehicle 7. Nobody is watching the data. No alert is fired. Pre-trip inspection passes by sight.",
+    },
+    {
+      time: "8:14am",
+      event:
+        "Driver picks up a dialysis patient. Cabin CO is climbing — small exhaust leak no one has tested for. Passenger reports a headache. Driver assumes nausea.",
+    },
+    {
+      time: "10:37am",
+      event:
+        "Lift hesitates on the second drop-off. Driver muscles it through. No service ticket. No usage log. The next operator inherits a failing actuator and doesn't know it.",
+    },
+    {
+      time: "1:08pm",
+      event:
+        "Vehicle dies in a clinic parking lot. Passenger waits 47 minutes for a backup. Patient's family files a complaint with the broker.",
+    },
+    {
+      time: "Next Tuesday",
+      event:
+        "Medicaid auditor pulls trip records. There is no environmental data, no equipment usage log, no incident timeline. Three trips are clawed back.",
+    },
+    {
+      time: "Six weeks later",
+      event:
+        "Letter from plaintiff's counsel. Headache became hospitalization. Discovery requests cabin conditions. You have nothing to send.",
+    },
   ];
 
-  const businessOutcomes = [
+  // Compressed solution block
+  const monitoringPoints = [
     {
-      icon: <TrendingDown className="w-8 h-8 text-[#0071e3]" />,
-      title: "Reduce Liability Exposure",
-      desc: "Document in-vehicle conditions and equipment performance to protect your company from claims.",
+      icon: <Wind className="w-7 h-7 text-[#0071e3]" />,
+      title: "Cabin CO & temperature",
+      desc: "Continuous environmental monitoring with real-time alerts before any passenger feels it.",
     },
     {
-      icon: <ShieldCheck className="w-8 h-8 text-[#0071e3]" />,
-      title: "Strengthen Safety Oversight",
-      desc: "Move beyond trip-level tracking. Gain real-time awareness of passenger safety conditions.",
+      icon: <Activity className="w-7 h-7 text-[#0071e3]" />,
+      title: "Lift & adaptive equipment usage",
+      desc: "Every cycle logged, every fault timestamped — defensible evidence and predictive maintenance in one feed.",
     },
     {
-      icon: <Wrench className="w-8 h-8 text-[#0071e3]" />,
-      title: "Improve Fleet Reliability",
-      desc: "Predictive maintenance based on actual equipment usage reduces breakdowns and missed routes.",
-    },
-    {
-      icon: <FileText className="w-8 h-8 text-[#0071e3]" />,
-      title: "Document Critical Conditions",
-      desc: "Automated logs for CO levels, temperature, battery health, and equipment events—always available when needed.",
-    },
-    {
-      icon: <Eye className="w-8 h-8 text-[#0071e3]" />,
-      title: "Visibility Beyond Dispatch Data",
-      desc: "Know what happens between pickup and dropoff. Fill the gap your current software cannot cover.",
-    },
-    {
-      icon: <Activity className="w-8 h-8 text-[#0071e3]" />,
-      title: "Reduce Avoidable Problems",
-      desc: "Catch voltage drops, equipment wear, and environmental hazards before they become costly service events.",
+      icon: <FileText className="w-7 h-7 text-[#0071e3]" />,
+      title: "Audit-ready documentation",
+      desc: "Automated records for Medicaid audits, claims, and incident review — exportable, timestamped, complete.",
     },
   ];
 
   const faqs = [
     {
-      q: "Does Adapy handle dispatch, scheduling, and billing?",
-      a: "Yes. Adapy covers all the standard fleet management functions—dispatch, scheduling, billing, and GPS tracking—so you can run your operations from one platform. But Adapy goes further by adding real-time in-vehicle monitoring for safety conditions, equipment usage, and environmental data that other NEMT platforms simply do not track.",
-    },
-    {
       q: "Does Adapy replace my existing NEMT software?",
-      a: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing—plus a full layer of in-vehicle intelligence. You get everything your current software does, along with carbon monoxide monitoring, equipment usage tracking, battery health, temperature data, and more.",
+      a: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle monitoring layer your current software doesn't touch.",
     },
     {
       q: "What kinds of vehicles can Adapy monitor?",
-      a: "Adapy is designed for wheelchair-accessible vehicles and any NEMT fleet vehicle equipped with adaptive mobility equipment such as lifts, ramps, and transfer seats.",
+      a: "Any wheelchair-accessible NEMT vehicle equipped with adaptive mobility equipment such as lifts, ramps, or transfer seats.",
     },
     {
-      q: "Can Adapy help with safety and maintenance visibility?",
-      a: "Yes. Adapy provides real-time monitoring of in-vehicle conditions, predictive maintenance insights based on actual equipment usage, and automated documentation for compliance and safety oversight.",
-    },
-    {
-      q: "How does Adapy handle data and reporting?",
-      a: "Adapy provides a cloud-based dashboard with real-time alerts, historical data, automated reports, and exportable documentation for compliance, claims, and fleet management.",
+      q: "How is the data delivered?",
+      a: "A cloud dashboard with real-time alerts, historical telemetry, and exportable documentation for compliance, claims, and fleet management.",
     },
   ];
 
@@ -242,8 +237,9 @@ export default function NEMTFleet() {
         <Navbar />
       </div>
 
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900">
-        <div className="absolute inset-0 opacity-30">
+      {/* HERO — sharpened invisible-risk statement, single CTA */}
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
           <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-red-500 blur-[120px] rounded-full opacity-40" />
         </div>
@@ -257,364 +253,426 @@ export default function NEMTFleet() {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-8">
                 <ShieldAlert className="w-4 h-4 text-red-400" />
-                <span className="text-sm text-red-400 font-medium">In-Vehicle Safety Intelligence</span>
+                <span className="text-sm text-red-400 font-medium">
+                  In-Vehicle Safety Intelligence
+                </span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05]">
-                What You Don't See in Your NEMT Vehicles Is What's Costing You the Most.
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
+                The trip completed.
+                <span className="block text-white/70">
+                  Nobody knows what happened inside the cabin.
+                </span>
               </h1>
-              <p className="text-xl text-white/70 mb-8 leading-relaxed max-w-2xl">
-                Real-time monitoring for carbon monoxide, adaptive equipment usage, GPS, battery health, temperature, and in-vehicle safety—built specifically for NEMT fleets.
+              <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
+                Carbon monoxide. Lift failures. Cabin temperature. Battery
+                health. The risks that hurt NEMT operators most are the
+                ones traditional fleet software doesn&rsquo;t track — and
+                can&rsquo;t document when an auditor or attorney asks.
               </p>
 
-              <div className="flex flex-row gap-4 mb-8">
-                <button
-                  data-testid="button-hero-demo"
-                  type="button"
-                  onClick={() => scrollToSection("form")}
-                  className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2"
-                >
-                  Book a Demo <ArrowRight className="w-5 h-5" />
-                </button>
-                <button
-                  data-testid="button-hero-how"
-                  type="button"
-                  onClick={() => scrollToSection("features")}
-                  className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all transform hover:scale-105 active:scale-95"
-                >
-                  See How Adapy Works
-                </button>
-              </div>
+              <button
+                data-testid="button-hero-demo"
+                type="button"
+                onClick={() => scrollToSection("form")}
+                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
+              >
+                See What Your Fleet Is Missing
+                <ArrowRight className="w-5 h-5" />
+              </button>
 
-              <div className="flex items-center gap-6 text-sm text-white/50">
-                <span>Other Fleet Software Stops at Dispatch.</span>
-                <span className="text-[#0071e3] font-bold">Adapy Runs the Fleet and Monitors the Vehicle.</span>
-              </div>
+              <p className="text-sm text-white/50 mt-6">
+                A completed trip does not automatically mean a safe trip.
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              The Hidden Risks in Every NEMT Vehicle
-            </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto mb-4">
-              Most NEMT companies can track trips and vehicles. But they still have zero visibility into what happens inside the vehicle between pickup and dropoff.
-            </p>
-            <p className="text-lg text-red-600 font-semibold">
-              A completed trip does not automatically mean a safe trip.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hiddenRisks.map((risk, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="p-6 bg-[#f5f5f7] rounded-2xl border border-black/[0.05]"
-              >
-                <div className="mb-4">{risk.icon}</div>
-                <h3 className="text-lg font-bold text-black mb-2">{risk.title}</h3>
-                <p className="text-black/60 leading-relaxed text-sm">{risk.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 bg-black text-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">
-              Fleet Management + In-Vehicle Intelligence
-            </h2>
-            <p className="text-xl text-white/60 max-w-3xl mx-auto">
-              Traditional NEMT platforms stop at dispatch, scheduling, and billing. Adapy delivers all of that—plus real-time monitoring of what is actually happening inside each vehicle.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-              <h3 className="text-xl font-bold text-white/80 mb-6">Traditional NEMT Software</h3>
-              <ul className="space-y-4">
-                {["Scheduling", "Dispatch", "Billing", "Basic GPS"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white/60">
-                    <Check className="w-5 h-5 text-white/30 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-[#0071e3]/10 border border-[#0071e3]/30">
-              <h3 className="text-xl font-bold text-[#0071e3] mb-6">Adapy — Everything + More</h3>
-              <ul className="space-y-4">
-                {[
-                  "Scheduling & Dispatch",
-                  "Billing & Invoicing",
-                  "GPS Tracking",
-                  "Carbon Monoxide Monitoring",
-                  "Adaptive Equipment Monitoring",
-                  "Battery Voltage Monitoring",
-                  "Temperature Monitoring",
-                  "Vehicle Intelligence",
-                  "Safety Data & Reports",
-                  "Predictive Maintenance",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white/80">
-                    <Check className="w-5 h-5 text-[#0071e3] flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <p className="text-center text-white/50 mt-12 text-lg italic max-w-2xl mx-auto">
-            "Other NEMT software stops at the trip. Adapy runs the trip and monitors what happens during it."
-          </p>
-        </div>
-      </section>
-
-      <section id="features" className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              What Adapy Monitors
-            </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto">
-              Real-time intelligence from inside every vehicle in your fleet.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="p-8 bg-white rounded-3xl border border-black/[0.05]"
-              >
-                <div className="mb-6">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-black mb-3">{feature.title}</h3>
-                <p className="text-black/60 leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 bg-white">
+      {/* PROBLEM NARRATIVE — seven chapters (~70%) */}
+      <section className="py-32 bg-[#0a0a0a] text-white">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              Traditional NEMT Platforms vs. Adapy
+          <div className="mb-20 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
+              The Hidden Cost Layer
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              Seven invisible risks every NEMT operator carries.
             </h2>
-            <p className="text-xl text-black/60">
-              Adapy includes everything traditional platforms offer—plus the safety and monitoring layer they're missing.
+            <p className="text-lg text-white/60 leading-relaxed">
+              Traditional NEMT software stops at dispatch and billing.
+              Everything that happens inside the vehicle — the part that
+              creates real liability — runs unmonitored.
             </p>
           </div>
 
-          <div className="bg-[#f5f5f7] rounded-3xl overflow-hidden border border-black/[0.05]">
-            <div className="grid grid-cols-3 gap-0 p-6 border-b border-black/[0.05] bg-black text-white rounded-t-3xl">
-              <div className="font-bold text-sm">Capability</div>
-              <div className="font-bold text-sm text-center">Traditional NEMT</div>
-              <div className="font-bold text-sm text-center text-[#0071e3]">Adapy</div>
-            </div>
-            {comparisonRows.map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-3 gap-0 p-6 ${i < comparisonRows.length - 1 ? "border-b border-black/[0.05]" : ""}`}
-              >
-                <div className="text-sm font-medium text-black">{row.label}</div>
-                <div className="flex justify-center">
-                  {row.traditional ? (
-                    <Check className="w-5 h-5 text-black/40" />
-                  ) : (
-                    <X className="w-5 h-5 text-black/20" />
-                  )}
-                </div>
-                <div className="flex justify-center">
-                  {row.adapy ? (
-                    <Check className="w-5 h-5 text-[#0071e3]" />
-                  ) : (
-                    <X className="w-5 h-5 text-black/20" />
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              Why NEMT Companies Switch to Adapy
-            </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto">
-              Protect passengers. Protect drivers. Protect your company.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {businessOutcomes.map((outcome, i) => (
+          <div className="space-y-6">
+            {problemChapters.map((chapter, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="p-8 bg-white rounded-3xl border border-black/[0.05]"
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 lg:p-10 rounded-3xl bg-white/[0.03] border border-white/[0.06]"
               >
-                <div className="mb-6">{outcome.icon}</div>
-                <h3 className="text-xl font-bold text-black mb-3">{outcome.title}</h3>
-                <p className="text-black/60 leading-relaxed">{outcome.desc}</p>
+                <div className="lg:col-span-2">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center flex-shrink-0">
+                    {chapter.icon}
+                  </div>
+                </div>
+                <div className="lg:col-span-10">
+                  <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-3">
+                    {chapter.eyebrow}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4 leading-tight">
+                    {chapter.title}
+                  </h3>
+                  <p className="text-white/65 leading-relaxed text-base md:text-lg mb-5">
+                    {chapter.body}
+                  </p>
+                  <p className="text-sm text-white/40 border-t border-white/10 pt-4">
+                    {chapter.stat}{" "}
+                    <span className="text-white/30">[source needed]</span>
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="form" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              See What Your Fleet Is Missing
+      {/* ANATOMY OF A BAD DAY — narrative timeline */}
+      <section className="py-32 bg-black text-white">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="mb-16 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-red-400 uppercase block mb-4">
+              Anatomy of a Bad Day
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              How invisible problems become a six-figure incident.
             </h2>
-            <p className="text-xl text-black/60">
-              Request a demo to see how Adapy combines full fleet management with in-vehicle safety intelligence—all in one platform.
+            <p className="text-lg text-white/60 leading-relaxed">
+              One realistic timeline. Every step preventable with the
+              right alert at the right minute.
             </p>
           </div>
 
-          <div className="bg-[#f5f5f7] rounded-3xl p-8 md:p-12 border border-black/[0.05]">
+          <div className="relative pl-6 md:pl-10 border-l border-white/10 space-y-10">
+            {badDay.map((moment, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="relative"
+              >
+                <div className="absolute -left-[34px] md:-left-[44px] top-1 w-3 h-3 rounded-full bg-red-500 ring-4 ring-red-500/15" />
+                <div className="text-sm font-bold tracking-wider text-red-400 uppercase mb-2">
+                  {moment.time}
+                </div>
+                <p className="text-white/80 leading-relaxed text-base md:text-lg">
+                  {moment.event}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 p-6 md:p-8 rounded-3xl border border-white/10 bg-white/[0.03]">
+            <p className="text-white/70 leading-relaxed text-lg">
+              By Tuesday, none of this is recoverable. By the time the
+              letter arrives, the cost is six figures and climbing. Every
+              step in this timeline was visible in telemetry — or would
+              have been, with cabin and equipment monitoring active.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SOLUTION — compressed (~20%) */}
+      <section className="py-28 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="max-w-2xl mb-14">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              What We Monitor &amp; Why It Matters
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
+              Three things that change the math on a bad day.
+            </h2>
+            <p className="text-lg text-black/60 leading-relaxed">
+              Adapy adds the in-cabin and equipment layer your current
+              NEMT software is missing. Same dispatch, same billing — plus
+              the visibility that wins audits, defends claims, and
+              prevents the incident in the first place.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {monitoringPoints.map((point, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-7 bg-white rounded-3xl border border-black/[0.05] shadow-sm"
+              >
+                <div className="mb-5">{point.icon}</div>
+                <h3 className="text-lg font-bold text-black mb-3 leading-snug">
+                  {point.title}
+                </h3>
+                <p className="text-black/60 leading-relaxed text-sm">
+                  {point.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trimmed FAQ — placed BEFORE the form */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Quick answers before you reach out.
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-[#f5f5f7] rounded-2xl overflow-hidden border border-black/[0.05]"
+              >
+                <button
+                  data-testid={`button-faq-${i}`}
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                >
+                  <span className="text-base font-bold text-black text-left">
+                    {faq.q}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-[#0071e3] transition-transform flex-shrink-0 ${
+                      openFaq === i ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {openFaq === i && (
+                  <div className="px-6 pb-5 pt-0 border-t border-black/[0.05]">
+                    <p className="text-black/70 leading-relaxed text-sm">
+                      {faq.a}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compact urgency banner near the form */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="rounded-3xl border border-[#0071e3]/20 bg-[#0071e3]/[0.04] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center">
+              <Clock className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-black mb-1">
+                The next bad day is already on its way.
+              </h3>
+              <p className="text-sm text-black/60 leading-relaxed">
+                Tell us about your fleet. We&rsquo;ll show you the
+                monitoring layer that prevents the incident — and
+                documents the trip when prevention isn&rsquo;t enough.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FORM — final ask (~10%) */}
+      <section id="form" className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Request a demo.
+            </h2>
+            <p className="text-base text-black/60">
+              Our team will follow up within 24 hours.
+            </p>
+          </div>
+
+          <div className="bg-[#f5f5f7] rounded-3xl p-8 md:p-10 border border-black/[0.05]">
             {submitSuccess ? (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center py-12"
+                className="text-center py-10"
               >
                 <div className="w-16 h-16 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
                   <CheckCircle className="w-8 h-8 text-[#0071e3]" />
                 </div>
-                <h3 className="text-3xl font-bold text-black mb-4">
-                  Demo Request Received!
+                <h3 className="text-2xl font-bold text-black mb-4">
+                  Demo request received.
                 </h3>
-                <p className="text-black/60 text-lg mb-8">
-                  {submitMessage || "Our team will review your request and be in touch within 24 hours."}
+                <p className="text-black/60 text-base mb-6">
+                  {submitMessage ||
+                    "Our team will review your request and be in touch within 24 hours."}
                 </p>
               </motion.div>
             ) : (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">First Name *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      First Name *
+                    </label>
                     <input
                       data-testid="input-first-name"
                       type="text"
                       placeholder="First Name"
                       value={formData.first_name}
-                      onChange={(e) => handleFormChange("first_name", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("first_name", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">Last Name *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Last Name *
+                    </label>
                     <input
                       data-testid="input-last-name"
                       type="text"
                       placeholder="Last Name"
                       value={formData.last_name}
-                      onChange={(e) => handleFormChange("last_name", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("last_name", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-black mb-2">Company Name *</label>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Company Name *
+                  </label>
                   <input
                     data-testid="input-company"
                     type="text"
                     placeholder="Company Name"
                     value={formData.company_name}
-                    onChange={(e) => handleFormChange("company_name", e.target.value)}
+                    onChange={(e) =>
+                      handleFormChange("company_name", e.target.value)
+                    }
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">Email *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Email *
+                    </label>
                     <input
                       data-testid="input-email"
                       type="email"
                       placeholder="Email Address"
                       value={formData.email}
-                      onChange={(e) => handleFormChange("email", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("email", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">Phone *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Phone *
+                    </label>
                     <input
                       data-testid="input-phone"
                       type="tel"
                       placeholder="Phone Number"
                       value={formData.phone}
-                      onChange={(e) => handleFormChange("phone", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("phone", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">Fleet Size *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Fleet Size *
+                    </label>
                     <input
                       data-testid="input-fleet-size"
                       type="text"
                       placeholder="# of vehicles"
                       value={formData.fleet_size}
-                      onChange={(e) => handleFormChange("fleet_size", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("fleet_size", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">Wheelchair Vehicles</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      Wheelchair Vehicles
+                    </label>
                     <input
                       data-testid="input-wheelchair-vehicles"
                       type="text"
                       placeholder="# wheelchair accessible"
                       value={formData.wheelchair_vehicles}
-                      onChange={(e) => handleFormChange("wheelchair_vehicles", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange(
+                          "wheelchair_vehicles",
+                          e.target.value,
+                        )
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-black mb-2">State *</label>
+                    <label className="block text-sm font-bold text-black mb-2">
+                      State *
+                    </label>
                     <input
                       data-testid="input-state"
                       type="text"
                       placeholder="State"
                       value={formData.state}
-                      onChange={(e) => handleFormChange("state", e.target.value)}
+                      onChange={(e) =>
+                        handleFormChange("state", e.target.value)
+                      }
                       className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-black mb-2">Notes (optional)</label>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Notes (optional)
+                  </label>
                   <textarea
                     data-testid="textarea-notes"
                     value={formData.adaptive_equipment}
-                    onChange={(e) => handleFormChange("adaptive_equipment", e.target.value)}
+                    onChange={(e) =>
+                      handleFormChange(
+                        "adaptive_equipment",
+                        e.target.value,
+                      )
+                    }
                     placeholder="Tell us about your fleet, current challenges, or questions..."
                     className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white min-h-[100px]"
                   />
@@ -624,7 +682,7 @@ export default function NEMTFleet() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -636,75 +694,19 @@ export default function NEMTFleet() {
                   )}
                 </button>
                 {submitError && (
-                  <p data-testid="text-submit-error" className="text-sm text-red-600 text-center">{submitError}</p>
+                  <p
+                    data-testid="text-submit-error"
+                    className="text-sm text-red-600 text-center"
+                  >
+                    {submitError}
+                  </p>
                 )}
                 <p className="text-center text-black/50 text-sm">
-                  See how Adapy combines fleet management with in-vehicle safety intelligence.
+                  ✓ Your information is kept confidential.
                 </p>
               </div>
             )}
           </div>
-        </div>
-      </section>
-
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.05]"
-              >
-                <button
-                  data-testid={`button-faq-${i}`}
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-8 py-6 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
-                >
-                  <span className="text-lg font-bold text-black text-left">{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#0071e3] transition-transform flex-shrink-0 ${
-                      openFaq === i ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {openFaq === i && (
-                  <div className="px-8 pb-6 pt-0 border-t border-black/[0.05]">
-                    <p className="text-black/70 leading-relaxed">{faq.a}</p>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-black text-white text-center">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            One Platform. Full Fleet Management. Complete In-Vehicle Intelligence.
-          </h2>
-          <p className="text-xl text-white/70 mb-8">
-            Stop using separate tools. Adapy runs your fleet and monitors what happens inside every vehicle.
-          </p>
-          <button
-            data-testid="button-final-cta"
-            type="button"
-            onClick={() => scrollToSection("form")}
-            className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 inline-flex items-center gap-2"
-          >
-            Book a Demo <ArrowRight className="w-5 h-5" />
-          </button>
         </div>
       </section>
 
