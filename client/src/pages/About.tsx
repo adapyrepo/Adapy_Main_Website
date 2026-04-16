@@ -1,8 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function About() {
+  useSEO({ title: "About Adapy — Connected Adaptive Mobility", description: "Adapy is on a mission to bring proactive safety and unified control to every adaptive vehicle on the road.", path: "/about" });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />

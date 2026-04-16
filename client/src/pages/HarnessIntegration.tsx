@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import hubWireframe from "@assets/Screenshot_2026-03-04_at_3.10.09_PM_1772662224386.png";
+import { useSEO } from "@/hooks/use-seo";
 
 const categories = [
   {
@@ -90,6 +91,7 @@ const categories = [
 ];
 
 export default function HarnessIntegration() {
+  useSEO({ title: "Harness Integration for OEM and Aftermarket Adaptive Equipment", description: "Plug Adapy into existing OEM and aftermarket adaptive equipment with universal harness integration — no rewiring, no warranty conflicts.", path: "/hardware/harness-integration" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

@@ -1,7 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function Terms() {
+  useSEO({ title: "Terms & Conditions", description: "The terms governing your use of the Adapy website and services.", path: "/terms" });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans" data-testid="page-terms">
       <Navbar />

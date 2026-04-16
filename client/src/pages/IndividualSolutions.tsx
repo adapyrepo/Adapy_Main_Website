@@ -13,8 +13,10 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import appMockup from "@assets/adapy_home_phone_1772663805994.png";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function IndividualSolutions() {
+  useSEO({ title: "Adaptive Mobility Solutions for Individuals", description: "Personal mobility environments built around independence, safety, and dignity — for drivers and families using adaptive vehicles.", path: "/solutions/individual" });
   const benefits = [
     {
       title: "Simplified Control",

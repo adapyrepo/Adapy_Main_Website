@@ -16,8 +16,10 @@ import {
   Clock,
 } from "lucide-react";
 import { useState } from "react";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function NEMTFleet() {
+  useSEO({ title: "NEMT Fleet Safety & Visibility Platform", description: "See the invisible risks before they become incidents. Adapy delivers always-on lift, ramp, CO, and cabin monitoring across your NEMT fleet.", path: "/solutions/nemt" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");

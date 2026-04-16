@@ -16,8 +16,10 @@ import {
   Bell,
 } from "lucide-react";
 import { useState } from "react";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function DealerFunnel() {
+  useSEO({ title: "Software for Mobility Dealers — Stop Eating Warranty Disputes", description: "Adapy gives mobility dealers the diagnostic data, warranty evidence, and lifecycle visibility to stop losing margin to invisible failures.", path: "/dealer-funnel" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");

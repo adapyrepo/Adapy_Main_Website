@@ -90,9 +90,11 @@ const userProfiles = [
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
+import { useSEO } from "@/hooks/use-seo";
 const heroVideo = "/hero-video.mp4";
 
 export default function Home() {
+  useSEO({ title: "Adapy — Connected Adaptive Mobility Platform", description: "Adapy is the connected platform for adaptive vehicles — proactive safety, unified control, and lifecycle visibility for drivers, mobility dealers, NEMT fleets, and CDRS clinicians.", path: "/" });
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<
     (typeof learningVideos)[0] | null

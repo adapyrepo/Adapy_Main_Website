@@ -4,8 +4,10 @@ import { useProducts } from "@/hooks/use-products";
 import { motion } from "framer-motion";
 import { Loader2, ArrowRight, Check } from "lucide-react";
 import { Link } from "wouter";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function Products() {
+  useSEO({ title: "Adapy Products — Hardware, Software, and Mobile App", description: "Explore the Adapy product line: Smart Hub, mobile app, dealer dashboard, and the safety modules powering connected adaptive mobility.", path: "/products" });
   const { data: products, isLoading } = useProducts();
 
   if (isLoading) {

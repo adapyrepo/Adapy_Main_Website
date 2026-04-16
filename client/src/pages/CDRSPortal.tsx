@@ -18,6 +18,7 @@ import {
   Layout,
   ShieldCheck
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const reports = [
   { id: 1, title: "Independence Uptime", desc: "Track successful access/egress sessions vs missed days.", icon: <TrendingUp /> },
@@ -35,6 +36,7 @@ const reports = [
 ];
 
 export default function CDRSPortal() {
+  useSEO({ title: "CDRS Portal — Visibility for Driving Rehab Specialists", description: "Real visibility into how your clients use their adaptive equipment after the prescription — built for CDRS clinicians and OT specialists.", path: "/software/cdrs" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

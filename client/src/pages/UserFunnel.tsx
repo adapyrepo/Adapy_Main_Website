@@ -15,8 +15,10 @@ import {
   Bell,
 } from "lucide-react";
 import { useState } from "react";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function UserFunnel() {
+  useSEO({ title: "Adaptive Vehicle Independence for Drivers & Families", description: "Reclaim independence behind the wheel. Adapy unifies your adaptive vehicle equipment into one safe, weatherproof, in-cabin control system.", path: "/user-funnel" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formStep, setFormStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);

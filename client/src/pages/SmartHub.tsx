@@ -19,6 +19,7 @@ import {
   Lock,
   CheckCircle2
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const features = [
   {
@@ -77,6 +78,7 @@ const faqs = [
 ];
 
 export default function SmartHub() {
+  useSEO({ title: "Adapy Smart Hub — The Brain of Every Adaptive Vehicle", description: "The Adapy Smart Hub unifies every piece of adaptive equipment — lifts, ramps, doors, controls — into one intelligent, connected system.", path: "/hardware/smart-hub" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />
@@ -87,7 +89,7 @@ export default function SmartHub() {
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
           <img 
             src={hubWireframe} 
-            alt="" 
+            alt="Adapy Smart Hub wireframe diagram showing connected control architecture"
             className="w-full h-full object-cover lg:object-contain object-right"
           />
         </div>

@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, User } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const blogPosts = [
   {
@@ -64,6 +65,7 @@ const blogPosts = [
 const categories = ["All", "Industry Insights", "Technology", "Case Study", "Security", "Operations", "Community"];
 
 export default function Blog() {
+  useSEO({ title: "Adapy Blog — Stories from Adaptive Mobility", description: "Field notes, research, and stories from the front line of adaptive mobility — for drivers, dealers, fleets, and clinicians.", path: "/blog" });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <div className="absolute top-0 left-0 right-0 z-50">

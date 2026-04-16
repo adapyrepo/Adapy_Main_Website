@@ -19,8 +19,10 @@ import {
   ChevronRight,
   Activity
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function Platform() {
+  useSEO({ title: "The Adapy Platform — Unified Adaptive Vehicle Control", description: "One unified control architecture for every adaptive vehicle: smart hub, harness integration, wireless controllers, safety modules, app, and dashboard.", path: "/platform" });
   useEffect(() => {
     document.title = "Adapy Smart Mobility Platform | Unified Infrastructure";
   }, []);

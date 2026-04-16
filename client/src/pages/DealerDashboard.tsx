@@ -16,6 +16,7 @@ import {
   Clock,
   Wrench
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const features = [
   {
@@ -51,6 +52,7 @@ const features = [
 ];
 
 export default function DealerDashboard() {
+  useSEO({ title: "Dealer Dashboard — Fleet-Wide Diagnostics & Warranty Data", description: "A single dashboard for every install, diagnostic event, and warranty case across your dealership.", path: "/software/dealer" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

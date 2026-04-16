@@ -12,8 +12,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function Contact() {
+  useSEO({ title: "Contact Adapy — Talk to a Human", description: "Talk to the Adapy team about your vehicle, your fleet, or your clients. Real humans, fast response.", path: "/contact" });
   const mutation = useContactForm();
   
   const form = useForm<InsertContactRequest>({

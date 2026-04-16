@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   ChevronRight
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const features = [
   {
@@ -74,6 +75,7 @@ const faqs = [
 ];
 
 export default function SafetyModules() {
+  useSEO({ title: "Adaptive Vehicle Safety Modules — Always-On Monitoring", description: "Always-on monitoring for lifts, ramps, cabin temperature, CO levels, and more — engineered to protect adaptive drivers and passengers.", path: "/hardware/safety-modules" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

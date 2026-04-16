@@ -15,6 +15,7 @@ import {
   Zap,
   Network
 } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const benefits = [
   {
@@ -68,6 +69,7 @@ const faqs = [
 ];
 
 export default function WirelessControllers() {
+  useSEO({ title: "Wireless Controllers — One Device, Every Function", description: "Replace pendants, fobs, and key-cranks with a single wireless controller for every adaptive function in the vehicle.", path: "/hardware/wireless-controllers" });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

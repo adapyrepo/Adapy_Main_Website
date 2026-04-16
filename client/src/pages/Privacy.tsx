@@ -1,7 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { useSEO } from "@/hooks/use-seo";
 
 export default function Privacy() {
+  useSEO({ title: "Privacy Policy", description: "How Adapy collects, uses, and protects your personal information.", path: "/privacy" });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans" data-testid="page-privacy">
       <Navbar />

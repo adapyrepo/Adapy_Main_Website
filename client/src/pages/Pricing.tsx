@@ -12,6 +12,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import { useSEO } from "@/hooks/use-seo";
 
 const equipmentOptions = [
   "Wheelchair Lift",
@@ -62,6 +63,7 @@ const steps = [
 ];
 
 export default function Pricing() {
+  useSEO({ title: "Adapy Pricing — Plans for Drivers, Dealers, and Fleets", description: "Custom pricing for individual drivers, mobility dealers, and NEMT fleets. Get a tailored quote for your vehicle or operation.", path: "/pricing" });
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
