@@ -20,6 +20,8 @@ import UserFunnel from "@/pages/UserFunnel";
 import CDRSPortal from "@/pages/CDRSPortal";
 import IndividualSolutions from "@/pages/IndividualSolutions";
 import NEMTFleet from "@/pages/NEMTFleet";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
 
 function Router() {
   return (
@@ -40,6 +42,8 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/blog" component={Blog} />
       <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
       <Route component={NotFound} />
     </Switch>
   );

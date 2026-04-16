@@ -182,20 +182,20 @@ export function Footer() {
             © {new Date().getFullYear()} Adapy Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="text-white/40 hover:text-white text-sm transition-colors"
               data-testid="link-footer-privacy"
             >
               Privacy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/terms"
               className="text-white/40 hover:text-white text-sm transition-colors"
               data-testid="link-footer-terms"
             >
               Terms
-            </a>
+            </Link>
             <span className="text-white/20">|</span>
             <a
               href="#"
