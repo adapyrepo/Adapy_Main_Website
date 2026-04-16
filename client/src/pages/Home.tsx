@@ -5,20 +5,14 @@ import { TestimonialScroller } from "@/components/TestimonialScroller";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Smartphone,
-  Activity,
-  ShieldCheck,
   Cpu,
   Network,
   Cloud,
-  Zap,
-  Shield,
-  BarChart3,
-  Layers,
-  Thermometer,
-  Battery,
-  Navigation,
-  Lock,
+  AlertTriangle,
+  EyeOff,
+  Scale,
+  Accessibility,
+  ArrowRight,
   X,
   Play,
   User,
@@ -27,8 +21,7 @@ import {
   Ambulance,
   Cog,
 } from "lucide-react";
-import { useProducts } from "@/hooks/use-products";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const learningVideos = [
   {
@@ -63,52 +56,44 @@ import userPhoto1 from "@assets/modifier_1772655358581.png";
 import userPhoto2 from "@assets/Screenshot_2025-04-15_at_4.41.42_PM_1772655386210.png";
 import userPhoto3 from "@assets/adapy_copy_1772660123249.png";
 import userPhoto4 from "@assets/Screenshot_2026-03-04_at_1.33.58_PM_1772656449413.png";
-import phoneHand from "@assets/DSC02786-removebg_1772656599209.png";
 
+// Testimonials reframed around the problem each person had before Adapy.
 const userProfiles = [
   {
     image: userPhoto1,
-    name: "ATC Mobility",
-    role: "Fully Supports ATC Mobility Conversions",
-    quote:
-      "Adapy gives me the confidence to take my truck anywhere. The integration is so clean, it feels like it was built into the chassis from day one.",
+    name: "Truck Conversion Owner",
+    role: "Before Adapy",
+    pain: "Two remotes, a key fob, and a phone app — nothing talked to each other. Half the time something wouldn't respond and I'd have to call my dealer from the parking lot.",
+    outcome: "Now everything runs through one interface. The integration feels factory.",
   },
   {
     image: userPhoto2,
-    name: "Transfer Seats",
-    role: "Supports the majority of transfer seats/platforms",
-    quote:
-      "The unified control system means I no longer have to worry about multiple remotes. Everything just works.",
+    name: "Transfer Seat User",
+    role: "Before Adapy",
+    pain: "Balancing on the seat with a pendant in each hand was a daily fight. One slip and the pendant was on the floor — or worse, in the door.",
+    outcome: "The mobile app is a redundant backup. I never juggle controls again.",
   },
   {
     image: userPhoto3,
-    name: "Wheelchair Lifts",
-    role: "Fully Support BraunAbility and Ricon Lifts",
-    quote:
-      "Adapy's seamless integration has completely changed how I interact with my vehicle. It's freedom, redefined.",
+    name: "Lift Owner",
+    role: "Before Adapy",
+    pain: "I had no idea my lift was wearing out until it failed in a parking garage in the rain. There was no warning, no service reminder, nothing.",
+    outcome: "I get a notification before things break. My dealer reaches out first.",
   },
   {
     image: userPhoto4,
-    name: "Wheelchair Cranes",
-    role: "Fully Support Bruno & Harmar",
-    quote:
-      "My truck adaptation is done! Having Adapy controls for my lift and seat makes every journey so much easier. Truly life-changing.",
+    name: "Crane User",
+    role: "Before Adapy",
+    pain: "Operating my crane in snow or summer heat was miserable. I was outside the vehicle, exposed, every single trip.",
+    outcome: "I run everything from inside the cab. Weather doesn't decide my day anymore.",
   },
 ];
 
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 const heroVideo = "/hero-video.mp4";
-import award1 from "@assets/Globee_Award_1772663910071.png";
-import award2 from "@assets/Plaza_Pitch_Award_1772663910071.png";
-import award3 from "@assets/SR_50_Award_1772663910072.png";
-import award4 from "@assets/US_patent_Award_1772663910072.png";
-import award5 from "@assets/UTU_Award_1772663910072.png";
 
 export default function Home() {
-  const { data: products } = useProducts();
-  const featuredProduct = products?.find((p) => p.isFeatured) || products?.[0];
-  const [textIndex, setTextIndex] = useState(0);
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<
@@ -119,39 +104,14 @@ export default function Home() {
     setIsRoleSelectorOpen(true);
   };
 
-  const benefitStatements = [
-    "Adaptive Equipment, Finally Unified",
-    "Too Many Remotes. Too Much Failure",
-    "Adaptive Tech Is Broken. We Fixed It.",
-    "Stop Juggling Controls.",
-    "Outdated Systems Don’t Belong in Modern Mobility.",
-    "Complexity Is the Enemy of Independence.",
-    "“Good Enough” Isn’t Good Enough Anymore.",
-    "This Is What Adaptive Tech Should Have Been.",
-    "We Didn’t Add Another Device. We Replaced the Problem.",
-    "Adaptive Equipment Should Work Together—or Not Exist at All.",
-    "One System. Zero Excuses.",
-    "This Is What Happens When Accessibility Is Taken Seriously.",
-    "If It Takes Multiple Remotes, It’s Already Failed.",
-    "We Didn’t Simplify Adaptive Tech. We Rebuilt It.",
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % benefitStatements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [benefitStatements.length]);
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
       <div className="absolute top-0 left-0 right-0 z-50">
         <Navbar onGetStarted={handleGetStartedClick} />
       </div>
 
-      {/* Hero Section */}
+      {/* HERO — problem-first */}
       <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-black">
-        {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -159,48 +119,47 @@ export default function Home() {
             loop
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          {/* Targeted Vignette: Darker bottom-left for text readability */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.1)_40%,transparent_70%)] z-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10 z-30" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.35)_45%,transparent_75%)] z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40 z-30" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
-          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-20 relative">
-            <div className="max-w-[400px] w-full flex flex-col items-start justify-center min-h-[180px]">
+          <div className="flex-1 flex flex-col items-start justify-end text-left px-6 md:px-12 lg:px-24 pb-20">
+            <div className="max-w-[640px] w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-start"
               >
-                <h1 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold leading-[1.1] tracking-tight text-white mb-4 uppercase">
-                  Mobility Should Never Operate in Isolation.
+                <span className="text-[11px] md:text-xs font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-4">
+                  The Status Quo Is Costing You
+                </span>
+                <h1 className="text-[28px] md:text-[44px] lg:text-[56px] font-bold leading-[1.05] tracking-tight text-white mb-5">
+                  Every day, adaptive vehicles fail silently —
+                  <br className="hidden md:block" />
+                  <span className="text-white/80">
+                    {" "}and no one knows until it&rsquo;s too late.
+                  </span>
                 </h1>
-
-                <p className="text-[13px] md:text-[15px] text-white/70 max-w-[350px] mb-6 leading-relaxed">
-                  Adapy transforms adaptive vehicles into intelligent, connected
-                  environments — delivering proactive safety, unified control,
-                  and lifecycle visibility.
+                <p className="text-[14px] md:text-[17px] text-white/70 max-w-[520px] mb-8 leading-relaxed">
+                  A pendant slammed in a door. A lift that gave no warning. A
+                  CO sensor no one was watching. The adaptive industry has
+                  advanced — its infrastructure has not.
                 </p>
 
-                <div className="flex flex-row gap-4 justify-start items-center whitespace-nowrap">
-                  <button
-                    onClick={() => setIsSliderOpen(true)}
-                    className="px-6 py-2.5 bg-[#0071e3] text-white rounded-full font-bold text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20"
-                  >
-                    Explore the Ecosystem
-                  </button>
-                  <button
-                    onClick={() => setIsRoleSelectorOpen(true)}
-                    className="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-[14px] hover:bg-white/20 transition-all transform hover:scale-105 active:scale-[0.97]"
-                  >
-                    Watch 2-Min Demo
-                  </button>
-                </div>
+                <button
+                  onClick={() => setIsRoleSelectorOpen(true)}
+                  className="px-7 py-3 bg-[#0071e3] text-white rounded-full font-bold text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-[0.97] shadow-xl shadow-[#0071e3]/20 inline-flex items-center gap-2"
+                  data-testid="button-hero-get-started"
+                >
+                  See What Changes With Adapy
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </motion.div>
             </div>
           </div>
@@ -211,25 +170,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-32 bg-white text-black">
+      {/* PROBLEM CHAPTER 1 — Fragmentation */}
+      <section className="py-32 bg-[#0a0a0a] text-white">
         <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-                The Industry Gap
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8 leading-[1.1]">
-                Adaptive Mobility Has Advanced.
-                <br />
-                The Infrastructure Has Not.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase">
+                  Chapter 01 — Fragmentation
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
+                Every device speaks a different language.
+                None of them speak to each other.
               </h2>
-              <p className="text-xl text-black/60 mb-8 leading-relaxed">
-                Today’s adaptive vehicles operate in isolation. As mobility
-                solutions become more complex, the industry lacks a connected
-                backbone.
+              <p className="text-xl text-white/60 mb-8 leading-relaxed">
+                A modern adaptive vehicle is a stack of equipment from a dozen
+                different manufacturers — lifts, ramps, transfer seats, hand
+                controls, cranes, securement systems. Each one ships with its
+                own pendant, its own remote, its own diagnostic tool. None of
+                them share a single signal.
+              </p>
+              <p className="text-lg text-white/50 leading-relaxed">
+                For the user, that means juggling. For the dealer, that means
+                guessing. For the fleet, that means flying blind.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="lg:col-span-5 space-y-3">
               {[
                 "Equipment functions independently",
                 "No centralized monitoring",
@@ -240,290 +207,244 @@ export default function Home() {
               ].map((text, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-black/[0.03] border border-black/[0.05]"
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]"
                 >
-                  <div className="w-2 h-2 rounded-full bg-[#0071e3]" />
-                  <span className="font-medium text-black/80">{text}</span>
+                  <div className="w-2 h-2 rounded-full bg-[#0071e3] flex-shrink-0" />
+                  <span className="font-medium text-white/80 text-sm">
+                    {text}
+                  </span>
+                </div>
+              ))}
+              <div className="mt-6 p-5 rounded-2xl bg-[#0071e3]/10 border border-[#0071e3]/30">
+                <div className="text-3xl font-bold text-white mb-1">
+                  12+
+                </div>
+                <p className="text-sm text-white/70">
+                  separate devices in a typical adaptive setup, each with its
+                  own controller{" "}
+                  <span className="text-white/40">[source needed]</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROBLEM CHAPTER 2 — Invisible failures */}
+      <section className="py-32 bg-[#111] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="bg-gradient-to-br from-[#0071e3]/10 to-transparent border border-white/[0.08] rounded-3xl p-8">
+                <EyeOff className="w-10 h-10 text-[#0071e3] mb-6" />
+                <div className="space-y-6">
+                  <div>
+                    <div className="text-4xl font-bold text-white mb-1">
+                      ~70%
+                    </div>
+                    <p className="text-sm text-white/60">
+                      of adaptive equipment failures originate from pendant
+                      damage — slammed in doors, crushed in seats, dropped on
+                      pavement{" "}
+                      <span className="text-white/40">[source needed]</span>
+                    </p>
+                  </div>
+                  <div className="h-px bg-white/10" />
+                  <div>
+                    <div className="text-4xl font-bold text-white mb-1">
+                      0
+                    </div>
+                    <p className="text-sm text-white/60">
+                      usage-cycle data points captured by today&rsquo;s
+                      adaptive equipment{" "}
+                      <span className="text-white/40">[source needed]</span>
+                    </p>
+                  </div>
+                  <div className="h-px bg-white/10" />
+                  <div>
+                    <div className="text-4xl font-bold text-white mb-1">
+                      AVG.
+                    </div>
+                    <p className="text-sm text-white/60">
+                      time between first warning sign and total failure:
+                      none{" "}
+                      <span className="text-white/40">[source needed]</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-6 block">
+                Chapter 02 — Invisible Failures
+              </span>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
+                You only find out when someone is already stranded.
+              </h2>
+              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+                Adaptive equipment doesn&rsquo;t fail loudly. It fails on a
+                Tuesday morning, in a parking garage, in the rain. The pendant
+                that&rsquo;s been getting slammed in the door for six months
+                finally gives up. The lift that&rsquo;s been laboring on a
+                weak motor finally stalls. The CO sensor that nobody was
+                watching finally crosses a threshold.
+              </p>
+              <p className="text-lg text-white/50 leading-relaxed">
+                There is no service alert. There is no usage history. There
+                is no warning. The first sign of a problem is the problem
+                itself — and by then, someone is already stuck.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROBLEM CHAPTER 3 — Liability & cost exposure */}
+      <section className="py-32 bg-[#0a0a0a] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-7">
+              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-6 block">
+                Chapter 03 — Liability &amp; Cost Exposure
+              </span>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
+                When something goes wrong, no one can prove what happened.
+              </h2>
+              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+                Manufacturers reject warranty claims because the dealer
+                can&rsquo;t prove fault. The VA, Voc-Rehab, and Workforce
+                Services deny replacement requests because there&rsquo;s no
+                documented usage data. NEMT operators face Medicaid clawbacks
+                and lawsuit exposure because they can&rsquo;t prove the
+                vehicle was safe at the time of incident.
+              </p>
+              <p className="text-lg text-white/50 leading-relaxed">
+                Without telemetry, every dispute is a guess — and the people
+                with the most to lose are the ones with the least
+                evidence.
+              </p>
+            </div>
+            <div className="lg:col-span-5 space-y-4">
+              {[
+                {
+                  icon: <Scale className="w-6 h-6" />,
+                  title: "Rejected warranty claims",
+                  body: "No usage data, no proof of fault. The dealer eats the cost.",
+                },
+                {
+                  icon: <AlertTriangle className="w-6 h-6" />,
+                  title: "Denied funding requests",
+                  body: "VA / Voc-Rehab / Workforce Services need justification. There is none.",
+                },
+                {
+                  icon: <Scale className="w-6 h-6" />,
+                  title: "Medicaid audit failures",
+                  body: "NEMT operators can&rsquo;t document vehicle safety at time of trip.",
+                },
+                {
+                  icon: <AlertTriangle className="w-6 h-6" />,
+                  title: "Lawsuit exposure",
+                  body: "Without telemetry, every incident becomes a liability case.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.06]"
+                >
+                  <div className="text-[#0071e3] mb-3">{item.icon}</div>
+                  <h4 className="font-bold text-white mb-1">{item.title}</h4>
+                  <p
+                    className="text-sm text-white/60 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: item.body }}
+                  />
+                </div>
+              ))}
+              <p className="text-xs text-white/40 pt-2">
+                Cost of a single equipment-related lawsuit settlement:{" "}
+                <span className="text-white/60">[source needed]</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROBLEM CHAPTER 4 — Lost independence */}
+      <section className="py-32 bg-[#111] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-5 order-2 lg:order-1 space-y-4">
+              {[
+                {
+                  title: "Depending on others",
+                  body: "Asking someone to open a door, lower a lift, position a crane — every single trip.",
+                },
+                {
+                  title: "Operating in the weather",
+                  body: "Standing in rain, snow, or heat to control equipment from outside the vehicle.",
+                },
+                {
+                  title: "Juggling pendants mid-transfer",
+                  body: "Trying to balance during a transfer with a pendant in each hand.",
+                },
+                {
+                  title: "No one to call",
+                  body: "When something fails on the road, the dealer is unreachable until Monday.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.06]"
+                >
+                  <h4 className="font-bold text-white mb-1">{item.title}</h4>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {item.body}
+                  </p>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2 & 3 — THE ADAPY ECOSYSTEM & SMART HUB */}
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 text-center max-w-4xl mb-20">
-          <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-            The Adapy Ecosystem
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            One Platform. Multiple Layers. Total Visibility.
-          </h2>
-          <p className="text-xl text-black/60 leading-relaxed">
-            At the center of every connected adaptive vehicle is the Adapy Smart
-            Hub — the brain of the system. One vehicle. One intelligent control
-            layer.
-          </p>
-        </div>
-
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-[2.5rem] border border-black/[0.05] shadow-sm">
-              <Cpu className="w-12 h-12 text-[#0071e3] mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Smart Hub</h3>
-              <p className="text-black/60 leading-relaxed mb-6">
-                The Brain of the Adaptive Vehicle. Centralizes control and
-                monitoring across compatible mobility equipment.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Multi-device integration",
-                  "Equipment diagnostics",
-                  "Usage reporting",
-                  "Real-time alerts",
-                ].map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-2 text-sm font-medium"
-                  >
-                    <Zap className="w-4 h-4 text-[#0071e3]" /> {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-white p-10 rounded-[2.5rem] border border-black/[0.05] shadow-sm md:mt-8">
-              <Network className="w-12 h-12 text-[#0071e3] mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Connectivity</h3>
-              <p className="text-black/60 leading-relaxed mb-6">
-                Seamlessly connects adaptive equipment, control interfaces, and
-                safety sensors into one unified environment.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Harness Kits",
-                  "Wireless Controllers",
-                  "Safety Sensors",
-                  "Environmental Monitoring",
-                ].map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-2 text-sm font-medium"
-                  >
-                    <Layers className="w-4 h-4 text-[#0071e3]" /> {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-white p-10 rounded-[2.5rem] border border-black/[0.05] shadow-sm md:mt-16">
-              <Cloud className="w-12 h-12 text-[#0071e3] mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Cloud Intelligence</h3>
-              <p className="text-black/60 leading-relaxed mb-6">
-                Visibility beyond the vehicle. Secure dashboards for dealers,
-                manufacturers, and fleet operators.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Warranty documentation",
-                  "Compliance reporting",
-                  "Lifecycle analytics",
-                  "Fleet management",
-                ].map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-2 text-sm font-medium"
-                  >
-                    <BarChart3 className="w-4 h-4 text-[#0071e3]" /> {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4 & 5 — CONTROL & SAFETY */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div>
-              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-                Safety & Monitoring
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <Accessibility className="w-10 h-10 text-[#0071e3] mb-6" />
+              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-6 block">
+                Chapter 04 — Lost Independence
               </span>
-              <h2 className="text-4xl font-bold mb-8">
-                Proactive Safety Intelligence
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
+                The cost isn&rsquo;t just money. It&rsquo;s freedom.
               </h2>
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { icon: <Thermometer />, label: "Temperature" },
-                  { icon: <Battery />, label: "Voltage/Battery" },
-                  { icon: <Shield />, label: "CO Detection" },
-                  { icon: <Navigation />, label: "GPS Tracking" },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="p-6 rounded-3xl bg-[#f5f5f7] flex flex-col items-center text-center"
-                  >
-                    <div className="mb-4 text-[#0071e3]">{item.icon}</div>
-                    <span className="font-bold text-sm uppercase tracking-wider">
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-8 text-black/60 leading-relaxed text-lg">
-                The Adapy platform expands through intelligent monitoring
-                modules, creating a layered safety architecture. Safety becomes
-                proactive — not reactive.
+              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+                Every dropped pendant. Every trip stood up in the rain. Every
+                transfer that needed a second pair of hands. Every silent
+                failure that ended someone&rsquo;s day. These aren&rsquo;t
+                edge cases — they&rsquo;re the daily texture of life with
+                fragmented adaptive equipment.
               </p>
-            </div>
-            <div className="bg-black text-white p-12 rounded-[3rem] flex flex-col justify-center">
-              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-                Control Integration
-              </span>
-              <h2 className="text-4xl font-bold mb-8">
-                Unified Control Environment
-              </h2>
-              <div className="space-y-8">
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Harness Kits</h4>
-                  <p className="text-white/60">
-                    Purpose-built integration kits designed for specific
-                    equipment models. Multiple kits can operate within a single
-                    installation.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">
-                    Wireless Controllers
-                  </h4>
-                  <p className="text-white/60">
-                    For locations where traditional mounting is not possible —
-                    such as inside transfer seats — Adapy enables secure
-                    wireless integration.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7 — SCALABLE DEPLOYMENT */}
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-20">
-            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              Scalable Deployment
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-              From Individual Vehicles to Fleet Infrastructure
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-10 rounded-[2.5rem] bg-white border border-black/[0.05]">
-              <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center mb-6">
-                <Smartphone className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Personal Mobility</h3>
-              <p className="text-black/60 leading-relaxed">
-                Connected, intelligent environments for individual adaptive
-                vehicles and dealer networks.
+              <p className="text-lg text-white/50 leading-relaxed">
+                The promise of adaptive mobility was independence. The
+                reality, for most users, is a daily negotiation with
+                equipment that doesn&rsquo;t cooperate and doesn&rsquo;t
+                explain itself.
               </p>
-            </div>
-            <div className="p-10 rounded-[2.5rem] bg-white border border-black/[0.05]">
-              <div className="w-12 h-12 bg-[#0071e3] text-white rounded-2xl flex items-center justify-center mb-6">
-                <Network className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">
-                NEMT Fleet Intelligence
-              </h3>
-              <p className="text-black/60 leading-relaxed">
-                Fleet-scale monitoring including environmental safety alerts,
-                GPS tracking, and adaptive equipment oversight.
+              <p className="text-sm text-white/40 mt-8">
+                % of adaptive users who report at least one
+                equipment-related disruption per week:{" "}
+                <span className="text-white/60">[source needed]</span>
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-black text-white text-center overflow-hidden relative">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
-        </div>
-
-        {/* Phone Hand Background Asset */}
-        <div className="absolute right-0 bottom-0 w-1/3 h-full opacity-60 pointer-events-none hidden lg:block translate-x-10 translate-y-20">
-          <img
-            src={phoneHand}
-            alt=""
-            loading="lazy"
-            className="w-full h-full object-contain object-right-bottom brightness-125"
-          />
-        </div>
-
-        <div className="container mx-auto px-6 max-w-3xl relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-12 leading-[1.1]">
-            The Future of Adaptive Mobility Is Connected
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            {["Control", "Safety", "Intelligence", "Visibility"].map(
-              (word, i) => (
-                <div key={i} className="flex flex-col items-center">
-                  <div className="w-1 h-12 bg-[#0071e3] mb-4" />
-                  <span className="text-lg font-bold uppercase tracking-[0.2em]">
-                    {word}
-                  </span>
-                </div>
-              ),
-            )}
-          </div>
-
-          <p className="text-xl text-white/60 mb-12">
-            Adapy creates the digital infrastructure layer the adaptive industry
-            has been missing. All unified.
-          </p>
-        </div>
-      </section>
-
-      {/* Supporting Top Brands Section */}
-      <section className="py-24 bg-black text-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-            {/* Left side text */}
-            <div className="flex-shrink-0">
-              <div className="text-4xl md:text-5xl font-bold leading-tight">
-                <span className="block text-white/80">Driving innovation</span>
-                <span className="block text-white/80">across adaptive</span>
-                <span className="block text-[#0071e3] font-bold">mobility brands</span>
-              </div>
-            </div>
-            
-            {/* Right side scrolling logos */}
-            <div className="flex-1 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-              <ScrollingLogos />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* USER PROFILES SECTION */}
+      {/* REAL IMPACT — testimonials reframed around the problem */}
       <section className="py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mb-16">
             <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              Real Impact
+              Real Voices, Real Friction
             </span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              Designed for People, Powered by Intelligence.
+              Before Adapy, this was the daily reality.
             </h2>
             <p className="text-xl text-black/60 leading-relaxed">
-              We build technology that disappears into the background, so you
-              can focus on the foreground of your life.
+              These are the moments people stopped accepting as normal.
             </p>
           </div>
 
@@ -543,15 +464,18 @@ export default function Home() {
                   loading="lazy"
                   className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? "object-[75%_center]" : i === 1 ? "object-[27%_center]" : i === 2 ? "object-[50%_center]" : i === 3 ? "object-[center_20%]" : ""}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <p className="text-sm font-medium text-white/70 mb-2 italic">
-                    "{profile.quote}"
-                  </p>
-                  <h4 className="text-xl font-bold">{profile.name}</h4>
-                  <p className="text-xs font-bold tracking-widest uppercase text-[#0071e3] mt-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <p className="text-xs font-bold tracking-widest uppercase text-[#0071e3] mb-2">
                     {profile.role}
                   </p>
+                  <p className="text-sm font-medium text-white/85 mb-3 italic leading-relaxed">
+                    &ldquo;{profile.pain}&rdquo;
+                  </p>
+                  <p className="text-xs text-white/60 leading-relaxed border-t border-white/10 pt-3">
+                    {profile.outcome}
+                  </p>
+                  <h4 className="text-sm font-bold mt-3">{profile.name}</h4>
                 </div>
               </motion.div>
             ))}
@@ -563,29 +487,93 @@ export default function Home() {
         onVideoSelect={(video) => setActiveVideo(video)}
       />
 
-      {/* FINAL CTA */}
-      <section className="py-32 bg-white text-center">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Embrace The Future
-          </h2>
-          <p className="text-xl text-black/60 mb-12 leading-relaxed">
-            Whether you are a user, dealer, manufacturer, healthcare
-            professional, or fleet operator — We invite you to join adapy and
-            support our mission to improve mobility.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/products">
-              <button className="px-10 py-5 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95">
-                Explore the Platform
-              </button>
-            </Link>
-            <Link href="/contact">
-              <button className="px-10 py-5 bg-black text-white rounded-full font-bold text-lg hover:bg-black/90 transition-all shadow-lg hover:scale-105 active:scale-95">
-                Join Now
-              </button>
-            </Link>
+      {/* SOLUTION — compressed "What we built in response" (~20%) */}
+      <section className="py-28 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              What We Built In Response
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              One platform. One signal. Total visibility.
+            </h2>
+            <p className="text-lg text-black/60 leading-relaxed">
+              Adapy is the missing infrastructure layer — a Smart Hub in the
+              vehicle, connectivity across every device, and a cloud
+              intelligence layer that finally tells everyone what&rsquo;s
+              actually happening.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-8 rounded-[2rem] border border-black/[0.05] shadow-sm">
+              <Cpu className="w-10 h-10 text-[#0071e3] mb-5" />
+              <h3 className="text-xl font-bold mb-3">Smart Hub</h3>
+              <p className="text-black/60 leading-relaxed text-sm">
+                The brain of the adaptive vehicle. Centralizes control and
+                monitoring across compatible mobility equipment.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-[2rem] border border-black/[0.05] shadow-sm">
+              <Network className="w-10 h-10 text-[#0071e3] mb-5" />
+              <h3 className="text-xl font-bold mb-3">Connectivity</h3>
+              <p className="text-black/60 leading-relaxed text-sm">
+                Harnesses, wireless controllers, and safety sensors that pull
+                every device into one unified environment.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-[2rem] border border-black/[0.05] shadow-sm">
+              <Cloud className="w-10 h-10 text-[#0071e3] mb-5" />
+              <h3 className="text-xl font-bold mb-3">Cloud Intelligence</h3>
+              <p className="text-black/60 leading-relaxed text-sm">
+                Dashboards, usage reports, and lifecycle analytics for
+                dealers, fleets, and the people who fund replacement
+                equipment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BRAND TRUST STRIP */}
+      <section className="py-20 bg-black text-white border-t border-white/10">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="flex-shrink-0">
+              <div className="text-2xl md:text-3xl font-bold leading-tight">
+                <span className="block text-white/70">Driving innovation</span>
+                <span className="block text-white/70">across adaptive</span>
+                <span className="block text-[#0071e3] font-bold">
+                  mobility brands
+                </span>
+              </div>
+            </div>
+            <div className="flex-1 opacity-50 grayscale hover:grayscale-0 transition-all duration-700 w-full">
+              <ScrollingLogos />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CLOSING ASK — single role-selector CTA (~10%) */}
+      <section className="py-32 bg-white text-center">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            Find out what changes for you.
+          </h2>
+          <p className="text-lg text-black/60 mb-10 leading-relaxed">
+            The story is different depending on who you are — a wheelchair
+            user, a mobility dealer, or a fleet operator. Pick your path
+            and we&rsquo;ll show you exactly what shifts.
+          </p>
+          <button
+            onClick={() => setIsRoleSelectorOpen(true)}
+            className="px-10 py-5 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20 hover:scale-105 active:scale-95 inline-flex items-center gap-2"
+            data-testid="button-closing-get-started"
+          >
+            Choose Your Path
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </section>
 
@@ -600,6 +588,7 @@ export default function Home() {
           onClick={() => setIsSliderOpen(true)}
           className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] bg-[#0071e3] text-white py-4 px-2 rounded-l-xl shadow-2xl flex items-center gap-2 transition-colors hover:bg-[#0077ed]"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+          data-testid="button-video-slider-open"
         >
           <Play className="w-3 h-3 fill-current rotate-90" />
           <span className="font-bold text-[10px] tracking-widest uppercase">
@@ -673,14 +662,14 @@ export default function Home() {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-black/10">
-                  <button 
+                  <button
                     onClick={() => {
                       setIsSliderOpen(false);
                       setIsRoleSelectorOpen(true);
                     }}
                     className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20"
                   >
-                    Watch 2-Min Demo
+                    Choose Your Path
                   </button>
                 </div>
               </div>
@@ -726,13 +715,15 @@ export default function Home() {
             onClick={() => setIsRoleSelectorOpen(false)}
             className="fixed inset-0 bg-slate-900 z-[250] overflow-hidden flex flex-col"
           >
-            {/* Header with Logo */}
             <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-b border-white/10 px-6 py-6 flex items-center justify-center">
-              <img src={adapyLogo} alt="Adapy" className="h-8 w-auto invert brightness-0" />
+              <img
+                src={adapyLogo}
+                alt="Adapy"
+                className="h-8 w-auto invert brightness-0"
+              />
             </div>
 
-            {/* Main Content */}
-            <div 
+            <div
               className="flex-1 flex items-center justify-center p-6 md:p-12 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -742,7 +733,6 @@ export default function Home() {
                 exit={{ opacity: 0, y: 20 }}
                 className="bg-white rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl relative"
               >
-                {/* Close Button */}
                 <button
                   onClick={() => setIsRoleSelectorOpen(false)}
                   className="absolute top-6 right-6 p-2 text-black/40 hover:text-black transition-colors"
@@ -750,14 +740,17 @@ export default function Home() {
                   <X className="w-6 h-6" />
                 </button>
 
-                {/* Centered Content */}
                 <div className="text-center">
-                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Let's Build Your Adapy System</h2>
-                  <p className="text-black/60 mb-12 text-lg">Choose your role to see how Adapy works for you</p>
-                  
+                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                    Let&rsquo;s Build Your Adapy System
+                  </h2>
+                  <p className="text-black/60 mb-12 text-lg">
+                    Choose your role to see how Adapy works for you
+                  </p>
+
                   <div className="flex flex-col gap-6 max-w-2xl mx-auto">
                     <Link href="/user-funnel">
-                      <button 
+                      <button
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
@@ -766,7 +759,7 @@ export default function Home() {
                       </button>
                     </Link>
                     <Link href="/dealer-funnel">
-                      <button 
+                      <button
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
@@ -775,7 +768,7 @@ export default function Home() {
                       </button>
                     </Link>
                     <Link href="/contact">
-                      <button 
+                      <button
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
@@ -784,7 +777,7 @@ export default function Home() {
                       </button>
                     </Link>
                     <Link href="/solutions/nemt">
-                      <button 
+                      <button
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
@@ -793,7 +786,7 @@ export default function Home() {
                       </button>
                     </Link>
                     <Link href="/contact">
-                      <button 
+                      <button
                         onClick={() => setIsRoleSelectorOpen(false)}
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
@@ -806,12 +799,15 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Footer */}
             <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-t border-white/10 px-6 py-4 flex items-center justify-between text-white/60 text-xs">
               <div>© 2026 Adapy. All rights reserved.</div>
               <div className="flex gap-4">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms</a>
+                <a href="#" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="hover:text-white transition-colors">
+                  Terms
+                </a>
               </div>
             </div>
           </motion.div>
