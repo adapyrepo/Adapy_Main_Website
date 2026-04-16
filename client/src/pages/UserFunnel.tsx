@@ -112,8 +112,8 @@ export default function UserFunnel() {
     {
       icon: <CloudRain className="w-7 h-7" />,
       eyebrow: "Chapter 02 — The Weather Doesn't Care",
-      title: "Standing in the rain to operate your own vehicle.",
-      body: "Cranes, ramps, and lifts are still controlled from outside the vehicle on most setups. That means rain. Snow. Summer heat. You're exposed to the weather every time you transfer — when the entire job could be done from the warmth and safety of your garage or your seat. Users who've made the switch describe it as life-changing.",
+      title: "Sitting in the rain to operate your own vehicle.",
+      body: "Cranes, ramps, and lifts are still controlled from outside the vehicle on most setups. That means rain. Snow. Summer heat. You're exposed to the weather every time you transfer — stuck out in it from your chair when the entire job could be done from the warmth and safety of your garage or your seat. Users who've made the switch describe it as life-changing.",
       stat: "Average minutes per trip spent operating equipment outdoors",
     },
     {

@@ -377,7 +377,7 @@ export default function Home() {
                 },
                 {
                   title: "Operating in the weather",
-                  body: "Standing in rain, snow, or heat to control equipment from outside the vehicle.",
+                  body: "Stuck in rain, snow, or heat to control equipment from outside the vehicle — from your chair, with no shelter.",
                 },
                 {
                   title: "Juggling pendants mid-transfer",
