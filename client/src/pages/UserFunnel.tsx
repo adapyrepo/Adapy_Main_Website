@@ -4,16 +4,15 @@ import { motion } from "framer-motion";
 import {
   ChevronDown,
   CheckCircle,
-  Zap,
-  Users,
-  Smartphone,
-  Heart,
   ArrowRight,
-  AlertCircle,
-  Settings,
+  CloudRain,
+  HandHelping,
+  Radio,
+  Activity,
+  Wrench,
+  MessageCircle,
+  Smartphone,
   Bell,
-  History,
-  HeartPulse,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -60,7 +59,8 @@ export default function UserFunnel() {
           },
           body: JSON.stringify({
             _form_slug: "qualify-form",
-            _api_key: "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            _api_key:
+              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
             first_name: formData.first_name,
             last_name: formData.last_name,
             email: formData.email,
@@ -80,116 +80,102 @@ export default function UserFunnel() {
         throw new Error(data.error || "Something went wrong.");
       }
 
-      setSubmitMessage(data.message || "Thank you! We will be in touch shortly.");
+      setSubmitMessage(
+        data.message || "Thank you! We will be in touch shortly.",
+      );
       setFormStep(5);
       window.setTimeout(() => {
         window.location.href = data.redirect_url || "https://www.adapy.com";
       }, 2000);
     } catch (error) {
-      setSubmitError(error instanceof TypeError ? "Network request failed. Please try again." : error instanceof Error ? error.message : "Something went wrong.");
+      setSubmitError(
+        error instanceof TypeError
+          ? "Network request failed. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "Something went wrong.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const painPoints = [
+  // Problem chapters — drawn directly from real user-supplied pain points.
+  const problemChapters = [
     {
-      title: "Multiple Remotes & Controls",
-      desc: "Managing several different controls for different adaptive equipment is exhausting.",
+      icon: <HandHelping className="w-7 h-7" />,
+      eyebrow: "Chapter 01 — Dependence",
+      title: "You shouldn't have to ask someone to start your day.",
+      body: "Opening the door. Lowering the lift. Positioning the crane. Every trip begins with a request — to a partner, a parent, a friend, a stranger. Adaptive equipment was supposed to give you independence. Today, for most users, it just rearranges who you depend on.",
+      stat: "% of adaptive users who report needing help with vehicle equipment at least weekly",
     },
     {
-      title: "Inconsistent Experiences",
-      desc: "Each device works differently, making your mobility experience unpredictable.",
+      icon: <CloudRain className="w-7 h-7" />,
+      eyebrow: "Chapter 02 — The Weather Doesn't Care",
+      title: "Standing in the rain to operate your own vehicle.",
+      body: "Cranes, ramps, and lifts are still controlled from outside the vehicle on most setups. That means rain. Snow. Summer heat. You're exposed to the weather every time you transfer — when the entire job could be done from the warmth and safety of your garage or your seat. Users who've made the switch describe it as life-changing.",
+      stat: "Average minutes per trip spent operating equipment outdoors",
     },
     {
-      title: "Extra Dependence",
-      desc: "Complex setups often mean relying on others for things you should be able to do independently.",
+      icon: <Radio className="w-7 h-7" />,
+      eyebrow: "Chapter 03 — Pendant Failure",
+      title: "The pendant is the single biggest point of failure.",
+      body: "Slammed in a door. Crushed in a transfer seat. Dropped on pavement. Frayed by the cable. The little plastic remote that controls your lift is the most fragile thing in your vehicle — and when it dies, the whole system dies with it. A mobile app that mirrors every pendant function is the redundant backup that should have existed all along.",
+      stat: "~70% of adaptive equipment failures originate from pendant damage",
     },
     {
-      title: "Unnecessary Complexity",
-      desc: "Adaptive mobility shouldn't require constant troubleshooting or extra steps.",
+      icon: <Activity className="w-7 h-7" />,
+      eyebrow: "Chapter 04 — Mid-Transfer",
+      title: "A pendant in each hand is no way to keep your balance.",
+      body: "Anyone who's done a transfer knows the moment — half-supported, mid-pivot, trying to operate one pendant for the seat and another for the door. One slip, one dropped controller, and the whole sequence falls apart. The controls should adapt to you, not the other way around.",
+      stat: "Reported near-falls per year tied to control juggling during transfers",
+    },
+    {
+      icon: <Wrench className="w-7 h-7" />,
+      eyebrow: "Chapter 05 — Preventable Failures",
+      title: "By the time it breaks, no one knows why.",
+      body: "Adaptive equipment doesn't track its own usage. There's no cycle count. No wear log. No warning before the motor gives up on a Tuesday morning in a parking garage. Every failure that could have been caught with a simple service reminder happens anyway — because the data was never being collected.",
+      stat: "Average lead time between first warning sign and complete failure: none",
+    },
+    {
+      icon: <MessageCircle className="w-7 h-7" />,
+      eyebrow: "Chapter 06 — When Something Goes Wrong",
+      title: "There's no fast line to your dealer in an emergency.",
+      body: "When the lift won't deploy at 7am, your dealer is a voicemail box and a Monday morning callback. There's no chat thread. No diagnostic snapshot. No way to send them what's actually happening on your vehicle right now. You're alone with the problem until business hours resume.",
+      stat: "Average time to reach a mobility dealer outside business hours",
     },
   ];
 
-  const benefits = [
+  const solutionPoints = [
     {
       icon: <Smartphone className="w-8 h-8 text-[#0071e3]" />,
-      title: "Simplified Control",
-      desc: "One app for all your equipment. No more juggling multiple remotes for your lift, seat, and doors.",
-    },
-    {
-      icon: <Settings className="w-8 h-8 text-[#0071e3]" />,
-      title: "Predictive Maintenance",
-      desc: "Get alerts before issues arise. We track equipment cycles and battery health to keep you moving.",
+      title: "A mobile app that backs up every pendant",
+      desc: "Run your lift, ramp, seat, and doors from your phone. When the pendant fails, your day doesn't.",
     },
     {
       icon: <Bell className="w-8 h-8 text-[#0071e3]" />,
-      title: "Safety Notifications",
-      desc: "Real-time alerts for CO detection, extreme temperatures, and battery voltage drops.",
+      title: "Usage tracking that warns you first",
+      desc: "Cycle counts, battery health, and service alerts before something breaks — not after.",
     },
     {
-      icon: <History className="w-8 h-8 text-[#0071e3]" />,
-      title: "Digital Service History",
-      desc: "Always know when your vehicle was last serviced. Access complete logs for your dealer in seconds.",
-    },
-  ];
-
-  const steps = [
-    {
-      number: "1",
-      title: "Tell Us About Your Setup",
-      desc: "Answer a few simple questions so we can understand your needs.",
-    },
-    {
-      number: "2",
-      title: "We Review Your Options",
-      desc: "We help determine the best next step based on your location, goals, and possible funding path.",
-    },
-    {
-      number: "3",
-      title: "We Help Connect You",
-      desc: "If there is a fit, we help connect you with the right dealer or next step in your area.",
-    },
-  ];
-
-  const qualificationSteps = [
-    {
-      number: "1",
-      title: "We Review Your Inquiry",
-      desc: "Our team carefully reviews what you've shared about your needs.",
-    },
-    {
-      number: "2",
-      title: "We Identify Next Steps",
-      desc: "We help determine the best path based on your situation and location.",
-    },
-    {
-      number: "3",
-      title: "We Connect & Support",
-      desc: "We connect you with education, a dealer, or funding guidance when available.",
+      icon: <MessageCircle className="w-8 h-8 text-[#0071e3]" />,
+      title: "A direct line to your dealer",
+      desc: "Chat your dealer from inside the app, with diagnostic context already attached.",
     },
   ];
 
   const faqs = [
     {
       q: "Do I need to know if I qualify before reaching out?",
-      a: "No. We're here to help you explore your options. You don't need to have all the answers—just reach out, and we'll guide you through what's possible.",
+      a: "No. Just tell us where you are and we'll help you understand what's possible.",
     },
     {
       q: "Can Adapy help if I am working with the VA?",
-      a: "Yes. Many users pursue Adapy through VA funding. Our team can help guide that process and connect you with resources.",
-    },
-    {
-      q: "What if I am still exploring my options?",
-      a: "That's exactly what this process is for. Tell us where you are, and we'll help you understand what might work for your situation.",
-    },
-    {
-      q: "Will someone help me understand the process?",
-      a: "Absolutely. Our team is here to support you at every step—no jargon, no pressure, just straightforward guidance.",
+      a: "Yes. Many users pursue Adapy through VA funding. Our team can help guide that process.",
     },
     {
       q: "Do I need to buy directly from Adapy?",
-      a: "No. Adapy works with authorized dealers in your area. We help connect you with the right partner who can support your needs.",
+      a: "No. Adapy works with authorized dealers in your area. We help connect you with the right partner.",
     },
   ];
 
@@ -199,272 +185,215 @@ export default function UserFunnel() {
         <Navbar />
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900">
-        <div className="absolute inset-0 opacity-30">
+      {/* HERO — visceral scene */}
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1]">
-                Stop Juggling Controls. Start Moving Freely.
+              <span className="inline-block text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase mb-6">
+                For Adaptive Vehicle Users
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
+                It&rsquo;s 7am. The lift won&rsquo;t deploy.
+                <span className="block text-white/70">Again.</span>
               </h1>
-              <p className="text-xl text-white/70 mb-8 leading-relaxed max-w-lg">
-                Adapy brings your vehicle's adaptive equipment into one simple, connected system—designed around your independence.
+              <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
+                The pendant got slammed in the door last week. The cable
+                feels loose. There was no warning. And your dealer
+                won&rsquo;t pick up until 9. You&rsquo;re going to be late
+                — and there&rsquo;s nothing you can do about it from
+                inside the vehicle.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button
-                  onClick={() => scrollToSection("form")}
-                  className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
-                >
-                  See If You Qualify <ArrowRight className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => scrollToSection("demo")}
-                  className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all transform hover:scale-105 active:scale-95"
-                >
-                  Watch How It Works
-                </button>
-              </div>
+              <button
+                onClick={() => scrollToSection("form")}
+                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
+                data-testid="button-hero-cta"
+              >
+                See If Adapy Could Help
+                <ArrowRight className="w-5 h-5" />
+              </button>
 
-              <p className="text-sm text-white/60">
-                ℹ️ You may qualify for Adapy through programs such as the VA or Vocational Rehabilitation.
+              <p className="text-sm text-white/50 mt-6">
+                Funding may be available through the VA, Vocational
+                Rehabilitation, or Workforce Services.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Pain Validation Section */}
-      <section className="py-32 bg-white">
+      {/* PROBLEM NARRATIVE — six chapters (~70%) */}
+      <section className="py-32 bg-[#0a0a0a] text-white">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              Adaptive mobility should feel simpler.
+          <div className="mb-20 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
+              The Daily Reality
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              Six things adaptive users have stopped accepting as normal.
             </h2>
-            <p className="text-xl text-black/60">
-              For many wheelchair users, everyday vehicle access means managing multiple controls, extra steps, and unnecessary complexity. Adapy was designed to help reduce that burden.
+            <p className="text-lg text-white/60 leading-relaxed">
+              These aren&rsquo;t edge cases. They&rsquo;re the texture of
+              life with fragmented adaptive equipment — every day, for
+              everyone using it.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {painPoints.map((point, i) => (
+          <div className="space-y-6">
+            {problemChapters.map((chapter, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 bg-[#f5f5f7] rounded-2xl border border-black/[0.05]"
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 lg:p-10 rounded-3xl bg-white/[0.03] border border-white/[0.06]"
               >
-                <h3 className="text-lg font-bold text-black mb-2">{point.title}</h3>
-                <p className="text-black/60 leading-relaxed">{point.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              One System. A Simpler Experience.
-            </h2>
-            <p className="text-xl text-black/60 max-w-3xl mx-auto">
-              Adapy helps bring adaptive equipment into one connected experience, giving you a more streamlined and intuitive way to interact with your vehicle environment.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 bg-white rounded-3xl border border-black/[0.05]"
-              >
-                <div className="mb-6">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-black mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-black/60 leading-relaxed">{benefit.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-black mb-6">
-              How It Works
-            </h2>
-            <p className="text-xl text-black/60">
-              A simple, supportive process to explore if Adapy is right for you.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0071e3] flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
-                  {step.number}
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-black/60">{step.desc}</p>
-
-                {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[40%] h-1 bg-gradient-to-r from-[#0071e3] to-transparent" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Funding Section */}
-      <section className="py-32 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-5xl font-bold text-black mb-6">
-              You May Already Qualify
-            </h2>
-            <p className="text-xl text-black/60 mb-12 leading-relaxed">
-              In many cases, Adapy may be pursued through programs such as the VA, Vocational Rehabilitation, Workforce Services, or other funding pathways. We can help you begin the process and understand your next steps.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                "Funding pathways may be available",
-                "We help guide the process",
-                "We can connect you with local support",
-              ].map((point, i) => (
-                <div
-                  key={i}
-                  className="p-8 bg-white rounded-2xl border border-black/[0.05]"
-                >
-                  <div className="flex items-center gap-3 justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-[#0071e3]" />
+                <div className="lg:col-span-2 flex lg:block items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center flex-shrink-0">
+                    {chapter.icon}
                   </div>
-                  <p className="text-black/70 font-medium">{point}</p>
                 </div>
-              ))}
-            </div>
-          </motion.div>
+                <div className="lg:col-span-10">
+                  <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-3">
+                    {chapter.eyebrow}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4 leading-tight">
+                    {chapter.title}
+                  </h3>
+                  <p className="text-white/65 leading-relaxed text-base md:text-lg mb-5">
+                    {chapter.body}
+                  </p>
+                  <p className="text-sm text-white/40 border-t border-white/10 pt-4">
+                    {chapter.stat}{" "}
+                    <span className="text-white/30">[source needed]</span>
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section id="demo" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              See How Adapy Works
+      {/* SOLUTION — compressed (~20%) */}
+      <section className="py-28 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="max-w-2xl mb-14">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              Here&rsquo;s What&rsquo;s Possible
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
+              Three things that change the day.
             </h2>
-            <p className="text-xl text-black/60">
-              Watch how Adapy creates a more connected and simplified adaptive mobility experience.
+            <p className="text-lg text-black/60 leading-relaxed">
+              Adapy doesn&rsquo;t replace your equipment. It adds the
+              connective layer that should have been there from the
+              beginning — so a slammed pendant, a worn motor, or a stuck
+              ramp stop deciding your morning.
             </p>
           </div>
 
-          <div className="aspect-video rounded-3xl overflow-hidden bg-black/5 border border-black/10 flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-black/60 mb-4">Video placeholder</p>
-              <p className="text-sm text-black/40">
-                Your product demo video will be embedded here
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {solutionPoints.map((point, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-7 bg-white rounded-3xl border border-black/[0.05] shadow-sm"
+              >
+                <div className="mb-5">{point.icon}</div>
+                <h3 className="text-lg font-bold text-black mb-3 leading-snug">
+                  {point.title}
+                </h3>
+                <p className="text-black/60 leading-relaxed text-sm">
+                  {point.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Form Section */}
-      <section id="form" className="py-32 bg-[#f5f5f7]">
+      {/* FORM — the ask (~10%) */}
+      <section id="form" className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-2xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              See If Adapy May Be a Fit for You
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Tell us about your situation.
             </h2>
-            <p className="text-xl text-black/60">
-              Tell us a little about your situation and our team can help guide the next step.
+            <p className="text-base text-black/60">
+              A few quick questions. Our team will follow up with what
+              might fit.
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 border border-black/[0.05]">
-            {/* Form Steps */}
-            <div className="mb-12">
-              <div className="flex justify-between mb-8">
-                {[1, 2, 3, 4].map((step) => (
-                  <div
-                    key={step}
-                    className={`flex items-center gap-2 ${
-                      step <= formStep ? "text-[#0071e3]" : "text-black/30"
-                    }`}
-                  >
+          <div className="bg-[#f5f5f7] rounded-3xl p-8 md:p-10 border border-black/[0.05]">
+            {formStep < 5 && (
+              <div className="mb-10">
+                <div className="flex justify-between">
+                  {[1, 2, 3, 4].map((step) => (
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                        step <= formStep
-                          ? "bg-[#0071e3] text-white"
-                          : "bg-black/10 text-black/50"
+                      key={step}
+                      className={`flex items-center gap-2 ${
+                        step <= formStep ? "text-[#0071e3]" : "text-black/30"
                       }`}
                     >
-                      {step}
+                      <div
+                        className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${
+                          step <= formStep
+                            ? "bg-[#0071e3] text-white"
+                            : "bg-black/10 text-black/50"
+                        }`}
+                      >
+                        {step}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Step 1 */}
             {formStep === 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-6"
+                className="space-y-5"
               >
-                <h3 className="text-2xl font-bold text-black mb-6">
-                  Let's Start With Your Name & Contact
+                <h3 className="text-xl font-bold text-black mb-4">
+                  Your name &amp; contact
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <input
                     type="text"
                     placeholder="First Name"
                     value={formData.first_name}
-                    onChange={(e) => handleFormChange("first_name", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                    onChange={(e) =>
+                      handleFormChange("first_name", e.target.value)
+                    }
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                    data-testid="input-first-name"
                   />
                   <input
                     type="text"
                     placeholder="Last Name"
                     value={formData.last_name}
-                    onChange={(e) => handleFormChange("last_name", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                    onChange={(e) =>
+                      handleFormChange("last_name", e.target.value)
+                    }
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                    data-testid="input-last-name"
                   />
                 </div>
                 <input
@@ -472,19 +401,22 @@ export default function UserFunnel() {
                   placeholder="Email"
                   value={formData.email}
                   onChange={(e) => handleFormChange("email", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                  data-testid="input-email"
                 />
                 <input
                   type="tel"
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(e) => handleFormChange("phone", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                  data-testid="input-phone"
                 />
                 <button
                   type="button"
                   onClick={() => setFormStep(2)}
-                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                  className="w-full py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                  data-testid="button-step-1-continue"
                 >
                   Continue
                 </button>
@@ -496,44 +428,48 @@ export default function UserFunnel() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-6"
+                className="space-y-5"
               >
-                <h3 className="text-2xl font-bold text-black mb-6">
-                  Where Are You Located?
+                <h3 className="text-xl font-bold text-black mb-4">
+                  Where are you located?
                 </h3>
                 <input
                   type="text"
                   placeholder="City"
                   value={formData.city}
                   onChange={(e) => handleFormChange("city", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                  data-testid="input-city"
                 />
                 <input
                   type="text"
                   placeholder="State / Province"
                   value={formData.state}
                   onChange={(e) => handleFormChange("state", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                  data-testid="input-state"
                 />
                 <input
                   type="text"
                   placeholder="Country"
                   value={formData.country}
                   onChange={(e) => handleFormChange("country", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                  data-testid="input-country"
                 />
                 <div className="flex gap-4">
                   <button
                     type="button"
                     onClick={() => setFormStep(1)}
-                    className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
+                    className="flex-1 py-3.5 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
                   <button
                     type="button"
                     onClick={() => setFormStep(3)}
-                    className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    data-testid="button-step-2-continue"
                   >
                     Continue
                   </button>
@@ -546,40 +482,55 @@ export default function UserFunnel() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-6"
+                className="space-y-5"
               >
-                <h3 className="text-2xl font-bold text-black mb-6">
-                  Tell Us About Your Situation
+                <h3 className="text-xl font-bold text-black mb-4">
+                  Tell us about your situation
                 </h3>
                 <div>
                   <label className="block text-sm font-bold text-black mb-3">
-                    Which best describes your current situation?
+                    Which best describes you right now?
                   </label>
                   <select
                     value={formData.situation}
-                    onChange={(e) => handleFormChange("situation", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7]"
+                    onChange={(e) =>
+                      handleFormChange("situation", e.target.value)
+                    }
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white"
+                    data-testid="select-situation"
                   >
                     <option value="">Select an option</option>
-                    <option value="I use adaptive mobility equipment now">I use adaptive mobility equipment now</option>
-                    <option value="I am exploring options for myself">I am exploring options for myself</option>
-                    <option value="I am working with the VA">I am working with the VA</option>
-                    <option value="I am working with Vocational Rehabilitation/Workforce Services">I am working with Vocational Rehabilitation/Workforce Services</option>
-                    <option value="I'm not sure where to start">I'm not sure where to start</option>
+                    <option value="I use adaptive mobility equipment now">
+                      I use adaptive mobility equipment now
+                    </option>
+                    <option value="I am exploring options for myself">
+                      I am exploring options for myself
+                    </option>
+                    <option value="I am working with the VA">
+                      I am working with the VA
+                    </option>
+                    <option value="I am working with Vocational Rehabilitation/Workforce Services">
+                      I am working with Vocational Rehabilitation/Workforce
+                      Services
+                    </option>
+                    <option value="I'm not sure where to start">
+                      I&rsquo;m not sure where to start
+                    </option>
                   </select>
                 </div>
                 <div className="flex gap-4">
                   <button
                     type="button"
                     onClick={() => setFormStep(2)}
-                    className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
+                    className="flex-1 py-3.5 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
                   <button
                     type="button"
                     onClick={() => setFormStep(4)}
-                    className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    data-testid="button-step-3-continue"
                   >
                     Continue
                   </button>
@@ -592,28 +543,31 @@ export default function UserFunnel() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-6"
+                className="space-y-5"
               >
-                <h3 className="text-2xl font-bold text-black mb-6">
-                  Tell Us More About Your Needs
+                <h3 className="text-xl font-bold text-black mb-4">
+                  What equipment are you working with?
                 </h3>
                 <div>
                   <label className="block text-sm font-bold text-black mb-3">
-                    What adaptive equipment do you currently use or need help
-                    with?
+                    What adaptive equipment do you currently use or need
+                    help with?
                   </label>
                   <textarea
                     value={formData.adaptive_equipment}
-                    onChange={(e) => handleFormChange("adaptive_equipment", e.target.value)}
+                    onChange={(e) =>
+                      handleFormChange("adaptive_equipment", e.target.value)
+                    }
                     placeholder="e.g., wheelchair lift, transfer seat, hand controls..."
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-[#f5f5f7] min-h-[100px]"
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#0071e3] focus:outline-none bg-white min-h-[100px]"
+                    data-testid="input-adaptive-equipment"
                   />
                 </div>
                 <div className="flex gap-4">
                   <button
                     type="button"
                     onClick={() => setFormStep(3)}
-                    className="flex-1 py-4 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
+                    className="flex-1 py-3.5 border-2 border-black text-black rounded-2xl font-bold hover:bg-black/5 transition-all"
                   >
                     Back
                   </button>
@@ -621,7 +575,8 @@ export default function UserFunnel() {
                     type="button"
                     onClick={() => handleSubmit()}
                     disabled={isSubmitting}
-                    className="flex-1 py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    data-testid="button-submit"
                   >
                     {isSubmitting ? (
                       <>
@@ -644,25 +599,23 @@ export default function UserFunnel() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center py-12"
+                className="text-center py-10"
               >
                 <div className="w-16 h-16 rounded-full bg-[#0071e3]/10 flex items-center justify-center mx-auto mb-6">
                   <CheckCircle className="w-8 h-8 text-[#0071e3]" />
                 </div>
-                <h3 className="text-3xl font-bold text-black mb-4">
-                  Thanks for reaching out!
+                <h3 className="text-2xl font-bold text-black mb-4">
+                  Thanks for reaching out.
                 </h3>
-                <p className="text-black/60 text-lg mb-8">
-                  {submitMessage || "Our team will review your information and reach out within 24 hours with next steps and support options in your area."}
-                </p>
-                <p className="text-sm text-black/50">
-                  You can expect to hear from us soon.
+                <p className="text-black/60 text-base mb-6">
+                  {submitMessage ||
+                    "Our team will review your information and reach out within 24 hours."}
                 </p>
               </motion.div>
             )}
 
             {formStep < 5 && (
-              <p className="text-center text-sm text-black/50 mt-8">
+              <p className="text-center text-sm text-black/50 mt-6">
                 ✓ This does not obligate you to purchase anything.
               </p>
             )}
@@ -670,55 +623,16 @@ export default function UserFunnel() {
         </div>
       </section>
 
-      {/* What Happens Next */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">
-              What Happens Next?
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {qualificationSteps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#0071e3] flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-bold text-black mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-black/60">{step.desc}</p>
-
-                {i < qualificationSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[40%] h-1 bg-gradient-to-r from-[#0071e3] to-transparent" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-32 bg-[#f5f5f7]">
+      {/* Trimmed FAQ — only friction-removing questions */}
+      <section className="py-24 bg-[#f5f5f7]">
         <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">
-              Questions? We're Here to Help
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Quick answers before you reach out.
             </h2>
-            <p className="text-xl text-black/60">
-              Find answers to common questions about Adapy for individual users.
-            </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, i) => (
               <motion.div
                 key={i}
@@ -730,9 +644,10 @@ export default function UserFunnel() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-8 py-6 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  data-testid={`button-faq-${i}`}
                 >
-                  <span className="text-lg font-bold text-black text-left">
+                  <span className="text-base font-bold text-black text-left">
                     {faq.q}
                   </span>
                   <ChevronDown
@@ -743,31 +658,15 @@ export default function UserFunnel() {
                 </button>
 
                 {openFaq === i && (
-                  <div className="px-8 pb-6 pt-0 border-t border-black/[0.05]">
-                    <p className="text-black/70 leading-relaxed">{faq.a}</p>
+                  <div className="px-6 pb-5 pt-0 border-t border-black/[0.05]">
+                    <p className="text-black/70 leading-relaxed text-sm">
+                      {faq.a}
+                    </p>
                   </div>
                 )}
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-24 bg-black text-white text-center">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Explore Your Options?
-          </h2>
-          <p className="text-xl text-white/70 mb-8">
-            The first step is simple—tell us about your situation, and we'll help guide what comes next.
-          </p>
-          <button
-            onClick={() => scrollToSection("form")}
-            className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 inline-flex items-center gap-2"
-          >
-            See If You Qualify <ArrowRight className="w-5 h-5" />
-          </button>
         </div>
       </section>
 
