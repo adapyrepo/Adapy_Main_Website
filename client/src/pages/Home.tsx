@@ -14,7 +14,6 @@ import {
   Accessibility,
   ArrowRight,
   X,
-  Play,
   User,
   Store,
   Brain,
@@ -94,7 +93,6 @@ import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 const heroVideo = "/hero-video.mp4";
 
 export default function Home() {
-  const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<
     (typeof learningVideos)[0] | null
@@ -577,87 +575,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
-      {/* Video Slider Drawer */}
-      <AnimatePresence>
-        {isSliderOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsSliderOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-[120] p-8 shadow-2xl flex flex-col border-l border-black/10"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/5 to-transparent pointer-events-none" />
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-center justify-between mb-12">
-                  <h3 className="text-2xl font-bold text-black">
-                    How It Works
-                  </h3>
-                  <button
-                    onClick={() => setIsSliderOpen(false)}
-                    className="p-2 hover:bg-black/5 rounded-full text-black/70 hover:text-black transition-colors"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto space-y-8 pr-2 custom-scrollbar">
-                  {learningVideos.map((video) => (
-                    <div
-                      key={video.id}
-                      onClick={() => setActiveVideo(video)}
-                      className="group cursor-pointer space-y-4"
-                    >
-                      <div className="relative aspect-video rounded-2xl overflow-hidden border border-black/5 bg-black shadow-md">
-                        <img
-                          src={video.thumbnail}
-                          alt={video.title}
-                          loading="lazy"
-                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-[#0071e3] text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                            <Play className="w-6 h-6 fill-current ml-1" />
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-black group-hover:text-[#0071e3] transition-colors">
-                          {video.title}
-                        </h4>
-                        <p className="text-black/60 text-sm leading-relaxed">
-                          {video.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-12 pt-8 border-t border-black/10">
-                  <button
-                    onClick={() => {
-                      setIsSliderOpen(false);
-                      setIsRoleSelectorOpen(true);
-                    }}
-                    className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all shadow-lg shadow-[#0071e3]/20"
-                  >
-                    Choose Your Path
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
       {/* Video Modal */}
       <AnimatePresence>
