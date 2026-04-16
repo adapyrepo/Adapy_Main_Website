@@ -184,12 +184,14 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+  }, [location]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    return () => {
       document.body.style.overflow = "unset";
-    }
-  }, [location, isOpen]);
+    };
+  }, [isOpen]);
 
   return (
     <header
