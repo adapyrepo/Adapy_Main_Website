@@ -325,7 +325,76 @@ export default function UserFunnel() {
         </div>
       </section>
 
-      {/* FORM — the ask (~10%) */}
+      {/* Trimmed FAQ — only friction-removing questions, placed BEFORE the form */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+              Quick answers before you reach out.
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-[#f5f5f7] rounded-2xl overflow-hidden border border-black/[0.05]"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  data-testid={`button-faq-${i}`}
+                >
+                  <span className="text-base font-bold text-black text-left">
+                    {faq.q}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-[#0071e3] transition-transform flex-shrink-0 ${
+                      openFaq === i ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {openFaq === i && (
+                  <div className="px-6 pb-5 pt-0 border-t border-black/[0.05]">
+                    <p className="text-black/70 leading-relaxed text-sm">
+                      {faq.a}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compressed funding pathways — supports the form */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="rounded-3xl border border-[#0071e3]/20 bg-[#0071e3]/[0.04] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#0071e3]/15 text-[#0071e3] flex items-center justify-center">
+              <CheckCircle className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-black mb-1">
+                You may already qualify for funding.
+              </h3>
+              <p className="text-sm text-black/60 leading-relaxed">
+                Many users pursue Adapy through the VA, Vocational
+                Rehabilitation, or Workforce Services. Mention your
+                situation in the form and our team can help guide the
+                process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FORM — the final ask (~10%) */}
       <section id="form" className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-2xl">
           <div className="text-center mb-10">
@@ -619,53 +688,6 @@ export default function UserFunnel() {
                 ✓ This does not obligate you to purchase anything.
               </p>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Trimmed FAQ — only friction-removing questions */}
-      <section className="py-24 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
-              Quick answers before you reach out.
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.05]"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-black/[0.02] transition-colors"
-                  data-testid={`button-faq-${i}`}
-                >
-                  <span className="text-base font-bold text-black text-left">
-                    {faq.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#0071e3] transition-transform flex-shrink-0 ${
-                      openFaq === i ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {openFaq === i && (
-                  <div className="px-6 pb-5 pt-0 border-t border-black/[0.05]">
-                    <p className="text-black/70 leading-relaxed text-sm">
-                      {faq.a}
-                    </p>
-                  </div>
-                )}
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
