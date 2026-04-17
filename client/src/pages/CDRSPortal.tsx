@@ -147,8 +147,9 @@ export default function CDRSPortal() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <motion.div
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -195,6 +196,97 @@ export default function CDRSPortal() {
                 Free clinical portal for credentialed OTs and CDRS
                 clinicians.
               </p>
+            </motion.div>
+
+            {/* HERO — clinician snapshot card */}
+            <motion.div
+              className="lg:col-span-5 hidden lg:block"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              aria-hidden="true"
+            >
+              <div className="relative">
+                <div className="absolute -inset-6 bg-[#0071e3]/20 blur-3xl rounded-[3rem] -z-10" />
+                <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#0071e3]/20 border border-[#0071e3]/40 flex items-center justify-center">
+                        <Stethoscope className="w-5 h-5 text-[#0071e3]" />
+                      </div>
+                      <div>
+                        <div className="h-2.5 w-24 bg-white/20 rounded-full mb-1.5" />
+                        <div className="h-2 w-16 bg-white/10 rounded-full" />
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold tracking-[0.15em] text-emerald-400 uppercase px-2.5 py-1 bg-emerald-400/10 border border-emerald-400/20 rounded-full">
+                      On Track
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {[
+                      { label: "Independence", value: "92%", color: "text-emerald-400" },
+                      { label: "Sessions", value: "47", color: "text-white" },
+                      { label: "Goals Met", value: "5/6", color: "text-[#0071e3]" },
+                    ].map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="p-3 rounded-xl bg-white/[0.03] border border-white/5"
+                      >
+                        <div className="text-[9px] font-bold tracking-[0.12em] text-white/40 uppercase mb-1.5">
+                          {stat.label}
+                        </div>
+                        <div className={`text-xl font-bold ${stat.color}`}>
+                          {stat.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 mb-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[10px] font-bold tracking-[0.15em] text-white/50 uppercase">
+                        90-Day Independence Trend
+                      </span>
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                    </div>
+                    <div className="flex items-end gap-1.5 h-20">
+                      {[40, 35, 50, 45, 60, 55, 70, 65, 80, 75, 88, 92].map((h, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 bg-gradient-to-t from-[#0071e3]/60 to-[#0071e3]/30 rounded-t"
+                          style={{ height: `${h}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    {[
+                      { icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />, label: "Lift cycles +24% MoM" },
+                      { icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />, label: "Caregiver assist down 60%" },
+                      { icon: <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />, label: "Door retry rate ↑ — review" },
+                    ].map((row, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.02] border border-white/5"
+                      >
+                        {row.icon}
+                        <span className="text-[11px] text-white/70 font-medium">
+                          {row.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 text-center">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                    Single client snapshot &mdash; preview
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
