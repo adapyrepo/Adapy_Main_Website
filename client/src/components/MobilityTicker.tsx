@@ -2,6 +2,37 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Info } from "lucide-react";
 
+// Deterministic per-day pseudo-random in [200, 250]
+function dailyIncrement(dayIndex: number) {
+  let h = dayIndex * 2654435761;
+  h ^= h >>> 16;
+  h = Math.imul(h, 2246822507);
+  h ^= h >>> 13;
+  h = Math.imul(h, 3266489909);
+  h ^= h >>> 16;
+  const r = (h >>> 0) / 4294967296;
+  return 200 + Math.floor(r * 51); // 200..250
+}
+
+const BASE_COUNT = 134322;
+const BASE_DATE = Date.UTC(2026, 3, 17); // April 17, 2026
+const MS_PER_DAY = 86_400_000;
+
+function computeMomentCount(now: number) {
+  const daysSince = Math.floor((now - BASE_DATE) / MS_PER_DAY);
+  let total = BASE_COUNT;
+  for (let i = 0; i < daysSince; i++) {
+    total += dailyIncrement(i);
+  }
+  // Smoothly accumulate today's increment across the day
+  if (daysSince >= 0) {
+    const todayInc = dailyIncrement(daysSince);
+    const fraction = ((now - BASE_DATE) % MS_PER_DAY) / MS_PER_DAY;
+    total += Math.floor(todayInc * fraction);
+  }
+  return total;
+}
+
 export function MobilityTicker() {
   // Pre-built data with a distinct up-down-up movement
   const [data, setData] = useState([
@@ -10,6 +41,17 @@ export function MobilityTicker() {
     80, 100, 125, 150, 180, 210, 240, 260 // Back Up
   ]);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [momentCount, setMomentCount] = useState(() => computeMomentCount(Date.now()));
+
+  // Recompute the live count on a steady cadence
+  useEffect(() => {
+    const tick = setInterval(() => {
+      setMomentCount(computeMomentCount(Date.now()));
+    }, 60_000);
+    return () => clearInterval(tick);
+  }, []);
+
+  const formattedCount = momentCount.toLocaleString();
 
   // Animate the sparkline data with volatility that preserves the overall shape
   useEffect(() => {
@@ -52,7 +94,7 @@ export function MobilityTicker() {
           <Info className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </span>
         <div className="flex items-baseline gap-1.5">
-          <span className="text-[16px] font-mono font-bold text-white tracking-tight">134,322</span>
+          <span className="text-[16px] font-mono font-bold text-white tracking-tight">{formattedCount}</span>
           <span className="text-[10px] text-[#0071e3] font-bold">+12.4%</span>
         </div>
       </div>
@@ -92,7 +134,7 @@ export function MobilityTicker() {
               Let's Create a Million Moments of Mobility Together!
             </p>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              We've logged <span className="text-white font-bold">134,322</span> adaptive automation cycles—what we call Moments of Mobility—and we're just getting started. Each one represents a real user operating adaptive equipment through Adapy®.
+              We've logged <span className="text-white font-bold">{formattedCount}</span> adaptive automation cycles—what we call Moments of Mobility—and we're just getting started. Each one represents a real user operating adaptive equipment through Adapy®.
             </p>
             <div className="bg-white/5 rounded-xl p-3 border border-white/10 mb-4">
               <p className="text-[13px] text-white/90">
