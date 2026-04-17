@@ -243,7 +243,7 @@ export default function UserFunnel() {
             >
               <div className="relative">
                 <div className="absolute -inset-10 bg-[#0071e3]/20 blur-3xl rounded-full -z-10" />
-                <div className="w-[290px] h-[628px] rounded-[3rem] bg-black border-[6px] border-slate-800 shadow-2xl overflow-hidden relative">
+                <div className="w-[280px] h-[580px] rounded-[3rem] bg-black border-[6px] border-slate-800 shadow-2xl overflow-hidden relative">
                   <img
                     src={adapyAppScreenshot}
                     alt="Adapy mobile app — adaptive vehicle remote control"
