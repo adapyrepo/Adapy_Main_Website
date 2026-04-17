@@ -62,7 +62,7 @@ const userProfiles = [
     image: userPhoto1,
     name: "Truck Conversion Owner",
     role: "Before Adapy",
-    pain: "One key fob runs my lift, one remote runs the topper. Drop the fob in a parking lot and the lift won't deploy — I can't get in or out of my own vehicle. The Adapy app is the only reason I made it home that day.",
+    pain: "The fob isn't a convenience — it's the only thing that works the lift. Lose it and you're locked out of your own truck. The Adapy app got me home the day mine died.",
     outcome: "Now everything runs through one interface. The integration feels factory.",
   },
   {
