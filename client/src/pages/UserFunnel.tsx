@@ -13,6 +13,7 @@ import {
   MessageCircle,
   Smartphone,
   Bell,
+  Wifi,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
@@ -254,6 +255,10 @@ export default function UserFunnel() {
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-[2.6rem] pointer-events-none" />
                   {/* Notch overlay */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
+                  {/* Recolor signal indicator (mask the red icon with a green one) */}
+                  <div className="absolute top-[9.2%] right-[7%] w-[34px] h-[34px] rounded-full bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-500/40 z-20">
+                    <Wifi className="w-4 h-4 text-white" strokeWidth={2.5} />
+                  </div>
                 </div>
                 <div className="mt-4 text-center">
                   <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
