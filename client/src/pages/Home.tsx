@@ -62,7 +62,7 @@ const userProfiles = [
     image: userPhoto1,
     name: "Truck Conversion Owner",
     role: "Before Adapy",
-    pain: "Two remotes, a key fob, and a phone app — nothing talked to each other. Half the time something wouldn't respond and I'd have to call my dealer from the parking lot.",
+    pain: "Lose the key fob and my vehicle's a brick. One remote for the topper, another for the lift, an app that half-worked on a good day. Four single points of failure between me and the driver's seat.",
     outcome: "Now everything runs through one interface. The integration feels factory.",
   },
   {
