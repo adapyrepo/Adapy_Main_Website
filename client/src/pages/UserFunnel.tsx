@@ -256,8 +256,8 @@ export default function UserFunnel() {
                   {/* Notch overlay */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
                   {/* Recolor signal indicator (mask the red icon with a green one) */}
-                  <div className="absolute top-[9.2%] right-[7%] w-[34px] h-[34px] rounded-full bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-500/40 z-20">
-                    <Wifi className="w-4 h-4 text-white" strokeWidth={2.5} />
+                  <div className="absolute top-[8.4%] right-[5.5%] w-[44px] h-[44px] rounded-full bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-500/40 z-20">
+                    <Wifi className="w-5 h-5 text-white" strokeWidth={2.5} />
                   </div>
                 </div>
                 <div className="mt-4 text-center">
