@@ -251,8 +251,33 @@ export default function UserFunnel() {
                   />
                   {/* Subtle blue tint to blend with hero */}
                   <div className="absolute inset-0 bg-[#0071e3]/10 mix-blend-overlay pointer-events-none" />
-                  {/* Soft inner edge vignette */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-[2.6rem] pointer-events-none" />
+                  {/* Glass: diagonal gloss sweep */}
+                  <div
+                    className="absolute inset-0 pointer-events-none mix-blend-screen opacity-60"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.08) 18%, rgba(255,255,255,0) 38%, rgba(255,255,255,0) 62%, rgba(255,255,255,0.06) 82%, rgba(255,255,255,0.18) 100%)",
+                    }}
+                  />
+                  {/* Glass: top highlight */}
+                  <div
+                    className="absolute inset-x-0 top-0 h-1/3 pointer-events-none mix-blend-screen opacity-50"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)",
+                    }}
+                  />
+                  {/* Glass: soft side reflection */}
+                  <div
+                    className="absolute inset-y-0 left-0 w-1/4 pointer-events-none mix-blend-screen opacity-40"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%)",
+                    }}
+                  />
+                  {/* Glass: inner edge highlight */}
+                  <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-inset ring-white/20 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-[2.6rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(255,255,255,0.06)] pointer-events-none" />
                   {/* Notch overlay */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
                   {/* Mask the red signal icon to match the dark header bar */}
