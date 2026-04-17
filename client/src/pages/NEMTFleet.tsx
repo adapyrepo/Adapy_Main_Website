@@ -61,17 +61,19 @@ export default function NEMTFleet() {
     setSubmitError("");
     setSubmitMessage("");
     try {
+      const apiKey =
+        "5e225ecefc065d0e704f84c7c7a352f38c837ecc8fdb57204285cf6e166bc709";
       const response = await fetch(
-        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/fleet",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "X-Form-Api-Key": apiKey,
           },
           body: JSON.stringify({
-            _form_slug: "qualify-form",
-            _api_key:
-              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+            _form_slug: "fleet",
+            _api_key: apiKey,
             ...formData,
           }),
         },
