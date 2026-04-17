@@ -249,6 +249,24 @@ export default function UserFunnel() {
                     alt="Adapy mobile app — adaptive vehicle remote control"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
+                  {/* Subtle glass: top highlight */}
+                  <div
+                    className="absolute inset-x-0 top-0 h-1/2 pointer-events-none mix-blend-screen opacity-25"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%)",
+                    }}
+                  />
+                  {/* Subtle glass: diagonal sheen */}
+                  <div
+                    className="absolute inset-0 pointer-events-none mix-blend-screen opacity-20"
+                    style={{
+                      background:
+                        "linear-gradient(115deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 65%)",
+                    }}
+                  />
+                  {/* Inner edge highlight */}
+                  <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-inset ring-white/10 pointer-events-none" />
                   {/* Notch overlay */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
                 </div>
