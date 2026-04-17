@@ -62,7 +62,7 @@ const userProfiles = [
     image: userPhoto1,
     name: "Truck Conversion Owner",
     role: "Before Adapy",
-    pain: "Lose the key fob and my vehicle should've been a brick. One remote for the topper, another for the lift, a third for the doors. The Adapy app is the only reason I made it home that day.",
+    pain: "One key fob for the lift and one remote for the topper — lose the fob and I should've been stranded. The Adapy app is the only reason I made it home that day.",
     outcome: "Now everything runs through one interface. The integration feels factory.",
   },
   {
