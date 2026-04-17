@@ -1,0 +1,69 @@
+<form id="adapy-lead-form" action="https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/fleet" method="POST">
+  <input type="hidden" name="_api_key" value="5e225ecefc065d0e704f84c7c7a352f38c837ecc8fdb57204285cf6e166bc709" />
+  <input type="hidden" name="_form_slug" value="fleet" />
+  <div class="form-group">
+    <label for="first_name">First Name *</label>
+    <input type="text" id="first_name" name="first_name" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="last_name">Last Name *</label>
+    <input type="text" id="last_name" name="last_name" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" placeholder="" required />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="phone" id="phone" name="phone" placeholder="" />
+  </div>
+  <div class="form-group">
+    <label for="fleet_size">Fleet Size *</label>
+    <input type="text" id="fleet_size" name="fleet_size" placeholder="# of vehicles" required />
+  </div>
+  <div class="form-group">
+    <label for="wheelchair_vehicles">Wheelchair Vehicles *</label>
+    <input type="text" id="wheelchair_vehicles" name="wheelchair_vehicles" placeholder="# wheelchair accessible vehicles" required />
+  </div>
+  <div class="form-group">
+    <label for="s">State</label>
+    <input type="text" id="s" name="s" placeholder="State" />
+  </div>
+  <div class="form-group">
+    <label for="notes">notes</label>
+    <input type="text" id="notes" name="notes" placeholder="Tell us about your fleet, current challenges, or questions..." />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById('adapy-lead-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  const data = {};
+  new FormData(form).forEach((v, k) => data[k] = v);
+  try {
+    const res = await fetch('https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/fleet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success) {
+      form.innerHTML = '<p style="color:green">' + json.message + '</p>';
+      setTimeout(() => window.location = 'https://www.adapy.com', 2000);
+    } else {
+      alert('Error: ' + json.error);
+      btn.disabled = false;
+      btn.textContent = 'Submit';
+    }
+  } catch(err) {
+    alert('Submission failed. Please try again.');
+    btn.disabled = false;
+    btn.textContent = 'Submit';
+  }
+});
+</script>
