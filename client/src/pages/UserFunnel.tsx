@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
-import adapyAppScreenshot from "@assets/IMG_D38D5EC67E04-1_1776390060488.jpeg";
+import adapyAppScreenshot from "@assets/IMG_F1BC6CADEE49-1_1776390637769.jpeg";
 
 export default function UserFunnel() {
   useSEO({ title: "Adaptive Vehicle Independence for Drivers & Families", description: "Reclaim independence behind the wheel. Adapy unifies your adaptive vehicle equipment into one safe, weatherproof, in-cabin control system.", path: "/user-funnel" });
@@ -243,7 +243,7 @@ export default function UserFunnel() {
             >
               <div className="relative">
                 <div className="absolute -inset-10 bg-[#0071e3]/20 blur-3xl rounded-full -z-10" />
-                <div className="w-[280px] h-[580px] rounded-[3rem] bg-black border-[6px] border-slate-800 shadow-2xl overflow-hidden relative">
+                <div className="w-[290px] h-[628px] rounded-[3rem] bg-black border-[6px] border-slate-800 shadow-2xl overflow-hidden relative">
                   <img
                     src={adapyAppScreenshot}
                     alt="Adapy mobile app — adaptive vehicle remote control"
@@ -267,8 +267,8 @@ export default function UserFunnel() {
                   />
                   {/* Inner edge highlight */}
                   <div className="absolute inset-0 rounded-[2.6rem] ring-1 ring-inset ring-white/10 pointer-events-none" />
-                  {/* Notch overlay */}
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
+                  {/* Dynamic Island (iPhone 14 Pro) */}
+                  <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[95px] h-[28px] bg-black rounded-full z-10" />
                 </div>
                 <div className="mt-4 text-center">
                   <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
