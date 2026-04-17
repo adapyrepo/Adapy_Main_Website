@@ -14,6 +14,9 @@ import {
   Radio,
   DollarSign,
   Clock,
+  MapPin,
+  Navigation,
+  Truck,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
@@ -245,8 +248,9 @@ export default function NEMTFleet() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <motion.div
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -284,6 +288,147 @@ export default function NEMTFleet() {
               <p className="text-sm text-white/50 mt-6">
                 A completed trip does not automatically mean a safe trip.
               </p>
+            </motion.div>
+
+            {/* HERO — live fleet map card */}
+            <motion.div
+              className="lg:col-span-5 hidden lg:block"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              aria-hidden="true"
+            >
+              <div className="relative">
+                <div className="absolute -inset-6 bg-[#0071e3]/20 blur-3xl rounded-[3rem] -z-10" />
+                <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-3xl p-5 shadow-2xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-[10px] font-bold tracking-[0.15em] text-white/70 uppercase">
+                        Live Fleet
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-semibold text-white/50">
+                      8 vehicles &middot; 1 alert
+                    </span>
+                  </div>
+
+                  {/* Map */}
+                  <div className="relative h-[280px] rounded-2xl bg-slate-950 border border-white/5 overflow-hidden mb-4">
+                    {/* Grid background */}
+                    <div
+                      className="absolute inset-0 opacity-30"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+                        backgroundSize: "24px 24px",
+                      }}
+                    />
+                    {/* Roads */}
+                    <svg
+                      className="absolute inset-0 w-full h-full"
+                      viewBox="0 0 320 280"
+                      fill="none"
+                    >
+                      <path
+                        d="M0 90 Q 80 70, 160 110 T 320 130"
+                        stroke="rgba(148,163,184,0.25)"
+                        strokeWidth="14"
+                      />
+                      <path
+                        d="M40 0 Q 60 80, 120 140 T 200 280"
+                        stroke="rgba(148,163,184,0.18)"
+                        strokeWidth="10"
+                      />
+                      <path
+                        d="M0 220 Q 100 200, 180 230 T 320 210"
+                        stroke="rgba(148,163,184,0.15)"
+                        strokeWidth="8"
+                      />
+                      {/* Active route */}
+                      <path
+                        d="M50 180 Q 130 130, 230 90"
+                        stroke="#0071e3"
+                        strokeWidth="2.5"
+                        strokeDasharray="6 4"
+                      />
+                    </svg>
+                    {/* Vehicle dots */}
+                    {[
+                      { x: "70%", y: "30%", color: "bg-[#0071e3]", active: true, label: "V-04" },
+                      { x: "20%", y: "65%", color: "bg-emerald-400", active: false },
+                      { x: "55%", y: "78%", color: "bg-emerald-400", active: false },
+                      { x: "85%", y: "55%", color: "bg-amber-400", active: false },
+                      { x: "32%", y: "22%", color: "bg-emerald-400", active: false },
+                    ].map((v, i) => (
+                      <div
+                        key={i}
+                        className="absolute -translate-x-1/2 -translate-y-1/2"
+                        style={{ left: v.x, top: v.y }}
+                      >
+                        {v.active && (
+                          <div
+                            className={`absolute inset-0 ${v.color} rounded-full opacity-30 animate-ping`}
+                            style={{ width: 24, height: 24, left: -6, top: -6 }}
+                          />
+                        )}
+                        <div
+                          className={`relative w-3 h-3 ${v.color} rounded-full border-2 border-slate-950 shadow-lg`}
+                        />
+                        {v.label && (
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[9px] font-bold text-white bg-[#0071e3] px-1.5 py-0.5 rounded whitespace-nowrap">
+                            {v.label}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                    {/* Compass */}
+                    <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/50 backdrop-blur border border-white/10 flex items-center justify-center">
+                      <Navigation className="w-3.5 h-3.5 text-white/70" />
+                    </div>
+                  </div>
+
+                  {/* Vehicle detail */}
+                  <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <Truck className="w-4 h-4 text-[#0071e3]" />
+                        <span className="text-[12px] font-bold text-white">
+                          V-04 &mdash; en route
+                        </span>
+                      </div>
+                      <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-wider">
+                        Cabin OK
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-[10px]">
+                      {[
+                        { label: "CO", value: "0 ppm", color: "text-emerald-400" },
+                        { label: "Cabin", value: "71°F", color: "text-white" },
+                        { label: "Lift", value: "Stowed", color: "text-white" },
+                      ].map((s) => (
+                        <div
+                          key={s.label}
+                          className="text-center p-1.5 rounded-lg bg-white/[0.03]"
+                        >
+                          <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest mb-0.5">
+                            {s.label}
+                          </div>
+                          <div className={`font-bold ${s.color}`}>
+                            {s.value}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase flex items-center justify-center gap-1.5">
+                    <MapPin className="w-3 h-3" />
+                    Live fleet view &mdash; preview
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

@@ -13,6 +13,10 @@ import {
   MessageCircle,
   Smartphone,
   Bell,
+  Battery,
+  Wifi,
+  ChevronUp,
+  Lock,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
@@ -194,8 +198,9 @@ export default function UserFunnel() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <motion.div
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -228,6 +233,124 @@ export default function UserFunnel() {
                 Funding may be available through the VA, Vocational
                 Rehabilitation, or Workforce Services.
               </p>
+            </motion.div>
+
+            {/* HERO — phone mockup */}
+            <motion.div
+              className="lg:col-span-5 hidden lg:flex justify-center"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              aria-hidden="true"
+            >
+              <div className="relative">
+                <div className="absolute -inset-10 bg-[#0071e3]/20 blur-3xl rounded-full -z-10" />
+                <div className="w-[280px] h-[580px] rounded-[3rem] bg-gradient-to-b from-slate-900 to-black border-[6px] border-slate-800 shadow-2xl overflow-hidden relative">
+                  {/* Notch */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10" />
+                  {/* Status bar */}
+                  <div className="h-10 flex items-center justify-between px-7 pt-3 text-[10px] text-white/80 font-semibold">
+                    <span>9:41</span>
+                    <div className="flex items-center gap-1.5">
+                      <Wifi className="w-3 h-3" />
+                      <Battery className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+
+                  {/* App content */}
+                  <div className="px-5 pt-3 pb-6 flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-[9px] font-bold tracking-[0.15em] text-white/40 uppercase">
+                          My Vehicle
+                        </div>
+                        <div className="text-base font-bold text-white mt-0.5">
+                          Truck &mdash; Ready
+                        </div>
+                      </div>
+                      <span className="text-[9px] font-bold tracking-[0.12em] text-emerald-400 uppercase px-2 py-1 bg-emerald-400/10 border border-emerald-400/20 rounded-full">
+                        Online
+                      </span>
+                    </div>
+
+                    {/* Primary action */}
+                    <button
+                      type="button"
+                      className="w-full p-4 rounded-2xl bg-[#0071e3] text-white font-bold text-sm flex items-center justify-between shadow-lg shadow-[#0071e3]/30"
+                    >
+                      <span className="flex items-center gap-2">
+                        <ChevronUp className="w-4 h-4" />
+                        Deploy Lift
+                      </span>
+                      <span className="text-[10px] font-semibold opacity-80">
+                        Hold to run
+                      </span>
+                    </button>
+
+                    {/* Secondary actions */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 flex flex-col gap-1">
+                        <ChevronUp className="w-4 h-4 text-white/60" />
+                        <span className="text-[11px] font-semibold text-white">
+                          Topper
+                        </span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 flex flex-col gap-1">
+                        <Lock className="w-4 h-4 text-white/60" />
+                        <span className="text-[11px] font-semibold text-white">
+                          Doors
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Equipment health */}
+                    <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+                      <div className="text-[9px] font-bold tracking-[0.15em] text-white/40 uppercase mb-2">
+                        Equipment Health
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { label: "Lift motor", status: "Good", color: "bg-emerald-400" },
+                          { label: "Transfer seat", status: "Good", color: "bg-emerald-400" },
+                          { label: "Pendant battery", status: "Service soon", color: "bg-amber-400" },
+                        ].map((row) => (
+                          <div
+                            key={row.label}
+                            className="flex items-center justify-between text-[10px]"
+                          >
+                            <span className="text-white/70 flex items-center gap-1.5">
+                              <span className={`w-1.5 h-1.5 rounded-full ${row.color}`} />
+                              {row.label}
+                            </span>
+                            <span className="text-white/40 font-medium">
+                              {row.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Dealer chat strip */}
+                    <div className="p-3 rounded-2xl bg-[#0071e3]/10 border border-[#0071e3]/20 flex items-center gap-2.5">
+                      <MessageCircle className="w-4 h-4 text-[#0071e3] flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[10px] font-bold text-white">
+                          Your dealer
+                        </div>
+                        <div className="text-[9px] text-white/50 truncate">
+                          We&rsquo;ve seen the diagnostic. Bring it in
+                          Thursday.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                    The pendant&rsquo;s backup &mdash; in your pocket
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

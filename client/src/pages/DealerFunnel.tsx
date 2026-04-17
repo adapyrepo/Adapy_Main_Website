@@ -15,6 +15,9 @@ import {
   ShieldCheck,
   Bell,
   LayoutDashboard,
+  FileCheck,
+  AlertCircle,
+  Activity,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
@@ -206,8 +209,9 @@ export default function DealerFunnel() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <motion.div
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -241,6 +245,94 @@ export default function DealerFunnel() {
               <p className="text-sm text-white/50 mt-6">
                 Currently onboarding a limited number of dealer partners.
               </p>
+            </motion.div>
+
+            {/* HERO — warranty evidence packet card */}
+            <motion.div
+              className="lg:col-span-5 hidden lg:block"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              aria-hidden="true"
+            >
+              <div className="relative">
+                <div className="absolute -inset-6 bg-[#0071e3]/20 blur-3xl rounded-[3rem] -z-10" />
+                <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-5 pb-5 border-b border-white/10">
+                    <div>
+                      <div className="text-[9px] font-bold tracking-[0.15em] text-white/40 uppercase">
+                        Warranty Claim
+                      </div>
+                      <div className="text-base font-bold text-white mt-0.5">
+                        #WC-2026-0418
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold tracking-[0.12em] text-emerald-400 uppercase px-2.5 py-1 bg-emerald-400/10 border border-emerald-400/20 rounded-full flex items-center gap-1">
+                      <FileCheck className="w-3 h-3" />
+                      Approved
+                    </span>
+                  </div>
+
+                  <div className="space-y-3 mb-5">
+                    {[
+                      { label: "Vehicle", value: "F-150 / 2024 Mobility" },
+                      { label: "Component", value: "Power lift assembly" },
+                      { label: "Failure mode", value: "Motor stall — cycle 1,847" },
+                    ].map((row) => (
+                      <div key={row.label} className="flex justify-between text-[11px]">
+                        <span className="text-white/40 font-medium">{row.label}</span>
+                        <span className="text-white/85 font-semibold">{row.value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 mb-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[10px] font-bold tracking-[0.15em] text-white/50 uppercase">
+                        Pre-Failure Telemetry
+                      </span>
+                      <Activity className="w-3.5 h-3.5 text-amber-400" />
+                    </div>
+                    <div className="flex items-end gap-1 h-16">
+                      {[55, 60, 58, 65, 70, 78, 85, 92, 88, 95, 70, 30].map((h, i) => (
+                        <div
+                          key={i}
+                          className={`flex-1 rounded-t ${
+                            i >= 9 ? "bg-amber-400/60" : "bg-[#0071e3]/40"
+                          }`}
+                          style={{ height: `${h}%` }}
+                        />
+                      ))}
+                    </div>
+                    <div className="text-[9px] text-white/40 mt-2 text-center">
+                      Motor draw climbed for 14 days before failure
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    {[
+                      { icon: <FileCheck className="w-3.5 h-3.5 text-emerald-400" />, label: "Cycle log attached (1,847 cycles)" },
+                      { icon: <FileCheck className="w-3.5 h-3.5 text-emerald-400" />, label: "Fault codes — exported to OEM" },
+                      { icon: <FileCheck className="w-3.5 h-3.5 text-emerald-400" />, label: "Install record + tech notes" },
+                    ].map((row, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white/[0.02] border border-white/5"
+                      >
+                        {row.icon}
+                        <span className="text-[11px] text-white/70 font-medium">
+                          {row.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                    Auto-built warranty packet &mdash; preview
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
