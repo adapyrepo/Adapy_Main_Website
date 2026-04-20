@@ -111,7 +111,7 @@ export default function Home() {
       </div>
 
       {/* HERO — problem-first */}
-      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-black">
+      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-[#0e0f12]">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -119,12 +119,14 @@ export default function Home() {
             loop
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            className="absolute inset-0 w-full h-full object-cover opacity-65"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.35)_45%,transparent_75%)] z-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40 z-30" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(14,15,18,0.75)_0%,rgba(14,15,18,0.35)_45%,transparent_75%)] z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0f12]/30 via-transparent to-[#0e0f12]/40 z-30" />
+          {/* Subtle blue glow behind the headline area */}
+          <div className="absolute bottom-1/3 left-1/4 w-[640px] h-[640px] rounded-full bg-[#0071e3]/10 blur-[160px] z-20 pointer-events-none" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
@@ -171,7 +173,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM CHAPTER 1 — Fragmentation */}
-      <section className="py-32 bg-[#0a0a0a] text-white">
+      <section className="py-32 bg-[#15171b] text-white">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7">
@@ -184,7 +186,7 @@ export default function Home() {
                 Every device speaks a different language.
                 None of them speak to each other.
               </h2>
-              <p className="text-xl text-white/60 mb-8 leading-relaxed">
+              <p className="text-xl text-white/75 mb-8 leading-relaxed">
                 A modern adaptive vehicle is a stack of equipment from a dozen
                 different manufacturers — lifts, ramps, transfer seats, hand
                 controls, cranes, securement systems. Each one ships with its
@@ -231,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM CHAPTER 2 — Invisible failures */}
-      <section className="py-32 bg-[#111] text-white border-t border-white/[0.06]">
+      <section className="py-32 bg-[#1c1f24] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5 order-2 lg:order-1">
@@ -242,7 +244,7 @@ export default function Home() {
                     <div className="text-4xl font-bold text-white mb-1">
                       ~70%
                     </div>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-white/75">
                       of adaptive equipment failures originate from pendant
                       damage — slammed in doors, crushed in seats, dropped on
                       pavement{" "}
@@ -254,7 +256,7 @@ export default function Home() {
                     <div className="text-4xl font-bold text-white mb-1">
                       0
                     </div>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-white/75">
                       usage-cycle data points captured by today&rsquo;s
                       adaptive equipment{" "}
                       <span className="text-white/40">[source needed]</span>
@@ -265,7 +267,7 @@ export default function Home() {
                     <div className="text-4xl font-bold text-white mb-1">
                       AVG.
                     </div>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-white/75">
                       time between first warning sign and total failure:
                       none{" "}
                       <span className="text-white/40">[source needed]</span>
@@ -281,7 +283,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
                 You only find out when someone is already stranded.
               </h2>
-              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+              <p className="text-xl text-white/75 mb-6 leading-relaxed">
                 Adaptive equipment doesn&rsquo;t fail loudly. It fails on a
                 Tuesday morning, in a parking garage, in the rain. The pendant
                 that&rsquo;s been getting slammed in the door for six months
@@ -300,7 +302,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM CHAPTER 3 — Liability & cost exposure */}
-      <section className="py-32 bg-[#0a0a0a] text-white border-t border-white/[0.06]">
+      <section className="py-32 bg-[#15171b] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7">
@@ -310,7 +312,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
                 When something goes wrong, no one can prove what happened.
               </h2>
-              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+              <p className="text-xl text-white/75 mb-6 leading-relaxed">
                 Manufacturers reject warranty claims because the dealer
                 can&rsquo;t prove fault. The VA, Voc-Rehab, and Workforce
                 Services deny replacement requests because there&rsquo;s no
@@ -353,14 +355,14 @@ export default function Home() {
                 >
                   <div className="text-[#0071e3] mb-3">{item.icon}</div>
                   <h4 className="font-bold text-white mb-1">{item.title}</h4>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-white/75 leading-relaxed">
                     {item.body}
                   </p>
                 </div>
               ))}
               <p className="text-xs text-white/40 pt-2">
                 Cost of a single equipment-related lawsuit settlement:{" "}
-                <span className="text-white/60">[source needed]</span>
+                <span className="text-white/75">[source needed]</span>
               </p>
             </div>
           </div>
@@ -368,7 +370,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM CHAPTER 4 — Lost independence */}
-      <section className="py-32 bg-[#111] text-white border-t border-white/[0.06]">
+      <section className="py-32 bg-[#1c1f24] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5 order-2 lg:order-1 space-y-4">
@@ -395,7 +397,7 @@ export default function Home() {
                   className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.06]"
                 >
                   <h4 className="font-bold text-white mb-1">{item.title}</h4>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-white/75 leading-relaxed">
                     {item.body}
                   </p>
                 </div>
@@ -409,7 +411,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]">
                 The cost isn&rsquo;t just money. It&rsquo;s freedom.
               </h2>
-              <p className="text-xl text-white/60 mb-6 leading-relaxed">
+              <p className="text-xl text-white/75 mb-6 leading-relaxed">
                 Every dropped pendant. Every trip stood up in the rain. Every
                 transfer that needed a second pair of hands. Every silent
                 failure that ended someone&rsquo;s day. These aren&rsquo;t
@@ -425,7 +427,7 @@ export default function Home() {
               <p className="text-sm text-white/40 mt-8">
                 % of adaptive users who report at least one
                 equipment-related disruption per week:{" "}
-                <span className="text-white/60">[source needed]</span>
+                <span className="text-white/75">[source needed]</span>
               </p>
             </div>
           </div>
@@ -471,7 +473,7 @@ export default function Home() {
                   <p className="text-sm font-medium text-white/85 mb-3 italic leading-relaxed">
                     &ldquo;{profile.pain}&rdquo;
                   </p>
-                  <p className="text-xs text-white/60 leading-relaxed border-t border-white/10 pt-3">
+                  <p className="text-xs text-white/75 leading-relaxed border-t border-white/10 pt-3">
                     {profile.outcome}
                   </p>
                   <h4 className="text-sm font-bold mt-3">{profile.name}</h4>
@@ -535,7 +537,7 @@ export default function Home() {
       </section>
 
       {/* BRAND TRUST STRIP */}
-      <section className="py-20 bg-black text-white border-t border-white/10">
+      <section className="py-20 bg-[#0e0f12] text-white border-t border-white/10">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="flex-shrink-0">
@@ -699,7 +701,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-t border-white/10 px-6 py-4 flex items-center justify-between text-white/60 text-xs">
+            <div className="bg-gradient-to-r from-slate-950 to-slate-900 border-t border-white/10 px-6 py-4 flex items-center justify-between text-white/75 text-xs">
               <div>© 2026 Adapy. All rights reserved.</div>
               <div className="flex gap-4">
                 <a href="#" className="hover:text-white transition-colors">

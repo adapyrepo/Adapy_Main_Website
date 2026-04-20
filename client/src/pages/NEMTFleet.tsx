@@ -241,7 +241,7 @@ export default function NEMTFleet() {
         <Navbar />
       </div>
 
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-[#0e0f12] to-[#1c1f24] overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
           <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-red-500 blur-[120px] rounded-full opacity-40" />
@@ -434,7 +434,7 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      <section className="py-32 bg-[#0a0a0a] text-white">
+      <section className="py-32 bg-[#15171b] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-20 max-w-2xl">
             <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
@@ -443,7 +443,7 @@ export default function NEMTFleet() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
               Seven invisible risks every NEMT operator carries.
             </h2>
-            <p className="text-lg text-white/60 leading-relaxed">
+            <p className="text-lg text-white/75 leading-relaxed">
               Traditional NEMT software stops at dispatch and billing.
               Everything that happens inside the vehicle — the part that
               creates real liability — runs unmonitored.
@@ -486,7 +486,7 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      <section className="py-32 bg-black text-white">
+      <section className="py-32 bg-[#1c1f24] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-16 max-w-2xl">
             <span className="text-[11px] font-bold tracking-[0.2em] text-red-400 uppercase block mb-4">
@@ -495,7 +495,7 @@ export default function NEMTFleet() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
               How invisible problems become a six-figure incident.
             </h2>
-            <p className="text-lg text-white/60 leading-relaxed">
+            <p className="text-lg text-white/75 leading-relaxed">
               One realistic timeline. Every step preventable with the
               right alert at the right minute.
             </p>

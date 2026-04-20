@@ -203,7 +203,7 @@ export default function DealerFunnel() {
       </div>
 
       {/* HERO — dealer pain, not growth pitch */}
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-black to-slate-900 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-[#0e0f12] to-[#1c1f24] overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
@@ -339,7 +339,7 @@ export default function DealerFunnel() {
       </section>
 
       {/* PROBLEM NARRATIVE — six dealer-pain chapters (~70%) */}
-      <section className="py-32 bg-[#0a0a0a] text-white">
+      <section className="py-32 bg-[#15171b] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-20 max-w-2xl">
             <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
@@ -349,7 +349,7 @@ export default function DealerFunnel() {
               Six things adaptive mobility dealers stop accepting
               eventually.
             </h2>
-            <p className="text-lg text-white/60 leading-relaxed">
+            <p className="text-lg text-white/75 leading-relaxed">
               Warranty disputes you can&rsquo;t win, service calls you
               can&rsquo;t scope, customer blame you can&rsquo;t deflect.
               The infrastructure to fix it has never existed — until now.
