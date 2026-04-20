@@ -111,7 +111,7 @@ export default function Home() {
       </div>
 
       {/* HERO — problem-first */}
-      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-[#0e0f12]">
+      <section className="relative h-screen min-h-[700px] flex flex-col overflow-hidden bg-gradient-to-br from-[#1a1d24] via-[#181b22] to-[#0f1218]">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -119,14 +119,17 @@ export default function Home() {
             loop
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover opacity-65"
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(14,15,18,0.75)_0%,rgba(14,15,18,0.35)_45%,transparent_75%)] z-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0f12]/30 via-transparent to-[#0e0f12]/40 z-30" />
-          {/* Subtle blue glow behind the headline area */}
-          <div className="absolute bottom-1/3 left-1/4 w-[640px] h-[640px] rounded-full bg-[#0071e3]/10 blur-[160px] z-20 pointer-events-none" />
+          {/* Softer left-side scrim only where the headline sits */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(14,15,18,0.55)_0%,rgba(14,15,18,0.2)_40%,transparent_70%)] z-30" />
+          {/* Very gentle vertical fade — keeps top/bottom edges legible */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0f12]/15 via-transparent to-[#0e0f12]/20 z-30" />
+          {/* Ambient blue glows — give depth even before video paints */}
+          <div className="absolute bottom-1/4 left-1/5 w-[680px] h-[680px] rounded-full bg-[#0071e3]/20 blur-[160px] z-20 pointer-events-none" />
+          <div className="absolute -top-32 right-1/4 w-[520px] h-[520px] rounded-full bg-[#3b82f6]/10 blur-[140px] z-20 pointer-events-none" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
