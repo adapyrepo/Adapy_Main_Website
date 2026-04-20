@@ -173,7 +173,7 @@ export default function Home() {
       </section>
 
       {/* PROBLEM CHAPTER 1 — Fragmentation */}
-      <section className="py-32 bg-[#15171b] text-white">
+      <section className="py-32 bg-[#15171b] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7">
