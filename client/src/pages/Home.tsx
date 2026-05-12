@@ -123,13 +123,13 @@ export default function Home() {
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          {/* Softer left-side scrim only where the headline sits */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(14,15,18,0.55)_0%,rgba(14,15,18,0.2)_40%,transparent_70%)] z-30" />
+          {/* Left-to-right scrim — darkens the side where the headline sits, fades to clear on the right */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,11,14,0.78)_0%,rgba(10,11,14,0.6)_25%,rgba(10,11,14,0.3)_45%,transparent_65%)] md:bg-[linear-gradient(to_right,rgba(10,11,14,0.75)_0%,rgba(10,11,14,0.55)_25%,rgba(10,11,14,0.25)_45%,transparent_60%)] z-20 pointer-events-none" />
           {/* Very gentle vertical fade — keeps top/bottom edges legible */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0f12]/15 via-transparent to-[#0e0f12]/20 z-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0f12]/15 via-transparent to-[#0e0f12]/20 z-20 pointer-events-none" />
           {/* Ambient blue glows — give depth even before video paints */}
-          <div className="absolute bottom-1/4 left-1/5 w-[680px] h-[680px] rounded-full bg-[#0071e3]/20 blur-[160px] z-20 pointer-events-none" />
-          <div className="absolute -top-32 right-1/4 w-[520px] h-[520px] rounded-full bg-[#3b82f6]/10 blur-[140px] z-20 pointer-events-none" />
+          <div className="absolute bottom-1/4 left-1/5 w-[680px] h-[680px] rounded-full bg-[#0071e3]/20 blur-[160px] z-30 pointer-events-none" />
+          <div className="absolute -top-32 right-1/4 w-[520px] h-[520px] rounded-full bg-[#3b82f6]/10 blur-[140px] z-30 pointer-events-none" />
         </div>
 
         <div className="relative z-40 flex flex-col flex-1">
