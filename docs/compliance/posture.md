@@ -120,7 +120,7 @@ These gaps are tracked as concrete tickets in the engineering follow-ups appendi
 
 - Engineering uses `data-zones.md` and `segmentation-architecture.md` to decide where a new endpoint, table, or third-party vendor sits.
 - Security uses `obligations-checklist.md` to translate the posture into BAAs, audit log retention, training scope, and breach SLAs.
-- The "engineering follow-ups appendix" at the end of `obligations-checklist.md` is the seed list for future tasks. It is intentionally not implemented in this task.
+- The "engineering follow-ups appendix" at the end of `obligations-checklist.md` is the seed list for future tasks — it is the "what changes in code" companion to this posture, intentionally not implemented in this task.
 
 ---
 
