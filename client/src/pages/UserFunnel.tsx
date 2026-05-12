@@ -67,7 +67,7 @@ export default function UserFunnel() {
     setSubmitMessage("");
     try {
       const response = await fetch(
-        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/qualify-form",
+        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/qualify-form",
         {
           method: "POST",
           headers: {

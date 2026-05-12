@@ -67,7 +67,7 @@ export default function NEMTFleet() {
       const apiKey =
         "5e225ecefc065d0e704f84c7c7a352f38c837ecc8fdb57204285cf6e166bc709";
       const response = await fetch(
-        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/fleet",
+        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/fleet",
         {
           method: "POST",
           headers: {

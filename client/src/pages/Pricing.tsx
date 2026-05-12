@@ -154,7 +154,7 @@ export default function Pricing() {
         (formData.equipment_other ? `, ${formData.equipment_other}` : "");
 
       const response = await fetch(
-        "https://omffhncmajcazsthtccn.supabase.co/functions/v1/api-lead-submit/customquote",
+        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/customquote",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
