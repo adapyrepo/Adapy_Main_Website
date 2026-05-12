@@ -188,6 +188,73 @@ export default function Privacy() {
           </p>
         </Section>
 
+        <section id="washington-consumer-health-data" className="mb-12 scroll-mt-32">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">
+            Washington consumer health data
+          </h2>
+          <div className="prose prose-neutral dark:prose-invert max-w-none text-muted-foreground leading-relaxed [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_strong]:text-foreground">
+            <p>
+              This section applies to Washington residents and is provided to
+              meet our obligations under the Washington My Health My Data Act
+              (MHMDA).
+            </p>
+            <p>
+              <strong>What we collect.</strong> When a Washington resident
+              uses our user or dealer intake forms, we ask for free-text
+              information about your <em>situation</em> and the{" "}
+              <em>adaptive equipment</em> you use or need help with. Because
+              that information can reveal a physical or mental health
+              condition or a need for adaptive mobility equipment, it is
+              treated as &ldquo;consumer health data&rdquo; under MHMDA.
+            </p>
+            <p>
+              <strong>Why we collect it.</strong> We use this information
+              only to (i) respond to your inquiry, (ii) determine whether
+              Adapy products or funding pathways may fit your situation, and
+              (iii) connect you with an authorized Adapy dealer or
+              partnership team member who can help. We do not sell consumer
+              health data and we do not use it for targeted advertising.
+            </p>
+            <p>
+              <strong>Who we share it with.</strong> We share consumer
+              health data only with our internal sales and partnerships
+              team and, where relevant, the authorized dealer matched to
+              your inquiry. We may also share it with service providers
+              (such as our form-processing and email infrastructure) under
+              written contract that limits their use to providing services
+              to Adapy.
+            </p>
+            <p>
+              <strong>Consent.</strong> Before we collect the situation
+              and adaptive equipment fields from a Washington resident, we
+              show a notice describing this use and ask you to affirmatively
+              opt in. We record the timestamp of that consent with your
+              submission. You can withdraw consent at any time by emailing{" "}
+              <a href="mailto:support@adapy.com" className="text-primary underline">
+                support@adapy.com
+              </a>
+              ; withdrawal will not affect processing that took place before
+              we received the request.
+            </p>
+            <p>
+              <strong>Your MHMDA rights.</strong> Washington residents have
+              the right to (i) confirm whether we are processing your
+              consumer health data and access that data, (ii) have a list
+              of the third parties with whom we have shared it, (iii)
+              withdraw consent, and (iv) request deletion of the consumer
+              health data we hold about you. To exercise any of these
+              rights, contact{" "}
+              <a href="mailto:support@adapy.com" className="text-primary underline">
+                support@adapy.com
+              </a>
+              . We will respond within the time required by MHMDA. If we
+              decline a request, you may appeal by replying to our
+              response, and you may also file a complaint with the
+              Washington State Attorney General.
+            </p>
+          </div>
+        </section>
+
         <Section title="Do we make updates to this notice?">
           <p>
             Yes — we will update this notice as necessary to stay compliant with

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
+import { MhmdaNotice } from "@/components/MhmdaNotice";
 import adapyAppScreenshot from "@assets/IMG_F1BC6CADEE49-1_1776390637769.jpeg";
 
 export default function UserFunnel() {
@@ -37,6 +38,17 @@ export default function UserFunnel() {
     situation: "",
     adaptive_equipment: "",
   });
+  const [mhmdaConsent, setMhmdaConsent] = useState(false);
+  const [mhmdaConsentAt, setMhmdaConsentAt] = useState<string>("");
+
+  const isWashingtonResident = /^(wa|washington)$/i.test(
+    formData.state.trim(),
+  );
+
+  const handleConsentChange = (checked: boolean) => {
+    setMhmdaConsent(checked);
+    setMhmdaConsentAt(checked ? new Date().toISOString() : "");
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -74,6 +86,8 @@ export default function UserFunnel() {
             country: formData.country,
             situation: formData.situation,
             adaptive_equipment: formData.adaptive_equipment,
+            mhmda_consent: mhmdaConsent,
+            mhmda_consent_at: mhmdaConsentAt || null,
           }),
         },
       );
@@ -606,6 +620,12 @@ export default function UserFunnel() {
                 <h3 className="text-xl font-bold text-black mb-4">
                   Tell us about your situation
                 </h3>
+                {isWashingtonResident && (
+                  <MhmdaNotice
+                    consent={mhmdaConsent}
+                    onConsentChange={handleConsentChange}
+                  />
+                )}
                 <div>
                   <label className="block text-sm font-bold text-black mb-3">
                     Which best describes you right now?
@@ -648,7 +668,8 @@ export default function UserFunnel() {
                   <button
                     type="button"
                     onClick={() => setFormStep(4)}
-                    className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all"
+                    disabled={isWashingtonResident && !mhmdaConsent}
+                    className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     data-testid="button-step-3-continue"
                   >
                     Continue
@@ -667,6 +688,12 @@ export default function UserFunnel() {
                 <h3 className="text-xl font-bold text-black mb-4">
                   What equipment are you working with?
                 </h3>
+                {isWashingtonResident && (
+                  <MhmdaNotice
+                    consent={mhmdaConsent}
+                    onConsentChange={handleConsentChange}
+                  />
+                )}
                 <div>
                   <label className="block text-sm font-bold text-black mb-3">
                     What adaptive equipment do you currently use or need
@@ -693,7 +720,10 @@ export default function UserFunnel() {
                   <button
                     type="button"
                     onClick={() => handleSubmit()}
-                    disabled={isSubmitting}
+                    disabled={
+                      isSubmitting ||
+                      (isWashingtonResident && !mhmdaConsent)
+                    }
                     className="flex-1 py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     data-testid="button-submit"
                   >

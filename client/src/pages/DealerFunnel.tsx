@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
+import { MhmdaNotice } from "@/components/MhmdaNotice";
 
 export default function DealerFunnel() {
   useSEO({ title: "Software for Mobility Dealers — Stop Eating Warranty Disputes", description: "Adapy gives mobility dealers the diagnostic data, warranty evidence, and lifecycle visibility to stop losing margin to invisible failures.", path: "/dealer-funnel" });
@@ -41,6 +42,17 @@ export default function DealerFunnel() {
     situation: "",
     adaptive_equipment: "",
   });
+  const [mhmdaConsent, setMhmdaConsent] = useState(false);
+  const [mhmdaConsentAt, setMhmdaConsentAt] = useState<string>("");
+
+  const isWashingtonResident = /^(wa|washington)$/i.test(
+    formData.state.trim(),
+  );
+
+  const handleConsentChange = (checked: boolean) => {
+    setMhmdaConsent(checked);
+    setMhmdaConsentAt(checked ? new Date().toISOString() : "");
+  };
 
   const handleFormChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -64,6 +76,13 @@ export default function DealerFunnel() {
       return;
     }
 
+    if (isWashingtonResident && !mhmdaConsent) {
+      setSubmitError(
+        "Please review and accept the Washington consumer health data notice to continue.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
     setSubmitMessage("");
@@ -80,6 +99,8 @@ export default function DealerFunnel() {
             _api_key:
               "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
             ...formData,
+            mhmda_consent: mhmdaConsent,
+            mhmda_consent_at: mhmdaConsentAt || null,
           }),
         },
       );
@@ -750,6 +771,12 @@ export default function DealerFunnel() {
                     />
                   </div>
                 </div>
+                {isWashingtonResident && (
+                  <MhmdaNotice
+                    consent={mhmdaConsent}
+                    onConsentChange={handleConsentChange}
+                  />
+                )}
                 <div>
                   <label className="block text-sm font-bold text-black mb-2">
                     Situation *
@@ -799,7 +826,10 @@ export default function DealerFunnel() {
                   data-testid="button-submit-dealer"
                   type="button"
                   onClick={handleSubmit}
-                  disabled={isSubmitting}
+                  disabled={
+                    isSubmitting ||
+                    (isWashingtonResident && !mhmdaConsent)
+                  }
                   className="w-full py-3.5 bg-[#0071e3] text-white rounded-2xl font-bold text-lg hover:bg-[#0077ed] transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
