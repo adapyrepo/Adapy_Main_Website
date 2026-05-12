@@ -157,7 +157,11 @@ export default function Pricing() {
         "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/customquote",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+          },
           body: JSON.stringify({
             _form_slug: "customquote",
             _api_key: "cd6003df2595f76b42ab4f200dd4d6a7da7d79a4728bdc6c845618b95cf88ffe",
