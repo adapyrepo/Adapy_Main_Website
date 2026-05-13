@@ -339,7 +339,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
             <MobilityTicker />
           </div>
           <a
-            href="https://admin.adapy.com"
+            href="https://my.adapy.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
@@ -438,7 +438,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
 
               <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
                 <a
-                  href="https://admin.adapy.com"
+                  href="https://my.adapy.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-white/10 transition-all"
