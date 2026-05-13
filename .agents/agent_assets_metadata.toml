@@ -12,3 +12,9 @@ id = "5vuryoJXL8G8Tp4XuxIVA"
 uri = "file://attached_assets/generated_images/nemt_van_hero.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "99Wjhdsa5Zo6MPTjXuMgM"
+uri = "file://attached_assets/generated_images/emergency_vehicles_night.png"
+type = "image"
+title = "generated_image"

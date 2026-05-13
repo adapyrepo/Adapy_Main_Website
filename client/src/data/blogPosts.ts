@@ -1,5 +1,6 @@
 import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
 import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-2149445656_1778688340541.avif";
+import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicles_night.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -251,8 +252,8 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "The Hidden Risks Inside Fleet Operations" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=1600",
-        alt: "Service vehicle on the road at dusk",
+        src: emergencyVehiclesNightImg,
+        alt: "Ambulance and fire truck at night with red and blue emergency lights flashing",
         caption:
           "Commercial, NEMT, and adaptive mobility fleets share a common challenge: most safety risks are invisible until something goes wrong.",
       },
