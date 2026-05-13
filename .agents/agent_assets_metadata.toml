@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "8sI-2MDhVGwV-HPn2X5N-"
+uri = "file://attached_assets/generated_images/pendant_wheelchair_lift.png"
+type = "image"
+title = "generated_image"

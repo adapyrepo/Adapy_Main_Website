@@ -1,3 +1,5 @@
+import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
+
 export type BlogBody =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
@@ -49,10 +51,10 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "The Problem with Fragmented Mobility Systems" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1600",
-        alt: "Tangled wires and disconnected control boxes representing fragmented adaptive equipment",
+        src: pendantLiftImg,
+        alt: "Wheelchair user pressing a handheld pendant remote to operate a deployed wheelchair lift on an accessible van",
         caption:
-          "Most adaptive vehicles today run a different remote, app, and wiring standard for every piece of equipment.",
+          "Every device — lifts, ramps, transfer seats — typically ships with its own pendant, app, and wiring standard.",
       },
       {
         type: "p",
