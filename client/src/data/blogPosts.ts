@@ -1,4 +1,5 @@
 import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
+import nemtVanHeroImg from "@assets/generated_images/nemt_van_hero.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -232,8 +233,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 10, 2026",
     author: "Michael Chen",
     category: "Technology",
-    image:
-      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=1600",
+    image: nemtVanHeroImg,
     readTime: "9 min read",
     body: [
       {
