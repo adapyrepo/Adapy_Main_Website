@@ -30,3 +30,9 @@ id = "a1_nnH-A4OlJFmSrInEI-"
 uri = "file://attached_assets/generated_images/protective_monitoring_passenger.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "8Hc-wpe_wnFYGbPqvo9c3"
+uri = "file://attached_assets/generated_images/connected_mobility_dashboard.png"
+type = "image"
+title = "generated_image"

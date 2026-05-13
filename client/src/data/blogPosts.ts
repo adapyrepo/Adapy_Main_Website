@@ -4,6 +4,7 @@ import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicl
 import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_1778688626181.png";
 import coAlertImg from "@assets/generated_images/co_detection_alert.png";
 import protectiveMonitoringImg from "@assets/generated_images/protective_monitoring_passenger.png";
+import connectedDashboardImg from "@assets/generated_images/connected_mobility_dashboard.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -445,8 +446,8 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "The Role of Connected Mobility Platforms" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=1600",
-        alt: "Connected fleet dashboard showing real-time analytics",
+        src: connectedDashboardImg,
+        alt: "Fleet operations command center with multiple monitors showing live vehicle map, health gauges, sensor readings, and analytics on a unified mobility dashboard",
         caption:
           "One dashboard. Real-time alerts, diagnostics, and fleet-wide safety analytics.",
       },
