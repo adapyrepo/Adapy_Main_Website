@@ -49,7 +49,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "The Problem with Fragmented Mobility Systems" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1583912267550-d6c2ac3196c0?auto=format&fit=crop&q=80&w=1600",
+        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1600",
         alt: "Tangled wires and disconnected control boxes representing fragmented adaptive equipment",
         caption:
           "Most adaptive vehicles today run a different remote, app, and wiring standard for every piece of equipment.",
