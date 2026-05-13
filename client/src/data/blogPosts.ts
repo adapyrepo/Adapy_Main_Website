@@ -1,11 +1,11 @@
 import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
-import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-2149445656_1778688340541.avif";
+import nemtVanHeroImg from "@assets/image_1778689135772.png";
 import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicles_night.png";
 import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_1778688626181.png";
 import coAlertImg from "@assets/generated_images/co_detection_alert.png";
 import protectiveMonitoringImg from "@assets/generated_images/protective_monitoring_passenger.png";
 import connectedDashboardImg from "@assets/generated_images/connected_mobility_dashboard.png";
-import lookingAheadImg from "@assets/generated_images/looking_ahead_smart_fleet.png";
+import lookingAheadImg from "@assets/image_1778689135772.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
