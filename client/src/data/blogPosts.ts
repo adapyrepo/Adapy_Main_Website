@@ -2,6 +2,7 @@ import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png
 import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-2149445656_1778688340541.avif";
 import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicles_night.png";
 import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_1778688626181.png";
+import coAlertImg from "@assets/generated_images/co_detection_alert.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -351,8 +352,8 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Carbon Monoxide Detection" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1600",
-        alt: "Vehicle exhaust pipe close-up",
+        src: coAlertImg,
+        alt: "In-vehicle dashboard display showing a red CARBON MONOXIDE DETECTED alert",
         caption:
           "CO sensors detect dangerous exhaust buildup before occupants ever feel symptoms.",
       },

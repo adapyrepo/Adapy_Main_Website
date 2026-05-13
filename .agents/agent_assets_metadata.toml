@@ -18,3 +18,9 @@ id = "99Wjhdsa5Zo6MPTjXuMgM"
 uri = "file://attached_assets/generated_images/emergency_vehicles_night.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "GvmeAtwEOlyIwU92dUj0Z"
+uri = "file://attached_assets/generated_images/co_detection_alert.png"
+type = "image"
+title = "generated_image"
