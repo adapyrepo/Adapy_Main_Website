@@ -1,5 +1,5 @@
 import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
-import nemtVanHeroImg from "@assets/generated_images/nemt_van_hero.png";
+import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-2149445656_1778688340541.avif";
 
 export type BlogBody =
   | { type: "p"; text: string }
