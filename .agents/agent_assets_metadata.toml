@@ -42,3 +42,15 @@ id = "IyHNwb-mFlERvuKpIBkqp"
 uri = "file://attached_assets/generated_images/looking_ahead_smart_fleet.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "R-dKFwFGGwDTkvTKH6AlD"
+uri = "file://attached_assets/generated_images/compassion_mobility_hero.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "EzAW3cX906GqW6d7xI8f5"
+uri = "file://attached_assets/generated_images/compassion_mobility_app.png"
+type = "image"
+title = "generated_image"

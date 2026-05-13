@@ -6,6 +6,8 @@ import coAlertImg from "@assets/generated_images/co_detection_alert.png";
 import protectiveMonitoringImg from "@assets/generated_images/protective_monitoring_passenger.png";
 import connectedDashboardImg from "@assets/generated_images/connected_mobility_dashboard.png";
 import lookingAheadImg from "@assets/image_1778689135772.png";
+import compassionHeroImg from "@assets/generated_images/compassion_mobility_hero.png";
+import compassionAppImg from "@assets/generated_images/compassion_mobility_app.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -516,15 +518,277 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    slug: "atc-mobility-reduced-support-costs-40-percent",
-    title: "Case Study: How ATC Mobility Reduced Support Costs by 40%",
+    slug: "compassion-mobility-expanded-business-through-adapy-integration",
+    title:
+      "Case Study: How Compassion Mobility Expanded Its Business Through Adapy Integration",
     excerpt:
-      "Explore the implementation journey and measurable results of unified control systems.",
+      "How Utah’s #1 Adapy dealer transformed adaptive mobility through technology, oversight, and independence — and built a new revenue channel along the way.",
     date: "March 5, 2026",
     author: "James Wilson",
     category: "Case Study",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1600",
+    image: compassionHeroImg,
+    readTime: "8 min read",
+    body: [
+      {
+        type: "quote",
+        text: "Transforming adaptive mobility through technology, oversight, and independence.",
+      },
+      {
+        type: "p",
+        text: "In the rapidly evolving adaptive mobility industry, dealerships are being challenged to do more than simply install equipment. Customers, healthcare agencies, Veterans Affairs programs, and Workforce Services organizations increasingly expect higher levels of safety, accountability, visibility, and long-term support.",
+      },
+      {
+        type: "p",
+        text: "Compassion Mobility, based in Spanish Fork, Utah, recognized this shift early.",
+      },
+      {
+        type: "p",
+        text: "By expanding its product offerings to include Adapy’s smart mobility platform, Compassion Mobility not only enhanced the customer experience, but also created entirely new operational and revenue opportunities for its business.",
+      },
+      {
+        type: "p",
+        text: "Today, Compassion Mobility has become the #1 Adapy dealer in Utah, leveraging connected mobility technologies to improve installations, increase equipment oversight, strengthen warranty support, and help users achieve greater independence.",
+      },
+      {
+        type: "p",
+        text: "This case study examines how the partnership between Compassion Mobility and Adapy is helping reshape what modern adaptive mobility services can look like.",
+      },
+      {
+        type: "h2",
+        text: "The Challenge: Adaptive Mobility Needed Better Connectivity and Oversight",
+      },
+      {
+        type: "p",
+        text: "Traditionally, adaptive mobility dealerships focused heavily on equipment installation and service. While this model served customers well for many years, growing demands from funding agencies and consumers exposed several challenges across the industry:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Limited long-term visibility into equipment performance",
+          "Difficulties tracking equipment usage in the field",
+          "Reactive maintenance scheduling",
+          "Limited data to support warranty claims",
+          "Challenges justifying equipment needs to funding agencies",
+          "Complex user experiences involving multiple remotes and controls",
+          "Minimal insight into equipment lifecycle management",
+        ],
+      },
+      {
+        type: "p",
+        text: "As adaptive vehicles became more technologically advanced, it became clear that the industry needed a more connected approach.",
+      },
+      {
+        type: "p",
+        text: "Compassion Mobility saw an opportunity to evolve beyond traditional equipment installation by integrating intelligent monitoring and control systems directly into their mobility solutions.",
+      },
+      { type: "quote", text: "That opportunity came through Adapy." },
+      {
+        type: "h2",
+        text: "The Solution: Integrating Adapy Into Compassion Mobility’s Product Line",
+      },
+      {
+        type: "image",
+        src: connectedDashboardImg,
+        alt: "Unified Adapy mobility dashboard showing real-time equipment monitoring",
+        caption:
+          "Adapy became an intelligent layer connecting multiple adaptive systems together — not just another standalone product.",
+      },
+      {
+        type: "p",
+        text: "After working alongside the Department of Veterans Affairs (VA) and Workforce Services programs, Compassion Mobility was able to demonstrate the value of Adapy’s unified mobility platform in real-world applications.",
+      },
+      { type: "p", text: "The results quickly became apparent." },
+      {
+        type: "p",
+        text: "Adapy introduced capabilities that extended far beyond basic equipment control:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Centralized mobile app controls",
+          "Real-time equipment monitoring",
+          "Usage analytics",
+          "Maintenance tracking",
+          "Equipment lifecycle visibility",
+          "Environmental and operational oversight",
+          "Redundant equipment controls for safety and reliability",
+        ],
+      },
+      {
+        type: "p",
+        text: "Rather than functioning as a standalone product, Adapy became an intelligent layer connecting multiple adaptive systems together. For Compassion Mobility, this transformed how they approached both installations and long-term customer support.",
+      },
+      { type: "h2", text: "A New Revenue Channel for the Dealership" },
+      {
+        type: "p",
+        text: "One of the most immediate impacts for Compassion Mobility was the creation of a completely new revenue channel. Instead of limiting services to initial equipment sales and installations, Adapy enabled ongoing technology-based services and support opportunities. This included:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Smart mobility upgrades",
+          "Monitoring and service integrations",
+          "Connected equipment solutions",
+          "Long-term support relationships",
+          "Advanced mobility customization",
+          "Future software and technology expansion opportunities",
+        ],
+      },
+      {
+        type: "p",
+        text: "The dealership evolved from simply installing adaptive equipment to helping deliver a connected mobility ecosystem. This positioned Compassion Mobility as a technology-forward leader in the adaptive mobility industry.",
+      },
+      { type: "h2", text: "Improved Oversight and Equipment Tracking" },
+      {
+        type: "p",
+        text: "One of the most valuable operational benefits has been the ability to track and monitor adaptive equipment in the field. Historically, dealerships had limited visibility once a vehicle left the shop. Diagnosing issues often relied on customer descriptions, delayed service calls, or physical inspections.",
+      },
+      {
+        type: "p",
+        text: "With Adapy integration, Compassion Mobility gained significantly greater oversight into:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Equipment usage patterns",
+          "Operational history",
+          "Maintenance schedules",
+          "Equipment performance",
+          "Service intervals",
+          "End-of-life replacement planning",
+        ],
+      },
+      {
+        type: "p",
+        text: "This proactive visibility allows the dealership to identify issues earlier, improve customer support, and better manage long-term equipment reliability. Instead of reacting to failures, they can increasingly anticipate service needs before problems escalate.",
+      },
+      {
+        type: "h2",
+        text: "Strengthening Warranty Claims and Funding Justification",
+      },
+      {
+        type: "p",
+        text: "Warranty support has traditionally been one of the more difficult areas within adaptive mobility. Without reliable operational data, proving equipment usage patterns or identifying failures can become time-consuming and difficult.",
+      },
+      {
+        type: "p",
+        text: "Adapy’s tracking and monitoring capabilities have significantly improved this process. By providing clearer visibility into equipment operation and performance history, Compassion Mobility has been able to better support:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Warranty claim validation",
+          "Equipment diagnostics",
+          "Service documentation",
+          "Funding justifications",
+          "Replacement recommendations",
+        ],
+      },
+      {
+        type: "p",
+        text: "This data-driven approach also benefits organizations such as the VA and Workforce Services, which increasingly require stronger justification and accountability for adaptive equipment funding decisions. The ability to demonstrate actual equipment usage and operational need creates greater confidence throughout the approval process.",
+      },
+      { type: "h2", text: "Improving Independence for the End User" },
+      {
+        type: "image",
+        src: compassionAppImg,
+        alt: "Wheelchair user in an accessible van using a single mobile app to control multiple adaptive systems",
+        caption:
+          "Consolidated mobile app controls replace the patchwork of remotes and switches.",
+      },
+      {
+        type: "p",
+        text: "While the operational benefits are significant, the largest impact may be the experience of the end user. Many adaptive mobility users previously relied on multiple remotes, pendants, switches, and independent control systems throughout their vehicle.",
+      },
+      { type: "p", text: "Adapy helped simplify that experience." },
+      {
+        type: "p",
+        text: "Through consolidated mobile app controls and redundant equipment interfaces, users gained:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Easier equipment operation",
+          "Simplified control layouts",
+          "Greater accessibility",
+          "More confidence while traveling",
+          "Increased independence",
+          "Reduced reliance on caregivers for equipment operation",
+        ],
+      },
+      {
+        type: "p",
+        text: "For many users, the experience feels less fragmented and more empowering. Instead of adapting to the limitations of disconnected systems, the technology adapts to the user.",
+      },
+      {
+        type: "h2",
+        text: "Driving Better Conversations and Better Installations",
+      },
+      {
+        type: "p",
+        text: "According to Compassion Mobility, one of the unexpected benefits of integrating Adapy has been the quality of conversations it creates throughout the mobility process. The technology naturally leads to deeper discussions about:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Safety",
+          "Accessibility",
+          "Long-term equipment planning",
+          "Redundancy and backup controls",
+          "Preventative maintenance",
+          "Environmental monitoring",
+          "Future mobility needs",
+        ],
+      },
+      {
+        type: "p",
+        text: "These conversations have helped drive better installation planning and more thoughtful mobility solutions tailored to the individual user. Rather than focusing only on the immediate installation, the process now considers the long-term ownership experience and overall mobility ecosystem.",
+      },
+      { type: "h2", text: "Innovation Through Integration" },
+      {
+        type: "p",
+        text: "Compassion Mobility’s success with Adapy highlights a broader trend happening across the adaptive mobility industry.",
+      },
+      { type: "quote", text: "The future is no longer just about installing equipment." },
+      {
+        type: "p",
+        text: "It is about integrating intelligent systems that improve safety, reliability, visibility, and independence over time. By embracing connected mobility technologies early, Compassion Mobility has positioned itself at the forefront of this transition.",
+      },
+      {
+        type: "p",
+        text: "The partnership demonstrates how adaptive mobility providers can expand their business models while simultaneously delivering dramatically better outcomes for customers.",
+      },
+      { type: "h2", text: "Looking Ahead" },
+      {
+        type: "image",
+        src: lookingAheadImg,
+        alt: "Connected fleet of accessible vans on a smart-city highway with holographic data overlays",
+        caption:
+          "Dealerships that embrace integration, monitoring, and intelligent accessibility will define the next generation of adaptive mobility.",
+      },
+      {
+        type: "p",
+        text: "As connected mobility platforms continue to evolve, dealerships that embrace integration, monitoring, and intelligent accessibility technologies will likely define the next generation of adaptive mobility services.",
+      },
+      {
+        type: "p",
+        text: "For Compassion Mobility, Adapy has become more than just another product line. It has become a strategic driver of innovation, operational growth, customer engagement, and long-term mobility independence.",
+      },
+      {
+        type: "p",
+        text: "And for the customers they serve, the impact is even greater:",
+      },
+      {
+        type: "ul",
+        items: [
+          "More freedom.",
+          "More confidence.",
+          "Better safety.",
+          "Better mobility.",
+          "And a more connected future.",
+        ],
+      },
+    ],
   },
   {
     id: 4,
