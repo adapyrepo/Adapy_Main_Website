@@ -1,7 +1,7 @@
 import pendantLiftImg from "@assets/generated_images/pendant_wheelchair_lift.png";
 import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-2149445656_1778688340541.avif";
 import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicles_night.png";
-import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.08.31_AM_1778688529091.png";
+import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_1778688626181.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
