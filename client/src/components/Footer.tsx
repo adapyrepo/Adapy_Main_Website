@@ -42,7 +42,7 @@ const footerColumns: FooterColumn[] = [
   {
     title: "Company",
     links: [
-      { label: "Pricing", href: "/pricing" },
+      { label: "Request a Quote", href: "/pricing" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
       { label: "Login", href: "https://my.adapy.com", external: true },

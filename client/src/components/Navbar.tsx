@@ -129,7 +129,7 @@ const navItems: NavItem[] = [
       },
     ],
   },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Request a Quote", href: "/pricing" },
   {
     name: "Resources",
     dropdown: [
