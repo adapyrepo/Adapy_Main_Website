@@ -5,6 +5,7 @@ import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_177868862
 import coAlertImg from "@assets/generated_images/co_detection_alert.png";
 import protectiveMonitoringImg from "@assets/generated_images/protective_monitoring_passenger.png";
 import connectedDashboardImg from "@assets/generated_images/connected_mobility_dashboard.png";
+import lookingAheadImg from "@assets/generated_images/looking_ahead_smart_fleet.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -494,8 +495,8 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Looking Ahead" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80&w=1600",
-        alt: "Fleet of vans lined up at sunrise",
+        src: lookingAheadImg,
+        alt: "Fleet of modern accessible vans driving on a smart-city highway at sunrise with translucent holographic data overlays connecting them",
         caption:
           "The fleets of tomorrow won’t wait for problems — they’ll see them coming.",
       },

@@ -36,3 +36,9 @@ id = "8Hc-wpe_wnFYGbPqvo9c3"
 uri = "file://attached_assets/generated_images/connected_mobility_dashboard.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "IyHNwb-mFlERvuKpIBkqp"
+uri = "file://attached_assets/generated_images/looking_ahead_smart_fleet.png"
+type = "image"
+title = "generated_image"
