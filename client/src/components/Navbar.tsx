@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import adapyLogo from "@assets/Adapy_Logo_1768163955931.png";
 import { MobilityTicker } from "./MobilityTicker";
+import { RoleSelectorModal } from "./RoleSelectorModal";
 
 interface DropdownLink {
   title: string;
@@ -162,8 +163,17 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
+
+  const handleGetStarted = () => {
+    if (onGetStarted) {
+      onGetStarted();
+    } else {
+      setIsRoleModalOpen(true);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -347,23 +357,13 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
           >
             <span className="text-[14px] font-medium">Login</span>
           </a>
-          {onGetStarted ? (
-            <button
-              onClick={onGetStarted}
-              className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
-              data-testid="button-get-started"
-            >
-              Get started
-            </button>
-          ) : (
-            <Link
-              href="/contact"
-              className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
-              data-testid="link-get-started"
-            >
-              Get started
-            </Link>
-          )}
+          <button
+            onClick={handleGetStarted}
+            className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
+            data-testid="button-get-started"
+          >
+            Get started
+          </button>
 
           <button
             className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
@@ -446,18 +446,25 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
                 >
                   Login
                 </a>
-                <Link
-                  href="/contact"
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleGetStarted();
+                  }}
                   className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-[#0077ed] transition-all"
-                  data-testid="link-mobile-get-started"
+                  data-testid="button-mobile-get-started"
                 >
                   Get started
-                </Link>
+                </button>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+      <RoleSelectorModal
+        open={isRoleModalOpen}
+        onClose={() => setIsRoleModalOpen(false)}
+      />
     </header>
   );
 }
