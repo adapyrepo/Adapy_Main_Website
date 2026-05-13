@@ -67,17 +67,6 @@ export default function BlogPost() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-6"
-              data-testid="link-back-to-blog"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to blog
-            </Link>
-            <span className="inline-block px-3 py-1 bg-[#0071e3] text-white text-xs font-semibold rounded-full mb-6">
-              {post.category}
-            </span>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.15] mb-6">
               {post.title}
             </h1>
@@ -114,6 +103,25 @@ export default function BlogPost() {
               className="w-full h-full object-cover"
               data-testid="img-article-hero"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Article header strip */}
+      <section className="bg-white">
+        <div className="container mx-auto px-6 max-w-3xl pt-8 md:pt-10">
+          <div className="flex items-center justify-between gap-4 pb-6 border-b border-black/10">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-black/60 hover:text-[#0071e3] text-sm font-medium transition-colors"
+              data-testid="link-back-to-blog"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to blog
+            </Link>
+            <span className="inline-block px-3 py-1 bg-[#0071e3] text-white text-xs font-semibold rounded-full">
+              {post.category}
+            </span>
           </div>
         </div>
       </section>
