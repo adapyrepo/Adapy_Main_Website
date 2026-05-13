@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Platform from "@/pages/Platform";
@@ -50,6 +51,7 @@ function Router() {
       <Route path="/solutions/nemt" component={NEMTFleet} />
       <Route path="/products" component={Products} />
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />

@@ -4,63 +4,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "The Future of Adaptive Mobility: Integration Over Innovation",
-    excerpt: "Discover how unified control systems are transforming the adaptive mobility landscape.",
-    date: "March 15, 2026",
-    author: "Sarah Johnson",
-    category: "Industry Insights",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 2,
-    title: "Safety First: Proactive Monitoring in Fleet Operations",
-    excerpt: "Learn how real-time environmental sensors are preventing incidents before they happen.",
-    date: "March 10, 2026",
-    author: "Michael Chen",
-    category: "Technology",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3,
-    title: "Case Study: How ATC Mobility Reduced Support Costs by 40%",
-    excerpt: "Explore the implementation journey and measurable results of unified control systems.",
-    date: "March 5, 2026",
-    author: "James Wilson",
-    category: "Case Study",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 4,
-    title: "Connected Vehicles: Data Privacy and Security Best Practices",
-    excerpt: "Understanding how Adapy protects user data while enabling powerful fleet insights.",
-    date: "February 28, 2026",
-    author: "Emily Rodriguez",
-    category: "Security",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f70a504f9?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 5,
-    title: "NEMT Operations: Compliance Made Simple",
-    excerpt: "Automate compliance reporting and reduce administrative burden with cloud intelligence.",
-    date: "February 20, 2026",
-    author: "David Park",
-    category: "Operations",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 6,
-    title: "User Spotlight: Transforming Independence Through Technology",
-    excerpt: "Meet the people behind Adapy and hear how unified control changed their lives.",
-    date: "February 12, 2026",
-    author: "Lisa Thompson",
-    category: "Community",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-  },
-];
+import { blogPosts } from "@/data/blogPosts";
 
 const categories = ["All", "Industry Insights", "Technology", "Case Study", "Security", "Operations", "Community"];
 
@@ -126,48 +70,51 @@ export default function Blog() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="group flex flex-col rounded-[2rem] overflow-hidden border border-black/10 hover:border-[#0071e3] hover:shadow-lg transition-all duration-300 bg-white hover:bg-black/[0.02]"
+                data-testid={`card-blog-${post.slug}`}
               >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden bg-black/5">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-[#0071e3] text-white text-xs font-semibold rounded-full">
-                      {post.category}
+                <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden bg-black/5">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-[#0071e3] text-white text-xs font-semibold rounded-full">
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 p-6 flex flex-col">
+                    <h3 className="text-xl font-bold mb-3 text-black group-hover:text-[#0071e3] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-black/60 mb-6 flex-1 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-4 text-sm text-black/50 mb-6 border-t border-black/5 pt-6">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {post.date}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <User className="w-4 h-4" />
+                        {post.author}
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <span className="inline-flex items-center gap-2 text-[#0071e3] font-semibold group-hover:gap-3 transition-all">
+                      Read More
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 p-6 flex flex-col">
-                  <h3 className="text-xl font-bold mb-3 text-black group-hover:text-[#0071e3] transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-black/60 mb-6 flex-1 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Meta */}
-                  <div className="flex items-center gap-4 text-sm text-black/50 mb-6 border-t border-black/5 pt-6">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {post.date}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <User className="w-4 h-4" />
-                      {post.author}
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <button className="inline-flex items-center gap-2 text-[#0071e3] font-semibold group/btn hover:gap-3 transition-all">
-                    Read More
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
+                </Link>
               </motion.article>
             ))}
           </div>
