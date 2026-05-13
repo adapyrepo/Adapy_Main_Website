@@ -48,7 +48,9 @@ export default function BlogPost() {
     );
   }
 
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = blogPosts
+    .filter((p) => p.slug !== post.slug && p.body && p.body.length > 0)
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
