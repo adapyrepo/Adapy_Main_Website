@@ -3,6 +3,7 @@ import nemtVanHeroImg from "@assets/full-shot-disabled-man-getting-car_23-214944
 import emergencyVehiclesNightImg from "@assets/generated_images/emergency_vehicles_night.png";
 import utahSceneImg from "@assets/Screenshot_2026-05-13_at_10.10.23_AM_1778688626181.png";
 import coAlertImg from "@assets/generated_images/co_detection_alert.png";
+import protectiveMonitoringImg from "@assets/generated_images/protective_monitoring_passenger.png";
 
 export type BlogBody =
   | { type: "p"; text: string }
@@ -414,8 +415,8 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Why This Matters in Adaptive Mobility and NEMT" },
       {
         type: "image",
-        src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1600",
-        alt: "Wheelchair-accessible van interior with safety equipment",
+        src: protectiveMonitoringImg,
+        alt: "Wheelchair passenger inside an accessible NEMT van with translucent holographic monitoring icons surrounding them, representing real-time protective sensors",
         caption:
           "For passengers depending on accessible transportation, safety isn’t a feature — it’s the entire service.",
       },

@@ -24,3 +24,9 @@ id = "GvmeAtwEOlyIwU92dUj0Z"
 uri = "file://attached_assets/generated_images/co_detection_alert.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "a1_nnH-A4OlJFmSrInEI-"
+uri = "file://attached_assets/generated_images/protective_monitoring_passenger.png"
+type = "image"
+title = "generated_image"
