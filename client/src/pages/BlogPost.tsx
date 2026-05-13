@@ -106,7 +106,7 @@ export default function BlogPost() {
 
       {/* Hero image */}
       <section className="bg-white">
-        <div className="container mx-auto px-6 max-w-5xl -mt-2">
+        <div className="container mx-auto px-6 max-w-5xl pt-10 md:pt-14">
           <div className="rounded-3xl overflow-hidden border border-black/10 shadow-2xl aspect-[16/8] bg-black/5">
             <img
               src={post.image}
