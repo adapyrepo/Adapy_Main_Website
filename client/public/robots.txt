@@ -3,3 +3,5 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://adapy.com/sitemap.xml
+Sitemap: https://adapy.com/page-sitemap.xml
+Sitemap: https://adapy.com/sitemap.rss

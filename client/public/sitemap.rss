@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Adapy Blog — Adaptive Mobility, Wheelchair Vehicles &amp; NEMT Insights</title>
+    <link>https://adapy.com/blog</link>
+    <atom:link href="https://adapy.com/sitemap.rss" rel="self" type="application/rss+xml" />
+    <description>Field notes, research, and stories from adaptive mobility — wheelchair accessible vehicles, NEMT fleet safety, mobility dealer best practices, and driver rehabilitation.</description>
+    <language>en-us</language>
+    <copyright>Copyright Adapy, Inc</copyright>
+    <managingEditor>support@adapy.com (Adapy)</managingEditor>
+    <webMaster>support@adapy.com (Adapy)</webMaster>
+    <image>
+      <url>https://adapy.com/favicon.png</url>
+      <title>Adapy</title>
+      <link>https://adapy.com/</link>
+    </image>
+
+    <item>
+      <title>The Future of Adaptive Mobility: Integration Over Innovation</title>
+      <link>https://adapy.com/blog/future-of-adaptive-mobility-integration-over-innovation</link>
+      <guid isPermaLink="true">https://adapy.com/blog/future-of-adaptive-mobility-integration-over-innovation</guid>
+      <pubDate>Sun, 15 Mar 2026 12:00:00 GMT</pubDate>
+      <category>Industry Insights</category>
+      <author>support@adapy.com (Sarah Johnson)</author>
+      <description>Why the next leap in adaptive mobility is about integrating wheelchair lifts, ramps, hand controls, and transfer seats — not inventing new ones.</description>
+    </item>
+
+    <item>
+      <title>Safety First: Proactive Monitoring in Fleet Operations</title>
+      <link>https://adapy.com/blog/safety-first-proactive-monitoring-fleet-operations</link>
+      <guid isPermaLink="true">https://adapy.com/blog/safety-first-proactive-monitoring-fleet-operations</guid>
+      <pubDate>Tue, 10 Mar 2026 12:00:00 GMT</pubDate>
+      <category>Technology</category>
+      <author>support@adapy.com (Michael Chen)</author>
+      <description>How always-on monitoring of wheelchair lifts, CO levels, and cabin temperature is changing NEMT and paratransit fleet safety.</description>
+    </item>
+
+    <item>
+      <title>Compassion Mobility Expanded Business Through Adapy Integration</title>
+      <link>https://adapy.com/blog/compassion-mobility-expanded-business-through-adapy-integration</link>
+      <guid isPermaLink="true">https://adapy.com/blog/compassion-mobility-expanded-business-through-adapy-integration</guid>
+      <pubDate>Thu, 05 Mar 2026 12:00:00 GMT</pubDate>
+      <category>Case Study</category>
+      <author>support@adapy.com (James Wilson)</author>
+      <description>How a mobility dealer expanded service capacity and warranty defensibility by adopting the Adapy connected adaptive mobility platform.</description>
+    </item>
+  </channel>
+</rss>
