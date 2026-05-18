@@ -11,12 +11,46 @@ export default function BlogPost() {
   const slug = params?.slug ?? "";
   const post = getPostBySlug(slug);
 
+  const isPublished = !!post && Array.isArray(post.body) && post.body.length > 0;
   useSEO({
     title: post
       ? `${post.title} | Adapy Blog`
       : "Article Not Found | Adapy Blog",
     description: post?.excerpt ?? "Read the latest from the Adapy team.",
     path: `/blog/${slug}`,
+    type: isPublished ? "article" : "website",
+    image: post?.image,
+    noindex: !isPublished,
+    keywords: isPublished
+      ? `${post!.category}, adaptive mobility, wheelchair accessible vehicles, ${post!.title.toLowerCase()}`
+      : undefined,
+    jsonLd: isPublished
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          image: post.image?.startsWith("http")
+            ? post.image
+            : `https://adapy.com${post.image}`,
+          datePublished: new Date(post.date).toISOString(),
+          dateModified: new Date(post.date).toISOString(),
+          author: { "@type": "Person", name: post.author },
+          publisher: {
+            "@type": "Organization",
+            name: "Adapy",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://adapy.com/favicon.png",
+            },
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://adapy.com/blog/${slug}`,
+          },
+          articleSection: post.category,
+        }
+      : undefined,
   });
 
   if (!post) {

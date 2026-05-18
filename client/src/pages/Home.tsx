@@ -94,7 +94,25 @@ import { useSEO } from "@/hooks/use-seo";
 const heroVideo = "/hero-video.mp4";
 
 export default function Home() {
-  useSEO({ title: "Adapy — Connected Adaptive Mobility Platform", description: "Adapy is the connected platform for adaptive vehicles — proactive safety, unified control, and lifecycle visibility for drivers, mobility dealers, NEMT fleets, and CDRS clinicians.", path: "/" });
+  useSEO({
+    title: "Adapy — Connected Wheelchair Accessible Vehicle Platform",
+    description: "One connected platform for wheelchair lifts, ramps, transfer seats, and hand controls — built for adaptive drivers, mobility dealers, and NEMT fleets.",
+    path: "/",
+    keywords: "adaptive mobility, wheelchair accessible vehicles, WAV, wheelchair van, wheelchair lift, wheelchair ramp, hand controls, transfer seat, NEMT software, mobility equipment monitoring, adaptive driving, connected mobility platform",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Adapy — Connected Wheelchair Accessible Vehicle Platform",
+      url: "https://adapy.com/",
+      description: "Adapy unifies wheelchair lifts, ramps, transfer seats, and hand controls into one connected adaptive vehicle platform.",
+      isPartOf: { "@type": "WebSite", name: "Adapy", url: "https://adapy.com" },
+      about: [
+        { "@type": "Thing", name: "Wheelchair Accessible Vehicles" },
+        { "@type": "Thing", name: "Adaptive Driving Equipment" },
+        { "@type": "Thing", name: "NEMT Fleet Safety" },
+      ],
+    },
+  });
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<
     (typeof learningVideos)[0] | null

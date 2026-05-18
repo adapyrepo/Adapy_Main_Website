@@ -22,10 +22,21 @@ import {
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Platform() {
-  useSEO({ title: "The Adapy Platform — Unified Adaptive Vehicle Control", description: "One unified control architecture for every adaptive vehicle: smart hub, harness integration, wireless controllers, safety modules, app, and dashboard.", path: "/platform" });
-  useEffect(() => {
-    document.title = "Adapy Smart Mobility Platform | Unified Infrastructure";
-  }, []);
+  useSEO({
+    title: "Adapy Platform — Unified Wheelchair Vehicle Control",
+    description: "One platform connecting wheelchair lifts, ramps, transfer seats, and hand controls — Smart Hub, harness integration, controllers, safety modules, app, and dashboard.",
+    path: "/platform",
+    keywords: "wheelchair accessible vehicle platform, adaptive vehicle control system, mobility equipment integration, smart wheelchair van, connected mobility platform, adaptive driving technology",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Adapy Adaptive Mobility Platform",
+      provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+      serviceType: "Connected adaptive vehicle control and monitoring platform",
+      areaServed: "United States",
+      description: "Unified control, monitoring, and lifecycle visibility for every piece of adaptive equipment in a wheelchair accessible vehicle.",
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-[#0071e3] selection:text-white">

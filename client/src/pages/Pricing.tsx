@@ -63,7 +63,20 @@ const steps = [
 ];
 
 export default function Pricing() {
-  useSEO({ title: "Adapy Pricing — Plans for Drivers, Dealers, and Fleets", description: "Custom pricing for individual drivers, mobility dealers, and NEMT fleets. Get a tailored quote for your vehicle or operation.", path: "/pricing" });
+  useSEO({
+    title: "Request a Quote — Adapy Mobility & NEMT Pricing",
+    description: "Get a custom quote for Adapy. Pricing for individual wheelchair accessible vehicle owners, mobility dealers, and NEMT fleets — tailored to your equipment and use case.",
+    path: "/pricing",
+    keywords: "Adapy pricing, wheelchair accessible vehicle cost, mobility dealer software pricing, NEMT software cost, adaptive vehicle quote, wheelchair van pricing",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Request a Quote",
+      url: "https://adapy.com/pricing",
+      description: "Request a custom Adapy quote for individuals, mobility dealers, and NEMT fleets.",
+      isPartOf: { "@type": "WebSite", name: "Adapy", url: "https://adapy.com" },
+    },
+  });
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");

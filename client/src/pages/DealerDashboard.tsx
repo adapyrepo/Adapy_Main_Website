@@ -52,7 +52,22 @@ const features = [
 ];
 
 export default function DealerDashboard() {
-  useSEO({ title: "Dealer Dashboard — Fleet-Wide Diagnostics & Warranty Data", description: "A single dashboard for every install, diagnostic event, and warranty case across your dealership.", path: "/software/dealer" });
+  useSEO({
+    title: "Dealer Dashboard — Wheelchair Van Diagnostics & Warranty Data",
+    description: "A single dashboard for every wheelchair accessible vehicle install, diagnostic event, and warranty case across your mobility dealership.",
+    path: "/software/dealer",
+    keywords: "mobility dealer dashboard, wheelchair van warranty software, adaptive equipment diagnostics, mobility dealership tools, wheelchair lift service tracking",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Adapy Dealer Dashboard",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: "Fleet-wide diagnostic, warranty, and lifecycle management dashboard for wheelchair accessible vehicle dealerships.",
+      url: "https://adapy.com/software/dealer",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+    },
+  });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

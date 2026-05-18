@@ -7,7 +7,20 @@ import { Link } from "wouter";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Products() {
-  useSEO({ title: "Adapy Products — Hardware, Software, and Mobile App", description: "Explore the Adapy product line: Smart Hub, mobile app, dealer dashboard, and the safety modules powering connected adaptive mobility.", path: "/products" });
+  useSEO({
+    title: "Adapy Products — Smart Hub, App, Dashboard & Safety Modules",
+    description: "Explore the Adapy product line: Smart Hub, mobile app, dealer dashboard, wireless controllers, and safety modules for wheelchair accessible vehicles and NEMT fleets.",
+    path: "/products",
+    keywords: "adaptive mobility products, wheelchair vehicle hardware, mobility software, wheelchair lift controller, NEMT safety hardware, adaptive vehicle accessories",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Adapy Products",
+      url: "https://adapy.com/products",
+      description: "Hardware and software products that power the Adapy connected adaptive mobility platform.",
+      isPartOf: { "@type": "WebSite", name: "Adapy", url: "https://adapy.com" },
+    },
+  });
   const { data: products, isLoading } = useProducts();
 
   if (isLoading) {

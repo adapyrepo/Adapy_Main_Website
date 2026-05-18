@@ -21,7 +21,33 @@ import { MhmdaNotice } from "@/components/MhmdaNotice";
 import adapyAppScreenshot from "@assets/IMG_F1BC6CADEE49-1_1776390637769.jpeg";
 
 export default function UserFunnel() {
-  useSEO({ title: "Adaptive Vehicle Independence for Drivers & Families", description: "Reclaim independence behind the wheel. Adapy unifies your adaptive vehicle equipment into one safe, weatherproof, in-cabin control system.", path: "/user-funnel" });
+  useSEO({
+    title: "Wheelchair Vehicle Independence for Drivers & Families",
+    description: "Reclaim independence behind the wheel. Adapy unifies your wheelchair lift, ramp, transfer seat, and hand controls into one safe, weatherproof in-cabin control system.",
+    path: "/user-funnel",
+    keywords: "wheelchair accessible vehicle, wheelchair van, adaptive driving, hand controls, transfer seat, wheelchair lift, mobility independence, accessible driving, wheelchair driver",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Adapy for Wheelchair Accessible Vehicle Drivers",
+        provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+        serviceType: "In-cabin adaptive vehicle control and safety system",
+        audience: { "@type": "PeopleAudience", audienceType: "Wheelchair users, adaptive drivers, families" },
+        areaServed: "United States",
+        description: "Connected platform that unifies every piece of adaptive equipment in a wheelchair accessible vehicle so drivers and families can operate it from one safe, weatherproof interface.",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "Do I need to know if I qualify before reaching out?", acceptedAnswer: { "@type": "Answer", text: "No. Just tell us where you are and we'll help you understand what's possible." } },
+          { "@type": "Question", name: "Can Adapy help if I am working with the VA?", acceptedAnswer: { "@type": "Answer", text: "Yes. Many users pursue Adapy through VA funding. Our team can help guide that process." } },
+          { "@type": "Question", name: "Do I need to buy directly from Adapy?", acceptedAnswer: { "@type": "Answer", text: "No. Adapy works with authorized dealers in your area. We help connect you with the right partner." } },
+        ],
+      },
+    ],
+  });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formStep, setFormStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);

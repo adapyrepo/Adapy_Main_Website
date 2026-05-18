@@ -91,7 +91,22 @@ const categories = [
 ];
 
 export default function HarnessIntegration() {
-  useSEO({ title: "Harness Integration for OEM and Aftermarket Adaptive Equipment", description: "Plug Adapy into existing OEM and aftermarket adaptive equipment with universal harness integration — no rewiring, no warranty conflicts.", path: "/hardware/harness-integration" });
+  useSEO({
+    title: "Universal Harness Integration for Wheelchair Lifts & OEM Equipment",
+    description: "Connect Adapy to existing wheelchair lifts, ramps, and OEM adaptive equipment with a universal harness — no rewiring, no warranty conflicts.",
+    path: "/hardware/harness-integration",
+    keywords: "wheelchair lift integration, adaptive equipment harness, mobility equipment retrofit, OEM wheelchair van integration, BraunAbility integration, Bruno lift integration, aftermarket adaptive equipment",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "Adapy Universal Harness Integration",
+      brand: { "@type": "Brand", name: "Adapy" },
+      category: "Adaptive Equipment Integration",
+      description: "Universal wiring harness that integrates Adapy with OEM and aftermarket adaptive equipment — wheelchair lifts, ramps, transfer seats, and door operators.",
+      url: "https://adapy.com/hardware/harness-integration",
+      manufacturer: { "@type": "Organization", name: "Adapy" },
+    },
+  });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

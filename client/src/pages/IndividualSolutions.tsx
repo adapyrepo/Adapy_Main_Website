@@ -16,7 +16,21 @@ import appMockup from "@assets/adapy_home_phone_1772663805994.png";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function IndividualSolutions() {
-  useSEO({ title: "Adaptive Mobility Solutions for Individuals", description: "Personal mobility environments built around independence, safety, and dignity — for drivers and families using adaptive vehicles.", path: "/solutions/individual" });
+  useSEO({
+    title: "Adaptive Mobility Solutions for Wheelchair Users & Families",
+    description: "Personal mobility environments built around independence, safety, and dignity — for wheelchair users, adaptive drivers, and families with wheelchair accessible vehicles.",
+    path: "/solutions/individual",
+    keywords: "wheelchair user mobility, wheelchair accessible vehicle owner, adaptive vehicle for families, wheelchair van solutions, accessible transportation, mobility independence",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Adapy for Individuals & Families",
+      provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+      serviceType: "Personal adaptive mobility platform",
+      audience: { "@type": "PeopleAudience", audienceType: "Wheelchair users and families" },
+      areaServed: "United States",
+    },
+  });
   const benefits = [
     {
       title: "Simplified Control",

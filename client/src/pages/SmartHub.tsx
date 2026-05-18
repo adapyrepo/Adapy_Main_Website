@@ -78,7 +78,22 @@ const faqs = [
 ];
 
 export default function SmartHub() {
-  useSEO({ title: "Adapy Smart Hub — The Brain of Every Adaptive Vehicle", description: "The Adapy Smart Hub unifies every piece of adaptive equipment — lifts, ramps, doors, controls — into one intelligent, connected system.", path: "/hardware/smart-hub" });
+  useSEO({
+    title: "Smart Hub — The Brain of Every Wheelchair Accessible Vehicle",
+    description: "The Adapy Smart Hub unifies wheelchair lifts, ramps, doors, transfer seats, and hand controls into one intelligent, connected adaptive vehicle system.",
+    path: "/hardware/smart-hub",
+    keywords: "wheelchair vehicle smart hub, adaptive vehicle controller, mobility equipment integration, wheelchair lift control, wheelchair van automation, connected adaptive mobility",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "Adapy Smart Hub",
+      brand: { "@type": "Brand", name: "Adapy" },
+      category: "Adaptive Vehicle Control System",
+      description: "Central control module that unifies every piece of adaptive equipment in a wheelchair accessible vehicle into one connected, monitored system.",
+      url: "https://adapy.com/hardware/smart-hub",
+      manufacturer: { "@type": "Organization", name: "Adapy" },
+    },
+  });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

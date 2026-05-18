@@ -4,7 +4,19 @@ import { motion } from "framer-motion";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function About() {
-  useSEO({ title: "About Adapy — Connected Adaptive Mobility", description: "Adapy is on a mission to bring proactive safety and unified control to every adaptive vehicle on the road.", path: "/about" });
+  useSEO({
+    title: "About Adapy — Connected Adaptive Mobility Built for Real Drivers",
+    description: "Adapy is on a mission to bring proactive safety and unified control to every wheelchair accessible vehicle and adaptive driver on the road.",
+    path: "/about",
+    keywords: "about Adapy, adaptive mobility company, wheelchair accessible vehicle technology, mobility technology startup, accessibility innovation",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "About Adapy",
+      url: "https://adapy.com/about",
+      mainEntity: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+    },
+  });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <Navbar />

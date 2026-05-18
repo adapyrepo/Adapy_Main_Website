@@ -22,7 +22,33 @@ import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function NEMTFleet() {
-  useSEO({ title: "NEMT Fleet Safety & Visibility Platform", description: "See the invisible risks before they become incidents. Adapy delivers always-on lift, ramp, CO, and cabin monitoring across your NEMT fleet.", path: "/solutions/nemt" });
+  useSEO({
+    title: "NEMT Fleet Safety & Wheelchair Van Monitoring Platform",
+    description: "See invisible risks before they become incidents. Adapy delivers always-on wheelchair lift, ramp, CO, and cabin monitoring across your NEMT and paratransit fleet.",
+    path: "/solutions/nemt",
+    keywords: "NEMT software, non-emergency medical transportation, paratransit fleet management, wheelchair van fleet, NEMT safety, ADA paratransit, Medicaid transportation, wheelchair accessible fleet monitoring",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Adapy for NEMT and Paratransit Fleets",
+        provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+        serviceType: "NEMT and paratransit fleet safety, monitoring, and lifecycle platform",
+        audience: { "@type": "BusinessAudience", audienceType: "NEMT operators, paratransit agencies, brokerages" },
+        areaServed: "United States",
+        description: "Always-on monitoring for wheelchair lifts, ramps, cabin temperature, and carbon monoxide across NEMT and paratransit fleets.",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "Does Adapy replace my existing NEMT software?", acceptedAnswer: { "@type": "Answer", text: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle monitoring layer your current software doesn't touch." } },
+          { "@type": "Question", name: "What kinds of vehicles can Adapy monitor?", acceptedAnswer: { "@type": "Answer", text: "Any wheelchair-accessible NEMT vehicle equipped with adaptive mobility equipment such as lifts, ramps, or transfer seats." } },
+          { "@type": "Question", name: "How is the data delivered?", acceptedAnswer: { "@type": "Answer", text: "A cloud dashboard with real-time alerts, historical telemetry, and exportable documentation for compliance, claims, and fleet management." } },
+        ],
+      },
+    ],
+  });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");

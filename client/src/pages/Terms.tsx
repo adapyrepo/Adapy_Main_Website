@@ -3,7 +3,12 @@ import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Terms() {
-  useSEO({ title: "Terms & Conditions", description: "The terms governing your use of the Adapy website and services.", path: "/terms" });
+  useSEO({
+    title: "Terms & Conditions",
+    description: "The terms governing your use of the Adapy adaptive mobility platform, website, and services.",
+    path: "/terms",
+    keywords: "Adapy terms of service, mobility platform terms, wheelchair vehicle software terms",
+  });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans" data-testid="page-terms">
       <Navbar />

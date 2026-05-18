@@ -69,7 +69,22 @@ const faqs = [
 ];
 
 export default function WirelessControllers() {
-  useSEO({ title: "Wireless Controllers — One Device, Every Function", description: "Replace pendants, fobs, and key-cranks with a single wireless controller for every adaptive function in the vehicle.", path: "/hardware/wireless-controllers" });
+  useSEO({
+    title: "Wireless Controllers for Wheelchair Lifts, Ramps & Doors",
+    description: "Replace pendants, key fobs, and crank handles with a single wireless controller for every adaptive function in your wheelchair accessible vehicle.",
+    path: "/hardware/wireless-controllers",
+    keywords: "wireless wheelchair lift controller, wheelchair ramp remote, adaptive vehicle key fob, wheelchair van remote control, accessible vehicle controls",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "Adapy Wireless Controllers",
+      brand: { "@type": "Brand", name: "Adapy" },
+      category: "Adaptive Vehicle Remote Control",
+      description: "Single wireless controller that replaces pendants, key fobs, and crank handles for every adaptive function in a wheelchair accessible vehicle.",
+      url: "https://adapy.com/hardware/wireless-controllers",
+      manufacturer: { "@type": "Organization", name: "Adapy" },
+    },
+  });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

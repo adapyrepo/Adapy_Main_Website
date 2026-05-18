@@ -9,7 +9,20 @@ import { blogPosts } from "@/data/blogPosts";
 const categories = ["All", "Industry Insights", "Technology", "Case Study", "Security", "Operations", "Community"];
 
 export default function Blog() {
-  useSEO({ title: "Adapy Blog — Stories from Adaptive Mobility", description: "Field notes, research, and stories from the front line of adaptive mobility — for drivers, dealers, fleets, and clinicians.", path: "/blog" });
+  useSEO({
+    title: "Adapy Blog — Wheelchair Vehicles & NEMT Insights",
+    description: "Field notes, research, and stories from adaptive mobility — wheelchair accessible vehicles, NEMT fleet safety, mobility dealer best practices, and driver rehabilitation.",
+    path: "/blog",
+    keywords: "adaptive mobility blog, wheelchair accessible vehicle news, NEMT industry insights, mobility dealer resources, wheelchair van articles, driver rehabilitation research",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Adapy Blog",
+      url: "https://adapy.com/blog",
+      description: "Stories, research, and case studies from the adaptive mobility industry.",
+      publisher: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+    },
+  });
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <div className="absolute top-0 left-0 right-0 z-50">

@@ -24,7 +24,33 @@ import { useSEO } from "@/hooks/use-seo";
 import { MhmdaNotice } from "@/components/MhmdaNotice";
 
 export default function DealerFunnel() {
-  useSEO({ title: "Software for Mobility Dealers — Stop Eating Warranty Disputes", description: "Adapy gives mobility dealers the diagnostic data, warranty evidence, and lifecycle visibility to stop losing margin to invisible failures.", path: "/dealer-funnel" });
+  useSEO({
+    title: "Mobility Dealer Software — Diagnostics & Warranty | Adapy",
+    description: "Diagnostic data, warranty evidence, and lifecycle visibility for wheelchair accessible vehicle dealers — stop losing margin to invisible adaptive equipment failures.",
+    path: "/dealer-funnel",
+    keywords: "mobility dealer software, wheelchair van dealer tools, adaptive equipment warranty, wheelchair lift diagnostics, mobility equipment service, BraunAbility dealer, Bruno dealer, MobilityWorks alternative",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Adapy for Mobility Dealers",
+        provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+        serviceType: "Mobility dealer diagnostic, warranty, and lifecycle software",
+        areaServed: "United States",
+        audience: { "@type": "BusinessAudience", audienceType: "Mobility Dealers" },
+        description: "Diagnostic data, warranty evidence, and fleet-wide visibility for wheelchair accessible vehicle dealerships.",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          { "@type": "Question", name: "How does Adapy help with warranty disputes?", acceptedAnswer: { "@type": "Answer", text: "Every Adapy-connected device generates a usage and diagnostic record. When a manufacturer asks for proof of fault or proper use, you export a standardized packet in seconds — no manual assembly, no missing data." } },
+          { "@type": "Question", name: "Do you provide dealer onboarding?", acceptedAnswer: { "@type": "Answer", text: "Yes. We provide onboarding, training, and ongoing support so your sales and service teams can sell, install, and support Adapy with confidence." } },
+          { "@type": "Question", name: "What happens after I request access?", acceptedAnswer: { "@type": "Answer", text: "Our dealer partnerships team will contact you within 24 hours to confirm your application, walk through the platform, and outline the onboarding path." } },
+        ],
+      },
+    ],
+  });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");

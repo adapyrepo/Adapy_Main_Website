@@ -44,7 +44,18 @@ const reports = [
 
 export default function CDRSPortal() {
   useSEO({
-    title: "CDRS Portal — Visibility for Driver Rehab Specialists & OTs",
+    keywords: "CDRS, certified driver rehabilitation specialist, driver rehab software, occupational therapy driving evaluation, adaptive driving evaluation, ADED, driver rehabilitation program",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Adapy CDRS Portal",
+      provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+      serviceType: "Software for Certified Driver Rehabilitation Specialists and Occupational Therapists",
+      audience: { "@type": "BusinessAudience", audienceType: "CDRS, OTs, Driver Rehabilitation Programs" },
+      areaServed: "United States",
+      description: "Real-world driving data and equipment visibility for CDRS clinicians and OTs working with adaptive drivers.",
+    },
+    title: "CDRS Portal — Driver Rehab & Adaptive Driving Specialist Tools",
     description:
       "Occupational therapists and CDRS clinicians prescribe adaptive equipment with no visibility into how it's actually used. Adapy gives you objective outcomes data, justification packets, and progress tracking.",
     path: "/software/cdrs",

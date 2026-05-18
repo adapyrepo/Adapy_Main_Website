@@ -75,7 +75,22 @@ const faqs = [
 ];
 
 export default function SafetyModules() {
-  useSEO({ title: "Adaptive Vehicle Safety Modules — Always-On Monitoring", description: "Always-on monitoring for lifts, ramps, cabin temperature, CO levels, and more — engineered to protect adaptive drivers and passengers.", path: "/hardware/safety-modules" });
+  useSEO({
+    title: "Safety Modules — CO, Temperature & Wheelchair Lift Monitoring",
+    description: "Always-on monitoring for wheelchair lifts, ramps, cabin temperature, carbon monoxide, and battery — engineered to protect adaptive drivers, passengers, and NEMT fleets.",
+    path: "/hardware/safety-modules",
+    keywords: "wheelchair vehicle safety, carbon monoxide detector, cabin temperature monitoring, wheelchair lift sensors, NEMT fleet safety, paratransit safety equipment, adaptive vehicle monitoring",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "Adapy Safety Modules",
+      brand: { "@type": "Brand", name: "Adapy" },
+      category: "Adaptive Vehicle Safety Monitoring",
+      description: "Always-on safety modules monitoring wheelchair lifts, ramps, cabin temperature, carbon monoxide, and battery health in adaptive and NEMT vehicles.",
+      url: "https://adapy.com/hardware/safety-modules",
+      manufacturer: { "@type": "Organization", name: "Adapy" },
+    },
+  });
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Navbar />

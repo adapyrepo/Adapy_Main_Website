@@ -15,7 +15,30 @@ import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Contact() {
-  useSEO({ title: "Contact Adapy — Talk to a Human", description: "Talk to the Adapy team about your vehicle, your fleet, or your clients. Real humans, fast response.", path: "/contact" });
+  useSEO({
+    title: "Contact Adapy — Adaptive Mobility & Wheelchair Vehicle Support",
+    description: "Talk to the Adapy team about your wheelchair accessible vehicle, mobility dealership, NEMT fleet, or CDRS clients. Real humans, fast response.",
+    path: "/contact",
+    keywords: "contact Adapy, wheelchair vehicle support, mobility dealer contact, NEMT software support, adaptive mobility help",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "Contact Adapy",
+      url: "https://adapy.com/contact",
+      mainEntity: {
+        "@type": "Organization",
+        name: "Adapy",
+        url: "https://adapy.com",
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "support@adapy.com",
+          contactType: "customer support",
+          areaServed: "US",
+          availableLanguage: ["English"],
+        },
+      },
+    },
+  });
   const mutation = useContactForm();
   
   const form = useForm<InsertContactRequest>({

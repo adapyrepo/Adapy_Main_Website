@@ -15,6 +15,9 @@
   <url><loc>https://adapy.com/products</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://adapy.com/pricing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://adapy.com/blog</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://adapy.com/blog/future-of-adaptive-mobility-integration-over-innovation</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://adapy.com/blog/safety-first-proactive-monitoring-fleet-operations</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://adapy.com/blog/compassion-mobility-expanded-business-through-adapy-integration</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://adapy.com/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://adapy.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://adapy.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
