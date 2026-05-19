@@ -7,6 +7,10 @@ export default function Privacy() {
     title: "Privacy Policy",
     description: "How Adapy collects, uses, and protects your personal information across our adaptive mobility platform.",
     path: "/privacy",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Privacy", path: "/privacy" },
+    ],
     keywords: "Adapy privacy policy, mobility data privacy, wheelchair vehicle data protection, HIPAA mobility data",
   });
   return (

@@ -56,6 +56,11 @@ export default function DealerDashboard() {
     title: "Dealer Dashboard — Wheelchair Van Diagnostics & Warranty Data",
     description: "A single dashboard for every wheelchair accessible vehicle install, diagnostic event, and warranty case across your mobility dealership.",
     path: "/software/dealer",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Software", path: "/platform" },
+      { name: "Dealer Dashboard", path: "/software/dealer" },
+    ],
     keywords: "mobility dealer dashboard, wheelchair van warranty software, adaptive equipment diagnostics, mobility dealership tools, wheelchair lift service tracking",
     jsonLd: {
       "@context": "https://schema.org",

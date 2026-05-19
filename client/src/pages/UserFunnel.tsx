@@ -25,6 +25,11 @@ export default function UserFunnel() {
     title: "Wheelchair Vehicle Independence for Drivers & Families",
     description: "Reclaim independence behind the wheel. Adapy unifies your wheelchair lift, ramp, transfer seat, and hand controls into one safe, weatherproof in-cabin control system.",
     path: "/user-funnel",
+    image: adapyAppScreenshot,
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "For Drivers", path: "/user-funnel" },
+    ],
     keywords: "wheelchair accessible vehicle, wheelchair van, adaptive driving, hand controls, transfer seat, wheelchair lift, mobility independence, accessible driving, wheelchair driver",
     jsonLd: [
       {
@@ -289,6 +294,7 @@ export default function UserFunnel() {
                   <img
                     src={adapyAppScreenshot}
                     alt="Adapy mobile app — adaptive vehicle remote control"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   {/* Subtle glass: top highlight */}

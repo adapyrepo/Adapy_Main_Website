@@ -67,6 +67,10 @@ export default function Pricing() {
     title: "Request a Quote — Adapy Mobility & NEMT Pricing",
     description: "Get a custom quote for Adapy. Pricing for individual wheelchair accessible vehicle owners, mobility dealers, and NEMT fleets — tailored to your equipment and use case.",
     path: "/pricing",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Pricing", path: "/pricing" },
+    ],
     keywords: "Adapy pricing, wheelchair accessible vehicle cost, mobility dealer software pricing, NEMT software cost, adaptive vehicle quote, wheelchair van pricing",
     jsonLd: {
       "@context": "https://schema.org",

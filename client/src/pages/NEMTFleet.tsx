@@ -26,6 +26,11 @@ export default function NEMTFleet() {
     title: "NEMT Fleet Safety & Wheelchair Van Monitoring Platform",
     description: "See invisible risks before they become incidents. Adapy delivers always-on wheelchair lift, ramp, CO, and cabin monitoring across your NEMT and paratransit fleet.",
     path: "/solutions/nemt",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Solutions", path: "/platform" },
+      { name: "NEMT Fleets", path: "/solutions/nemt" },
+    ],
     keywords: "NEMT software, non-emergency medical transportation, paratransit fleet management, wheelchair van fleet, NEMT safety, ADA paratransit, Medicaid transportation, wheelchair accessible fleet monitoring",
     jsonLd: [
       {

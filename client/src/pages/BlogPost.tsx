@@ -18,6 +18,13 @@ export default function BlogPost() {
       : "Article Not Found | Adapy Blog",
     description: post?.excerpt ?? "Read the latest from the Adapy team.",
     path: `/blog/${slug}`,
+    breadcrumbs: post
+      ? [
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${slug}` },
+        ]
+      : undefined,
     type: isPublished ? "article" : "website",
     image: post?.image,
     noindex: !isPublished,
@@ -135,6 +142,8 @@ export default function BlogPost() {
           <div className="rounded-3xl overflow-hidden border border-black/10 shadow-2xl aspect-[16/8] bg-black/5">
             <img
               src={post.image}
+              fetchPriority="high"
+              decoding="async"
               alt={post.title}
               className="w-full h-full object-cover"
               data-testid="img-article-hero"

@@ -26,6 +26,10 @@ export default function Platform() {
     title: "Adapy Platform — Unified Wheelchair Vehicle Control",
     description: "One platform connecting wheelchair lifts, ramps, transfer seats, and hand controls — Smart Hub, harness integration, controllers, safety modules, app, and dashboard.",
     path: "/platform",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Platform", path: "/platform" },
+    ],
     keywords: "wheelchair accessible vehicle platform, adaptive vehicle control system, mobility equipment integration, smart wheelchair van, connected mobility platform, adaptive driving technology",
     jsonLd: {
       "@context": "https://schema.org",

@@ -59,6 +59,11 @@ export default function CDRSPortal() {
     description:
       "Occupational therapists and CDRS clinicians prescribe adaptive equipment with no visibility into how it's actually used. Adapy gives you objective outcomes data, justification packets, and progress tracking.",
     path: "/software/cdrs",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Software", path: "/platform" },
+      { name: "CDRS Portal", path: "/software/cdrs" },
+    ],
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);

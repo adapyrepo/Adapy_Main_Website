@@ -82,6 +82,8 @@ export function Footer() {
             <img
               src={adapyLogo}
               alt="Adapy"
+              loading="lazy"
+              decoding="async"
               className="h-8 w-auto invert brightness-0 mb-6"
             />
             <p className="text-white/60 text-lg max-w-md mb-4">
@@ -171,6 +173,8 @@ export function Footer() {
                 key={i}
                 src={award.src}
                 alt={award.alt}
+                loading="lazy"
+                decoding="async"
                 className="h-12 md:h-16 w-auto brightness-0 invert"
               />
             ))}

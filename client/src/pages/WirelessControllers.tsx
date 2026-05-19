@@ -73,6 +73,11 @@ export default function WirelessControllers() {
     title: "Wireless Controllers for Wheelchair Lifts, Ramps & Doors",
     description: "Replace pendants, key fobs, and crank handles with a single wireless controller for every adaptive function in your wheelchair accessible vehicle.",
     path: "/hardware/wireless-controllers",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Hardware", path: "/platform" },
+      { name: "Wireless Controllers", path: "/hardware/wireless-controllers" },
+    ],
     keywords: "wireless wheelchair lift controller, wheelchair ramp remote, adaptive vehicle key fob, wheelchair van remote control, accessible vehicle controls",
     jsonLd: {
       "@context": "https://schema.org",

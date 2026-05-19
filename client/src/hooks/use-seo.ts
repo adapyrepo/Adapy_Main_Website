@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 const SITE_URL = "https://adapy.com";
 const SITE_NAME = "Adapy";
-const DEFAULT_IMAGE = `${SITE_URL}/favicon.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
+
+export interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
 
 export interface SEOOptions {
   title: string;
@@ -13,6 +18,7 @@ export interface SEOOptions {
   noindex?: boolean;
   keywords?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 function setMetaByName(name: string, content: string) {
@@ -71,6 +77,7 @@ export function useSEO(options: SEOOptions) {
     noindex = false,
     keywords,
     jsonLd,
+    breadcrumbs,
   } = options;
 
   useEffect(() => {
@@ -95,15 +102,47 @@ export function useSEO(options: SEOOptions) {
     setMetaByProperty("og:type", type);
     setMetaByProperty("og:url", url);
     setMetaByProperty("og:image", absoluteImage);
+    if (absoluteImage === DEFAULT_IMAGE) {
+      setMetaByProperty("og:image:width", "1200");
+      setMetaByProperty("og:image:height", "630");
+    } else {
+      document.head
+        .querySelector('meta[property="og:image:width"]')
+        ?.remove();
+      document.head
+        .querySelector('meta[property="og:image:height"]')
+        ?.remove();
+    }
+    setMetaByProperty("og:image:alt", `${title} — ${SITE_NAME}`);
     setMetaByProperty("og:site_name", SITE_NAME);
 
     setMetaByName("twitter:card", "summary_large_image");
     setMetaByName("twitter:title", fullTitle);
     setMetaByName("twitter:description", description);
     setMetaByName("twitter:image", absoluteImage);
+    setMetaByName("twitter:image:alt", `${title} — ${SITE_NAME}`);
 
-    if (jsonLd) {
-      setJsonLd("page", jsonLd);
+    const pageJsonLd = jsonLd
+      ? Array.isArray(jsonLd)
+        ? [...jsonLd]
+        : [jsonLd]
+      : [];
+
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      pageJsonLd.push({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: b.name,
+          item: `${SITE_URL}${b.path.startsWith("/") ? b.path : `/${b.path}`}`,
+        })),
+      });
+    }
+
+    if (pageJsonLd.length > 0) {
+      setJsonLd("page", pageJsonLd.length === 1 ? pageJsonLd[0] : pageJsonLd);
     } else {
       removeJsonLd("page");
     }
@@ -111,5 +150,15 @@ export function useSEO(options: SEOOptions) {
     return () => {
       removeJsonLd("page");
     };
-  }, [title, description, path, image, type, noindex, keywords, JSON.stringify(jsonLd)]);
+  }, [
+    title,
+    description,
+    path,
+    image,
+    type,
+    noindex,
+    keywords,
+    JSON.stringify(jsonLd),
+    JSON.stringify(breadcrumbs),
+  ]);
 }

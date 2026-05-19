@@ -79,6 +79,11 @@ export default function SafetyModules() {
     title: "Safety Modules — CO, Temperature & Wheelchair Lift Monitoring",
     description: "Always-on monitoring for wheelchair lifts, ramps, cabin temperature, carbon monoxide, and battery — engineered to protect adaptive drivers, passengers, and NEMT fleets.",
     path: "/hardware/safety-modules",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Hardware", path: "/platform" },
+      { name: "Safety Modules", path: "/hardware/safety-modules" },
+    ],
     keywords: "wheelchair vehicle safety, carbon monoxide detector, cabin temperature monitoring, wheelchair lift sensors, NEMT fleet safety, paratransit safety equipment, adaptive vehicle monitoring",
     jsonLd: {
       "@context": "https://schema.org",

@@ -19,6 +19,10 @@ export default function Contact() {
     title: "Contact Adapy — Adaptive Mobility & Wheelchair Vehicle Support",
     description: "Talk to the Adapy team about your wheelchair accessible vehicle, mobility dealership, NEMT fleet, or CDRS clients. Real humans, fast response.",
     path: "/contact",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" },
+    ],
     keywords: "contact Adapy, wheelchair vehicle support, mobility dealer contact, NEMT software support, adaptive mobility help",
     jsonLd: {
       "@context": "https://schema.org",

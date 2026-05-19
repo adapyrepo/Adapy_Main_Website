@@ -82,6 +82,12 @@ export default function SmartHub() {
     title: "Smart Hub — The Brain of Every Wheelchair Accessible Vehicle",
     description: "The Adapy Smart Hub unifies wheelchair lifts, ramps, doors, transfer seats, and hand controls into one intelligent, connected adaptive vehicle system.",
     path: "/hardware/smart-hub",
+    image: hubMockup,
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Hardware", path: "/platform" },
+      { name: "Smart Hub", path: "/hardware/smart-hub" },
+    ],
     keywords: "wheelchair vehicle smart hub, adaptive vehicle controller, mobility equipment integration, wheelchair lift control, wheelchair van automation, connected adaptive mobility",
     jsonLd: {
       "@context": "https://schema.org",
@@ -104,7 +110,10 @@ export default function SmartHub() {
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
           <img 
             src={hubWireframe} 
-            alt="Adapy Smart Hub wireframe diagram showing connected control architecture"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover lg:object-contain object-right"
           />
         </div>
@@ -160,7 +169,9 @@ export default function SmartHub() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
                 src={hubMockup} 
-                alt="Adapy Smart Hub and Mobile App" 
+                alt="Adapy Smart Hub device alongside the Adapy mobile app for wheelchair accessible vehicles"
+                loading="lazy"
+                decoding="async"
                 className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-700"
               />
             </div>

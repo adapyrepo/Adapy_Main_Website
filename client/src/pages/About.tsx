@@ -8,6 +8,10 @@ export default function About() {
     title: "About Adapy — Connected Adaptive Mobility Built for Real Drivers",
     description: "Adapy is on a mission to bring proactive safety and unified control to every wheelchair accessible vehicle and adaptive driver on the road.",
     path: "/about",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+    ],
     keywords: "about Adapy, adaptive mobility company, wheelchair accessible vehicle technology, mobility technology startup, accessibility innovation",
     jsonLd: {
       "@context": "https://schema.org",
@@ -59,7 +63,11 @@ export default function About() {
               <div className="aspect-[3/4] md:aspect-square bg-gray-200 rounded-3xl overflow-hidden shadow-xl">
                  <img 
                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000"
-                   alt="Founders working together"
+                   alt="Adapy founders Aaron Werner and Andrew Evans collaborating on adaptive mobility technology"
+                   loading="lazy"
+                   decoding="async"
+                   width="1000"
+                   height="1000"
                    className="w-full h-full object-cover grayscale"
                  />
               </div>

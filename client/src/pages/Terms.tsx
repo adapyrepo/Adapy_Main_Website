@@ -7,6 +7,10 @@ export default function Terms() {
     title: "Terms & Conditions",
     description: "The terms governing your use of the Adapy adaptive mobility platform, website, and services.",
     path: "/terms",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Terms", path: "/terms" },
+    ],
     keywords: "Adapy terms of service, mobility platform terms, wheelchair vehicle software terms",
   });
   return (

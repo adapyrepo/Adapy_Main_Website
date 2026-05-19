@@ -28,6 +28,10 @@ export default function DealerFunnel() {
     title: "Mobility Dealer Software — Diagnostics & Warranty | Adapy",
     description: "Diagnostic data, warranty evidence, and lifecycle visibility for wheelchair accessible vehicle dealers — stop losing margin to invisible adaptive equipment failures.",
     path: "/dealer-funnel",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "For Dealers", path: "/dealer-funnel" },
+    ],
     keywords: "mobility dealer software, wheelchair van dealer tools, adaptive equipment warranty, wheelchair lift diagnostics, mobility equipment service, BraunAbility dealer, Bruno dealer, MobilityWorks alternative",
     jsonLd: [
       {

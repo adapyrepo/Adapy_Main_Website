@@ -13,6 +13,10 @@ export default function Blog() {
     title: "Adapy Blog — Wheelchair Vehicles & NEMT Insights",
     description: "Field notes, research, and stories from adaptive mobility — wheelchair accessible vehicles, NEMT fleet safety, mobility dealer best practices, and driver rehabilitation.",
     path: "/blog",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+    ],
     keywords: "adaptive mobility blog, wheelchair accessible vehicle news, NEMT industry insights, mobility dealer resources, wheelchair van articles, driver rehabilitation research",
     jsonLd: {
       "@context": "https://schema.org",

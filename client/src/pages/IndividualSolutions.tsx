@@ -20,6 +20,12 @@ export default function IndividualSolutions() {
     title: "Adaptive Mobility Solutions for Wheelchair Users & Families",
     description: "Personal mobility environments built around independence, safety, and dignity — for wheelchair users, adaptive drivers, and families with wheelchair accessible vehicles.",
     path: "/solutions/individual",
+    image: appMockup,
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Solutions", path: "/platform" },
+      { name: "Individuals & Families", path: "/solutions/individual" },
+    ],
     keywords: "wheelchair user mobility, wheelchair accessible vehicle owner, adaptive vehicle for families, wheelchair van solutions, accessible transportation, mobility independence",
     jsonLd: {
       "@context": "https://schema.org",
@@ -83,10 +89,10 @@ export default function IndividualSolutions() {
             </div>
             <div className="flex flex-wrap justify-center gap-6 mt-12 opacity-80 hover:opacity-100 transition-opacity">
               <a href="#" className="hover:scale-105 transition-transform bg-black rounded-xl p-0.5 border border-white/10">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" className="h-10 w-auto" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download the Adapy app on the App Store" loading="lazy" decoding="async" className="h-10 w-auto" />
               </a>
               <a href="#" className="hover:scale-105 transition-transform bg-black rounded-xl p-0.5 border border-white/10">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="h-10 w-auto" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get the Adapy app on Google Play" loading="lazy" decoding="async" className="h-10 w-auto" />
               </a>
             </div>
           </motion.div>
@@ -100,7 +106,9 @@ export default function IndividualSolutions() {
             <div className="relative flex items-center justify-center">
               <img 
                 src={appMockup} 
-                alt="Adapy App Interface" 
+                alt="Adapy mobile app interface for controlling adaptive wheelchair vehicle equipment"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto max-w-md drop-shadow-2xl transition-transform duration-700 hover:scale-105"
               />
             </div>

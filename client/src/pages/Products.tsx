@@ -11,6 +11,10 @@ export default function Products() {
     title: "Adapy Products — Smart Hub, App, Dashboard & Safety Modules",
     description: "Explore the Adapy product line: Smart Hub, mobile app, dealer dashboard, wireless controllers, and safety modules for wheelchair accessible vehicles and NEMT fleets.",
     path: "/products",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Products", path: "/products" },
+    ],
     keywords: "adaptive mobility products, wheelchair vehicle hardware, mobility software, wheelchair lift controller, NEMT safety hardware, adaptive vehicle accessories",
     jsonLd: {
       "@context": "https://schema.org",
@@ -66,7 +70,9 @@ export default function Products() {
                   {/* black and white smart home device minimalistic */}
                   <img 
                     src={product.imageUrl || `https://images.unsplash.com/photo-1558002038-109177381792?auto=format&fit=crop&q=80&w=1000`} 
-                    alt={product.name}
+                    alt={`${product.name} — Adapy adaptive mobility product`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />

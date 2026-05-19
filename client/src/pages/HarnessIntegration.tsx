@@ -95,6 +95,12 @@ export default function HarnessIntegration() {
     title: "Universal Harness Integration for Wheelchair Lifts & OEM Equipment",
     description: "Connect Adapy to existing wheelchair lifts, ramps, and OEM adaptive equipment with a universal harness — no rewiring, no warranty conflicts.",
     path: "/hardware/harness-integration",
+    image: hubWireframe,
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Hardware", path: "/platform" },
+      { name: "Harness Integration", path: "/hardware/harness-integration" },
+    ],
     keywords: "wheelchair lift integration, adaptive equipment harness, mobility equipment retrofit, OEM wheelchair van integration, BraunAbility integration, Bruno lift integration, aftermarket adaptive equipment",
     jsonLd: {
       "@context": "https://schema.org",
@@ -175,7 +181,9 @@ export default function HarnessIntegration() {
             <div className="bg-white rounded-[2.5rem] p-0 flex items-center justify-center relative overflow-hidden aspect-square border-4 border-[#0071e3]/30 shadow-2xl">
               <img 
                 src={hubWireframe} 
-                alt="Harness Integration" 
+                alt="Adapy harness integration diagram for wheelchair lifts and OEM adaptive equipment"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-[0%_center] relative z-10"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#0071e3]/5 to-transparent z-20 pointer-events-none" />
