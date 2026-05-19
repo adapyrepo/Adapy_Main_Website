@@ -4,11 +4,14 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { insertContactRequestSchema, insertSubscriberSchema } from "@shared/schema";
+import { registerLegacyRedirects } from "./redirects";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+
+  registerLegacyRedirects(app);
 
   app.get(api.products.list.path, async (req, res) => {
     const products = await storage.getProducts();

@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /wp-json/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp/
+Disallow: /my-account/
+Disallow: /*?action=cws_vc_shortcode_process_simple_like
 
 Sitemap: https://adapy.com/sitemap.xml
 Sitemap: https://adapy.com/page-sitemap.xml
