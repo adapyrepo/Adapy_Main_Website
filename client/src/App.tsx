@@ -34,6 +34,25 @@ function ScrollToTop() {
   return null;
 }
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function AnalyticsPageView() {
+  const [location] = useLocation();
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+    window.gtag("event", "page_view", {
+      page_path: location,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }, [location]);
+  return null;
+}
+
 function Router() {
   return (
     <Switch>
@@ -67,6 +86,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <ScrollToTop />
+        <AnalyticsPageView />
         <Router />
         <Toaster />
       </TooltipProvider>
