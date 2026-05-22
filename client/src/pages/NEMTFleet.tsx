@@ -20,6 +20,14 @@ import {
   TrendingUp,
   Heart,
   Siren,
+  Cpu,
+  Cloud,
+  Smartphone,
+  ShieldCheck,
+  Zap,
+  Bell,
+  Wrench,
+  Layers,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
@@ -278,24 +286,6 @@ export default function NEMTFleet() {
       time: "Six Weeks Later — Letter",
       event:
         "Plaintiff's counsel sends a discovery request for cabin air quality, lift cycle logs, and pre-trip inspection evidence. You have a manifest and a GPS breadcrumb. They have a story for the jury.",
-    },
-  ];
-
-  const monitoringPoints = [
-    {
-      icon: <Wind className="w-7 h-7 text-[#0071e3]" />,
-      title: "Cabin CO monitoring with real-time alerts",
-      desc: "Continuous carbon monoxide and cabin air quality sensing across every vehicle — alerts fire before passengers feel symptoms, and before regulators ask why you didn't have sensors.",
-    },
-    {
-      icon: <Thermometer className="w-7 h-7 text-[#0071e3]" />,
-      title: "Cabin temperature & equipment telemetry",
-      desc: "Continuous temperature, lift cycle, ramp, transfer seat, and battery telemetry — every event timestamped and routed to dispatch, maintenance, and the cloud.",
-    },
-    {
-      icon: <FileText className="w-7 h-7 text-[#0071e3]" />,
-      title: "Audit-ready, mandate-ready documentation",
-      desc: "Exportable trip-level records for Medicaid audits, broker scorecards, incident review, and the CO monitoring requirements headed your way — already in the format regulators want.",
     },
   ];
 
@@ -782,42 +772,271 @@ export default function NEMTFleet() {
         </div>
       </section>
 
-      <section className="py-28 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="max-w-2xl mb-14">
+      {/* PRODUCT — Meet Adapy for NEMT Fleets */}
+      <section id="product" className="py-28 bg-[#f5f5f7]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="max-w-3xl mb-16">
             <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              The Adapy Answer
+              The Product · Adapy for NEMT Fleets
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
-              CO monitoring, cabin telemetry, and audit-ready records — running on every vehicle, every trip.
+            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6 leading-[1.05]">
+              One platform. Four parts. The in-cabin safety layer your dispatch software was never built to provide.
             </h2>
-            <p className="text-lg text-black/60 leading-relaxed">
-              Adapy adds the in-cabin layer that traditional NEMT software
-              doesn't touch. Same dispatch, same billing — plus continuous
-              carbon monoxide monitoring, cabin and equipment telemetry, and
-              the trip-level evidence that wins audits, defends claims, and
-              prevents the incident before it happens.
+            <p className="text-lg text-black/60 leading-relaxed mb-8">
+              Adapy connects a purpose-built in-vehicle brain to a full suite
+              of cabin and equipment sensors, then streams every reading to a
+              cloud dashboard and mobile app your team can act on in real
+              time. Same dispatch, same billing — plus the CO and equipment
+              monitoring layer regulators and brokers are about to require.
             </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                data-testid="button-product-demo"
+                type="button"
+                onClick={() => scrollToSection("form")}
+                className="px-6 py-3 bg-[#0071e3] text-white rounded-full font-bold text-base hover:bg-[#0077ed] transition-all flex items-center justify-center gap-2 w-fit"
+              >
+                Request a Fleet Demo
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="/pricing"
+                data-testid="link-product-pricing"
+                className="px-6 py-3 bg-white text-black rounded-full font-bold text-base border border-black/10 hover:border-black/30 transition-all flex items-center justify-center gap-2 w-fit"
+              >
+                View Pricing
+              </a>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {monitoringPoints.map((point, i) => (
+          {/* The 4-part stack */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                icon: <Cpu className="w-7 h-7 text-[#0071e3]" />,
+                eyebrow: "Hardware · In-Vehicle",
+                title: "Adapy Smart Hub",
+                desc: "The intelligent control and monitoring core inside every vehicle. Coordinates lifts, ramps, sensors, and cloud connectivity.",
+                link: "/hardware/smart-hub",
+              },
+              {
+                icon: <ShieldCheck className="w-7 h-7 text-[#0071e3]" />,
+                eyebrow: "Hardware · Sensors",
+                title: "Safety Modules",
+                desc: "Always-on monitoring for cabin CO, cabin temperature, lift cycles, ramp usage, and battery — engineered for medically fragile passengers.",
+                link: "/hardware/safety-modules",
+              },
+              {
+                icon: <Cloud className="w-7 h-7 text-[#0071e3]" />,
+                eyebrow: "Software · Operations",
+                title: "Adapy Cloud Dashboard",
+                desc: "Real-time alerts, fleet-wide telemetry, role-based access, and exportable trip-level records for audits, claims, and broker scorecards.",
+                link: "/platform",
+              },
+              {
+                icon: <Smartphone className="w-7 h-7 text-[#0071e3]" />,
+                eyebrow: "Software · In-Field",
+                title: "Mobile App",
+                desc: "Drivers see live cabin status, get push alerts, and log inspections. Dispatch sees the same data the second a threshold trips.",
+                link: "/platform",
+              },
+            ].map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-7 bg-white rounded-3xl border border-black/[0.05] shadow-sm"
+                transition={{ delay: i * 0.08 }}
+                className="p-7 bg-white rounded-3xl border border-black/[0.05] shadow-sm hover:shadow-md hover:border-[#0071e3]/20 transition-all flex flex-col"
+                data-testid={`card-product-${i}`}
               >
-                <div className="mb-5">{point.icon}</div>
+                <div className="w-12 h-12 rounded-2xl bg-[#0071e3]/10 flex items-center justify-center mb-5">
+                  {item.icon}
+                </div>
+                <span className="text-[10px] font-bold tracking-[0.15em] text-[#0071e3] uppercase block mb-2">
+                  {item.eyebrow}
+                </span>
                 <h3 className="text-lg font-bold text-black mb-3 leading-snug">
-                  {point.title}
+                  {item.title}
                 </h3>
-                <p className="text-black/60 leading-relaxed text-sm">
-                  {point.desc}
+                <p className="text-black/60 leading-relaxed text-sm mb-5 flex-1">
+                  {item.desc}
+                </p>
+                <a
+                  href={item.link}
+                  className="text-sm font-bold text-[#0071e3] hover:underline inline-flex items-center gap-1 mt-auto"
+                >
+                  Learn more <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT — What it actually sees */}
+      <section className="py-28 bg-white border-t border-black/[0.05]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="max-w-2xl mb-14">
+            <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
+              Inside Every Vehicle
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6 leading-[1.05]">
+              What Adapy sees inside the cabin — continuously, every trip.
+            </h2>
+            <p className="text-lg text-black/60 leading-relaxed">
+              Every metric below is sensed in-cabin, time-stamped, alerted
+              in real time, and exportable for Medicaid audits, claims
+              defense, and broker scorecards.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                icon: <Wind className="w-6 h-6 text-[#0071e3]" />,
+                title: "Cabin carbon monoxide (CO)",
+                desc: "Continuous CO ppm sensing inside the passenger compartment. Threshold-based alerts fire to driver, dispatch, and ops before any occupant feels symptoms.",
+              },
+              {
+                icon: <Thermometer className="w-6 h-6 text-[#0071e3]" />,
+                title: "Cabin temperature",
+                desc: "In-cabin temperature monitored against configurable safe ranges. Critical for wheelchair passengers who cannot reposition or reach a vent.",
+              },
+              {
+                icon: <Activity className="w-6 h-6 text-[#0071e3]" />,
+                title: "Lift & ramp cycles",
+                desc: "Every deployment, stow, and fault timestamped. Predictive maintenance signals appear before the actuator strands a passenger mid-route.",
+              },
+              {
+                icon: <Zap className="w-6 h-6 text-[#0071e3]" />,
+                title: "Battery & power",
+                desc: "Vehicle battery voltage, equipment power draw, and abnormal electrical patterns — caught hours before a vehicle dies in a parking lot.",
+              },
+              {
+                icon: <Bell className="w-6 h-6 text-[#0071e3]" />,
+                title: "Real-time alerts",
+                desc: "Push, SMS, and in-dashboard alerts routed by severity and role. Configurable thresholds per vehicle, per route, per equipment type.",
+              },
+              {
+                icon: <FileText className="w-6 h-6 text-[#0071e3]" />,
+                title: "Audit-ready trip records",
+                desc: "Exportable per-trip telemetry, equipment usage logs, and incident timelines — already structured for Medicaid audits and discovery requests.",
+              },
+            ].map((cap, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="p-6 rounded-2xl border border-black/[0.06] bg-[#fafafa] hover:bg-white hover:border-[#0071e3]/20 hover:shadow-sm transition-all"
+                data-testid={`card-capability-${i}`}
+              >
+                <div className="w-11 h-11 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center mb-4">
+                  {cap.icon}
+                </div>
+                <h3 className="text-base font-bold text-black mb-2 leading-snug">
+                  {cap.title}
+                </h3>
+                <p className="text-sm text-black/60 leading-relaxed">
+                  {cap.desc}
                 </p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT — How it deploys + Why operators pick Adapy */}
+      <section className="py-28 bg-[#0e0f12] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+            <div>
+              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
+                Built to Retrofit
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 leading-[1.1]">
+                Installs onto vehicles you already operate — without touching your dispatch stack.
+              </h2>
+              <p className="text-white/70 leading-relaxed mb-7">
+                Universal Harness Kits and Wireless Controllers connect to
+                industry-standard lifts, ramps, transfer seats, and accessory
+                power. No OEM warranty conflicts, no rewiring, no rip-and-
+                replace. Most fleets see live data on the first vehicle
+                within a single service appointment.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  { icon: <Wrench className="w-5 h-5 text-[#0071e3]" />, text: "Works with major lift, ramp, and transfer-seat manufacturers" },
+                  { icon: <Layers className="w-5 h-5 text-[#0071e3]" />, text: "Runs alongside your existing dispatch, scheduling, and billing — or replaces them if you want" },
+                  { icon: <CheckCircle className="w-5 h-5 text-[#0071e3]" />, text: "Deploys vehicle-by-vehicle; no fleet-wide downtime required" },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3" data-testid={`install-bullet-${i}`}>
+                    <div className="mt-0.5">{item.icon}</div>
+                    <span className="text-white/80 text-[15px] leading-relaxed">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0071e3] uppercase block mb-4">
+                Why Operators Choose Adapy
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 leading-[1.1]">
+                The only platform built around the part of the trip you can't see.
+              </h2>
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Purpose-built for adaptive transportation",
+                    desc: "Not a generic telematics retrofit. The Smart Hub, Safety Modules, and Cloud were engineered together for wheelchair-accessible NEMT and paratransit.",
+                  },
+                  {
+                    title: "Documentation regulators want",
+                    desc: "Exportable, time-stamped, structured records aligned with anticipated CO and environmental safety requirements.",
+                  },
+                  {
+                    title: "Same platform, any fleet size",
+                    desc: "From a single van to a multi-state network — the Smart Hub remains the core; the cloud expands as you do.",
+                  },
+                  {
+                    title: "Defensible evidence on day one",
+                    desc: "Every alert, sensor reading, and equipment cycle creates a trip-level record you can hand to an auditor, broker, or attorney.",
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.08]"
+                    data-testid={`reason-${i}`}
+                  >
+                    <h4 className="font-bold text-white mb-1.5 text-[15px] leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-white/60 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Trust strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-10 border-t border-white/10">
+            {[
+              { value: "100%", label: "Trip-level audit coverage" },
+              { value: "24/7", label: "Real-time alerting" },
+              { value: "1 visit", label: "Typical per-vehicle install" },
+              { value: "Cloud", label: "Same dashboard, every vehicle" },
+            ].map((s, i) => (
+              <div key={i} className="text-center md:text-left" data-testid={`trust-stat-${i}`}>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{s.value}</div>
+                <div className="text-xs md:text-sm text-white/55 uppercase tracking-wider leading-tight">
+                  {s.label}
+                </div>
+              </div>
             ))}
           </div>
         </div>
