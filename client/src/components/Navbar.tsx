@@ -62,7 +62,7 @@ const navItems: NavItem[] = [
         icon: <Wrench className="w-5 h-5" />,
       },
       {
-        title: "NEMT Fleets",
+        title: "Paratransit / NEMT Fleets",
         description: "See the invisible risks before they become incidents.",
         href: "/solutions/nemt",
         icon: <Bus className="w-5 h-5" />,
