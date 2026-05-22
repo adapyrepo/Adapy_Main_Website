@@ -34,16 +34,59 @@ import { useSEO } from "@/hooks/use-seo";
 
 export default function NEMTFleet() {
   useSEO({
-    title: "Carbon Monoxide Monitoring for NEMT & Paratransit Fleets",
-    description: "After West Valley City, advocacy groups are lobbying for mandatory CO detectors in every paratransit vehicle. Adapy delivers always-on CO, cabin, and equipment monitoring before regulation forces your hand — and before the next preventable death.",
+    title: "West Valley City Paratransit CO Deaths (Feb 2026) — NEMT Carbon Monoxide Monitoring | Adapy",
+    description: "In February 2026, three disabled adults died of suspected carbon monoxide poisoning inside a paratransit vehicle left running in an enclosed West Valley City garage. Adapy is the always-on cabin CO, temperature, and equipment monitoring platform built so this never happens to a fleet again.",
     path: "/solutions/nemt",
+    type: "article",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Solutions", path: "/platform" },
-      { name: "NEMT Fleets", path: "/solutions/nemt" },
+      { name: "Paratransit / NEMT Fleets", path: "/solutions/nemt" },
     ],
-    keywords: "NEMT carbon monoxide monitoring, paratransit CO detector mandate, wheelchair van CO sensor, NEMT safety regulation, West Valley City paratransit, U.S. Access Board vehicle accessibility, NEMT fleet safety platform, ADA paratransit monitoring, Medicaid transportation compliance",
+    keywords: "West Valley City paratransit deaths, West Valley City carbon monoxide deaths, paratransit carbon monoxide poisoning, disabled adults died paratransit van, three disabled men killed wheelchair van garage, February 2026 paratransit incident, Utah paratransit CO deaths, wheelchair van carbon monoxide, NEMT carbon monoxide monitoring, paratransit CO detector mandate, wheelchair van CO sensor, NEMT safety regulation, U.S. Access Board vehicle accessibility, NEMT fleet safety platform, ADA paratransit monitoring, Medicaid non-emergency transportation safety, paratransit driver left van running garage, in-cabin CO monitoring NEMT, paratransit fleet liability, carbon monoxide poisoning prevention NEMT",
     jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        headline: "West Valley City Paratransit Carbon Monoxide Deaths (February 2026): What NEMT Operators Must Know",
+        alternativeHeadline: "Three disabled adults died of suspected carbon monoxide poisoning inside a paratransit van left running in an enclosed garage",
+        datePublished: "2026-02-10",
+        dateModified: "2026-05-22",
+        inLanguage: "en-US",
+        url: "https://adapy.com/solutions/nemt",
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://adapy.com/solutions/nemt" },
+        image: ["https://adapy.com/og-image.jpg"],
+        author: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
+        publisher: {
+          "@type": "Organization",
+          name: "Adapy",
+          url: "https://adapy.com",
+          logo: { "@type": "ImageObject", url: "https://adapy.com/favicon-512.png" },
+        },
+        about: [
+          { "@type": "Event", name: "West Valley City Paratransit Carbon Monoxide Deaths", startDate: "2026-02-06", location: { "@type": "Place", name: "West Valley City, Utah, United States", address: { "@type": "PostalAddress", addressLocality: "West Valley City", addressRegion: "UT", addressCountry: "US" } } },
+          { "@type": "Thing", name: "Carbon monoxide poisoning in paratransit vehicles" },
+          { "@type": "Thing", name: "NEMT and paratransit fleet safety" },
+        ],
+        keywords: "West Valley City, paratransit, carbon monoxide, NEMT, wheelchair van, disabled adults, February 2026, Utah, CO poisoning",
+        articleSection: "Paratransit & NEMT Safety",
+        description: "Reporting and policy context on the February 2026 West Valley City paratransit incident, in which three disabled adults died of suspected carbon monoxide poisoning inside a service vehicle left running in an enclosed garage — and what NEMT fleet operators should do before the regulatory response arrives.",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: "West Valley City Paratransit Carbon Monoxide Deaths",
+        startDate: "2026-02-06",
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        location: {
+          "@type": "Place",
+          name: "West Valley City, Utah",
+          address: { "@type": "PostalAddress", addressLocality: "West Valley City", addressRegion: "UT", addressCountry: "US" },
+        },
+        description: "Three disabled adults died of suspected carbon monoxide poisoning inside a paratransit service vehicle left running in an enclosed garage in West Valley City, Utah, in February 2026. The incident triggered national advocacy for mandatory CO detectors in paratransit vehicles.",
+        organizer: { "@type": "Organization", name: "Adapy (reporting & analysis)", url: "https://adapy.com/solutions/nemt" },
+      },
       {
         "@context": "https://schema.org",
         "@type": "Service",
@@ -52,13 +95,15 @@ export default function NEMTFleet() {
         serviceType: "Carbon monoxide, cabin environment, and adaptive equipment monitoring for NEMT and paratransit fleets",
         audience: { "@type": "BusinessAudience", audienceType: "NEMT operators, paratransit agencies, brokerages" },
         areaServed: "United States",
-        description: "Always-on carbon monoxide, cabin temperature, lift, and battery monitoring built for NEMT and paratransit operators preparing for incoming CO-detector regulation.",
+        description: "Always-on carbon monoxide, cabin temperature, lift, and battery monitoring built for NEMT and paratransit operators preparing for incoming CO-detector regulation after the West Valley City paratransit deaths.",
       },
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: [
-          { "@type": "Question", name: "Why is CO monitoring suddenly a NEMT priority?", acceptedAnswer: { "@type": "Answer", text: "After the February 2026 West Valley City incident — where three disabled adults died of suspected CO poisoning inside a service vehicle left running in a garage — advocacy groups are actively lobbying for mandatory CO detectors in all paratransit vehicles and stricter no-idling rules for enclosed garages." } },
+          { "@type": "Question", name: "What happened in the West Valley City paratransit carbon monoxide incident?", acceptedAnswer: { "@type": "Answer", text: "In February 2026, three disabled adults died of suspected carbon monoxide poisoning after being left inside a paratransit service vehicle that was running in an enclosed garage in West Valley City, Utah. Investigators pointed to a deadly buildup of CO from an engine left running in an enclosed space — exactly the kind of environmental hazard that in-cabin CO monitoring is designed to detect long before it becomes fatal." } },
+          { "@type": "Question", name: "When did the West Valley City paratransit deaths occur?", acceptedAnswer: { "@type": "Answer", text: "The incident occurred in February 2026 in West Valley City, Utah, and was reported by the Salt Lake Tribune and Fox13, among others." } },
+          { "@type": "Question", name: "Why is CO monitoring suddenly a NEMT priority?", acceptedAnswer: { "@type": "Answer", text: "After the February 2026 West Valley City incident — where three disabled adults died of suspected CO poisoning inside a paratransit vehicle left running in a garage — advocacy groups are actively lobbying for mandatory CO detectors in all paratransit vehicles and stricter no-idling rules for enclosed garages." } },
           { "@type": "Question", name: "Will the U.S. Access Board mandate CO detectors in paratransit vehicles?", acceptedAnswer: { "@type": "Answer", text: "The Access Board periodically updates Accessibility Guidelines for Transportation Vehicles. The 2016 updates focused on physical access; future iterations are widely expected to incorporate environmental safety features such as CO monitoring, particularly for vehicles serving vulnerable populations." } },
           { "@type": "Question", name: "Does Adapy replace my existing NEMT software?", acceptedAnswer: { "@type": "Answer", text: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle CO and equipment monitoring layer your current software doesn't touch." } },
           { "@type": "Question", name: "What does Adapy monitor inside the cabin?", acceptedAnswer: { "@type": "Answer", text: "Cabin carbon monoxide, cabin temperature, lift and ramp cycles, transfer seat and harness usage, battery voltage, and equipment fault codes — continuously, with real-time alerts and exportable audit logs." } },
@@ -552,24 +597,50 @@ export default function NEMTFleet() {
       </section>
 
       {/* The Incident — West Valley City */}
-      <section id="incident" className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]">
+      <section
+        id="incident"
+        className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]"
+        itemScope
+        itemType="https://schema.org/NewsArticle"
+      >
+        <meta itemProp="datePublished" content="2026-02-10" />
+        <meta itemProp="dateModified" content="2026-05-22" />
+        <meta itemProp="inLanguage" content="en-US" />
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="mb-14 max-w-2xl">
+          <div className="mb-14 max-w-3xl">
             <span className="text-[11px] font-bold tracking-[0.2em] text-red-400 uppercase block mb-4">
-              The Incident That Changed the Conversation
+              The Incident That Changed the Conversation · West Valley City, Utah · February 2026
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
-              Three disabled adults. One running engine. One enclosed garage. Zero monitoring.
+            <h2
+              className="text-4xl md:text-5xl font-bold tracking-tight mb-3 leading-[1.05]"
+              itemProp="headline"
+            >
+              West Valley City Paratransit Carbon Monoxide Deaths — February 2026
             </h2>
-            <p className="text-lg text-white/75 leading-relaxed">
-              According to reporting from the Salt Lake Tribune and Fox13,
-              three disabled men died of suspected carbon monoxide poisoning
-              after being left inside a running vehicle parked in a garage
-              while being transported by a service provider for disabled
-              adults. Investigators have pointed to a deadly buildup of CO
-              from an engine left running in an enclosed space — the exact
-              category of environmental hazard that real-time cabin
-              monitoring is designed to detect long before it becomes fatal.
+            <p className="text-lg md:text-xl text-white/85 font-semibold mb-6 leading-snug">
+              Three disabled adults. One running engine. One enclosed garage. Zero monitoring.
+            </p>
+            <p className="text-lg text-white/75 leading-relaxed" itemProp="description">
+              In February 2026 in West Valley City, Utah, three disabled men
+              died of suspected carbon monoxide (CO) poisoning after being
+              left inside a paratransit service vehicle that was running in
+              an enclosed garage, according to reporting from the Salt Lake
+              Tribune and Fox13. Investigators have pointed to a deadly
+              buildup of carbon monoxide from an engine left running in an
+              enclosed space — the exact category of environmental hazard
+              that real-time in-cabin CO monitoring is designed to detect
+              long before it becomes fatal. The incident is now driving
+              national advocacy for mandatory CO detectors in every
+              paratransit and NEMT (non-emergency medical transportation)
+              vehicle.
+            </p>
+            <p className="text-sm text-white/45 mt-4">
+              Location:{" "}
+              <span itemProp="contentLocation" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name">West Valley City, Utah, United States</span>
+              </span>{" "}
+              · Date of incident: February 2026 · Reporting:{" "}
+              <span itemProp="sourceOrganization">Salt Lake Tribune, Fox13</span>
             </p>
           </div>
 
