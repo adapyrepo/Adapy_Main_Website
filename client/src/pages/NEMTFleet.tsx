@@ -328,7 +328,7 @@ export default function NEMTFleet() {
         <Navbar />
       </div>
 
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-[#0e0f12] to-[#1c1f24] overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-32 pb-16 bg-gradient-to-b from-[#0e0f12] to-[#1c1f24] overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0071e3] blur-[150px] rounded-full" />
           <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-red-500 blur-[120px] rounded-full opacity-40" />
@@ -342,41 +342,78 @@ export default function NEMTFleet() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-8">
-                <AlertTriangle className="w-4 h-4 text-red-400" />
-                <span className="text-sm text-red-400 font-medium">
-                  Post–West Valley City · Advocates Lobbying for CO Detector Mandates
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full mb-7">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                <span className="text-xs md:text-[13px] text-red-400 font-semibold tracking-wide">
+                  Post–West Valley City · CO Detector Mandates Being Lobbied
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
-                Three disabled adults. One service vehicle. Suspected carbon monoxide poisoning.
-                <span className="block text-white/70">
-                  The advocacy push for CO detectors in every paratransit vehicle has already started.
+              <h1 className="text-[2.6rem] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-bold text-white mb-5 leading-[1.02] tracking-tight">
+                Three lives. One enclosed garage.
+                <span className="block text-white/85">
+                  Zero CO sensors required.
                 </span>
               </h1>
-              <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
-                February 2026, West Valley City: three medically fragile
-                passengers died of suspected carbon monoxide poisoning inside
-                a service vehicle left running in an enclosed garage. Advocacy
-                groups are now actively lobbying for mandatory CO detectors in
-                every paratransit vehicle. Adapy delivers always-on cabin CO,
-                temperature, and equipment monitoring — before the rule lands
-                on your desk, and before the next preventable death.
+
+              <p className="text-lg md:text-xl lg:text-2xl text-white/65 mb-7 leading-snug max-w-2xl font-medium">
+                The West Valley City tragedy turned a long-running paratransit safety
+                concern into a national policy fight — and your fleet is in its path.
               </p>
 
-              <button
-                data-testid="button-hero-demo"
-                type="button"
-                onClick={() => scrollToSection("form")}
-                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
-              >
-                Get Ahead of the Mandate
-                <ArrowRight className="w-5 h-5" />
-              </button>
+              <p className="text-[15px] md:text-base text-white/55 mb-8 leading-relaxed max-w-2xl">
+                February 2026: three medically fragile passengers died of suspected
+                carbon monoxide poisoning inside a service vehicle left running in
+                an enclosed garage. Advocacy groups are now lobbying for mandatory
+                CO detectors in every paratransit vehicle. Adapy delivers always-on
+                cabin CO, temperature, and equipment monitoring — before the rule
+                lands on your desk, and before the next preventable death.
+              </p>
 
-              <p className="text-sm text-white/50 mt-6">
-                Source: Salt Lake Tribune & Fox13 reporting, February 6, 2026.
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-10">
+                <button
+                  data-testid="button-hero-demo"
+                  type="button"
+                  onClick={() => scrollToSection("form")}
+                  className="px-7 py-3.5 bg-[#0071e3] text-white rounded-full font-bold text-base hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center justify-center gap-2 w-fit"
+                >
+                  Get Ahead of the Mandate
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  data-testid="button-hero-read-incident"
+                  type="button"
+                  onClick={() => scrollToSection("incident")}
+                  className="px-5 py-3.5 text-white/80 hover:text-white font-semibold text-base flex items-center justify-center gap-2 w-fit transition-colors"
+                >
+                  Read what happened
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-xl border-t border-white/10 pt-6">
+                <div data-testid="stat-hero-deaths">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">3</div>
+                  <div className="text-[11px] md:text-xs text-white/50 leading-tight uppercase tracking-wider">
+                    Disabled adults · Feb 2026
+                  </div>
+                </div>
+                <div data-testid="stat-hero-sensors">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">0</div>
+                  <div className="text-[11px] md:text-xs text-white/50 leading-tight uppercase tracking-wider">
+                    CO sensors mandated today
+                  </div>
+                </div>
+                <div data-testid="stat-hero-pressure">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">2016</div>
+                  <div className="text-[11px] md:text-xs text-white/50 leading-tight uppercase tracking-wider">
+                    Last Access Board update
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[11px] md:text-xs text-white/40 mt-5">
+                Source: Salt Lake Tribune &amp; Fox13 reporting, Feb 6, 2026.
               </p>
             </motion.div>
 
@@ -525,7 +562,7 @@ export default function NEMTFleet() {
       </section>
 
       {/* The Incident — West Valley City */}
-      <section className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]">
+      <section id="incident" className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-14 max-w-2xl">
             <span className="text-[11px] font-bold tracking-[0.2em] text-red-400 uppercase block mb-4">
