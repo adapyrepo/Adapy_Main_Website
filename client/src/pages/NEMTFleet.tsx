@@ -5,51 +5,55 @@ import {
   ChevronDown,
   CheckCircle,
   ArrowRight,
-  ShieldAlert,
   Activity,
   Thermometer,
   Wind,
   FileText,
   Gavel,
-  Radio,
   DollarSign,
   Clock,
   MapPin,
   Navigation,
   Truck,
+  AlertTriangle,
+  Building2,
+  TrendingUp,
+  Heart,
+  Siren,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function NEMTFleet() {
   useSEO({
-    title: "NEMT Fleet Safety & Wheelchair Van Monitoring Platform",
-    description: "See invisible risks before they become incidents. Adapy delivers always-on wheelchair lift, ramp, CO, and cabin monitoring across your NEMT and paratransit fleet.",
+    title: "Carbon Monoxide Monitoring for NEMT & Paratransit Fleets",
+    description: "After West Valley City, advocacy groups are lobbying for mandatory CO detectors in every paratransit vehicle. Adapy delivers always-on CO, cabin, and equipment monitoring before regulation forces your hand — and before the next preventable death.",
     path: "/solutions/nemt",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Solutions", path: "/platform" },
       { name: "NEMT Fleets", path: "/solutions/nemt" },
     ],
-    keywords: "NEMT software, non-emergency medical transportation, paratransit fleet management, wheelchair van fleet, NEMT safety, ADA paratransit, Medicaid transportation, wheelchair accessible fleet monitoring",
+    keywords: "NEMT carbon monoxide monitoring, paratransit CO detector mandate, wheelchair van CO sensor, NEMT safety regulation, West Valley City paratransit, U.S. Access Board vehicle accessibility, NEMT fleet safety platform, ADA paratransit monitoring, Medicaid transportation compliance",
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "Service",
-        name: "Adapy for NEMT and Paratransit Fleets",
+        name: "Adapy CO & Cabin Monitoring for NEMT and Paratransit Fleets",
         provider: { "@type": "Organization", name: "Adapy", url: "https://adapy.com" },
-        serviceType: "NEMT and paratransit fleet safety, monitoring, and lifecycle platform",
+        serviceType: "Carbon monoxide, cabin environment, and adaptive equipment monitoring for NEMT and paratransit fleets",
         audience: { "@type": "BusinessAudience", audienceType: "NEMT operators, paratransit agencies, brokerages" },
         areaServed: "United States",
-        description: "Always-on monitoring for wheelchair lifts, ramps, cabin temperature, and carbon monoxide across NEMT and paratransit fleets.",
+        description: "Always-on carbon monoxide, cabin temperature, lift, and battery monitoring built for NEMT and paratransit operators preparing for incoming CO-detector regulation.",
       },
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: [
-          { "@type": "Question", name: "Does Adapy replace my existing NEMT software?", acceptedAnswer: { "@type": "Answer", text: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle monitoring layer your current software doesn't touch." } },
-          { "@type": "Question", name: "What kinds of vehicles can Adapy monitor?", acceptedAnswer: { "@type": "Answer", text: "Any wheelchair-accessible NEMT vehicle equipped with adaptive mobility equipment such as lifts, ramps, or transfer seats." } },
-          { "@type": "Question", name: "How is the data delivered?", acceptedAnswer: { "@type": "Answer", text: "A cloud dashboard with real-time alerts, historical telemetry, and exportable documentation for compliance, claims, and fleet management." } },
+          { "@type": "Question", name: "Why is CO monitoring suddenly a NEMT priority?", acceptedAnswer: { "@type": "Answer", text: "After the February 2026 West Valley City incident — where three disabled adults died of suspected CO poisoning inside a service vehicle left running in a garage — advocacy groups are actively lobbying for mandatory CO detectors in all paratransit vehicles and stricter no-idling rules for enclosed garages." } },
+          { "@type": "Question", name: "Will the U.S. Access Board mandate CO detectors in paratransit vehicles?", acceptedAnswer: { "@type": "Answer", text: "The Access Board periodically updates Accessibility Guidelines for Transportation Vehicles. The 2016 updates focused on physical access; future iterations are widely expected to incorporate environmental safety features such as CO monitoring, particularly for vehicles serving vulnerable populations." } },
+          { "@type": "Question", name: "Does Adapy replace my existing NEMT software?", acceptedAnswer: { "@type": "Answer", text: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle CO and equipment monitoring layer your current software doesn't touch." } },
+          { "@type": "Question", name: "What does Adapy monitor inside the cabin?", acceptedAnswer: { "@type": "Answer", text: "Cabin carbon monoxide, cabin temperature, lift and ramp cycles, transfer seat and harness usage, battery voltage, and equipment fault codes — continuously, with real-time alerts and exportable audit logs." } },
         ],
       },
     ],
@@ -153,118 +157,168 @@ export default function NEMTFleet() {
       icon: <Wind className="w-7 h-7" />,
       eyebrow: "Chapter 01 — The Invisible Gas",
       title:
-        "Carbon monoxide builds up in the cabin. You won't see it until someone is hurt.",
-      body: "Idling vehicles, exhaust leaks, faulty seals — none of it sets off a dispatch alert. CO is colorless and odorless. By the time a medically fragile passenger feels symptoms, the exposure has already happened, and there is no record to defend the trip.",
-      stat: "% of NEMT cabins that exceed safe CO thresholds at least once a year",
+        "Carbon monoxide is colorless, odorless, and detectable long before it becomes fatal — but only if a sensor is present.",
+      body: "An idling van in a garage. A cracked exhaust seal. A failing catalytic converter. None of it sets off a dispatch alert. By the time a medically fragile passenger feels symptoms, exposure has already happened — and the trip log has no record of cabin air quality to show what conditions were inside the vehicle.",
+      stat: "CO becomes lethal at levels passengers cannot detect without sensors",
     },
     {
-      icon: <Activity className="w-7 h-7" />,
-      eyebrow: "Chapter 02 — Lift Failure Mid-Route",
-      title: "The lift jams between pickups. The route is already broken.",
-      body: "A passenger is half-loaded. The driver is on the phone with dispatch. The next three trips slip. The hospital marks the patient as a no-show. The Medicaid trip won't bill. And the operator absorbs every minute of cascading cost.",
-      stat: "Average revenue lost per mid-route lift failure",
+      icon: <Siren className="w-7 h-7" />,
+      eyebrow: "Chapter 02 — The Regulation Is Coming",
+      title:
+        "Advocacy groups are actively lobbying for mandatory CO detectors in every paratransit vehicle.",
+      body: "The West Valley City tragedy turned a long-running safety concern into a national policy fight. Disability rights groups, NEMT brokers, and state Medicaid offices are pushing for CO-detector mandates, stricter no-idling rules in enclosed garages, and updated U.S. Access Board guidelines for accessible transportation vehicles. Operators who wait for the rule to be written will retrofit under deadline.",
+      stat: "The U.S. Access Board last updated vehicle accessibility guidelines in 2016 — environmental safety is widely expected in the next revision",
     },
     {
       icon: <Thermometer className="w-7 h-7" />,
-      eyebrow: "Chapter 03 — Temperature Extremes",
+      eyebrow: "Chapter 03 — Cabin Extremes Hit Medically Fragile Riders First",
       title:
-        "Medically fragile passengers don't tolerate cabin extremes.",
-      body: "Wheelchair-bound passengers can't adjust their position, can't reach a vent, and often can't communicate distress quickly. Without continuous cabin temperature monitoring, an HVAC failure becomes a clinical event before anyone notices.",
-      stat: "Cabin temperature variance recorded on a typical NEMT route in summer/winter",
+        "Wheelchair users can't reposition, can't reach a vent, and often can't communicate distress in time.",
+      body: "An HVAC failure on a hot afternoon. A locked-up climate system on a winter morning. For a typical commuter, it's an inconvenience. For a dialysis patient or a non-verbal passenger strapped into a wheelchair tie-down, it becomes a clinical event before the driver notices.",
+      stat: "Cabin temperature swings inside a stationary NEMT van can reach dangerous levels in under 30 minutes",
+    },
+    {
+      icon: <Activity className="w-7 h-7" />,
+      eyebrow: "Chapter 04 — Equipment Fails Without Warning",
+      title:
+        "Lift jams mid-loading. The route is already broken — and so is the trust.",
+      body: "A passenger is half-loaded. The driver is on the phone with dispatch. The next three trips slip. The hospital marks the patient a no-show. The Medicaid trip won't bill. The operator absorbs every minute of cascading cost. And nobody — driver, dispatcher, mechanic — can tell you whether the lift had been throwing fault codes for a week.",
+      stat: "A meaningful share of breakdowns are visible in telemetry 24+ hours before they strand a passenger",
     },
     {
       icon: <Gavel className="w-7 h-7" />,
-      eyebrow: "Chapter 04 — Lawsuit Exposure",
-      title: "When something goes wrong, you can't prove the vehicle was safe.",
-      body: "Plaintiff counsel asks for cabin conditions, equipment usage, and pre-trip documentation. You hand over a manifest and a GPS breadcrumb. They hand the jury a story you can't counter. Settlements close because there is no data to fight with.",
-      stat: "Median settlement value for NEMT in-cabin incident litigation",
+      eyebrow: "Chapter 05 — You Can't Defend What You Didn't Record",
+      title:
+        "Plaintiff counsel will ask for cabin conditions. Today, you can only hand over a GPS breadcrumb.",
+      body: "After an incident, discovery requests come fast: cabin CO levels, cabin temperature, lift cycle logs, fault codes, pre-trip inspection evidence. Operators without that data settle — because the absence of monitoring is itself read as negligence. Post-West Valley City, juries no longer accept \"we didn't have sensors\" as a defense.",
+      stat: "In-cabin incident litigation against transportation providers can reach high six and seven figures",
     },
     {
       icon: <FileText className="w-7 h-7" />,
-      eyebrow: "Chapter 05 — Medicaid Clawbacks & Audit Failures",
-      title: "Missing documentation = unbilled trips and recouped payments.",
-      body: "When auditors arrive, every gap in trip-level evidence is a potential clawback. Equipment usage logs, environmental conditions, and incident timestamps that were never captured become invoices you have to pay back — months after the trip already ran.",
-      stat: "Estimated annual Medicaid clawback exposure per 100 vehicles",
-    },
-    {
-      icon: <Radio className="w-7 h-7" />,
-      eyebrow: "Chapter 06 — Mid-Shift Chaos",
-      title: "Problems surface mid-shift instead of during pre-trip.",
-      body: "Battery voltage was trending low for three days. Nobody saw it. The vehicle dies in a parking lot at 11am with a passenger inside. Dispatch scrambles. Drivers reroute. Passengers wait. Every single one of those events was preventable with a single notification at 5am.",
-      stat: "Share of breakdowns that were trending in telemetry 24+ hours prior",
+      eyebrow: "Chapter 06 — Medicaid Audits & Broker Scorecards",
+      title:
+        "Missing trip-level evidence is becoming a documented clawback risk.",
+      body: "Brokers are tightening scorecards. State Medicaid offices are tightening audits. Every gap in environmental, equipment, and inspection data is a potential clawback — months after the trip already ran. Proactive monitoring is moving from \"nice to have\" to a precondition for keeping the contract.",
+      stat: "Trip-level evidence gaps create direct clawback and contract-renewal exposure",
     },
     {
       icon: <DollarSign className="w-7 h-7" />,
-      eyebrow: "Chapter 07 — The Compounding Cost",
-      title: "One bad day costs more than a year of monitoring.",
-      body: "Add it up: the lawsuit retainer, the lost trips, the Medicaid clawback, the insurance premium hike, the bad review, the driver who quits, the contract that doesn't renew. The math on prevention isn't close. The only question is whether you build the visibility before the bad day or after.",
-      stat: "Cost ratio of one major incident to one year of fleet-wide monitoring",
+      eyebrow: "Chapter 07 — One Bad Day Costs More Than A Decade of Sensors",
+      title:
+        "The math on prevention isn't close. The only question is whether you build visibility before the incident or after.",
+      body: "Add it up: the wrongful-death retainer, the state investigation, the contract that doesn't renew, the insurance premium that doubles, the news headlines that follow your brand for years, the drivers who quit, the families who refuse the service. CO monitoring hardware is a rounding error against a single preventable fatality.",
+      stat: "The cost of monitoring an entire fleet for a decade is a fraction of one wrongful-death settlement",
+    },
+  ];
+
+  const incidentTimeline = [
+    {
+      label: "Feb 6, 2026 · West Valley City, Utah",
+      text: "Three disabled adults are found dead inside a service vehicle parked in a residential garage. Authorities cite suspected carbon monoxide poisoning from the vehicle being left running in an enclosed space.",
+    },
+    {
+      label: "Days After",
+      text: "Local and national outlets — Fox13, the Salt Lake Tribune — pick up the story. Disability rights groups demand answers about safety standards across paratransit and adaptive transportation services.",
+    },
+    {
+      label: "Weeks After",
+      text: "Advocacy organizations begin lobbying state legislatures and the U.S. Access Board for mandatory CO detectors in all paratransit vehicles and stricter no-idling enforcement in enclosed garages.",
+    },
+    {
+      label: "Now",
+      text: "Brokers, Medicaid offices, and major NEMT contracts are revisiting safety scorecards. Operators with in-cabin monitoring are surfacing it in RFP responses; operators without it should expect harder questions on the next renewal.",
+    },
+  ];
+
+  const advocacySignals = [
+    {
+      icon: <Heart className="w-6 h-6 text-red-400" />,
+      title: "Disability rights organizations",
+      body: "Lobbying for CO detectors as a required safety standard in every vehicle that transports disabled or medically fragile passengers.",
+    },
+    {
+      icon: <Building2 className="w-6 h-6 text-[#0071e3]" />,
+      title: "U.S. Access Board",
+      body: "Periodically updates Accessibility Guidelines for Transportation Vehicles. The 2016 update addressed physical access; future revisions are widely expected to include environmental safety.",
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6 text-amber-400" />,
+      title: "Brokers & state Medicaid offices",
+      body: "Tightening safety scorecards, audit requirements, and no-idling enforcement in enclosed garages. Documentation expectations are rising faster than most fleets are responding.",
     },
   ];
 
   const badDay = [
     {
-      time: "5:42am",
+      time: "7:51am — Garage",
       event:
-        "Battery voltage dips below threshold on Vehicle 7. Nobody is watching the data. No alert is fired. Pre-trip inspection passes by sight.",
+        "A van is left idling inside an enclosed bay for ten minutes while the driver finishes paperwork. There is no CO sensor in the cabin. Nobody is breathing the air yet, but the trip's safety record is already written.",
     },
     {
-      time: "8:14am",
+      time: "8:14am — First Pickup",
       event:
-        "Driver picks up a dialysis patient. Cabin CO is climbing — small exhaust leak no one has tested for. Passenger reports a headache. Driver assumes nausea.",
+        "Driver picks up a dialysis patient. A small, weeks-old exhaust leak is venting under the floor. Cabin CO is climbing. The passenger reports a headache. The driver assumes nausea from the trip.",
     },
     {
-      time: "10:37am",
+      time: "9:02am — Second Pickup",
       event:
-        "Lift hesitates on the second drop-off. Driver muscles it through. No service ticket. No usage log. The next operator inherits a failing actuator and doesn't know it.",
+        "Cabin temperature climbs as the HVAC struggles. The wheelchair passenger can't reposition or reach a vent. They go quiet. The driver doesn't notice the change.",
     },
     {
-      time: "1:08pm",
+      time: "11:23am — Drop-Off",
       event:
-        "Vehicle dies in a clinic parking lot. Passenger waits 47 minutes for a backup. Patient's family files a complaint with the broker.",
+        "The lift hesitates. The driver muscles it through and skips the service ticket. The fault code is never escalated. The next operator inherits the failing actuator.",
     },
     {
-      time: "Next Tuesday",
+      time: "Next Tuesday — Audit",
       event:
-        "Medicaid auditor pulls trip records. There is no environmental data, no equipment usage log, no incident timeline. Three trips are clawed back.",
+        "Medicaid auditor pulls trip records. There is no environmental data, no equipment usage log, no inspection timestamp. Multiple trips are clawed back.",
     },
     {
-      time: "Six weeks later",
+      time: "Six Weeks Later — Letter",
       event:
-        "Letter from plaintiff's counsel. Headache became hospitalization. Discovery requests cabin conditions. You have nothing to send.",
+        "Plaintiff's counsel sends a discovery request for cabin air quality, lift cycle logs, and pre-trip inspection evidence. You have a manifest and a GPS breadcrumb. They have a story for the jury.",
     },
   ];
 
   const monitoringPoints = [
     {
       icon: <Wind className="w-7 h-7 text-[#0071e3]" />,
-      title: "Cabin CO & temperature",
-      desc: "Continuous environmental monitoring with real-time alerts before any passenger feels it.",
+      title: "Cabin CO monitoring with real-time alerts",
+      desc: "Continuous carbon monoxide and cabin air quality sensing across every vehicle — alerts fire before passengers feel symptoms, and before regulators ask why you didn't have sensors.",
     },
     {
-      icon: <Activity className="w-7 h-7 text-[#0071e3]" />,
-      title: "Lift & adaptive equipment usage",
-      desc: "Every cycle logged, every fault timestamped — defensible evidence and predictive maintenance in one feed.",
+      icon: <Thermometer className="w-7 h-7 text-[#0071e3]" />,
+      title: "Cabin temperature & equipment telemetry",
+      desc: "Continuous temperature, lift cycle, ramp, transfer seat, and battery telemetry — every event timestamped and routed to dispatch, maintenance, and the cloud.",
     },
     {
       icon: <FileText className="w-7 h-7 text-[#0071e3]" />,
-      title: "Audit-ready documentation",
-      desc: "Automated records for Medicaid audits, claims, and incident review — exportable, timestamped, complete.",
+      title: "Audit-ready, mandate-ready documentation",
+      desc: "Exportable trip-level records for Medicaid audits, broker scorecards, incident review, and the CO monitoring requirements headed your way — already in the format regulators want.",
     },
   ];
 
   const faqs = [
     {
+      q: "Why is CO monitoring suddenly a NEMT priority?",
+      a: "After the February 2026 West Valley City incident — where three disabled adults died of suspected CO poisoning inside a service vehicle left running in an enclosed garage — advocacy groups began actively lobbying for mandatory CO detectors in all paratransit vehicles and stricter no-idling rules in enclosed garages.",
+    },
+    {
+      q: "Will the U.S. Access Board mandate CO detectors in paratransit vehicles?",
+      a: "The Access Board periodically updates Accessibility Guidelines for Transportation Vehicles. The 2016 update focused on physical access; future iterations are widely expected to incorporate environmental safety features such as CO monitoring, particularly for vehicles serving medically fragile populations.",
+    },
+    {
       q: "Does Adapy replace my existing NEMT software?",
-      a: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle monitoring layer your current software doesn't touch.",
+      a: "It can. Adapy is a complete NEMT platform that includes dispatch, scheduling, and billing — plus the in-vehicle CO and equipment monitoring layer your current software doesn't touch.",
     },
     {
-      q: "What kinds of vehicles can Adapy monitor?",
-      a: "Any wheelchair-accessible NEMT vehicle equipped with adaptive mobility equipment such as lifts, ramps, or transfer seats.",
+      q: "What does Adapy monitor inside the cabin?",
+      a: "Cabin carbon monoxide, cabin temperature, lift and ramp cycles, transfer seat and harness usage, battery voltage, and equipment fault codes — continuously, with real-time alerts and exportable audit logs.",
     },
     {
-      q: "How is the data delivered?",
-      a: "A cloud dashboard with real-time alerts, historical telemetry, and exportable documentation for compliance, claims, and fleet management.",
+      q: "How fast can we deploy across an existing fleet?",
+      a: "Adapy installs onto existing wheelchair-accessible NEMT vehicles using universal harness integration — no rewiring, no OEM warranty conflicts. Most fleets start seeing live data on the first vehicle within a single service appointment.",
     },
   ];
 
@@ -289,23 +343,26 @@ export default function NEMTFleet() {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full mb-8">
-                <ShieldAlert className="w-4 h-4 text-red-400" />
+                <AlertTriangle className="w-4 h-4 text-red-400" />
                 <span className="text-sm text-red-400 font-medium">
-                  In-Vehicle Safety Intelligence
+                  Post–West Valley City · Advocates Lobbying for CO Detector Mandates
                 </span>
               </div>
 
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.05]">
-                The trip completed.
+                Three disabled adults. One service vehicle. Suspected carbon monoxide poisoning.
                 <span className="block text-white/70">
-                  Nobody knows what happened inside the cabin.
+                  The advocacy push for CO detectors in every paratransit vehicle has already started.
                 </span>
               </h1>
               <p className="text-xl text-white/70 mb-10 leading-relaxed max-w-2xl">
-                Carbon monoxide. Lift failures. Cabin temperature. Battery
-                health. The risks that hurt NEMT operators most are the
-                ones traditional fleet software doesn't track — and
-                can't document when an auditor or attorney asks.
+                February 2026, West Valley City: three medically fragile
+                passengers died of suspected carbon monoxide poisoning inside
+                a service vehicle left running in an enclosed garage. Advocacy
+                groups are now actively lobbying for mandatory CO detectors in
+                every paratransit vehicle. Adapy delivers always-on cabin CO,
+                temperature, and equipment monitoring — before the rule lands
+                on your desk, and before the next preventable death.
               </p>
 
               <button
@@ -314,12 +371,12 @@ export default function NEMTFleet() {
                 onClick={() => scrollToSection("form")}
                 className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#0071e3]/30 flex items-center gap-2 w-fit"
               >
-                See What Your Fleet Is Missing
+                Get Ahead of the Mandate
                 <ArrowRight className="w-5 h-5" />
               </button>
 
               <p className="text-sm text-white/50 mt-6">
-                A completed trip does not automatically mean a safe trip.
+                Source: Salt Lake Tribune & Fox13 reporting, February 6, 2026.
               </p>
             </motion.div>
 
@@ -467,6 +524,61 @@ export default function NEMTFleet() {
         </div>
       </section>
 
+      {/* The Incident — West Valley City */}
+      <section className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="mb-14 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-red-400 uppercase block mb-4">
+              The Incident That Changed the Conversation
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              Three disabled adults. One running engine. One enclosed garage. Zero monitoring.
+            </h2>
+            <p className="text-lg text-white/75 leading-relaxed">
+              According to reporting from the Salt Lake Tribune and Fox13,
+              three disabled men died of suspected carbon monoxide poisoning
+              after being left inside a running vehicle parked in a garage
+              while being transported by a service provider for disabled
+              adults. Investigators have pointed to a deadly buildup of CO
+              from an engine left running in an enclosed space — the exact
+              category of environmental hazard that real-time cabin
+              monitoring is designed to detect long before it becomes fatal.
+            </p>
+          </div>
+
+          <div className="relative pl-6 md:pl-10 border-l border-red-500/30 space-y-10 mb-14">
+            {incidentTimeline.map((moment, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="relative"
+              >
+                <div className="absolute -left-[34px] md:-left-[44px] top-1 w-3 h-3 rounded-full bg-red-500 ring-4 ring-red-500/15" />
+                <div className="text-sm font-bold tracking-wider text-red-400 uppercase mb-2">
+                  {moment.label}
+                </div>
+                <p className="text-white/80 leading-relaxed text-base md:text-lg">
+                  {moment.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-8 rounded-3xl border border-red-500/20 bg-red-500/[0.04]">
+            <p className="text-white/80 leading-relaxed text-lg italic">
+              "Many life-threatening environmental conditions are detectable
+              long before they become fatal."
+            </p>
+            <p className="text-white/50 leading-relaxed text-sm mt-3">
+              — Adapy, <a href="/blog/safety-first-proactive-monitoring-fleet-operations" className="text-[#0071e3] hover:underline">Safety First: Proactive Monitoring in Fleet Operations</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="py-32 bg-[#15171b] text-white border-t border-white/[0.06]">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="mb-20 max-w-2xl">
@@ -474,12 +586,14 @@ export default function NEMTFleet() {
               The Hidden Cost Layer
             </span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
-              Seven invisible risks every NEMT operator carries.
+              Seven risks every NEMT operator carries today — starting with the one in the air.
             </h2>
             <p className="text-lg text-white/75 leading-relaxed">
               Traditional NEMT software stops at dispatch and billing.
-              Everything that happens inside the vehicle — the part that
-              creates real liability — runs unmonitored.
+              Carbon monoxide, cabin temperature, lift faults, and battery
+              telemetry — the part of the trip that now defines both
+              liability and the next round of regulation — runs
+              unmonitored.
             </p>
           </div>
 
@@ -509,8 +623,7 @@ export default function NEMTFleet() {
                     {chapter.body}
                   </p>
                   <p className="text-sm text-white/40 border-t border-white/10 pt-4">
-                    {chapter.stat}{" "}
-                    <span className="text-white/30">[source needed]</span>
+                    {chapter.stat}
                   </p>
                 </div>
               </motion.div>
@@ -526,11 +639,12 @@ export default function NEMTFleet() {
               Anatomy of a Bad Day
             </span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
-              How invisible problems become a six-figure incident.
+              How an invisible cabin becomes a wrongful-death lawsuit.
             </h2>
             <p className="text-lg text-white/75 leading-relaxed">
-              One realistic timeline. Every step preventable with the
-              right alert at the right minute.
+              One realistic timeline inside a typical NEMT shift. Every step
+              preventable with the right alert at the right minute — and the
+              right data on file when the discovery request lands.
             </p>
           </div>
 
@@ -560,7 +674,72 @@ export default function NEMTFleet() {
               By Tuesday, none of this is recoverable. By the time the
               letter arrives, the cost is six figures and climbing. Every
               step in this timeline was visible in telemetry — or would
-              have been, with cabin and equipment monitoring active.
+              have been, with cabin CO and equipment monitoring active.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The Mandate Is Coming — Advocacy & Regulation */}
+      <section className="py-32 bg-[#0e0f12] text-white border-t border-white/[0.06]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="mb-16 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-[0.2em] text-amber-400 uppercase block mb-4">
+              The Mandate Is No Longer Hypothetical
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-[1.05]">
+              Three forces are moving in the same direction at the same time.
+            </h2>
+            <p className="text-lg text-white/75 leading-relaxed">
+              Safety regulations historically evolve in the wake of
+              high-profile incidents. West Valley City is now that incident.
+              The lobbying, the broker scorecards, and the regulatory review
+              cycles are already in motion.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {advocacySignals.map((signal, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-7 rounded-3xl bg-white/[0.03] border border-white/[0.08]"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.05] flex items-center justify-center mb-5">
+                  {signal.icon}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
+                  {signal.title}
+                </h3>
+                <p className="text-white/65 leading-relaxed text-sm">
+                  {signal.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-8 rounded-3xl border border-amber-400/20 bg-amber-400/[0.04]">
+            <p className="text-white/85 leading-relaxed text-lg">
+              The U.S. Access Board last revised Accessibility Guidelines for
+              Transportation Vehicles in 2016, focused on physical access.
+              Environmental safety features — CO monitoring chief among them —
+              are widely expected in the next revision.
+              {" "}
+              <a
+                href="https://www.access-board.gov/ada/vehicles/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:underline"
+              >
+                See current guidelines →
+              </a>
+            </p>
+            <p className="text-white/55 leading-relaxed text-sm mt-3">
+              Operators who deploy CO and cabin monitoring now retrofit on
+              their schedule, not the regulator's.
             </p>
           </div>
         </div>
@@ -570,16 +749,17 @@ export default function NEMTFleet() {
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="max-w-2xl mb-14">
             <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">
-              What We Monitor & Why It Matters
+              The Adapy Answer
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-6">
-              Three things that change the math on a bad day.
+              CO monitoring, cabin telemetry, and audit-ready records — running on every vehicle, every trip.
             </h2>
             <p className="text-lg text-black/60 leading-relaxed">
-              Adapy adds the in-cabin and equipment layer your current
-              NEMT software is missing. Same dispatch, same billing — plus
-              the visibility that wins audits, defends claims, and
-              prevents the incident in the first place.
+              Adapy adds the in-cabin layer that traditional NEMT software
+              doesn't touch. Same dispatch, same billing — plus continuous
+              carbon monoxide monitoring, cabin and equipment telemetry, and
+              the trip-level evidence that wins audits, defends claims, and
+              prevents the incident before it happens.
             </p>
           </div>
 
@@ -660,12 +840,13 @@ export default function NEMTFleet() {
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-black mb-1">
-                The next bad day is already on its way.
+                Deploy before the mandate. Document before the lawsuit.
               </h3>
               <p className="text-sm text-black/60 leading-relaxed">
-                Tell us about your fleet. We'll show you the
-                monitoring layer that prevents the incident — and
-                documents the trip when prevention isn't enough.
+                Tell us about your fleet. We'll show you the CO and cabin
+                monitoring layer that prevents the next incident — and
+                produces the trip-level evidence regulators and brokers
+                will be asking for.
               </p>
             </div>
           </div>
