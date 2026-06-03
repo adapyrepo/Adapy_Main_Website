@@ -520,7 +520,7 @@ export default function Home() {
               One platform. One signal. Total visibility.
             </h2>
             <p className="text-lg text-black/60 leading-relaxed">
-              Adapy is the missing infrastructure layer — a Smart Hub in the
+              Adapy® is the missing infrastructure layer — a Smart Hub in the
               vehicle, connectivity across every device, and a cloud
               intelligence layer that finally tells everyone what&rsquo;s
               actually happening.

@@ -81,7 +81,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <img
               src={adapyLogo}
-              alt="Adapy"
+              alt="Adapy®"
               loading="lazy"
               decoding="async"
               className="h-8 w-auto invert brightness-0 mb-6"
@@ -90,7 +90,7 @@ export function Footer() {
               Independence shouldn't depend on someone else.
             </p>
             <p className="text-white/50 text-sm max-w-md mb-8 leading-relaxed">
-              Adapy builds the unified control layer for adaptive vehicles —
+              Adapy® builds the unified control layer for adaptive vehicles —
               giving drivers, dealers, fleets, and clinicians the visibility
               and safety the industry has gone without for decades.
             </p>
@@ -183,7 +183,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Adapy Inc. All rights reserved.
+            © {new Date().getFullYear()} Adapy® Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link

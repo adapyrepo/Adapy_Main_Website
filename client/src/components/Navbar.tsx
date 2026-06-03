@@ -220,7 +220,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           data-testid="link-home-logo"
         >
-          <img src={adapyLogo} alt="Adapy" className="h-8 w-auto invert brightness-0" />
+          <img src={adapyLogo} alt="Adapy®" className="h-8 w-auto invert brightness-0" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
