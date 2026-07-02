@@ -71,7 +71,7 @@ Each row lists what the feature collects or displays, who the data is about, who
 
 The funnel does not need to be elevated into Regulated-Clinical (no covered-entity relationship), but it is the most sensitive surface in the General zone and should be treated as the high-water mark for General-zone controls.
 
-**Note on the external submission endpoint.** Both funnels and the NEMT Fleet form post directly to a Supabase Functions URL with a hardcoded `X-Form-Api-Key` in the frontend bundle. That endpoint is, in effect, an extension of the General zone and is governed by whatever protections Supabase and the receiving function provide. See the "Current implementation gaps" section below.
+**Note on the external submission endpoint.** Both funnels and the NEMT Fleet form post to an Adapy-controlled proxy (`POST /api/lead-proxy` in `server/routes.ts`) which injects the upstream `X-Form-Api-Key` server-side from the `LEAD_FORM_API_KEY_QUALIFY` and `LEAD_FORM_API_KEY_FLEET` environment variables before forwarding to the Supabase Functions endpoint. The receiving Supabase function and its storage are still, in effect, an extension of the General zone and are governed by whatever protections Supabase and the receiving function provide. See the "Current implementation gaps" section below for the remaining vendor-diligence work.
 
 ### Operator surfaces (PHI exposure)
 
@@ -106,7 +106,7 @@ The funnel does not need to be elevated into Regulated-Clinical (no covered-enti
 
 This posture describes the target state. As of May 2026, the live codebase has known gaps that the posture documents but does not yet enforce. Surfacing them here so counsel and engineering see posture and reality side-by-side:
 
-- **Hardcoded form API key in the frontend bundle.** `UserFunnel.tsx`, `DealerFunnel.tsx`, and `NEMTFleet.tsx` ship an `X-Form-Api-Key` value to the browser. This contradicts the General-zone control "Secrets in a managed secret store, not in source." A short-lived signed token issued from the Adapy server (or a server-side proxy that injects the key) is the standard fix.
+- ~~**Hardcoded form API key in the frontend bundle.**~~ **Resolved.** `UserFunnel.tsx`, `DealerFunnel.tsx`, and `NEMTFleet.tsx` now post to the Adapy-controlled `POST /api/lead-proxy` endpoint, which injects the upstream `X-Form-Api-Key` from the `LEAD_FORM_API_KEY_QUALIFY` and `LEAD_FORM_API_KEY_FLEET` environment variables. No API keys ship in the client bundle. The previously-hardcoded keys should be rotated upstream since they were public.
 - **External lead endpoint outside the documented zone topology.** Funnel submissions go directly to a Supabase Functions URL rather than through Adapy's own backend. The receiving function and its storage are functionally part of the General zone but are not under Adapy's audit-log, retention, or vendor-diligence controls today. They need either to be brought under those controls or to be replaced with a first-party intake.
 - **No MHMDA notice surface yet.** The User Funnel collects free-text disability and equipment information without an MHMDA-aligned consumer health data notice or consent capture for WA residents.
 - **No PHI redaction layer on logging.** The application logger has no field allow-list. This is acceptable today because no PHI is collected, but it must be in place before the Clinical or Transport schemas exist.

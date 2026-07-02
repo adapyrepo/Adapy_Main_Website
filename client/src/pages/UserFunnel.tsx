@@ -97,19 +97,14 @@ export default function UserFunnel() {
     setSubmitError("");
     setSubmitMessage("");
     try {
-      const response = await fetch(
-        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/qualify-form",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify({
-            _form_slug: "qualify-form",
-            _api_key:
-              "31e0c85a9c7850bd625cf2df0348df3ecfc08ae984eeb623940887763ed9445d",
+      const response = await fetch("/api/lead-proxy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formSlug: "qualify-form",
+          payload: {
             first_name: formData.first_name,
             last_name: formData.last_name,
             email: formData.email,
@@ -121,9 +116,9 @@ export default function UserFunnel() {
             adaptive_equipment: formData.adaptive_equipment,
             mhmda_consent: mhmdaConsent,
             mhmda_consent_at: mhmdaConsentAt || null,
-          }),
-        },
-      );
+          },
+        }),
+      });
 
       const data = await response.json();
 

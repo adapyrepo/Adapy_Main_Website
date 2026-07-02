@@ -157,7 +157,7 @@ These are the code and infrastructure changes the posture implies. They are *lis
 - [ ] Build a quarterly access-review report (per clinic, per broker).
 
 ### Lead intake (current implementation gaps)
-- [ ] Remove the hardcoded `X-Form-Api-Key` from `UserFunnel.tsx`, `DealerFunnel.tsx`, and `NEMTFleet.tsx`. Replace with a server-side proxy or short-lived signed token issued by the Adapy backend.
+- [x] Remove the hardcoded `X-Form-Api-Key` from `UserFunnel.tsx`, `DealerFunnel.tsx`, and `NEMTFleet.tsx`. Replace with a server-side proxy or short-lived signed token issued by the Adapy backend. *(Resolved: client pages now POST to `/api/lead-proxy` in `server/routes.ts`, which injects the upstream key from `LEAD_FORM_API_KEY_QUALIFY` / `LEAD_FORM_API_KEY_FLEET` env vars. The previously-hardcoded keys should be rotated upstream since they were public.)*
 - [ ] Decide whether to keep the Supabase Functions intake under Adapy's vendor-diligence and audit controls (sign a DPA, document retention) or replace it with a first-party endpoint inside `server/routes.ts`.
 - [ ] Treat `situation` and `adaptive_equipment` as sensitive fields in storage and logging — no echo to analytics, error reports, or LLM context.
 

@@ -6,12 +6,91 @@ import { z } from "zod";
 import { insertContactRequestSchema, insertSubscriberSchema } from "@shared/schema";
 import { registerLegacyRedirects } from "./redirects";
 
+const LEAD_FORM_UPSTREAMS = {
+  "qualify-form": {
+    url: "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/qualify-form",
+    keyEnv: "LEAD_FORM_API_KEY_QUALIFY",
+  },
+  fleet: {
+    url: "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/fleet",
+    keyEnv: "LEAD_FORM_API_KEY_FLEET",
+  },
+} as const;
+
+const leadProxySchema = z.object({
+  formSlug: z.enum(["qualify-form", "fleet"]),
+  payload: z.record(z.unknown()),
+});
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
 
   registerLegacyRedirects(app);
+
+  app.post("/api/lead-proxy", async (req, res) => {
+    let parsed;
+    try {
+      parsed = leadProxySchema.parse(req.body);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res
+          .status(400)
+          .json({ success: false, error: "Invalid lead submission." });
+      }
+      throw err;
+    }
+
+    const upstream = LEAD_FORM_UPSTREAMS[parsed.formSlug];
+    const apiKey = process.env[upstream.keyEnv];
+    if (!apiKey) {
+      console.error(
+        `[lead-proxy] missing env ${upstream.keyEnv} for ${parsed.formSlug}`,
+      );
+      return res
+        .status(500)
+        .json({ success: false, error: "Lead intake is not configured." });
+    }
+
+    const upstreamBody = {
+      ...parsed.payload,
+      _form_slug: parsed.formSlug,
+      _api_key: apiKey,
+    };
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      "X-Form-Api-Key": apiKey,
+    };
+    const anonKey = process.env.VITE_SUPABASE_ANON_KEY;
+    if (anonKey) {
+      headers["Authorization"] = `Bearer ${anonKey}`;
+      headers["apikey"] = anonKey;
+    }
+
+    try {
+      const upstreamRes = await fetch(upstream.url, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(upstreamBody),
+      });
+
+      const text = await upstreamRes.text();
+      let data: unknown = null;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = { success: false, error: "Upstream returned invalid response." };
+      }
+      res.status(upstreamRes.status).json(data);
+    } catch (err) {
+      console.error("[lead-proxy] upstream request failed", err);
+      res
+        .status(502)
+        .json({ success: false, error: "Network request failed. Please try again." });
+    }
+  });
 
   app.get(api.products.list.path, async (req, res) => {
     const products = await storage.getProducts();

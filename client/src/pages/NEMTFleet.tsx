@@ -152,25 +152,16 @@ export default function NEMTFleet() {
     setSubmitError("");
     setSubmitMessage("");
     try {
-      const apiKey =
-        "5e225ecefc065d0e704f84c7c7a352f38c837ecc8fdb57204285cf6e166bc709";
-      const response = await fetch(
-        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/fleet",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Form-Api-Key": apiKey,
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify({
-            _form_slug: "fleet",
-            _api_key: apiKey,
-            ...formData,
-          }),
+      const response = await fetch("/api/lead-proxy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          formSlug: "fleet",
+          payload: { ...formData },
+        }),
+      });
 
       const data = await response.json();
 
