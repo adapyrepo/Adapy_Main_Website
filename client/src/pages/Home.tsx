@@ -163,7 +163,7 @@ export default function Home() {
                   The Status Quo Is Costing You
                 </span>
                 <h1 className="text-[28px] md:text-[44px] lg:text-[56px] font-bold leading-[1.05] tracking-tight text-white mb-5">
-                  Every day, adaptive vehicles fail silently —
+                  Every day, adaptive equipment fail silently —
                   <br className="hidden md:block" />
                   <span className="text-white/80">
                     {" "}and no one knows until it&rsquo;s too late.
