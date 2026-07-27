@@ -2,7 +2,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
-import { TestimonialScroller } from "@/components/TestimonialScroller";
 import { ScrollingLogos } from "@/components/ScrollingLogos";
 import { Link } from "wouter";
 import { useProducts } from "@/hooks/use-products";
@@ -103,13 +102,6 @@ export default function Platform() {
               <p className="text-black font-semibold">
                 Adapy was built to become the missing infrastructure layer.
               </p>
-            </div>
-          </div>
-        </div>
-        <div className="container mx-auto px-6">
-          <div className="bg-[#0e0f12] rounded-[2.5rem] overflow-hidden py-6">
-            <div className="w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
-              <TestimonialScroller />
             </div>
           </div>
         </div>
