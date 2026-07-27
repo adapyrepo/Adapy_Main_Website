@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
-import { ScrollingLogos } from "@/components/ScrollingLogos";
+import { TestimonialScroller } from "@/components/TestimonialScroller";
 import { Link } from "wouter";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
@@ -102,6 +102,13 @@ export default function Platform() {
               <p className="text-black font-semibold">
                 Adapy was built to become the missing infrastructure layer.
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="container mx-auto px-6">
+          <div className="bg-[#0e0f12] rounded-[2.5rem] overflow-hidden py-6">
+            <div className="w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
+              <TestimonialScroller />
             </div>
           </div>
         </div>
@@ -314,26 +321,6 @@ export default function Platform() {
                 <p className="text-black/60 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* BRAND TRUST STRIP */}
-      <section className="py-20 bg-[#0e0f12] text-white border-t border-white/10">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            <div className="flex-shrink-0">
-              <div className="text-2xl md:text-3xl font-bold leading-tight">
-                <span className="block text-white/70">Driving innovation</span>
-                <span className="block text-white/70">across adaptive</span>
-                <span className="block text-[#0071e3] font-bold">
-                  mobility brands
-                </span>
-              </div>
-            </div>
-            <div className="flex-1 opacity-50 grayscale hover:grayscale-0 transition-all duration-700 w-full">
-              <ScrollingLogos />
-            </div>
           </div>
         </div>
       </section>
