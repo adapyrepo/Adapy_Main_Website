@@ -408,7 +408,7 @@ export default function Platform() {
             </button>
             <div className="w-full max-w-5xl aspect-video relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
               <iframe
-                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1`}
+                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1&controls=0&playsinline=1&iv_load_policy=3&fs=0&disablekb=1`}
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
