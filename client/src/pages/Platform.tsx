@@ -75,14 +75,20 @@ export default function Platform() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href="/contact">
                 <button className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95">
-                  Request a Demo
+                  How will it help you?
                 </button>
               </Link>
-              <Link href="/hardware">
-                <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all shadow-lg hover:scale-105 active:scale-95">
-                  Explore Hardware
-                </button>
-              </Link>
+              <button
+                onClick={() =>
+                  setActiveVideo({
+                    videoUrl: "https://www.youtube.com/embed/4iFLVtzXsSg",
+                    title: "Adapy Platform Overview",
+                  })
+                }
+                className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all shadow-lg hover:scale-105 active:scale-95"
+              >
+                Watch Product Video
+              </button>
             </div>
           </motion.div>
         </div>
