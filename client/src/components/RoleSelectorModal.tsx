@@ -55,12 +55,9 @@ export function RoleSelectorModal({ open, onClose }: RoleSelectorModalProps) {
               </button>
 
               <div className="text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-                  Let&rsquo;s Build Your Adapy System
-                </h2>
-                <p className="text-black/60 mb-12 text-lg">
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-12">
                   Choose your role to see how Adapy works for you
-                </p>
+                </h2>
 
                 <div className="flex flex-col gap-6 max-w-2xl mx-auto">
                   {roles.map(({ href, label, Icon }) => (
