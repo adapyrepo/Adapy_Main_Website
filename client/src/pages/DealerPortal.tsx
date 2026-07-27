@@ -14,13 +14,13 @@ import {
   BarChart3,
   ShieldCheck,
   Bell,
-  LayoutDashboard,
   FileCheck,
   AlertCircle,
   Activity,
 } from "lucide-react";
 import { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
+import dealerDashboardPreview from "@assets/Screenshot_2026-07-27_at_8.03.09_AM_1785161020996.png";
 import { MhmdaNotice } from "@/components/MhmdaNotice";
 
 export default function DealerPortal() {
@@ -498,63 +498,14 @@ export default function DealerPortal() {
                 at a time.
               </p>
             </div>
-            <div className="aspect-[16/10] bg-[#f8fafc] rounded-[2.5rem] border border-slate-200 shadow-2xl flex flex-col overflow-hidden">
-              <div className="h-14 bg-white border-b border-slate-100 flex items-center px-8 gap-6">
-                <div className="w-6 h-6 bg-[#0071e3]/10 rounded flex items-center justify-center">
-                  <LayoutDashboard className="w-3.5 h-3.5 text-[#0071e3]" />
-                </div>
-                <div className="h-3 w-24 bg-slate-100 rounded-full" />
-                <div className="h-3 w-24 bg-slate-100 rounded-full" />
-                <div className="ml-auto flex gap-3">
-                  <div className="h-7 w-20 bg-[#0071e3]/5 rounded-full" />
-                  <div className="h-7 w-7 bg-slate-100 rounded-full" />
-                </div>
-              </div>
-              <div className="flex-1 p-8 grid grid-cols-12 gap-6">
-                <div className="col-span-12 grid grid-cols-4 gap-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="h-24 bg-white rounded-2xl border border-slate-100 p-4 space-y-2"
-                    >
-                      <div className="h-3 w-1/2 bg-slate-50 rounded-full" />
-                      <div className="h-6 w-1/3 bg-[#0071e3]/10 rounded-full" />
-                    </div>
-                  ))}
-                </div>
-                <div className="col-span-8 bg-white rounded-3xl border border-slate-100 p-8 flex flex-col">
-                  <div className="h-4 w-48 bg-slate-50 rounded-full mb-8" />
-                  <div className="flex-1 flex items-end gap-2 px-4 pb-4 border-b border-slate-50">
-                    {[40, 55, 50, 70, 65, 85, 75, 95, 80, 100].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 bg-[#0071e3]/5 rounded-t-md"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="mt-6 flex justify-center">
-                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em]">
-                      install health &amp; warranty trend visualization
-                    </span>
-                  </div>
-                </div>
-                <div className="col-span-4 space-y-4">
-                  <div className="h-4 w-32 bg-slate-50 rounded-full mb-2" />
-                  {[1, 2, 3].map((i) => (
-                    <div
-                      key={i}
-                      className="p-4 bg-white rounded-2xl border border-slate-100 flex gap-3"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-amber-50 shrink-0" />
-                      <div className="space-y-2 flex-1">
-                        <div className="h-3 w-full bg-slate-50 rounded-full" />
-                        <div className="h-2 w-2/3 bg-slate-50/50 rounded-full" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="rounded-[2.5rem] border border-slate-200 shadow-2xl overflow-hidden">
+              <img
+                src={dealerDashboardPreview}
+                alt="Adapy dealer dashboard showing top used equipment analytics and session activity by time of day"
+                className="w-full h-auto block"
+                loading="lazy"
+                data-testid="img-dealer-portal-dashboard-preview"
+              />
             </div>
             <p className="mt-8 text-center text-slate-400 text-xs font-medium uppercase tracking-widest">
               Interface preview &mdash; full dealer dashboard included
