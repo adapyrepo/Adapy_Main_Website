@@ -85,6 +85,10 @@ export default function Platform() {
             </div>
           </motion.div>
         </div>
+
+        <div className="relative z-10 mt-16 md:mt-24 w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
+          <TestimonialScroller />
+        </div>
       </section>
 
       {/* SECTION 1 — WHY A PLATFORM */}
@@ -102,13 +106,6 @@ export default function Platform() {
               <p className="text-black font-semibold">
                 Adapy was built to become the missing infrastructure layer.
               </p>
-            </div>
-          </div>
-        </div>
-        <div className="container mx-auto px-6">
-          <div className="bg-[#0e0f12] rounded-[2.5rem] overflow-hidden py-6">
-            <div className="w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
-              <TestimonialScroller />
             </div>
           </div>
         </div>
