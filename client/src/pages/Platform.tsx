@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
 import { TestimonialScroller } from "@/components/TestimonialScroller";
 import { ScrollingLogos } from "@/components/ScrollingLogos";
+import { RoleSelectorModal } from "@/components/RoleSelectorModal";
 import { Link } from "wouter";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
@@ -26,6 +27,7 @@ import {
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Platform() {
+  const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<{
     videoUrl: string;
     title: string;
@@ -73,11 +75,12 @@ export default function Platform() {
               A unified infrastructure layer that connects, controls, and monitors adaptive mobility environments — from individual vehicles to fleet-scale deployment.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact">
-                <button className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95">
-                  How will it help you?
-                </button>
-              </Link>
+              <button
+                onClick={() => setIsRoleSelectorOpen(true)}
+                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95"
+              >
+                How will it help you?
+              </button>
               <button
                 onClick={() =>
                   setActiveVideo({
@@ -381,6 +384,12 @@ export default function Platform() {
       </section>
 
       <Footer />
+
+      {/* Role Selector Modal */}
+      <RoleSelectorModal
+        open={isRoleSelectorOpen}
+        onClose={() => setIsRoleSelectorOpen(false)}
+      />
 
       {/* Video Modal */}
       <AnimatePresence>
