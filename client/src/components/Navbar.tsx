@@ -9,7 +9,6 @@ import {
   Wrench,
   Bus,
   Stethoscope,
-  Grid3x3,
   Radio,
   Cable,
   Gamepad2,
@@ -85,12 +84,6 @@ const navItems: NavItem[] = [
   {
     name: "Platform",
     dropdown: [
-      {
-        title: "Platform Overview",
-        description: "How the unified control architecture works.",
-        href: "/",
-        icon: <Grid3x3 className="w-5 h-5" />,
-      },
       {
         title: "Basic Overview",
         description: "The story of silent failures — and what Adapy changes.",
