@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
 import { 
-  LayoutDashboard, 
   Activity, 
   AlertCircle, 
   ClipboardList, 
@@ -17,6 +16,7 @@ import {
   Wrench
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
+import dealerDashboardPreview from "@assets/Screenshot_2026-07-27_at_8.03.09_AM_1785161020996.png";
 
 const features = [
   {
@@ -110,50 +110,20 @@ export default function DealerDashboard() {
         </div>
       </section>
 
-      {/* Dashboard Preview Section (Placeholders) */}
+      {/* Dashboard Preview Section */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="relative max-w-6xl mx-auto">
-            {/* Main Dashboard Placeholder */}
-            <div className="aspect-[16/10] bg-[#f5f5f7] rounded-[2.5rem] border border-black/5 shadow-2xl flex flex-col overflow-hidden">
-              <div className="h-16 bg-white border-b border-black/5 flex items-center px-8 gap-4">
-                <div className="w-8 h-8 bg-[#0071e3]/10 rounded-lg flex items-center justify-center">
-                  <LayoutDashboard className="w-4 h-4 text-[#0071e3]" />
-                </div>
-                <div className="h-4 w-32 bg-black/5 rounded-full" />
-                <div className="ml-auto flex gap-4">
-                  <div className="h-8 w-8 bg-black/5 rounded-full" />
-                  <div className="h-8 w-24 bg-black/5 rounded-full" />
-                </div>
-              </div>
-              <div className="flex-1 p-8 grid grid-cols-4 gap-6">
-                <div className="col-span-1 space-y-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="h-12 bg-white rounded-xl border border-black/5" />
-                  ))}
-                </div>
-                <div className="col-span-3 space-y-6">
-                  <div className="grid grid-cols-3 gap-6">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="h-32 bg-white rounded-2xl border border-black/5 p-6 space-y-3">
-                        <div className="h-4 w-1/2 bg-black/5 rounded-full" />
-                        <div className="h-8 w-3/4 bg-black/10 rounded-full" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="h-64 bg-white rounded-3xl border border-black/5 flex items-center justify-center relative overflow-hidden">
-                    {/* Placeholder for Analytics Chart */}
-                    <div className="absolute inset-0 flex items-end px-12 pb-12 gap-4">
-                       {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
-                         <div key={i} className="flex-1 bg-[#0071e3]/10 rounded-t-lg" style={{ height: `${h}%` }} />
-                       ))}
-                    </div>
-                    <span className="relative z-10 text-sm font-bold text-black/20 uppercase tracking-widest">Analytics Visualization Placeholder</span>
-                  </div>
-                </div>
-              </div>
+            <div className="rounded-[2.5rem] border border-black/5 shadow-2xl overflow-hidden">
+              <img
+                src={dealerDashboardPreview}
+                alt="Adapy Dealer Dashboard showing top used equipment analytics and session activity by time of day"
+                className="w-full h-auto block"
+                loading="lazy"
+                data-testid="img-dealer-dashboard-preview"
+              />
             </div>
-            
+
             {/* Overlay Caption */}
             <div className="mt-12 text-center">
               <p className="text-black/40 text-sm font-medium uppercase tracking-widest">
