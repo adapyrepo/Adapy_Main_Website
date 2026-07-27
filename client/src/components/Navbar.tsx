@@ -57,7 +57,7 @@ const navItems: NavItem[] = [
       {
         title: "Mobility Dealers",
         description: "Stop eating warranty disputes. Start owning the data.",
-        href: "/dealer-funnel",
+        href: "/dealer-portal",
         icon: <Wrench className="w-5 h-5" />,
       },
       {

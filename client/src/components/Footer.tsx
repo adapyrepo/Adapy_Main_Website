@@ -22,7 +22,7 @@ const footerColumns: FooterColumn[] = [
     title: "Who it's for",
     links: [
       { label: "Drivers & Families", href: "/user-funnel" },
-      { label: "Mobility Dealers", href: "/dealer-funnel" },
+      { label: "Mobility Dealers", href: "/dealer-portal" },
       { label: "NEMT Fleets", href: "/solutions/nemt" },
       { label: "CDRS & Clinicians", href: "/software/cdrs" },
     ],
