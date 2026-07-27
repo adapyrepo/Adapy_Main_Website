@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { VideoTestimonialScroller } from "@/components/VideoTestimonialScroller";
 import { Link } from "wouter";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
@@ -17,11 +18,16 @@ import {
   Navigation,
   Lock,
   ChevronRight,
-  Activity
+  Activity,
+  X
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
 
 export default function Platform() {
+  const [activeVideo, setActiveVideo] = useState<{
+    videoUrl: string;
+    title: string;
+  } | null>(null);
   useSEO({
     title: "Adapy Platform — Unified Wheelchair Vehicle Control",
     description: "One platform connecting wheelchair lifts, ramps, transfer seats, and hand controls — Smart Hub, harness integration, controllers, safety modules, app, and dashboard.",
@@ -311,6 +317,11 @@ export default function Platform() {
         </div>
       </section>
 
+      {/* VIDEO TESTIMONIALS */}
+      <VideoTestimonialScroller
+        onVideoSelect={(video) => setActiveVideo(video)}
+      />
+
       {/* FINAL CTA SECTION */}
       <section className="py-24 bg-white text-center">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -338,6 +349,33 @@ export default function Platform() {
       </section>
 
       <Footer />
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 md:p-8"
+          >
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-8 right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[210]"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="w-full max-w-5xl aspect-video relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+              <iframe
+                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1`}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
