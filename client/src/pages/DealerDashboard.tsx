@@ -58,7 +58,7 @@ export default function DealerDashboard() {
     path: "/software/dealer",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Software", path: "/platform" },
+      { name: "Software", path: "/" },
       { name: "Dealer Dashboard", path: "/software/dealer" },
     ],
     keywords: "mobility dealer dashboard, wheelchair van warranty software, adaptive equipment diagnostics, mobility dealership tools, wheelchair lift service tracking",

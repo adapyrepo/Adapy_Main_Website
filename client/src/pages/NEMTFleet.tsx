@@ -40,7 +40,7 @@ export default function NEMTFleet() {
     type: "article",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Solutions", path: "/platform" },
+      { name: "Solutions", path: "/" },
       { name: "Paratransit / NEMT Fleets", path: "/solutions/nemt" },
     ],
     keywords: "West Valley City paratransit deaths, West Valley City carbon monoxide deaths, paratransit carbon monoxide poisoning, disabled adults died paratransit van, three disabled men killed wheelchair van garage, February 2026 paratransit incident, Utah paratransit CO deaths, wheelchair van carbon monoxide, NEMT carbon monoxide monitoring, paratransit CO detector mandate, wheelchair van CO sensor, NEMT safety regulation, U.S. Access Board vehicle accessibility, NEMT fleet safety platform, ADA paratransit monitoring, Medicaid non-emergency transportation safety, paratransit driver left van running garage, in-cabin CO monitoring NEMT, paratransit fleet liability, carbon monoxide poisoning prevention NEMT",
@@ -893,14 +893,14 @@ export default function NEMTFleet() {
                 eyebrow: "Software · Operations",
                 title: "Adapy Cloud Dashboard",
                 desc: "Real-time alerts, fleet-wide telemetry, role-based access, and exportable trip-level records for audits, claims, and broker scorecards.",
-                link: "/platform",
+                link: "/",
               },
               {
                 icon: <Smartphone className="w-7 h-7 text-[#0071e3]" />,
                 eyebrow: "Software · In-Field",
                 title: "Mobile App",
                 desc: "Drivers see live cabin status, get push alerts, and log inspections. Dispatch sees the same data the second a threshold trips.",
-                link: "/platform",
+                link: "/",
               },
             ].map((item, i) => (
               <motion.div

@@ -56,8 +56,9 @@ function AnalyticsPageView() {
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Platform} />
       <Route path="/platform" component={Platform} />
+      <Route path="/basic-overview" component={Home} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/hardware/smart-hub" component={SmartHub} />
       <Route path="/hardware/harness-integration" component={HarnessIntegration} />

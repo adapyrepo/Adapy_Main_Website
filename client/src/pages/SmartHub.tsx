@@ -85,7 +85,7 @@ export default function SmartHub() {
     image: hubMockup,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Hardware", path: "/platform" },
+      { name: "Hardware", path: "/" },
       { name: "Smart Hub", path: "/hardware/smart-hub" },
     ],
     keywords: "wheelchair vehicle smart hub, adaptive vehicle controller, mobility equipment integration, wheelchair lift control, wheelchair van automation, connected adaptive mobility",
@@ -138,7 +138,7 @@ export default function SmartHub() {
                     Request a Demo
                   </button>
                 </Link>
-                <Link href="/platform">
+                <Link href="/">
                   <button className="px-8 py-4 bg-black/5 border border-black/10 text-black rounded-full font-bold hover:bg-black/10 transition-all">
                     Explore the Platform
                   </button>

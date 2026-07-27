@@ -61,7 +61,7 @@ export default function CDRSPortal() {
     path: "/software/cdrs",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Software", path: "/platform" },
+      { name: "Software", path: "/" },
       { name: "CDRS Portal", path: "/software/cdrs" },
     ],
   });

@@ -88,8 +88,14 @@ const navItems: NavItem[] = [
       {
         title: "Platform Overview",
         description: "How the unified control architecture works.",
-        href: "/platform",
+        href: "/",
         icon: <Grid3x3 className="w-5 h-5" />,
+      },
+      {
+        title: "Basic Overview",
+        description: "The story of silent failures — and what Adapy changes.",
+        href: "/basic-overview",
+        icon: <LayoutDashboard className="w-5 h-5" />,
       },
       {
         title: "Smart Hub",

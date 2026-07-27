@@ -98,7 +98,7 @@ export default function HarnessIntegration() {
     image: hubWireframe,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Hardware", path: "/platform" },
+      { name: "Hardware", path: "/" },
       { name: "Harness Integration", path: "/hardware/harness-integration" },
     ],
     keywords: "wheelchair lift integration, adaptive equipment harness, mobility equipment retrofit, OEM wheelchair van integration, BraunAbility integration, Bruno lift integration, aftermarket adaptive equipment",

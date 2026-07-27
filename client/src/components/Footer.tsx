@@ -30,7 +30,7 @@ const footerColumns: FooterColumn[] = [
   {
     title: "Platform",
     links: [
-      { label: "Platform Overview", href: "/platform" },
+      { label: "Platform Overview", href: "/" },
       { label: "Smart Hub", href: "/hardware/smart-hub" },
       { label: "Harness Integration", href: "/hardware/harness-integration" },
       { label: "Wireless Controllers", href: "/hardware/wireless-controllers" },

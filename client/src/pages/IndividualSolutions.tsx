@@ -23,7 +23,7 @@ export default function IndividualSolutions() {
     image: appMockup,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Solutions", path: "/platform" },
+      { name: "Solutions", path: "/" },
       { name: "Individuals & Families", path: "/solutions/individual" },
     ],
     keywords: "wheelchair user mobility, wheelchair accessible vehicle owner, adaptive vehicle for families, wheelchair van solutions, accessible transportation, mobility independence",

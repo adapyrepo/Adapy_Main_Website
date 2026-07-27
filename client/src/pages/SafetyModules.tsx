@@ -81,7 +81,7 @@ export default function SafetyModules() {
     path: "/hardware/safety-modules",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Hardware", path: "/platform" },
+      { name: "Hardware", path: "/" },
       { name: "Safety Modules", path: "/hardware/safety-modules" },
     ],
     keywords: "wheelchair vehicle safety, carbon monoxide detector, cabin temperature monitoring, wheelchair lift sensors, NEMT fleet safety, paratransit safety equipment, adaptive vehicle monitoring",

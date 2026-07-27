@@ -75,7 +75,7 @@ export default function WirelessControllers() {
     path: "/hardware/wireless-controllers",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Hardware", path: "/platform" },
+      { name: "Hardware", path: "/" },
       { name: "Wireless Controllers", path: "/hardware/wireless-controllers" },
     ],
     keywords: "wireless wheelchair lift controller, wheelchair ramp remote, adaptive vehicle key fob, wheelchair van remote control, accessible vehicle controls",
