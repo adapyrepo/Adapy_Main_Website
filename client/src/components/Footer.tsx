@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaYoutube, FaXTwitter, FaTiktok } from "react-icons/fa6";
 import { useSubscribe } from "@/hooks/use-forms";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -206,28 +207,35 @@ export function Footer() {
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-facebook"
             >
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="text-white/60 hover:text-white transition-colors"
-              data-testid="link-social-twitter"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="text-white/60 hover:text-white transition-colors"
-              data-testid="link-social-instagram"
-            >
-              <Instagram className="w-5 h-5" />
+              <FaFacebook className="w-5 h-5" />
             </a>
             <a
               href="#"
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-linkedin"
             >
-              <Linkedin className="w-5 h-5" />
+              <FaLinkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-white/60 hover:text-white transition-colors"
+              data-testid="link-social-youtube"
+            >
+              <FaYoutube className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-white/60 hover:text-white transition-colors"
+              data-testid="link-social-x"
+            >
+              <FaXTwitter className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-white/60 hover:text-white transition-colors"
+              data-testid="link-social-tiktok"
+            >
+              <FaTiktok className="w-5 h-5" />
             </a>
           </div>
         </div>
