@@ -203,28 +203,36 @@ export function Footer() {
             </Link>
             <span className="text-white/20">|</span>
             <a
-              href="#"
+              href="https://www.facebook.com/adapyinc/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-facebook"
             >
               <FaFacebook className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/werner101/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-linkedin"
             >
               <FaLinkedin className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.youtube.com/@AdapyMobility"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-youtube"
             >
               <FaYoutube className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://x.com/adapyinc"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
               data-testid="link-social-x"
             >
