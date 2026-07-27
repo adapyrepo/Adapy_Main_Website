@@ -84,7 +84,7 @@ export default function Platform() {
               <button
                 onClick={() =>
                   setActiveVideo({
-                    videoUrl: "https://www.youtube.com/embed/4iFLVtzXsSg",
+                    videoUrl: "https://www.youtube.com/embed/Bngl22MMnc0",
                     title: "Adapy Platform Overview",
                   })
                 }
