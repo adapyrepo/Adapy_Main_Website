@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { X, User, Store, Brain, Ambulance, Cog } from "lucide-react";
@@ -17,7 +18,7 @@ const roles = [
 ];
 
 export function RoleSelectorModal({ open, onClose }: RoleSelectorModalProps) {
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -90,6 +91,7 @@ export function RoleSelectorModal({ open, onClose }: RoleSelectorModalProps) {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
