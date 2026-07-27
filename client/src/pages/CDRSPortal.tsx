@@ -413,7 +413,7 @@ export default function CDRSPortal() {
                 Caseload Command Center
               </span>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                One view of every client you&rsquo;ve prescribed for.
+                One view of the equipment you&rsquo;ve prescribed.
               </h2>
             </div>
             <div className="aspect-[16/10] bg-[#f8fafc] rounded-[2.5rem] border border-slate-200 shadow-2xl flex flex-col overflow-hidden">
