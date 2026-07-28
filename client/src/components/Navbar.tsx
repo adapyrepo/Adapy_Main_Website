@@ -18,6 +18,7 @@ import {
   BookOpen,
   PlayCircle,
   MessageSquare,
+  ScrollText,
   Tag,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -29,6 +30,7 @@ interface DropdownLink {
   title: string;
   description?: string;
   href: string;
+  external?: boolean;
   icon?: React.ReactNode;
 }
 
@@ -150,6 +152,13 @@ const navItems: NavItem[] = [
         description: "Talk to a human about your situation.",
         href: "/contact",
         icon: <MessageSquare className="w-5 h-5" />,
+      },
+      {
+        title: "U.S. Patent 11,349,269",
+        description: "The granted patent behind the Adapy platform.",
+        href: "https://patents.google.com/patent/US11349269B2/en",
+        external: true,
+        icon: <ScrollText className="w-5 h-5" />,
       },
       {
         title: "Pricing & Quote",
@@ -299,6 +308,9 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
                         <Link
                           key={sub.title}
                           href={sub.href}
+                          {...(sub.external
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
                           className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors text-left"
                           data-testid={`link-dropdown-${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
                         >
@@ -421,6 +433,9 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
                               <Link
                                 key={sub.title}
                                 href={sub.href}
+                                {...(sub.external
+                                  ? { target: "_blank", rel: "noopener noreferrer" }
+                                  : {})}
                                 className="group"
                                 data-testid={`link-mobile-${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
                               >

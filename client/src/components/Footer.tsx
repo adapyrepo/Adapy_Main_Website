@@ -46,6 +46,7 @@ const footerColumns: FooterColumn[] = [
       { label: "Request a Quote", href: "/pricing" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
+      { label: "U.S. Patent 11,349,269", href: "https://patents.google.com/patent/US11349269B2/en", external: true },
       { label: "Login", href: "https://my.adapy.com", external: true },
     ],
   },
@@ -184,7 +185,17 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Adapy® Inc. All rights reserved.
+            © {new Date().getFullYear()} Adapy® Inc. All rights reserved. Protected by{" "}
+            <a
+              href="https://patents.google.com/patent/US11349269B2/en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white underline underline-offset-2 transition-colors"
+              data-testid="link-footer-patent"
+            >
+              U.S. Patent No. 11,349,269
+            </a>
+            .
           </p>
           <div className="flex items-center gap-6">
             <Link
