@@ -402,9 +402,9 @@ export default function Platform() {
             >
               <X className="w-8 h-8" />
             </button>
-            <div className="w-full max-w-5xl aspect-video relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+            <div className="h-[85vh] max-h-[85vh] aspect-[9/16] relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
               <iframe
-                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1&controls=0&playsinline=1&iv_load_policy=3&fs=0&disablekb=1`}
+                src={`${activeVideo.videoUrl}?autoplay=1&rel=0&modestbranding=1&controls=0&playsinline=1&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&cc_lang_pref=`}
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
