@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://adapy.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://adapy.com/user-funnel</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://adapy.com/dealer-funnel</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://adapy.com/dealer-portal</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://adapy.com/solutions/nemt</loc><lastmod>2026-05-22</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://adapy.com/software/cdrs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://adapy.com/solutions/individual</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -22,4 +22,9 @@
   <url><loc>https://adapy.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://adapy.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://adapy.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://adapy.com/videos</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://adapy.com/smart_mobility</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://adapy.com/technology-overview</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://adapy.com/safety-benefits</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://adapy.com/see-it</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>

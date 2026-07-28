@@ -2,9 +2,11 @@ import type { Express, Request, Response, NextFunction } from "express";
 
 const REDIRECTS: Record<string, string> = {
   "/feed": "/sitemap.rss",
+  "/request-info": "/contact",
+  "/dealer-funnel": "/dealer-portal",
   "/dealer-pricing-2024": "/pricing",
   "/cdrs-ot": "/software/cdrs",
-  "/locate": "/dealer-funnel",
+  "/locate": "/dealer-portal",
   "/compatibility": "/platform",
   "/download": "/contact",
   "/transfer-more": "/products",

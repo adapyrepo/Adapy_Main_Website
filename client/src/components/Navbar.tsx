@@ -16,6 +16,7 @@ import {
   Smartphone,
   LayoutDashboard,
   BookOpen,
+  PlayCircle,
   MessageSquare,
   Tag,
 } from "lucide-react";
@@ -137,6 +138,12 @@ const navItems: NavItem[] = [
         description: "Stories, research, and field notes from adaptive mobility.",
         href: "/blog",
         icon: <BookOpen className="w-5 h-5" />,
+      },
+      {
+        title: "Video Library",
+        description: "Watch the platform explained — from overview to live demos.",
+        href: "/videos",
+        icon: <PlayCircle className="w-5 h-5" />,
       },
       {
         title: "Contact",

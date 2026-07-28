@@ -25,6 +25,12 @@ import NEMTFleet from "@/pages/NEMTFleet";
 import Privacy from "@/pages/Privacy";
 import About from "@/pages/About";
 import Terms from "@/pages/Terms";
+import VideoLibrary from "@/pages/VideoLibrary";
+import SmartMobilityVideo from "@/pages/SmartMobilityVideo";
+import TechnologyOverviewVideo from "@/pages/TechnologyOverviewVideo";
+import SafetyBenefitsVideo from "@/pages/SafetyBenefitsVideo";
+import SeeItInActionVideo from "@/pages/SeeItInActionVideo";
+import RequestInfoRedirect from "@/pages/RequestInfoRedirect";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -75,6 +81,12 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
+      <Route path="/videos" component={VideoLibrary} />
+      <Route path="/smart_mobility" component={SmartMobilityVideo} />
+      <Route path="/technology-overview" component={TechnologyOverviewVideo} />
+      <Route path="/safety-benefits" component={SafetyBenefitsVideo} />
+      <Route path="/see-it" component={SeeItInActionVideo} />
+      <Route path="/request-info" component={RequestInfoRedirect} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route component={NotFound} />
