@@ -59,7 +59,7 @@ export function TestimonialScroller() {
 
   return (
     <>
-      <div className="bg-transparent py-4 md:py-6 overflow-hidden border-t border-white/5 w-full relative group">
+      <div className="bg-transparent pt-4 md:pt-6 pb-3 overflow-hidden border-t border-white/5 w-full relative group">
         <div className="relative flex items-center">
           <div
             className="flex whitespace-nowrap gap-8 items-center animate-scroll-testimonials motion-reduce:animate-none"

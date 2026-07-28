@@ -92,7 +92,7 @@ export default function Platform() {
           </motion.div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 pb-6 w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
+        <div className="absolute bottom-0 left-0 right-0 z-10 w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
           <TestimonialScroller />
         </div>
       </section>
