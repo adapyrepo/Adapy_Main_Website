@@ -24,7 +24,7 @@ import {
   X
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
-import ecosystemDiagram from "@assets/adapy_1785258104849.png";
+import ecosystemDiagram from "@assets/adapy_2_1785258526379.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
