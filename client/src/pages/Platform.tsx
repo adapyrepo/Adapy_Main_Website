@@ -9,7 +9,6 @@ import { Link } from "wouter";
 import { useProducts } from "@/hooks/use-products";
 import { useState, useEffect } from "react";
 import { 
-  Cpu, 
   Network, 
   Cloud, 
   Zap, 
@@ -25,6 +24,7 @@ import {
   X
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
+import ecosystemDiagram from "@assets/adapy_1785258104849.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
@@ -144,18 +144,12 @@ export default function Platform() {
               </ul>
               <p className="mt-10 text-xl font-bold text-[#0071e3]">The result is a connected mobility ecosystem.</p>
             </div>
-            <div className="relative aspect-square bg-gradient-to-br from-white to-[#f5f5f7] rounded-[3rem] border border-black/5 shadow-2xl flex items-center justify-center p-12">
-               {/* Ecosystem Visualization Placeholder */}
-               <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="w-32 h-32 bg-[#0071e3] rounded-3xl flex items-center justify-center text-white shadow-2xl z-10">
-                    <Cpu size={48} />
-                  </div>
-                  <div className="absolute inset-0 border-2 border-dashed border-black/10 rounded-full animate-spin-slow" />
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-[#0071e3] -mt-6"><Zap size={24} /></div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-[#0071e3] -mb-6"><Shield size={24} /></div>
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-[#0071e3] -ml-6"><Network size={24} /></div>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-[#0071e3] -mr-6"><Cloud size={24} /></div>
-               </div>
+            <div className="relative aspect-square rounded-[3rem] border border-black/5 shadow-2xl overflow-hidden">
+               <img
+                 src={ecosystemDiagram}
+                 alt="Adapy Smart Hub ecosystem diagram — one brain, multiple layers, unified intelligence"
+                 className="w-full h-full object-cover"
+               />
             </div>
           </div>
         </div>
