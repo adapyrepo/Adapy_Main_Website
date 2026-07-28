@@ -53,7 +53,7 @@ export default function Platform() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-black text-white">
+      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-40 md:pb-44 overflow-hidden bg-black text-white">
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
@@ -92,7 +92,7 @@ export default function Platform() {
           </motion.div>
         </div>
 
-        <div className="relative z-10 mt-16 md:mt-24 w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
+        <div className="absolute bottom-0 left-0 right-0 z-10 pb-6 w-full opacity-70 hover:opacity-100 transition-opacity duration-500">
           <TestimonialScroller />
         </div>
       </section>
