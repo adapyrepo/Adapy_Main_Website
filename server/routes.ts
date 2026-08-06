@@ -5,6 +5,8 @@ import { api } from "@shared/routes";
 import { z } from "zod";
 import { insertContactRequestSchema, insertSubscriberSchema } from "@shared/schema";
 import { registerLegacyRedirects } from "./redirects";
+import { registerBlogPublishingRoutes } from "./blogPublishing";
+import { registerDynamicSitemaps } from "./dynamicSitemaps";
 
 const LEAD_FORM_UPSTREAMS = {
   "qualify-form": {
@@ -28,6 +30,8 @@ export async function registerRoutes(
 ): Promise<Server> {
 
   registerLegacyRedirects(app);
+  registerBlogPublishingRoutes(app);
+  registerDynamicSitemaps(app);
 
   app.post("/api/lead-proxy", async (req, res) => {
     let parsed;

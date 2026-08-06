@@ -1,0 +1,416 @@
+I need you to add a secure, lightweight blog-publishing API to the existing Adapy website.
+
+IMPORTANT:
+Before changing anything, inspect the entire existing project and determine:
+
+1. The framework and programming language being used.
+2. How the existing blog pages, blog index, article detail pages, database, images, routing, and SEO metadata currently work.
+3. Whether blog articles are currently stored in a database, CMS, JSON file, Markdown files, or another system.
+4. How the production website handles persistent image/file storage.
+5. Whether an authentication, API, validation, logging, or rate-limiting pattern already exists that should be reused.
+
+Do not rebuild or redesign the blog. The existing blog looks good and must retain its current appearance and functionality.
+
+GOAL
+
+Create a secure API that allows the separate Adapy Back Office application to submit one completed blog article per day and automatically publish it on the existing Adapy website.
+
+The solution must be:
+
+- Simple and lightweight
+- Secure
+- Compatible with the existing project architecture
+- Easy to maintain
+- Reliable in production
+- Designed to prevent duplicate articles
+- Able to accept a main featured image and additional images within an article
+- Able to publish immediately or at a requested future date
+- Able to return the final public article URL to the Back Office
+
+Do not introduce a large CMS, unnecessary third-party service, or complicated authentication system.
+
+SECURE API ENDPOINT
+
+Create this server-side endpoint:
+
+POST /api/internal/blog/publish
+
+This must be a server-only endpoint. Never expose its secret in client-side JavaScript, browser code, public environment variables, or the Git repository.
+
+Protect it with a private environment variable named:
+
+ADAPY_BLOG_API_KEY
+
+The Back Office will send:
+
+Authorization: Bearer <ADAPY_BLOG_API_KEY>
+
+The endpoint must:
+
+1. Read the Authorization header.
+2. Require the exact “Bearer ” format.
+3. Compare the provided key securely with the server-side environment variable.
+4. Return HTTP 401 for a missing or invalid key.
+5. Refuse to operate if ADAPY_BLOG_API_KEY is missing from the production environment.
+6. Apply a basic rate limit appropriate for an internal API, such as 10 requests per hour.
+7. Never log the API key or the complete Authorization header.
+8. Only accept HTTPS in production.
+9. Apply a reasonable request-size limit.
+
+If this project already has a suitable server-side authentication or rate-limiting pattern, reuse it instead of creating duplicate infrastructure.
+
+ARTICLE REQUEST FORMAT
+
+Accept JSON in this format:
+
+{
+  "externalId": "adapy-backoffice-article-unique-id",
+  "title": "Article title",
+  "slug": "optional-custom-slug",
+  "excerpt": "Short summary for the blog listing and search results",
+  "content": "<p>Complete sanitized article HTML</p>",
+  "contentFormat": "html",
+  "author": {
+    "name": "Adapy",
+    "displayName": "Adapy Team"
+  },
+  "featuredImage": {
+    "url": "https://secure-image-url.example.com/image.jpg",
+    "alt": "Clear description of the image",
+    "caption": "Optional image caption"
+  },
+  "inlineImages": [
+    {
+      "sourceUrl": "https://secure-image-url.example.com/second-image.jpg",
+      "alt": "Clear description of the image",
+      "caption": "Optional caption"
+    }
+  ],
+  "categories": ["Assistive Technology"],
+  "tags": ["wheelchair accessibility", "independence"],
+  "seo": {
+    "metaTitle": "Optional SEO title",
+    "metaDescription": "Optional SEO description",
+    "keywords": ["assistive technology", "adaptive vehicles"]
+  },
+  "status": "published",
+  "publishAt": "2026-08-07T14:00:00Z"
+}
+
+Support these status values:
+
+- "published": Publish immediately unless publishAt is in the future.
+- "scheduled": Save the article and publish it at publishAt.
+- "draft": Save it without making it publicly visible.
+
+If the existing blog does not support drafts or scheduled publishing, implement the smallest reliable solution that fits the current architecture. Do not add an unnecessarily complex job system.
+
+VALIDATION
+
+Validate all incoming fields on the server.
+
+Requirements:
+
+- externalId is required and must be unique.
+- title is required.
+- excerpt is required.
+- content is required.
+- contentFormat currently supports only "html".
+- featuredImage is required for published articles.
+- featuredImage.alt is required for accessibility.
+- status must match an allowed value.
+- publishAt must be a valid ISO 8601 date when provided.
+- Generate a URL-safe slug from the title if no slug is supplied.
+- If a slug already exists, create a predictable unique slug or return a clear conflict response.
+- Enforce reasonable maximum lengths for text fields.
+- Reject malformed or dangerous payloads with HTTP 400.
+- Return field-specific validation errors.
+
+CONTENT SECURITY
+
+The incoming article may contain formatted HTML.
+
+Sanitize it on the server using a respected HTML sanitation library compatible with the existing stack.
+
+Allow normal blog formatting, including:
+
+- Paragraphs
+- Headings
+- Bold and italic text
+- Ordered and unordered lists
+- Links
+- Blockquotes
+- Tables
+- Images
+- Figure captions
+
+Remove or reject:
+
+- Script tags
+- Inline JavaScript
+- Event handlers such as onclick or onerror
+- Iframes unless there is an explicit, safe requirement
+- Unsafe CSS
+- javascript: URLs
+- Tracking code
+- Unknown embedded objects
+
+External links should use safe attributes where appropriate.
+
+IMAGE HANDLING
+
+Do not rely permanently on temporary Back Office image URLs.
+
+When an article is accepted:
+
+1. Validate that each image URL uses HTTPS.
+2. Prevent server-side request forgery. Do not allow localhost, private IP ranges, cloud metadata addresses, file URLs, or internal network addresses.
+3. Download the featured image and inline images on the server.
+4. Verify that each downloaded file is a real supported image.
+5. Allow JPEG, PNG, and WebP.
+6. Enforce a reasonable maximum file size, such as 10 MB per image.
+7. Store images using the website’s existing persistent production storage.
+8. Do not store production images only on Replit’s temporary filesystem.
+9. Generate unique filenames to avoid overwriting existing files.
+10. If the existing project already optimizes images, use that system.
+11. Save and render the supplied alt text and optional captions.
+12. Replace temporary image URLs in the final article content with permanent Adapy-hosted image URLs.
+
+If the website already uses Replit Object Storage, Cloudinary, S3-compatible storage, or another persistent image system, reuse it. Do not add another storage provider unless necessary.
+
+If an image cannot be downloaded or stored, do not publish an incomplete article. Return a clear error and avoid leaving a partially created public article.
+
+DATABASE AND BLOG INTEGRATION
+
+Reuse the existing blog data structure whenever possible.
+
+If the existing storage does not have the required fields, add only the smallest necessary migration or schema changes.
+
+Store or map:
+
+- Internal article ID
+- externalId
+- Title
+- Slug
+- Excerpt
+- Sanitized content
+- Author
+- Featured image URL
+- Featured image alt text
+- Featured image caption
+- Categories
+- Tags
+- SEO metadata
+- Status
+- publishAt
+- publishedAt
+- createdAt
+- updatedAt
+
+externalId must have a unique database constraint if the project uses a database.
+
+IDEMPOTENCY AND DUPLICATE PREVENTION
+
+The Back Office may retry a request if it does not receive a response.
+
+Use externalId as the idempotency key.
+
+Required behavior:
+
+- If a new externalId is received, create the article.
+- If the same externalId and same article data are submitted again, do not create a duplicate. Return the existing article and public URL.
+- If the same externalId is submitted with materially different data, return HTTP 409 with a clear message unless an explicit update mode is later implemented.
+- Do not create duplicate database records or duplicate images during a retry.
+
+Do not create an article update or deletion API in this phase unless one already exists and can safely be reused.
+
+PUBLISHING BEHAVIOR
+
+For a successfully published article:
+
+- Make it appear automatically on the existing blog index.
+- Make its detail page publicly accessible using the existing article URL pattern.
+- Preserve the current blog card and article design.
+- Display the featured image properly.
+- Display inline images in the intended locations.
+- Display author and publication date using the current design.
+- Include categories and tags if the current blog supports them.
+- Include SEO title and description.
+- Add Open Graph and social-sharing image metadata.
+- Include the article in the existing sitemap and RSS feed if those features exist.
+- Ensure draft and scheduled articles cannot be accessed publicly before publication.
+- Maintain responsive mobile display.
+- Maintain accessibility, including meaningful image alt text.
+
+API RESPONSES
+
+Successful new publication:
+
+HTTP 201
+
+{
+  "success": true,
+  "articleId": "internal-id",
+  "externalId": "adapy-backoffice-article-unique-id",
+  "status": "published",
+  "slug": "article-title",
+  "url": "https://adapy.com/blog/article-title",
+  "publishedAt": "2026-08-07T14:00:00Z",
+  "duplicate": false
+}
+
+Successful idempotent retry:
+
+HTTP 200
+
+{
+  "success": true,
+  "articleId": "internal-id",
+  "externalId": "adapy-backoffice-article-unique-id",
+  "status": "published",
+  "slug": "article-title",
+  "url": "https://adapy.com/blog/article-title",
+  "publishedAt": "2026-08-07T14:00:00Z",
+  "duplicate": true
+}
+
+Use appropriate status codes:
+
+- 400: Invalid request or validation failure
+- 401: Missing or invalid API key
+- 409: Conflicting externalId or slug
+- 413: Payload or image is too large
+- 429: Rate limit exceeded
+- 500: Unexpected internal failure
+- 503: Required configuration or storage is unavailable
+
+Errors must use a consistent structure:
+
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "The article could not be published.",
+    "fields": {
+      "featuredImage.alt": "Alt text is required."
+    }
+  }
+}
+
+TRANSACTION AND FAILURE SAFETY
+
+The operation should behave as one complete publishing action.
+
+If database creation or image storage fails:
+
+- Do not leave a broken public article.
+- Roll back the database operation when supported.
+- Clean up newly uploaded images when it is safe to do so.
+- Return a useful error to the Back Office.
+- Log enough server-side information to diagnose the problem without logging secrets or the full article unnecessarily.
+
+ADMIN VISIBILITY
+
+If the existing website has an admin area, show articles received through this API there using the existing interface. Indicate that their source is “Adapy Back Office.”
+
+Do not build a new admin system if one does not already exist.
+
+CONFIGURATION
+
+Add ADAPY_BLOG_API_KEY to the documented environment-variable requirements, but never place a real secret in source code.
+
+If another environment variable is required for the website’s public base URL, use or add:
+
+PUBLIC_SITE_URL=https://adapy.com
+
+Use the existing configuration system whenever possible.
+
+TESTING
+
+Add focused automated tests for:
+
+1. Valid article publication.
+2. Missing API key.
+3. Invalid API key.
+4. Missing required fields.
+5. Unsafe HTML removal.
+6. Invalid image URL.
+7. Blocked private/internal image URL.
+8. Oversized image.
+9. Duplicate externalId retry.
+10. Conflicting externalId.
+11. Duplicate slug handling.
+12. Draft articles not being publicly accessible.
+13. Scheduled articles not appearing early.
+14. Successful publishing to the existing blog index.
+15. Failure during image storage not creating a partial public article.
+
+Also perform a local end-to-end test using a safe sample article.
+
+Create a sample request file or command similar to this, but never include the real secret:
+
+curl -X POST "https://adapy.com/api/internal/blog/publish" \
+  -H "Authorization: Bearer TEST_KEY_PLACEHOLDER" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "externalId": "test-article-001",
+    "title": "Testing Adapy Blog Publishing",
+    "excerpt": "This is a test of the secure blog publishing connection.",
+    "content": "<p>This is a test article.</p>",
+    "contentFormat": "html",
+    "author": {
+      "name": "Adapy",
+      "displayName": "Adapy Team"
+    },
+    "featuredImage": {
+      "url": "https://example.com/test-image.jpg",
+      "alt": "Adapy accessibility technology"
+    },
+    "categories": ["Adapy News"],
+    "tags": ["Adapy"],
+    "status": "draft"
+  }'
+
+DOCUMENTATION AND HANDOFF
+
+Create a concise BLOG_PUBLISHING_API.md file containing:
+
+- Endpoint URL
+- Required authentication header
+- Request schema
+- Required and optional fields
+- Example request
+- Example response
+- Error codes
+- How to set ADAPY_BLOG_API_KEY in Replit Secrets
+- Image requirements
+- Idempotency behavior
+- How the Back Office should store the returned article ID and URL
+- How to test using a draft article
+- Any migration or deployment step I must complete
+
+IMPLEMENTATION RULES
+
+- Work directly with the existing architecture.
+- Preserve the existing blog design.
+- Keep the implementation small and understandable.
+- Reuse existing database, storage, validation, and routing patterns.
+- Do not place secrets in code.
+- Do not expose the publishing key to the browser.
+- Do not make unrelated changes.
+- Do not install a large CMS.
+- Do not replace working components.
+- Do not use temporary filesystem storage for production images.
+- Do not merely describe the solution—implement it completely.
+- Resolve all build, lint, type, and test errors caused by the changes.
+
+Before completing, provide:
+
+1. A list of files changed.
+2. Any database migration created.
+3. Any Replit Secret I need to add.
+4. Any deployment step I need to perform.
+5. The exact production endpoint URL.
+6. A safe test request that creates a draft rather than a public article.
+7. Confirmation that the existing blog design was preserved.
+8. Confirmation that duplicate retries cannot create duplicate articles.

@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
 import { blogPosts } from "@/data/blogPosts";
+import { useApiBlogArticles, formatArticleDate } from "@/hooks/use-blog-articles";
 
 const categories = ["All", "Industry Insights", "Technology", "Case Study", "Security", "Operations", "Community"];
 
 export default function Blog() {
+  const { data: apiArticles } = useApiBlogArticles();
   useSEO({
     title: "Adapy Blog — Wheelchair Vehicles & NEMT Insights",
     description: "Field notes, research, and stories from adaptive mobility — wheelchair accessible vehicles, NEMT fleet safety, mobility dealer best practices, and driver rehabilitation.",
@@ -79,7 +81,22 @@ export default function Blog() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.filter((p) => p.body && p.body.length > 0).map((post, i) => (
+            {[
+              ...(apiArticles ?? []).map((a) => ({
+                id: `api-${a.id}`,
+                slug: a.slug,
+                title: a.title,
+                excerpt: a.excerpt,
+                date: formatArticleDate(a.publishedAt),
+                author: a.author,
+                category: a.categories[0] ?? "Industry Insights",
+                image: a.featuredImage.url ?? "",
+                imageAlt: a.featuredImage.alt ?? a.title,
+              })),
+              ...blogPosts
+                .filter((p) => p.body && p.body.length > 0)
+                .map((p) => ({ ...p, id: String(p.id), imageAlt: p.title })),
+            ].map((post, i) => (
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -94,7 +111,7 @@ export default function Blog() {
                   <div className="relative h-48 overflow-hidden bg-black/5">
                     <img
                       src={post.image}
-                      alt={post.title}
+                      alt={post.imageAlt}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4">

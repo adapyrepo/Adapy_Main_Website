@@ -5,11 +5,15 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
+import { useApiBlogArticle, formatArticleDate } from "@/hooks/use-blog-articles";
+import { ApiBlogArticleView } from "@/components/ApiBlogArticleView";
 
 export default function BlogPost() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug ?? "";
-  const post = getPostBySlug(slug);
+  const staticPost = getPostBySlug(slug);
+  const apiQuery = useApiBlogArticle(slug, !staticPost);
+  const post = staticPost;
 
   const isPublished = !!post && Array.isArray(post.body) && post.body.length > 0;
   useSEO({
@@ -59,6 +63,17 @@ export default function BlogPost() {
         }
       : undefined,
   });
+
+  if (!post && (apiQuery.data || apiQuery.isLoading)) {
+    return (
+      <ApiBlogArticleView
+        slug={slug}
+        article={apiQuery.data}
+        isLoading={apiQuery.isLoading}
+        formatDate={formatArticleDate}
+      />
+    );
+  }
 
   if (!post) {
     return (
