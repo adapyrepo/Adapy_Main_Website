@@ -366,6 +366,10 @@ export function articleUrl(a: { slug: string }): string {
   return `${PUBLIC_SITE_URL()}/blog/${a.slug}`;
 }
 
+export function adminArticleUrl(a: { id: number; previewToken: string }): string {
+  return `${PUBLIC_SITE_URL()}/admin/blog/${a.id}/preview?token=${a.previewToken}`;
+}
+
 export function effectivePublishedAt(a: BlogArticle): Date | null {
   return a.publishedAt ?? a.publishAt ?? null;
 }
@@ -543,6 +547,7 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
         publishAt,
         publishedAt,
           payloadHash: hash,
+          previewToken: crypto.randomBytes(24).toString("hex"),
         })
         .returning();
     } catch (err: any) {
@@ -597,14 +602,21 @@ export function registerBlogPublishingRoutes(app: Express) {
     async (req, res) => {
       try {
         const result = await handlePublish(req.body);
-        const a = result.article;
+        let a = result.article;
+        // Older rows may predate preview tokens — mint one on demand.
+        if (!a.previewToken) {
+          const token = crypto.randomBytes(24).toString("hex");
+          [a] = await db.update(blogArticles).set({ previewToken: token }).where(eq(blogArticles.id, a.id)).returning();
+        }
         res.status(result.httpStatus).json({
           success: true,
           articleId: String(a.id),
           externalId: a.externalId,
           status: a.status,
           slug: a.slug,
-          url: articleUrl(a),
+          url: a.status === "draft" ? adminArticleUrl(a) : articleUrl(a),
+          adminUrl: adminArticleUrl(a),
+          publicUrl: articleUrl(a),
           publishedAt: (effectivePublishedAt(a) ?? a.createdAt).toISOString(),
           duplicate: result.duplicate,
         });
@@ -641,6 +653,78 @@ export function registerBlogPublishingRoutes(app: Express) {
       return res.status(404).json({ message: "Article not found" });
     }
     res.json(toPublicArticle(a));
+  });
+
+  // ------------------------------------------------------------------
+  // Admin: draft preview & publish (per-article preview token, only ever
+  // returned through the API-key-protected publish endpoint / drafts list)
+  // ------------------------------------------------------------------
+
+  const loadArticleForToken = async (req: Request): Promise<BlogArticle> => {
+    const id = Number(req.params.id);
+    const token = String(req.query.token ?? req.headers["x-preview-token"] ?? "");
+    if (!Number.isInteger(id) || !token) {
+      throw new PublishError(404, "NOT_FOUND", "Article not found.");
+    }
+    const [a] = await db.select().from(blogArticles).where(eq(blogArticles.id, id));
+    if (!a || !a.previewToken || !timingSafeEqualStr(token, a.previewToken)) {
+      throw new PublishError(404, "NOT_FOUND", "Article not found.");
+    }
+    return a;
+  };
+
+  // Admin: fetch any article (draft/scheduled/published) with a valid preview token
+  app.get("/api/blog/admin/articles/:id", async (req, res) => {
+    try {
+      const a = await loadArticleForToken(req);
+      res.json({ ...toPublicArticle(a), status: a.status, publicUrl: articleUrl(a) });
+    } catch (err) {
+      if (err instanceof PublishError) return sendError(res, err);
+      res.status(500).json({ success: false, error: { code: "INTERNAL_ERROR", message: "Unexpected error." } });
+    }
+  });
+
+  // Admin: publish a draft (or scheduled article) immediately
+  app.post("/api/blog/admin/articles/:id/publish", async (req, res) => {
+    try {
+      const a = await loadArticleForToken(req);
+      if (a.status === "published") {
+        return res.json({ success: true, status: "published", articleId: String(a.id), publicUrl: articleUrl(a), alreadyPublished: true });
+      }
+      const [updated] = await db
+        .update(blogArticles)
+        .set({ status: "published", publishedAt: a.publishedAt ?? new Date(), publishAt: null, updatedAt: new Date() })
+        .where(eq(blogArticles.id, a.id))
+        .returning();
+      res.json({ success: true, status: updated.status, articleId: String(updated.id), publicUrl: articleUrl(updated) });
+    } catch (err) {
+      if (err instanceof PublishError) return sendError(res, err);
+      console.error("[blog-admin] publish failed:", err instanceof Error ? err.message : err);
+      res.status(500).json({ success: false, error: { code: "INTERNAL_ERROR", message: "Unexpected error." } });
+    }
+  });
+
+  // Admin: list drafts (requires the API key — for the Back Office / admins)
+  app.get("/api/blog/admin/drafts", requireBlogApiKey, async (_req, res) => {
+    const rows = await db.select().from(blogArticles).where(eq(blogArticles.status, "draft")).orderBy(desc(blogArticles.createdAt));
+    // Mint preview tokens for any drafts created before tokens existed
+    for (let i = 0; i < rows.length; i++) {
+      if (!rows[i].previewToken) {
+        const token = crypto.randomBytes(24).toString("hex");
+        [rows[i]] = await db.update(blogArticles).set({ previewToken: token }).where(eq(blogArticles.id, rows[i].id)).returning();
+      }
+    }
+    res.json(
+      rows.map((a) => ({
+        articleId: String(a.id),
+        title: a.title,
+        slug: a.slug,
+        excerpt: a.excerpt,
+        createdAt: a.createdAt.toISOString(),
+        adminUrl: a.previewToken ? adminArticleUrl(a) : null,
+        publicUrl: articleUrl(a),
+      })),
+    );
   });
 
   // Public: serve stored images

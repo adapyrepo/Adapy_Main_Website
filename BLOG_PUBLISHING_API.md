@@ -76,10 +76,19 @@ New article — `201`:
   "status": "published",
   "slug": "article-title",
   "url": "https://adapy.com/blog/article-title",
+  "adminUrl": "https://adapy.com/admin/blog/12/preview?token=…",
+  "publicUrl": "https://adapy.com/blog/article-title",
   "publishedAt": "2026-08-07T14:00:00.000Z",
   "duplicate": false
 }
 ```
+
+- `publicUrl` — the article's public location (live only once published/visible).
+- `adminUrl` — a tokenized admin preview link that works for **any** status,
+  including drafts. Use this for "View on Adapy.com" while `status` is `draft`.
+- `url` — equals `adminUrl` for drafts, `publicUrl` otherwise (backward compatible).
+- Treat `adminUrl` as sensitive: anyone with the link can view (and publish) the
+  draft. The token is only ever issued through this authenticated API.
 
 Identical retry — `200` with `"duplicate": true` (no second article or images are created).
 
@@ -126,6 +135,17 @@ Errors (consistent shape):
   RSS all exclude it).
 - Published articles are automatically added to `/sitemap.xml` and `/sitemap.rss`,
   get SEO meta title/description, Open Graph article tags, and JSON-LD.
+
+## Draft workflow (admin preview & publish)
+
+- Opening `adminUrl` shows the full article with an amber "Admin preview" banner
+  and a **Publish now** button. Publishing sets the status to `published`, stamps
+  the published date, and immediately makes `/blog/{slug}` public and listed.
+- Drafts are never shown on the public blog, `/blog/{slug}`, the sitemap, or RSS.
+- Programmatic equivalents (for the Back Office):
+  - `GET /api/blog/admin/drafts` (Bearer key) — list all drafts with their `adminUrl`s.
+  - `GET /api/blog/admin/articles/{id}?token=…` — fetch any article regardless of status.
+  - `POST /api/blog/admin/articles/{id}/publish?token=…` — publish a draft immediately.
 
 ## Testing
 

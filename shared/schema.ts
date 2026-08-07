@@ -54,6 +54,7 @@ export const blogArticles = pgTable("blog_articles", {
   publishAt: timestamp("publish_at", { withTimezone: true }),
   publishedAt: timestamp("published_at", { withTimezone: true }),
   payloadHash: text("payload_hash").notNull(),
+  previewToken: varchar("preview_token", { length: 64 }).notNull().default(""),
   source: text("source").notNull().default("Adapy Back Office"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),

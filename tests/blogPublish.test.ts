@@ -274,6 +274,60 @@ describe("visibility", () => {
   });
 });
 
+describe("admin draft workflow", () => {
+  it("publish endpoint returns adminUrl and does not expose the public URL for drafts", async () => {
+    const res = await request(app)
+      .post("/api/internal/blog/publish")
+      .set("Authorization", `Bearer ${TEST_KEY}`)
+      .send(baseArticle({ externalId: `${PREFIX}adminflow`, slug: "vitest-admin-flow", featuredImage: undefined }));
+    expect(res.status).toBe(201);
+    expect(res.body.status).toBe("draft");
+    expect(res.body.adminUrl).toContain("/admin/blog/");
+    expect(res.body.adminUrl).toContain("token=");
+    expect(res.body.publicUrl).toContain("/blog/vitest-admin-flow");
+    expect(res.body.url).toBe(res.body.adminUrl); // drafts: url is the admin preview
+  });
+
+  it("admin article endpoint requires a valid token", async () => {
+    const [row] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}adminflow`));
+    const bad = await request(app).get(`/api/blog/admin/articles/${row.id}?token=wrong`);
+    expect(bad.status).toBe(404);
+    const none = await request(app).get(`/api/blog/admin/articles/${row.id}`);
+    expect(none.status).toBe(404);
+    const good = await request(app).get(`/api/blog/admin/articles/${row.id}?token=${row.previewToken}`);
+    expect(good.status).toBe(200);
+    expect(good.body.status).toBe("draft");
+    expect(good.body.content).toContain("Hello");
+  });
+
+  it("drafts list requires the API key and includes adminUrl", async () => {
+    const noAuth = await request(app).get("/api/blog/admin/drafts");
+    expect(noAuth.status).toBe(401);
+    const res = await request(app).get("/api/blog/admin/drafts").set("Authorization", `Bearer ${TEST_KEY}`);
+    expect(res.status).toBe(200);
+    const found = res.body.find((d: any) => d.slug === "vitest-admin-flow");
+    expect(found).toBeTruthy();
+    expect(found.adminUrl).toContain("token=");
+  });
+
+  it("admin publish flips a draft to published and makes it publicly visible", async () => {
+    const [row] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}adminflow`));
+    // hidden before
+    expect((await request(app).get("/api/blog/articles/vitest-admin-flow")).status).toBe(404);
+    const pub = await request(app).post(`/api/blog/admin/articles/${row.id}/publish?token=${row.previewToken}`);
+    expect(pub.status).toBe(200);
+    expect(pub.body.status).toBe("published");
+    // visible after, with publishedAt set
+    const detail = await request(app).get("/api/blog/articles/vitest-admin-flow");
+    expect(detail.status).toBe(200);
+    const [after] = await db.select().from(blogArticles).where(eq(blogArticles.id, row.id));
+    expect(after.publishedAt).toBeTruthy();
+    // idempotent re-publish
+    const again = await request(app).post(`/api/blog/admin/articles/${row.id}/publish?token=${row.previewToken}`);
+    expect(again.body.alreadyPublished).toBe(true);
+  });
+});
+
 describe("helpers", () => {
   it("slugify produces URL-safe slugs", () => {
     expect(slugify("Héllo, World! 123")).toBe("hello-world-123");
