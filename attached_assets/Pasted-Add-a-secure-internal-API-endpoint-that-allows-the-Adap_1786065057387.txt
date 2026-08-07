@@ -1,0 +1,82 @@
+Add a secure internal API endpoint that allows the Adapy management application to delete a published blog article from Adapy.com.
+
+Do not create a website admin panel and do not change unrelated website functionality.
+
+ENDPOINT
+
+Create:
+
+DELETE /api/internal/blog/:externalId
+
+Authentication:
+
+Authorization: Bearer <ADAPY_BLOG_API_KEY>
+
+Use the same server-side API-key validation already used by:
+
+POST /api/internal/blog/publish
+
+Never expose or log the API key.
+
+DELETE BEHAVIOR
+
+1. Find the blog article using `externalId`, not its title or slug.
+
+2. If found:
+   - Remove it from the public blog listing.
+   - Make its `/blog/{slug}` URL unavailable.
+   - Delete or archive the database record using the safest pattern already established by the project.
+   - If the existing schema supports soft deletion, prefer:
+     status: "deleted"
+     deletedAt: current server time
+   - Public queries must exclude deleted articles.
+
+3. If the article does not exist or was already deleted, return an idempotent success response instead of failing:
+
+{
+  "success": true,
+  "deleted": false,
+  "message": "Article was already absent."
+}
+
+4. For a successful deletion, return:
+
+{
+  "success": true,
+  "deleted": true,
+  "externalId": "...",
+  "message": "Article deleted successfully."
+}
+
+5. Return valid structured JSON for every outcome.
+
+6. Return:
+   - 401 for missing/invalid authorization
+   - 400 for a missing externalId
+   - 500 only for a genuine server/database error
+
+7. Do not allow deletion by arbitrary database ID supplied without authentication.
+
+8. Do not delete a featured-image file if it might be used by another article. If the image belongs exclusively to the deleted article, it may be removed safely; otherwise leave the image stored.
+
+9. Existing publishing and update-by-externalId behavior must continue working.
+
+10. Add safe server logging containing:
+    - externalId
+    - whether the record was found
+    - whether deletion succeeded
+
+Do not log article content, API keys, or Authorization headers.
+
+TESTING
+
+Verify:
+
+- A published article can be deleted by externalId.
+- It disappears from the blog listing.
+- Its public slug no longer loads.
+- Deleting it again returns idempotent success.
+- An invalid API key is rejected.
+- Existing article publishing still works.
+
+Deploy the updated Adapy.com production application.

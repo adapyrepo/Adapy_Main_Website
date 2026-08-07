@@ -818,6 +818,55 @@ export function registerBlogPublishingRoutes(app: Express) {
     },
   );
 
+  // Internal: delete an article by externalId (idempotent).
+  // Hard delete — the safest established pattern here (no deletedAt column);
+  // the article's stored images are keyed exclusively to its externalId, so
+  // they are removed with it and never shared with other articles.
+  app.delete("/api/internal/blog/:externalId", requireBlogApiKey, async (req, res) => {
+    const externalId = String(req.params.externalId ?? "").trim();
+    if (!externalId) {
+      return res.status(400).json({
+        success: false,
+        error: { code: "VALIDATION_ERROR", message: "externalId is required." },
+      });
+    }
+    try {
+      const [existing] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, externalId));
+      if (!existing) {
+        console.log(`[blog-delete] externalId=${externalId} found=false deleted=false (already absent)`);
+        return res.json({ success: true, deleted: false, message: "Article was already absent." });
+      }
+      // Snapshot the exact rows to remove BEFORE deleting, and delete only
+      // those specific ids atomically — a concurrent republish of the same
+      // externalId (which stores its images first) creates NEW rows/ids that
+      // this delete can never touch.
+      const imageRows = await db
+        .select({ id: blogImages.id })
+        .from(blogImages)
+        .where(eq(blogImages.articleExternalId, externalId));
+      const imageIds = imageRows.map((r) => r.id);
+      await db.transaction(async (tx) => {
+        await tx.delete(blogArticles).where(eq(blogArticles.id, existing.id));
+        if (imageIds.length > 0) {
+          await tx.delete(blogImages).where(inArray(blogImages.id, imageIds));
+        }
+      });
+      console.log(`[blog-delete] externalId=${externalId} found=true deleted=true`);
+      return res.json({
+        success: true,
+        deleted: true,
+        externalId,
+        message: "Article deleted successfully.",
+      });
+    } catch (err) {
+      console.error(`[blog-delete] externalId=${externalId} failed:`, err instanceof Error ? err.message : err);
+      return res.status(500).json({
+        success: false,
+        error: { code: "INTERNAL_ERROR", message: "Deletion failed due to a server error." },
+      });
+    }
+  });
+
   // Public: list visible articles (metadata only)
   app.get("/api/blog/articles", async (_req, res) => {
     const rows = await db

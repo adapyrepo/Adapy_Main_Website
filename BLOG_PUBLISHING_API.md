@@ -151,6 +151,17 @@ Errors (consistent shape):
   - `GET /api/blog/admin/articles/{id}?token=…` — fetch any article regardless of status.
   - `POST /api/blog/admin/articles/{id}/publish?token=…` — publish a draft immediately.
 
+## Deleting an article
+
+`DELETE /api/internal/blog/{externalId}` — same `Authorization: Bearer` API key
+as publishing. Idempotent:
+
+- Article existed → `200` `{ "success": true, "deleted": true, "externalId": "…", "message": "Article deleted successfully." }`
+  The article immediately disappears from the blog listing, its `/blog/{slug}`
+  URL returns 404, and its stored images are removed.
+- Already absent → `200` `{ "success": true, "deleted": false, "message": "Article was already absent." }`
+- Missing/invalid key → `401`; genuine server error → `500`.
+
 ## Testing
 
 - Automated: `npm test` (20 tests covering auth, validation, sanitization, SSRF

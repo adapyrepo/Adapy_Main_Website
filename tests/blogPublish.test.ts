@@ -432,6 +432,50 @@ describe("admin draft workflow", () => {
   });
 });
 
+describe("delete by externalId", () => {
+  const extId = `${PREFIX}del1`;
+
+  it("requires a valid API key", async () => {
+    const noAuth = await request(app).delete(`/api/internal/blog/${extId}`);
+    expect(noAuth.status).toBe(401);
+    const bad = await request(app).delete(`/api/internal/blog/${extId}`).set("Authorization", "Bearer wrong");
+    expect(bad.status).toBe(401);
+  });
+
+  it("deletes a published article and removes it from public routes", async () => {
+    await handlePublish(
+      baseArticle({ externalId: extId, title: "Delete Me", slug: "vitest-delete-me", status: "published" }),
+      { fetchImpl: fakeFetchOk() },
+    );
+    expect((await request(app).get("/api/blog/articles/vitest-delete-me")).status).toBe(200);
+
+    const res = await request(app).delete(`/api/internal/blog/${extId}`).set("Authorization", `Bearer ${TEST_KEY}`);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ success: true, deleted: true, externalId: extId });
+
+    expect((await request(app).get("/api/blog/articles/vitest-delete-me")).status).toBe(404);
+    const list = await request(app).get("/api/blog/articles");
+    expect(list.body.some((a: any) => a.slug === "vitest-delete-me")).toBe(false);
+    // exclusive images removed with the article
+    const imgs = await db.select({ id: blogImages.id }).from(blogImages).where(eq(blogImages.articleExternalId, extId));
+    expect(imgs.length).toBe(0);
+  });
+
+  it("is idempotent — deleting again returns success with deleted:false", async () => {
+    const res = await request(app).delete(`/api/internal/blog/${extId}`).set("Authorization", `Bearer ${TEST_KEY}`);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ success: true, deleted: false });
+  });
+
+  it("publishing still works after a delete", async () => {
+    const result = await handlePublish(
+      baseArticle({ externalId: `${PREFIX}del2`, title: "Publish After Delete", featuredImage: undefined }),
+    );
+    expect(result.httpStatus).toBe(201);
+    expect(result.article.status).toBe("published");
+  });
+});
+
 describe("helpers", () => {
   it("slugify produces URL-safe slugs", () => {
     expect(slugify("Héllo, World! 123")).toBe("hello-world-123");
