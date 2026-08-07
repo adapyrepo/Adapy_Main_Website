@@ -507,6 +507,32 @@ export function requireBlogApiKey(req: Request, res: Response, next: NextFunctio
 // Public helpers (visible articles)
 // ---------------------------------------------------------------------------
 
+/** Delete an article (and its exclusively-owned images) by externalId. Returns true if a row was removed. */
+export async function deleteArticleByExternalId(externalId: string): Promise<boolean> {
+  const [existing] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, externalId));
+  if (!existing) {
+    console.log(`[blog-delete] externalId=${externalId} found=false deleted=false (already absent)`);
+    return false;
+  }
+  // Snapshot the exact rows to remove BEFORE deleting, and delete only
+  // those specific ids atomically — a concurrent republish of the same
+  // externalId (which stores its images first) creates NEW rows/ids that
+  // this delete can never touch.
+  const imageRows = await db
+    .select({ id: blogImages.id })
+    .from(blogImages)
+    .where(eq(blogImages.articleExternalId, externalId));
+  const imageIds = imageRows.map((r) => r.id);
+  await db.transaction(async (tx) => {
+    await tx.delete(blogArticles).where(eq(blogArticles.id, existing.id));
+    if (imageIds.length > 0) {
+      await tx.delete(blogImages).where(inArray(blogImages.id, imageIds));
+    }
+  });
+  console.log(`[blog-delete] externalId=${externalId} found=true deleted=true`);
+  return true;
+}
+
 export function visibleArticleFilter() {
   const now = new Date();
   return or(
@@ -831,27 +857,10 @@ export function registerBlogPublishingRoutes(app: Express) {
       });
     }
     try {
-      const [existing] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, externalId));
-      if (!existing) {
-        console.log(`[blog-delete] externalId=${externalId} found=false deleted=false (already absent)`);
+      const deleted = await deleteArticleByExternalId(externalId);
+      if (!deleted) {
         return res.json({ success: true, deleted: false, message: "Article was already absent." });
       }
-      // Snapshot the exact rows to remove BEFORE deleting, and delete only
-      // those specific ids atomically — a concurrent republish of the same
-      // externalId (which stores its images first) creates NEW rows/ids that
-      // this delete can never touch.
-      const imageRows = await db
-        .select({ id: blogImages.id })
-        .from(blogImages)
-        .where(eq(blogImages.articleExternalId, externalId));
-      const imageIds = imageRows.map((r) => r.id);
-      await db.transaction(async (tx) => {
-        await tx.delete(blogArticles).where(eq(blogArticles.id, existing.id));
-        if (imageIds.length > 0) {
-          await tx.delete(blogImages).where(inArray(blogImages.id, imageIds));
-        }
-      });
-      console.log(`[blog-delete] externalId=${externalId} found=true deleted=true`);
       return res.json({
         success: true,
         deleted: true,

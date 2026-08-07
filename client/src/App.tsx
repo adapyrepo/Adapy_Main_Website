@@ -10,6 +10,7 @@ import Products from "@/pages/Products";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import AdminBlogPreview from "@/pages/AdminBlogPreview";
+import AdminBlog from "@/pages/AdminBlog";
 import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Platform from "@/pages/Platform";
@@ -80,6 +81,7 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/admin" component={AdminBlog} />
       <Route path="/admin/blog/:id/preview" component={AdminBlogPreview} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />

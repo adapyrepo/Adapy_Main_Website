@@ -6,6 +6,7 @@ import { z } from "zod";
 import { insertContactRequestSchema, insertSubscriberSchema } from "@shared/schema";
 import { registerLegacyRedirects } from "./redirects";
 import { registerBlogPublishingRoutes } from "./blogPublishing";
+import { registerAdminRoutes } from "./adminAuth";
 import { registerDynamicSitemaps } from "./dynamicSitemaps";
 
 const LEAD_FORM_UPSTREAMS = {
@@ -31,6 +32,7 @@ export async function registerRoutes(
 
   registerLegacyRedirects(app);
   registerBlogPublishingRoutes(app);
+  registerAdminRoutes(app);
   registerDynamicSitemaps(app);
 
   app.post("/api/lead-proxy", async (req, res) => {

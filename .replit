@@ -47,3 +47,5 @@ timeoutMs = 20000
 
 [userenv.shared]
 PUBLIC_SITE_URL = "https://adapy.com"
+ADMIN_EMAIL = "aaronw@adapy.com"
+ADMIN_PASSWORD_HASH = "5f7bb3820c98a8e7164efa2775faf108:25863a7ec4bc5b6a82fe10b6f4b98720dfcff3ff632826dc0e16ea7f0e14b6b45271fffb155b36a652c22edc3797f8f38c3e82cdb45d8b337ba7dbe3d95b2439"
