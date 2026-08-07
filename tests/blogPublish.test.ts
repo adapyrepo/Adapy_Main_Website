@@ -105,11 +105,12 @@ describe("validation", () => {
     expect(err.fields["featuredImage.alt"]).toBeTruthy();
   });
 
-  it("requires a featured image for published articles", async () => {
-    const err = await handlePublish(
-      baseArticle({ status: "published", featuredImage: undefined }),
-    ).catch((e) => e);
-    expect(err.fields["featuredImage.url"]).toBeTruthy();
+  it("allows publishing without a featured image (only externalId/title/excerpt/content required)", async () => {
+    const extId = `${PREFIX}noimg`;
+    const result = await handlePublish(baseArticle({ externalId: extId, status: "published", featuredImage: undefined, title: "No Image Publish Test" }));
+    expect(result.httpStatus).toBe(201);
+    expect(result.article.status).toBe("published");
+    expect(result.article.publishedAt).toBeTruthy();
   });
 });
 
@@ -198,15 +199,25 @@ describe("publishing and idempotency", () => {
     expect(rows.length).toBe(1);
   });
 
-  it("returns 409 when the same externalId arrives with different content", async () => {
+  it("updates the existing article in place when the same externalId arrives with different content", async () => {
+    const [before] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}pub1`));
     const body = baseArticle({
       externalId: `${PREFIX}pub1`,
       status: "published",
       title: "A Different Title",
     });
-    const err = await handlePublish(body, { fetchImpl: fakeFetchOk() }).catch((e) => e);
-    expect(err.httpStatus).toBe(409);
-    expect(err.code).toBe("EXTERNAL_ID_CONFLICT");
+    const result = await handlePublish(body, { fetchImpl: fakeFetchOk() });
+    expect(result.httpStatus).toBe(200);
+    expect((result as any).updated).toBe(true);
+    expect(result.article.id).toBe(before.id); // stable id
+    expect(result.article.slug).toBe(before.slug); // stable URL
+    expect(result.article.title).toBe("A Different Title");
+    expect(result.article.status).toBe("published");
+    const rows = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}pub1`));
+    expect(rows.length).toBe(1); // no duplicate rows
+    // old images replaced, exactly one image set remains
+    const imgs = await db.select({ id: blogImages.id }).from(blogImages).where(eq(blogImages.articleExternalId, `${PREFIX}pub1`));
+    expect(imgs.length).toBe(1);
   });
 
   it("generates a unique slug when the title collides", async () => {
@@ -229,13 +240,15 @@ describe("publishing and idempotency", () => {
 });
 
 describe("visibility", () => {
-  it("drafts are not publicly accessible", async () => {
-    const body = baseArticle({ externalId: `${PREFIX}draft1`, slug: "vitest-draft-article" });
-    await handlePublish(body, { fetchImpl: fakeFetchOk() });
+  it("draft submissions are coerced to published and immediately public", async () => {
+    const body = baseArticle({ externalId: `${PREFIX}draft1`, slug: "vitest-draft-article", status: "draft" });
+    const result = await handlePublish(body, { fetchImpl: fakeFetchOk() });
+    expect(result.article.status).toBe("published");
+    expect(result.article.publishedAt).toBeTruthy();
     const res = await request(app).get("/api/blog/articles/vitest-draft-article");
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(200);
     const list = await request(app).get("/api/blog/articles");
-    expect(list.body.some((a: any) => a.slug === "vitest-draft-article")).toBe(false);
+    expect(list.body.some((a: any) => a.slug === "vitest-draft-article")).toBe(true);
   });
 
   it("scheduled articles do not appear before publishAt", async () => {
@@ -281,11 +294,11 @@ describe("admin draft workflow", () => {
       .set("Authorization", `Bearer ${TEST_KEY}`)
       .send(baseArticle({ externalId: `${PREFIX}adminflow`, slug: "vitest-admin-flow", featuredImage: undefined }));
     expect(res.status).toBe(201);
-    expect(res.body.status).toBe("draft");
+    expect(res.body.status).toBe("published"); // approved articles publish immediately
     expect(res.body.adminUrl).toContain("/admin/blog/");
     expect(res.body.adminUrl).toContain("token=");
     expect(res.body.publicUrl).toContain("/blog/vitest-admin-flow");
-    expect(res.body.url).toBe(res.body.adminUrl); // drafts: url is the admin preview
+    expect(res.body.url).toBe(res.body.publicUrl); // published: url is the public URL
   });
 
   it("admin article endpoint requires a valid token", async () => {
@@ -296,35 +309,22 @@ describe("admin draft workflow", () => {
     expect(none.status).toBe(404);
     const good = await request(app).get(`/api/blog/admin/articles/${row.id}?token=${row.previewToken}`);
     expect(good.status).toBe(200);
-    expect(good.body.status).toBe("draft");
+    expect(good.body.status).toBe("published");
     expect(good.body.content).toContain("Hello");
   });
 
-  it("drafts list requires the API key and includes adminUrl", async () => {
+  it("drafts list requires the API key", async () => {
     const noAuth = await request(app).get("/api/blog/admin/drafts");
     expect(noAuth.status).toBe(401);
     const res = await request(app).get("/api/blog/admin/drafts").set("Authorization", `Bearer ${TEST_KEY}`);
     expect(res.status).toBe(200);
-    const found = res.body.find((d: any) => d.slug === "vitest-admin-flow");
-    expect(found).toBeTruthy();
-    expect(found.adminUrl).toContain("token=");
   });
 
-  it("admin publish flips a draft to published and makes it publicly visible", async () => {
-    const [row] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}adminflow`));
-    // hidden before
-    expect((await request(app).get("/api/blog/articles/vitest-admin-flow")).status).toBe(404);
-    const pub = await request(app).post(`/api/blog/admin/articles/${row.id}/publish?token=${row.previewToken}`);
-    expect(pub.status).toBe(200);
-    expect(pub.body.status).toBe("published");
-    // visible after, with publishedAt set
+  it("submission is immediately publicly visible with publishedAt set", async () => {
     const detail = await request(app).get("/api/blog/articles/vitest-admin-flow");
     expect(detail.status).toBe(200);
-    const [after] = await db.select().from(blogArticles).where(eq(blogArticles.id, row.id));
+    const [after] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, `${PREFIX}adminflow`));
     expect(after.publishedAt).toBeTruthy();
-    // idempotent re-publish
-    const again = await request(app).post(`/api/blog/admin/articles/${row.id}/publish?token=${row.previewToken}`);
-    expect(again.body.alreadyPublished).toBe(true);
   });
 });
 

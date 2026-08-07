@@ -43,7 +43,7 @@ changing it, republish the site so production picks it up.
 | `inlineImages[]` | optional | `{ sourceUrl, alt, caption }`. Their URLs inside `content` are rewritten to permanent Adapy-hosted URLs. |
 | `categories`, `tags` | optional | Arrays of strings. First category is shown on the blog card. |
 | `seo` | optional | `{ metaTitle, metaDescription, keywords[] }`. |
-| `status` | optional | `published` (default), `scheduled`, or `draft`. |
+| `status` | optional | `published` (default) or `scheduled`. Submissions are treated as pre-approved: `"draft"` is accepted for compatibility but is published immediately. |
 | `publishAt` | required for `scheduled` | ISO 8601. A `published` article with a future `publishAt` is treated as scheduled. |
 
 ### Image rules
@@ -58,7 +58,8 @@ changing it, republish the site so production picks it up.
 
 ## Example request
 
-See `scripts/sample-blog-publish.sh` — a safe draft-only test:
+See `scripts/sample-blog-publish.sh` — note: every submission (including
+`status: "draft"`) is published immediately, so test with disposable content:
 
 ```bash
 BASE_URL=https://adapy.com ADAPY_BLOG_API_KEY=... ./scripts/sample-blog-publish.sh
@@ -131,8 +132,11 @@ Errors (consistent shape):
   `https://adapy.com/blog/<slug>` using the existing blog design.
 - `scheduled` → stored and automatically visible once `publishAt` passes (checked
   at request time; no job system).
-- `draft` → stored, never publicly visible (blog index, detail page, sitemap, and
-  RSS all exclude it).
+- `draft` → coerced to `published` immediately (articles are approved upstream
+  in the Adapy management application before submission).
+- Re-submitting an existing `externalId` **updates that article in place**
+  (same `articleId` and slug/URL) and republishes it — the response has
+  `"updated": true`. No duplicates are ever created.
 - Published articles are automatically added to `/sitemap.xml` and `/sitemap.rss`,
   get SEO meta title/description, Open Graph article tags, and JSON-LD.
 

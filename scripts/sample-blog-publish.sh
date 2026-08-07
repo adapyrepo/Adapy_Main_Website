@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Safe sample request: creates a DRAFT article (never publicly visible).
+# Sample request. NOTE: every submission is published immediately (drafts are
+# coerced to published), so only run this with disposable/test content and
+# delete the article afterwards if needed.
 # Replace TEST_KEY_PLACEHOLDER with the real ADAPY_BLOG_API_KEY (never commit it).
 # For local testing use: BASE_URL=http://localhost:5000 ./scripts/sample-blog-publish.sh
 

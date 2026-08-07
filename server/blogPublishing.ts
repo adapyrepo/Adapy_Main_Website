@@ -413,13 +413,8 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
   }
   const input = parsed.data;
 
-  // Featured image rules
-  const willBePublic = input.status === "published" || input.status === "scheduled";
-  if (willBePublic && !input.featuredImage?.url) {
-    throw new PublishError(400, "VALIDATION_ERROR", "The article could not be published.", {
-      "featuredImage.url": "A featured image is required for published articles.",
-    });
-  }
+  // Featured image rules — optional (required fields are externalId, title,
+  // excerpt, content), but any provided image must have alt text.
   if (input.featuredImage?.url && !input.featuredImage.alt) {
     throw new PublishError(400, "VALIDATION_ERROR", "The article could not be published.", {
       "featuredImage.alt": "Alt text is required.",
@@ -433,30 +428,30 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
 
   const hash = payloadHash(input);
 
-  // Idempotency: check existing externalId
+  // Idempotency / upsert: articles arriving here were already approved in the
+  // Adapy management application, so the same externalId means "update &
+  // republish this article", never a conflict.
   const [existing] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, input.externalId));
-  if (existing) {
-    if (existing.payloadHash === hash) {
-      return { httpStatus: 200, article: existing, duplicate: true };
-    }
-    throw new PublishError(
-      409,
-      "EXTERNAL_ID_CONFLICT",
-      "An article with this externalId already exists with different content. Updates are not supported by this endpoint.",
-    );
+  if (existing && existing.payloadHash === hash && existing.status === "published") {
+    return { httpStatus: 200, article: existing, duplicate: true };
   }
 
-  // Slug
-  let slug = input.slug || slugify(input.title);
-  const [slugTaken] = await db.select({ id: blogArticles.id }).from(blogArticles).where(eq(blogArticles.slug, slug));
-  if (slugTaken || STATIC_BLOG_SLUGS.has(slug)) {
-    if (input.slug) {
-      throw new PublishError(409, "SLUG_CONFLICT", `The slug "${slug}" is already in use.`);
-    }
-    slug = `${slug}-${input.externalId.replace(/[^a-z0-9]/gi, "").slice(-8).toLowerCase() || crypto.randomBytes(3).toString("hex")}`;
-    const [stillTaken] = await db.select({ id: blogArticles.id }).from(blogArticles).where(eq(blogArticles.slug, slug));
-    if (stillTaken) {
-      throw new PublishError(409, "SLUG_CONFLICT", `The slug "${slug}" is already in use.`);
+  // Slug — updates keep their existing slug so published URLs stay stable.
+  let slug: string;
+  if (existing) {
+    slug = existing.slug;
+  } else {
+    slug = input.slug || slugify(input.title);
+    const [slugTaken] = await db.select({ id: blogArticles.id }).from(blogArticles).where(eq(blogArticles.slug, slug));
+    if (slugTaken || STATIC_BLOG_SLUGS.has(slug)) {
+      if (input.slug) {
+        throw new PublishError(409, "SLUG_CONFLICT", `The slug "${slug}" is already in use.`);
+      }
+      slug = `${slug}-${input.externalId.replace(/[^a-z0-9]/gi, "").slice(-8).toLowerCase() || crypto.randomBytes(3).toString("hex")}`;
+      const [stillTaken] = await db.select({ id: blogArticles.id }).from(blogArticles).where(eq(blogArticles.slug, slug));
+      if (stillTaken) {
+        throw new PublishError(409, "SLUG_CONFLICT", `The slug "${slug}" is already in use.`);
+      }
     }
   }
 
@@ -515,7 +510,10 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
 
     const now = new Date();
     const publishAt = input.publishAt ? new Date(input.publishAt) : null;
-    let status = input.status;
+    // Articles reaching this endpoint were already approved upstream, so
+    // "draft" is coerced to an immediate publish. Explicit future scheduling
+    // (status "scheduled" or a future publishAt) is still honored.
+    let status = input.status === "draft" ? "published" : input.status;
     let publishedAt: Date | null = null;
     if (status === "published") {
       if (publishAt && publishAt > now) {
@@ -525,28 +523,53 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
       }
     }
 
+    const articleFields = {
+      title: input.title,
+      excerpt: input.excerpt,
+      content,
+      authorName: input.author.name,
+      authorDisplayName: input.author.displayName ?? null,
+      featuredImageUrl,
+      featuredImageAlt: input.featuredImage?.alt ?? null,
+      featuredImageCaption: input.featuredImage?.caption ?? null,
+      categories: input.categories ?? [],
+      tags: input.tags ?? [],
+      seo: input.seo ?? {},
+      status,
+      publishAt,
+      payloadHash: hash,
+    };
+
+    if (existing) {
+      // Update & republish the existing article (stable id + slug)
+      const [updated] = await db
+        .update(blogArticles)
+        .set({
+          ...articleFields,
+          publishedAt: publishedAt ? existing.publishedAt ?? publishedAt : existing.publishedAt,
+          updatedAt: now,
+        })
+        .where(eq(blogArticles.id, existing.id))
+        .returning();
+      if (!updated) throw new Error("Article update did not complete.");
+      // Remove images belonging to the previous version (keep the new set)
+      const oldImages = await db.select({ id: blogImages.id }).from(blogImages).where(eq(blogImages.articleExternalId, input.externalId));
+      const stale = oldImages.map((i) => i.id).filter((id) => !storedImageIds.includes(id));
+      if (stale.length > 0) {
+        await db.delete(blogImages).where(inArray(blogImages.id, stale));
+      }
+      return { httpStatus: 200, article: updated, duplicate: false, updated: true };
+    }
+
     let created: BlogArticle;
     try {
       [created] = await db
         .insert(blogArticles)
         .values({
-        externalId: input.externalId,
-        title: input.title,
-        slug,
-        excerpt: input.excerpt,
-        content,
-        authorName: input.author.name,
-        authorDisplayName: input.author.displayName ?? null,
-        featuredImageUrl,
-        featuredImageAlt: input.featuredImage?.alt ?? null,
-        featuredImageCaption: input.featuredImage?.caption ?? null,
-        categories: input.categories ?? [],
-        tags: input.tags ?? [],
-        seo: input.seo ?? {},
-        status,
-        publishAt,
-        publishedAt,
-          payloadHash: hash,
+          externalId: input.externalId,
+          slug,
+          ...articleFields,
+          publishedAt,
           previewToken: crypto.randomBytes(24).toString("hex"),
         })
         .returning();
@@ -556,13 +579,12 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
       if (err?.code === "23505" || err?.cause?.code === "23505") {
         const [winner] = await db.select().from(blogArticles).where(eq(blogArticles.externalId, input.externalId));
         if (winner) {
+          // Another request created this externalId concurrently — treat as
+          // the idempotent success case and drop our redundant images.
           if (storedImageIds.length > 0) {
             await db.delete(blogImages).where(inArray(blogImages.id, storedImageIds));
           }
-          if (winner.payloadHash === hash) {
-            return { httpStatus: 200, article: winner, duplicate: true };
-          }
-          throw new PublishError(409, "EXTERNAL_ID_CONFLICT", "An article with this externalId already exists with different content.");
+          return { httpStatus: 200, article: winner, duplicate: true };
         }
         throw new PublishError(409, "SLUG_CONFLICT", `The slug "${slug}" is already in use.`);
       }
@@ -619,6 +641,7 @@ export function registerBlogPublishingRoutes(app: Express) {
           publicUrl: articleUrl(a),
           publishedAt: (effectivePublishedAt(a) ?? a.createdAt).toISOString(),
           duplicate: result.duplicate,
+          updated: (result as any).updated ?? false,
         });
       } catch (err) {
         if (err instanceof PublishError) return sendError(res, err);
