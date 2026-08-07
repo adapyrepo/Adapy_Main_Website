@@ -90,7 +90,7 @@ export default function Blog() {
                 date: formatArticleDate(a.publishedAt),
                 author: a.author,
                 category: a.categories[0] ?? "Industry Insights",
-                image: a.featuredImage.url ?? "",
+                image: a.featuredImage.url || "/og-image.jpg",
                 imageAlt: a.featuredImage.alt ?? a.title,
               })),
               ...blogPosts
@@ -112,6 +112,11 @@ export default function Blog() {
                     <img
                       src={post.image}
                       alt={post.imageAlt}
+                      loading="lazy"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.src.endsWith("/og-image.jpg")) img.src = "/og-image.jpg";
+                      }}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4">

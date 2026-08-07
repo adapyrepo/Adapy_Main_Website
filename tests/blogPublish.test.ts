@@ -8,6 +8,10 @@ import {
   registerBlogPublishingRoutes,
   handlePublish,
   sanitizeArticleHtml,
+  extractSeoPreamble,
+  prepareIncomingContent,
+  looksLikeMarkdown,
+  contentNeedsRepair,
   slugify,
   PublishError,
 } from "../server/blogPublishing";
@@ -111,6 +115,106 @@ describe("validation", () => {
     expect(result.httpStatus).toBe(201);
     expect(result.article.status).toBe("published");
     expect(result.article.publishedAt).toBeTruthy();
+  });
+});
+
+describe("markdown + SEO-preamble cleanup", () => {
+  const raw = [
+    "**Title Tag:** Great Title | Adapy",
+    "**Meta Description:** A meta description.",
+    "**H1:** Real Heading",
+    "",
+    "**Introduction**",
+    "",
+    "First real paragraph.",
+    "",
+    "## Section",
+    "",
+    "- one",
+    "- two",
+    "",
+    "---",
+    "",
+    "> quote",
+  ].join("\n");
+
+  it("extracts SEO labels and starts the body at the real introduction", () => {
+    const p = extractSeoPreamble(raw);
+    expect(p.metaTitle).toBe("Great Title | Adapy");
+    expect(p.metaDescription).toBe("A meta description.");
+    expect(p.h1).toBe("Real Heading");
+    expect(p.body.startsWith("First real paragraph.")).toBe(true);
+  });
+
+  it("converts markdown to sanitized HTML without raw markdown characters", () => {
+    const { html, metaTitle } = prepareIncomingContent(raw);
+    expect(metaTitle).toBe("Great Title | Adapy");
+    expect(html).toContain("<p>First real paragraph.</p>");
+    expect(html).toContain("<h2>Section</h2>");
+    expect(html).toContain("<li>one</li>");
+    expect(html).toContain("<blockquote>");
+    expect(html).not.toContain("**");
+    expect(html).not.toContain("Title Tag");
+  });
+
+  it("leaves real HTML content untouched (aside from sanitization)", () => {
+    const html = "<h2>Hi</h2><p>Already **fine** HTML with <strong>tags</strong>.</p>";
+    expect(looksLikeMarkdown(html)).toBe(false);
+    expect(contentNeedsRepair(html)).toBe(false);
+    expect(prepareIncomingContent(html).html).toContain("<h2>Hi</h2>");
+  });
+
+  it("demotes body H1s so the article page keeps a single H1", () => {
+    const { html } = prepareIncomingContent("# Big Title\n\ntext");
+    expect(html).not.toContain("<h1");
+    expect(html).toContain("<h2>Big Title</h2>");
+  });
+
+  it("never strips a legitimate leading markdown heading like '# H1'", () => {
+    const md = "# H1\n\nOpening paragraph stays.\n\nMore **text**.";
+    const p = extractSeoPreamble(md);
+    expect(p.h1).toBeUndefined();
+    expect(p.body.startsWith("# H1")).toBe(true);
+    const { html } = prepareIncomingContent(md);
+    expect(html).toContain("<h2>H1</h2>"); // demoted, not deleted
+    expect(html).toContain("Opening paragraph stays.");
+  });
+
+  it("keeps ordinary prose that merely mentions a label word without a colon", () => {
+    const md = "Title Tag placement matters in SEO.\n\nSecond paragraph.";
+    const p = extractSeoPreamble(md);
+    expect(p.body.startsWith("Title Tag placement")).toBe(true);
+  });
+
+  it("strips an HTML-form SEO preamble", () => {
+    const html =
+      "<p><strong>Title Tag:</strong> HTML Title | Adapy</p><p><strong>Meta Description:</strong> HTML meta.</p><p><strong>Introduction</strong></p><p>Real HTML intro.</p><h2>Section</h2>";
+    expect(contentNeedsRepair(html)).toBe(true);
+    const r = prepareIncomingContent(html);
+    expect(r.metaTitle).toBe("HTML Title | Adapy");
+    expect(r.metaDescription).toBe("HTML meta.");
+    expect(r.html).not.toContain("Title Tag");
+    expect(r.html).toContain("<p>Real HTML intro.</p>");
+    expect(r.html).toContain("<h2>Section</h2>");
+  });
+
+  it("flags stored raw-markdown content as needing repair", () => {
+    expect(contentNeedsRepair("**Title Tag:** x\n\nSome **bold** text\n\n## H")).toBe(true);
+  });
+
+  it("publish endpoint stores markdown submissions as rendered HTML with extracted seo", async () => {
+    const result = await handlePublish(
+      baseArticle({
+        externalId: `${PREFIX}md1`,
+        title: "Markdown Endpoint Test",
+        featuredImage: undefined,
+        content: raw,
+      }),
+    );
+    expect(result.article.content).toContain("<h2>Section</h2>");
+    expect(result.article.content).not.toContain("Title Tag");
+    expect((result.article.seo as any).metaTitle).toBe("Great Title | Adapy");
+    expect((result.article.seo as any).metaDescription).toBe("A meta description.");
   });
 });
 

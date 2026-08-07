@@ -4,6 +4,7 @@ import crypto from "crypto";
 import dns from "dns/promises";
 import net from "net";
 import sanitizeHtml from "sanitize-html";
+import { marked } from "marked";
 import rateLimit from "express-rate-limit";
 import { db } from "./db";
 import { blogArticles, blogImages, type BlogArticle } from "@shared/schema";
@@ -103,6 +104,164 @@ export function sanitizeArticleHtml(html: string): string {
       },
     },
   });
+}
+
+// ---------------------------------------------------------------------------
+// Incoming content normalization (Markdown + SEO-preamble cleanup)
+//
+// The Back Office sends generated article bodies as Markdown, often prefixed
+// with SEO-writing labels such as "**Title Tag:** …" / "**Meta Description:** …".
+// Those labels must never appear in the public body — they are extracted into
+// structured fields, and the remaining Markdown is converted to sanitized HTML.
+// ---------------------------------------------------------------------------
+
+// A colon is REQUIRED after the label name so real headings/prose such as
+// "# H1" or a paragraph that merely mentions "Title Tag" are never stripped.
+// Matches "Label: value", "**Label:** value", and "**Label**: value".
+const SEO_LABEL_NAMES = "title tag|meta title|seo title|meta description|h1|slug|url slug|keywords?|focus keyword";
+const SEO_LABEL_RE = new RegExp(
+  `^\\s*(?:#{1,6}\\s+)?(?:\\*\\*|__)?\\s*(${SEO_LABEL_NAMES})\\s*(?::\\s*(?:\\*\\*|__)?|(?:\\*\\*|__)\\s*:)\\s*(.*?)\\s*$`,
+  "i",
+);
+const INTRO_LABEL_RE = /^\s*(?:#{1,6}\s+)?(?:\*\*|__)\s*introduction\s*:?\s*(?:\*\*|__)\s*:?\s*$/i;
+// Same labels when they arrive as already-formatted HTML paragraphs, e.g.
+// <p><strong>Title Tag:</strong> …</p>
+const SEO_LABEL_TEXT_RE = new RegExp(`^\\s*(${SEO_LABEL_NAMES})\\s*:\\s*(.*?)\\s*$`, "i");
+
+export interface ExtractedSeoPreamble {
+  metaTitle?: string;
+  metaDescription?: string;
+  h1?: string;
+  body: string;
+}
+
+/** Strips leading SEO-instruction labels from generated content and returns
+ *  their values plus the cleaned body (which starts at the real article). */
+export function extractSeoPreamble(raw: string): ExtractedSeoPreamble {
+  const lines = raw.split(/\r?\n/);
+  const out: ExtractedSeoPreamble = { body: raw };
+  let i = 0;
+  let pendingKey: string | null = null;
+  const setValue = (key: string, value: string) => {
+    const v = value.replace(/^\*\*|\*\*$/g, "").trim();
+    if (!v) return;
+    const k = key.toLowerCase();
+    if ((k === "title tag" || k === "meta title" || k === "seo title") && !out.metaTitle) out.metaTitle = v;
+    else if (k === "meta description" && !out.metaDescription) out.metaDescription = v;
+    else if (k === "h1" && !out.h1) out.h1 = v;
+    // slug/keywords labels are dropped (slug behavior must not change)
+  };
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim() || /^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
+      // blank line or separator inside the preamble
+      if (pendingKey) pendingKey = null;
+      i++;
+      continue;
+    }
+    const m = line.match(SEO_LABEL_RE);
+    if (m) {
+      if (m[2]) setValue(m[1], m[2]);
+      else pendingKey = m[1];
+      i++;
+      continue;
+    }
+    if (pendingKey) {
+      setValue(pendingKey, line.trim());
+      pendingKey = null;
+      i++;
+      continue;
+    }
+    if (INTRO_LABEL_RE.test(line)) {
+      // a bare "**Introduction**" label line — drop it, body starts next
+      i++;
+      break;
+    }
+    break; // first real content line
+  }
+  out.body = lines.slice(i).join("\n").replace(/^\s*(-{3,}|\*{3,}|_{3,})\s*\n/, "").trimStart();
+  if (!out.body.trim()) out.body = raw; // never blank the article by over-stripping
+  return out;
+}
+
+/** Strips leading SEO-label paragraphs from HTML content, e.g.
+ *  `<p><strong>Title Tag:</strong> …</p>`. Returns extracted values + body. */
+export function extractHtmlSeoPreamble(html: string): ExtractedSeoPreamble {
+  const out: ExtractedSeoPreamble = { body: html };
+  let rest = html;
+  const blockRe = /^\s*<(p|h[2-6])(?:\s[^>]*)?>([\s\S]*?)<\/\1>\s*|^\s*<hr\s*\/?>\s*/i;
+  const setValue = (key: string, value: string) => {
+    const k = key.toLowerCase();
+    if ((k === "title tag" || k === "meta title" || k === "seo title") && !out.metaTitle) out.metaTitle = value;
+    else if (k === "meta description" && !out.metaDescription) out.metaDescription = value;
+    else if (k === "h1" && !out.h1) out.h1 = value;
+  };
+  while (true) {
+    const m = rest.match(blockRe);
+    if (!m) break;
+    if (m[2] === undefined) {
+      // <hr> separator inside the preamble
+      rest = rest.slice(m[0].length);
+      continue;
+    }
+    const text = m[2].replace(/<[^>]+>/g, "").trim();
+    const label = text.match(SEO_LABEL_TEXT_RE);
+    if (label) {
+      if (label[2]) setValue(label[1], label[2]);
+      rest = rest.slice(m[0].length);
+      continue;
+    }
+    if (/^introduction:?$/i.test(text) && /<(strong|b)\b/i.test(m[2])) {
+      rest = rest.slice(m[0].length);
+      break;
+    }
+    break;
+  }
+  if (rest.trim()) out.body = rest.trimStart();
+  else out.body = html; // never blank the article
+  return out;
+}
+
+/** True when the content is Markdown (or plain text) rather than HTML. */
+export function looksLikeMarkdown(content: string): boolean {
+  if (/<(p|h[1-6]|ul|ol|div|blockquote|table|article|section)\b/i.test(content)) return false;
+  return /(^|\n)#{1,6}\s|\*\*[^*\n]+\*\*|(^|\n)\s*[-*]\s+\S|(^|\n)\s*\d+\.\s+\S|(^|\n)\s*(-{3,}|\*{3,})\s*(\n|$)|(^|\n)>\s+\S/.test(content) || !/<[a-z][^>]*>/i.test(content);
+}
+
+/** True when a stored article body still needs cleanup (raw Markdown or SEO labels). */
+export function contentNeedsRepair(content: string): boolean {
+  if (looksLikeMarkdown(content)) return true;
+  if (SEO_LABEL_RE.test(content.split(/\r?\n/, 1)[0] ?? "")) return true;
+  // HTML-form preamble, e.g. <p><strong>Title Tag:</strong> …</p>
+  const firstBlock = content.match(/^\s*<(p|h[2-6])(?:\s[^>]*)?>([\s\S]*?)<\/\1>/i);
+  if (firstBlock) {
+    const text = firstBlock[2].replace(/<[^>]+>/g, "").trim();
+    return SEO_LABEL_TEXT_RE.test(text);
+  }
+  return false;
+}
+
+export interface PreparedContent {
+  html: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  h1?: string;
+}
+
+/** Extracts the SEO preamble, converts Markdown to HTML when needed, and sanitizes. */
+export function prepareIncomingContent(raw: string): PreparedContent {
+  if (looksLikeMarkdown(raw)) {
+    const { body, metaTitle, metaDescription, h1 } = extractSeoPreamble(raw);
+    let html = marked.parse(body, { async: false }) as string;
+    // The article title is rendered separately as the page's single H1 —
+    // demote any H1s that came through in the body.
+    html = html.replace(/<h1(\s[^>]*)?>/gi, "<h2>").replace(/<\/h1>/gi, "</h2>");
+    return { html: sanitizeArticleHtml(html), metaTitle, metaDescription, h1 };
+  }
+  // HTML input: strip an HTML-form SEO preamble, then sanitize as before.
+  const sanitized = sanitizeArticleHtml(raw);
+  const { body, metaTitle, metaDescription, h1 } = extractHtmlSeoPreamble(sanitized);
+  return { html: body, metaTitle, metaDescription, h1 };
 }
 
 // ---------------------------------------------------------------------------
@@ -455,8 +614,13 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
     }
   }
 
-  // Sanitize content
-  let content = sanitizeArticleHtml(input.content);
+  // Clean the incoming content: strip SEO-writing labels into structured
+  // fields, convert Markdown to HTML when needed, and sanitize.
+  const prepared = prepareIncomingContent(input.content);
+  let content = prepared.html;
+  const seo: Record<string, unknown> = { ...(input.seo ?? {}) };
+  if (prepared.metaTitle && !seo.metaTitle) seo.metaTitle = prepared.metaTitle;
+  if (prepared.metaDescription && !seo.metaDescription) seo.metaDescription = prepared.metaDescription;
 
   // Download and store images
   const fetchImpl = deps.fetchImpl ?? fetch;
@@ -534,7 +698,7 @@ export async function handlePublish(body: unknown, deps: PublishDeps = {}) {
       featuredImageCaption: input.featuredImage?.caption ?? null,
       categories: input.categories ?? [],
       tags: input.tags ?? [],
-      seo: input.seo ?? {},
+      seo,
       status,
       publishAt,
       payloadHash: hash,
@@ -669,12 +833,34 @@ export function registerBlogPublishingRoutes(app: Express) {
     );
   });
 
+  // Lazy repair: articles stored before Markdown/SEO-preamble cleanup existed
+  // are cleaned in place the first time they are served.
+  const repairIfNeeded = async (a: BlogArticle): Promise<BlogArticle> => {
+    if (!a.content || !contentNeedsRepair(a.content)) return a;
+    try {
+      const prepared = prepareIncomingContent(a.content);
+      const seo: Record<string, unknown> = { ...((a.seo as any) ?? {}) };
+      if (prepared.metaTitle && !seo.metaTitle) seo.metaTitle = prepared.metaTitle;
+      if (prepared.metaDescription && !seo.metaDescription) seo.metaDescription = prepared.metaDescription;
+      const [updated] = await db
+        .update(blogArticles)
+        .set({ content: prepared.html, seo, updatedAt: new Date() })
+        .where(eq(blogArticles.id, a.id))
+        .returning();
+      return updated ?? a;
+    } catch (err) {
+      console.error("Blog article repair failed:", err);
+      return a;
+    }
+  };
+
   // Public: single article by slug
   app.get("/api/blog/articles/:slug", async (req, res) => {
-    const [a] = await db.select().from(blogArticles).where(eq(blogArticles.slug, req.params.slug));
+    let [a] = await db.select().from(blogArticles).where(eq(blogArticles.slug, req.params.slug));
     if (!a || !isArticleVisible(a)) {
       return res.status(404).json({ message: "Article not found" });
     }
+    a = await repairIfNeeded(a);
     res.json(toPublicArticle(a));
   });
 

@@ -114,22 +114,24 @@ export function ApiBlogArticleView({ slug, article, isLoading, formatDate }: Pro
         </div>
       </section>
 
-      {/* Hero image */}
-      {article.featuredImage?.url && (
-        <section className="bg-white">
+      {/* Hero image — falls back to the Adapy brand image when missing/broken */}
+      <section className="bg-white">
           <div className="container mx-auto px-6 max-w-5xl pt-10 md:pt-14">
             <figure>
-              <div className="rounded-3xl overflow-hidden border border-black/10 shadow-2xl aspect-[16/8] bg-black/5">
+              <div className="rounded-3xl overflow-hidden border border-black/10 shadow-2xl aspect-video bg-black/5">
                 <img
-                  src={article.featuredImage.url}
-                  fetchPriority="high"
+                  src={article.featuredImage?.url || "/og-image.jpg"}
                   decoding="async"
-                  alt={article.featuredImage.alt ?? article.title}
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (!img.src.endsWith("/og-image.jpg")) img.src = "/og-image.jpg";
+                  }}
+                  alt={article.featuredImage?.alt || article.title}
                   className="w-full h-full object-cover"
                   data-testid="img-article-hero"
                 />
               </div>
-              {article.featuredImage.caption && (
+              {article.featuredImage?.caption && (
                 <figcaption className="mt-3 text-sm text-black/50 text-center italic">
                   {article.featuredImage.caption}
                 </figcaption>
@@ -137,7 +139,7 @@ export function ApiBlogArticleView({ slug, article, isLoading, formatDate }: Pro
             </figure>
           </div>
         </section>
-      )}
+      
 
       {/* Article header strip */}
       <section className="bg-white">

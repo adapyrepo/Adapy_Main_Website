@@ -1,0 +1,197 @@
+Repair the Adapy.com blog article renderer and internal publishing endpoint. Do not redesign the rest of the website or alter existing working pages.
+
+CONFIRMED PROBLEMS
+
+1. Published article content is displayed as raw text.
+2. Markdown such as **bold**, headings, lists, and --- appears literally.
+3. SEO-writing instructions such as:
+   **Title Tag:**
+   **Meta Description:**
+   **H1:**
+   **Introduction**
+   are appearing inside the public article body.
+4. The article page has no properly formatted title/header structure.
+5. The featured image is missing or broken.
+6. The blog-list card shows a broken image, with text incorrectly appearing in the image area.
+7. The category badge overlaps the broken image/title.
+8. Mobile and desktop layouts both need to work correctly.
+
+REQUIRED IMPLEMENTATION
+
+A. STRUCTURED ARTICLE FIELDS
+
+Ensure blog articles support and store these separate fields:
+
+- title
+- metaTitle
+- metaDescription
+- excerpt
+- content
+- featuredImageUrl
+- featuredImageAlt
+- category
+- slug
+- status
+- publishedAt
+- externalId
+
+Do not place the title, metadata, category, or image information inside the article body.
+
+B. CLEAN INCOMING CONTENT
+
+Update POST /api/internal/blog/publish so it cleans incoming generated content before saving.
+
+If the content begins with labels such as:
+
+- **Title Tag:**
+- **Meta Description:**
+- **H1:**
+- **Introduction**
+- Title Tag:
+- Meta Description:
+- H1:
+
+extract those values into their proper structured fields and remove those lines from the public article body.
+
+The public content must begin with the actual article introduction, not SEO instructions.
+
+Do not remove legitimate headings, paragraphs, numbered lists, bullet lists, links, or emphasis from the article itself.
+
+C. MARKDOWN RENDERING
+
+The article body contains Markdown. Render it as formatted content rather than plain text.
+
+Use the project’s existing Markdown renderer if one exists. Otherwise use a maintained Markdown renderer compatible with the current framework.
+
+Support:
+
+- H2 and H3 headings
+- Paragraphs
+- Bold and italic text
+- Bulleted and numbered lists
+- Links
+- Blockquotes
+- Horizontal rules
+
+Sanitize rendered output. Do not use unsafe raw HTML injection.
+
+Do not display the body using one plain `<div>` or `<p>` containing the entire content string.
+
+D. ARTICLE PAGE LAYOUT
+
+Create a clean, readable article layout consistent with the existing Adapy.com design:
+
+1. Existing site header
+2. Back to Blog link
+3. Category badge
+4. Article title as one H1
+5. Excerpt
+6. Published date
+7. Large featured image
+8. Properly formatted article body
+9. Existing site footer
+
+Use:
+
+- A readable content width of approximately 760–850px
+- Responsive typography
+- Comfortable paragraph spacing and line height
+- Clear H2/H3 hierarchy
+- Proper spacing for lists
+- No text overlap
+- No raw Markdown characters
+
+E. FEATURED IMAGE
+
+The publishing endpoint must accept:
+
+- featuredImageUrl
+- featuredImageAlt
+
+Save both values with the article.
+
+On the public article page:
+
+- Display the image below the title/excerpt area.
+- Use a responsive 16:9 container.
+- Use `object-fit: cover`.
+- Preserve rounded corners consistent with the website.
+- Use meaningful alt text.
+
+On the blog listing cards:
+
+- Use the same featured image.
+- Keep the image in a fixed responsive aspect-ratio container.
+- Do not place the article title inside the image container.
+- Do not allow the category badge to overlap the title.
+- Do not render a broken-image icon.
+
+F. IMAGE FALLBACK
+
+Add or use an existing Adapy-branded fallback blog image when `featuredImageUrl` is missing or fails to load.
+
+Requirements:
+
+- Confirm the fallback asset actually exists in the deployed project.
+- Do not reference an imaginary file path.
+- If the remote image fails, switch to the verified fallback.
+- The card and article page must never show a broken image icon.
+- Do not use the article title as an image URL or image source.
+
+G. EXISTING BROKEN ARTICLE
+
+Repair the existing article:
+
+“Why Some Equipment Never Gets Used: Data From 10,000+ Usage Sessions”
+
+Use its `externalId` to update the existing record rather than creating a duplicate.
+
+For this article:
+
+- Extract and store the title correctly.
+- Extract the meta description.
+- Remove SEO labels from the article body.
+- Render the body as Markdown.
+- Assign the verified fallback image temporarily if no valid featured image was received.
+- Ensure its blog card and article page render correctly.
+
+H. SEO
+
+Use:
+
+- metaTitle for the HTML title
+- metaDescription for the description meta tag
+- featuredImageUrl for Open Graph and social sharing images
+- title as the page H1
+
+There must be only one H1 on the article page.
+
+I. PRESERVE EXISTING FUNCTIONALITY
+
+Do not change:
+
+- API-key authentication
+- Existing public pages
+- Existing published articles except where needed for renderer compatibility
+- Login
+- Navigation
+- Analytics
+- Slug behavior
+- Unrelated database tables
+
+J. VERIFICATION
+
+Before publishing, verify:
+
+1. The article page contains no visible “Title Tag,” “Meta Description,” or “H1” labels.
+2. Markdown is rendered properly.
+3. The full article is divided into readable paragraphs and headings.
+4. The featured image loads.
+5. A failed image uses the verified fallback.
+6. The blog card has no broken image or overlapping text.
+7. Desktop and mobile layouts are correct.
+8. The article remains accessible at its existing slug.
+9. No duplicate article was created.
+10. The production build completes successfully.
+
+Then deploy the corrected Adapy.com production website.
