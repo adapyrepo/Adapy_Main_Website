@@ -24,10 +24,18 @@ import {
   X
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
+import { computeMomentCount } from "@/lib/mobilityMoments";
 import ecosystemDiagram from "@assets/diagram_adapy_1785260728077.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
+  const [momentCount, setMomentCount] = useState(() => computeMomentCount(Date.now()));
+
+  // Keep the hero number in lockstep with the header ticker (same shared source).
+  useEffect(() => {
+    const tick = setInterval(() => setMomentCount(computeMomentCount(Date.now())), 60_000);
+    return () => clearInterval(tick);
+  }, []);
   const [activeVideo, setActiveVideo] = useState<{
     videoUrl: string;
     title: string;
@@ -65,10 +73,10 @@ export default function Platform() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.15] max-w-5xl mx-auto">
-              237,000+ Moments of Mobility and&nbsp;Counting.
+              {momentCount.toLocaleString()} Moments of Mobility and&nbsp;Counting.
             </h1>
             <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Every one represents a moment someone moved forward without waiting or asking for help. With Adapy, you can independently control your wheelchair lift, transfer seat, ramp, doors, and more—all from one accessible platform.
+              Every one represents a moment someone moved forward without waiting or asking for help. With Adapy, you can independently control your wheelchair lift, transfer seat, ramp, doors, and more—all from your smartphone.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button

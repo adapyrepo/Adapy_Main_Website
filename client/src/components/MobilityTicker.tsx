@@ -3,36 +3,7 @@ import { useState, useEffect } from "react";
 import { Info, Share2, Mail, Link2, Check, ChevronRight } from "lucide-react";
 import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si";
 
-// Deterministic per-day pseudo-random in [200, 250]
-function dailyIncrement(dayIndex: number) {
-  let h = dayIndex * 2654435761;
-  h ^= h >>> 16;
-  h = Math.imul(h, 2246822507);
-  h ^= h >>> 13;
-  h = Math.imul(h, 3266489909);
-  h ^= h >>> 16;
-  const r = (h >>> 0) / 4294967296;
-  return 200 + Math.floor(r * 51); // 200..250
-}
-
-const BASE_COUNT = 218707;
-const BASE_DATE = Date.UTC(2026, 3, 17); // April 17, 2026
-const MS_PER_DAY = 86_400_000;
-
-function computeMomentCount(now: number) {
-  const daysSince = Math.floor((now - BASE_DATE) / MS_PER_DAY);
-  let total = BASE_COUNT;
-  for (let i = 0; i < daysSince; i++) {
-    total += dailyIncrement(i);
-  }
-  // Smoothly accumulate today's increment across the day
-  if (daysSince >= 0) {
-    const todayInc = dailyIncrement(daysSince);
-    const fraction = ((now - BASE_DATE) % MS_PER_DAY) / MS_PER_DAY;
-    total += Math.floor(todayInc * fraction);
-  }
-  return total;
-}
+import { computeMomentCount } from "@/lib/mobilityMoments";
 
 export function MobilityTicker() {
   // Pre-built data with a distinct up-down-up movement
