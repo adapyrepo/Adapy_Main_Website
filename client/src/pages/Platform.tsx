@@ -65,7 +65,7 @@ export default function Platform() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.15] max-w-5xl mx-auto">
-              237,000+ Moments of Mobility—and&nbsp;Counting.
+              237,000+ Moments of Mobility and&nbsp;Counting.
             </h1>
             <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-10 leading-relaxed">
               Every one represents a moment someone moved forward without waiting or asking for help. With Adapy, you can independently control your wheelchair lift, transfer seat, ramp, doors, and more—all from one accessible platform.
