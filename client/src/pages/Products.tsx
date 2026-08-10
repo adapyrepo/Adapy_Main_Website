@@ -7,10 +7,12 @@ import { Link } from "wouter";
 import { useSEO } from "@/hooks/use-seo";
 import smartHubDiagram from "@assets/diagram_adapy_1785260728077.png";
 import mobileAppPhoto from "@assets/Screenshot_2026-08-10_at_1.03.55_PM_1786388640836.png";
+import mobilityOpticsDashboard from "@assets/MO_1786389215717.png";
 
 const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
   "Adapy Smart Hub": smartHubDiagram,
   "Adapy Mobile App": mobileAppPhoto,
+  "Mobility Optics": mobilityOpticsDashboard,
 };
 
 export default function Products() {
