@@ -151,6 +151,15 @@ export async function registerRoutes(
 }
 
 async function seedDatabase() {
+  // One-time rename (Aug 2026): "Adapy Pathways" became "Mobility Optics".
+  // Idempotent — no-op once every environment's row is renamed.
+  {
+    const { db } = await import("./db");
+    const { products } = await import("@shared/schema");
+    const { eq } = await import("drizzle-orm");
+    await db.update(products).set({ name: "Mobility Optics" }).where(eq(products.name, "Adapy Pathways"));
+  }
+
   const existingProducts = await storage.getProducts();
   if (existingProducts.length === 0) {
     const { db } = await import("./db");
@@ -172,7 +181,7 @@ async function seedDatabase() {
         isFeatured: true
       },
       {
-        name: "Adapy Pathways",
+        name: "Mobility Optics",
         tagline: "Intelligence for Fleets",
         description: "Cloud platform for real-time monitoring, fleet management, reporting, and compliance documentation.",
         features: ["Fleet management", "Compliance reporting", "Predictive maintenance"],

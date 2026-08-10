@@ -428,7 +428,7 @@ export default function CDRSPortal() {
             </div>
             <p className="mt-8 text-center text-slate-400 text-xs font-medium uppercase tracking-widest">
               Interface preview &mdash; full clinician portal accessible
-              via Adapy Pathways for CDRS
+              via Mobility Optics for CDRS
             </p>
           </div>
         </div>

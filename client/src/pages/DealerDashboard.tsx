@@ -86,7 +86,7 @@ export default function DealerDashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Adapy Pathways</span>
+              <span className="text-sm font-bold tracking-widest text-[#0071e3] uppercase block mb-4">Mobility Optics</span>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
                 Dealer Dashboard
               </h1>
@@ -268,7 +268,7 @@ export default function DealerDashboard() {
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="text-4xl font-bold mb-8">Ready to Modernize Your Service Department?</h2>
           <p className="text-xl text-white/80 mb-12">
-            Join the network of adaptive mobility dealers using Adapy Pathways to drive efficiency and revenue.
+            Join the network of adaptive mobility dealers using Mobility Optics to drive efficiency and revenue.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact">

@@ -6,6 +6,12 @@ import { Loader2, ArrowRight, Check } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO } from "@/hooks/use-seo";
 import smartHubDiagram from "@assets/diagram_adapy_1785260728077.png";
+import mobileAppPhoto from "@assets/Screenshot_2026-08-10_at_1.03.55_PM_1786388640836.png";
+
+const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
+  "Adapy Smart Hub": smartHubDiagram,
+  "Adapy Mobile App": mobileAppPhoto,
+};
 
 export default function Products() {
   useSEO({
@@ -70,7 +76,7 @@ export default function Products() {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-secondary shadow-2xl shadow-black/5 group">
                   {/* black and white smart home device minimalistic */}
                   <img 
-                    src={product.imageUrl || (product.name === "Adapy Smart Hub" ? smartHubDiagram : `https://images.unsplash.com/photo-1558002038-109177381792?auto=format&fit=crop&q=80&w=1000`)} 
+                    src={product.imageUrl || PRODUCT_FALLBACK_IMAGES[product.name] || `https://images.unsplash.com/photo-1558002038-109177381792?auto=format&fit=crop&q=80&w=1000`} 
                     alt={`${product.name} — Adapy adaptive mobility product`}
                     loading="lazy"
                     decoding="async"
