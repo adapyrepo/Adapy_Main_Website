@@ -97,7 +97,7 @@ export default function Platform() {
               and&nbsp;Counting.
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mb-10 leading-relaxed">
-              Each one represents a moment someone moved forward without waiting or asking for help—controlling their lift, seat, ramp, doors, and more from one smartphone.
+              Each one represents a moment someone moved forward without waiting or asking for help, controlling their lift, seat, ramp, doors, and more from one smartphone.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
