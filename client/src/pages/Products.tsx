@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Loader2, ArrowRight, Check } from "lucide-react";
 import { Link } from "wouter";
 import { useSEO } from "@/hooks/use-seo";
+import smartHubDiagram from "@assets/diagram_adapy_1785260728077.png";
 
 export default function Products() {
   useSEO({
@@ -69,7 +70,7 @@ export default function Products() {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-secondary shadow-2xl shadow-black/5 group">
                   {/* black and white smart home device minimalistic */}
                   <img 
-                    src={product.imageUrl || `https://images.unsplash.com/photo-1558002038-109177381792?auto=format&fit=crop&q=80&w=1000`} 
+                    src={product.imageUrl || (product.name === "Adapy Smart Hub" ? smartHubDiagram : `https://images.unsplash.com/photo-1558002038-109177381792?auto=format&fit=crop&q=80&w=1000`)} 
                     alt={`${product.name} — Adapy adaptive mobility product`}
                     loading="lazy"
                     decoding="async"
