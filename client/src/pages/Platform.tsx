@@ -71,33 +71,40 @@ export default function Platform() {
             aria-hidden="true"
             className="w-full h-full object-cover object-right"
           />
-          {/* Legibility overlays: dark wash + stronger fade behind the text */}
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+          {/* Legibility overlays: left-to-right gradient — darkest behind the
+              text, fading out so the subject/van/sunset stay visible. A touch
+              stronger on small screens where text sits over more of the photo. */}
+          <div className="absolute inset-0 bg-black/40 sm:bg-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent sm:from-black/90 sm:via-black/40" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
         </div>
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
         
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="max-w-xl lg:max-w-2xl text-left"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.15] max-w-5xl mx-auto">
-              {momentCount.toLocaleString()} Moments of Mobility and&nbsp;Counting.
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
+              {momentCount.toLocaleString()}+
+              <br />
+              Moments of Mobility—
+              <br />
+              and&nbsp;Counting.
             </h1>
-            <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Every Moment of Mobility means moving forward without waiting or asking for help—controlling your lift, seat, ramp, doors, and more from your smartphone.
+            <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mb-10 leading-relaxed">
+              Each one represents a moment someone moved forward without waiting or asking for help—controlling their lift, seat, ramp, doors, and more from one smartphone.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setIsRoleSelectorOpen(true)}
                 className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95"
               >
-                How will it help you?
+                See How Adapy Helps
               </button>
               <button
                 onClick={() =>
@@ -106,9 +113,9 @@ export default function Platform() {
                     title: "Adapy Platform Overview",
                   })
                 }
-                className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all shadow-lg hover:scale-105 active:scale-95"
+                className="px-8 py-4 bg-black/30 backdrop-blur-md border border-white/40 text-white rounded-full font-bold text-lg hover:bg-white/15 transition-all shadow-lg hover:scale-105 active:scale-95"
               >
-                Watch Product Video
+                Watch Adapy in Action
               </button>
             </div>
           </motion.div>

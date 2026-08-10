@@ -1,0 +1,135 @@
+Update only the homepage hero section on the Adapy website. Do not redesign the rest of the page, change the navigation, modify backend functionality, alter analytics, or affect any existing integrations.
+
+GOAL
+
+Improve the hero section’s readability, visual hierarchy, responsiveness, and emotional impact while preserving the current hero image.
+
+DESKTOP LAYOUT
+
+Move the hero content from the center of the image to the open, dark area on the left.
+
+Left-align the:
+
+* Headline
+* Supporting paragraph
+* Call-to-action buttons
+
+Keep the wheelchair user, smartphone, adaptive van, ramp, and connected-equipment graphics visible on the right.
+
+Use a content container with a reasonable maximum width so the text does not extend over the person or smartphone.
+
+HEADLINE
+
+Continue using the existing live Moments of Mobility count. Do not replace the dynamic count with a hardcoded number.
+
+Display the headline as:
+
+“[LIVE COUNT]+ Moments of Mobility—and Counting.”
+
+On desktop, format it into approximately three balanced lines:
+
+[LIVE COUNT]+
+Moments of Mobility—
+and Counting.
+
+Do not allow “and Counting.” to appear by itself in an awkward location on tablet or mobile screens.
+
+SUPPORTING TEXT
+
+Replace the current paragraph with:
+
+“Each one represents a moment someone moved forward without waiting or asking for help—controlling their lift, seat, ramp, doors, and more from one smartphone.”
+
+Keep the paragraph narrower than the headline and limit its desktop width to approximately 600–650 pixels.
+
+Increase the paragraph color to white or a very light gray so it passes normal accessibility contrast requirements. The current paragraph is too dark against the background.
+
+BUTTONS
+
+Replace the current button labels with:
+
+Primary button: “See How Adapy Helps”
+
+Secondary button: “Watch Adapy in Action”
+
+Preserve the buttons’ existing destinations and functionality. Change only their visible labels and styling where necessary.
+
+Keep the primary button Adapy blue. Give the secondary button a subtle transparent or dark background with a clearly visible border.
+
+Use sentence-style capitalization exactly as shown.
+
+BACKGROUND AND OVERLAY
+
+Keep the current hero image.
+
+Replace the heavy full-image dark overlay with a responsive left-to-right gradient:
+
+* Darkest behind the text on the left
+* Gradually lighter toward the vehicle and wheelchair user
+* Preserve the sunset, person, phone, vehicle, ramp, and blue connection graphics
+* Do not make the right side overly dark
+
+The text must remain easy to read without hiding the most important parts of the image.
+
+RESPONSIVE BEHAVIOR
+
+Desktop:
+
+* Content positioned on the left
+* Subject and equipment remain visible on the right
+* Buttons can appear side by side
+
+Tablet:
+
+* Keep the text left-aligned
+* Reduce the headline size smoothly
+* Prevent text from overlapping the person or smartphone
+* Allow buttons to wrap if needed
+
+Mobile:
+
+* Use an intentional mobile crop or background positioning that keeps the wheelchair user or smartphone visible
+* Add enough dark overlay behind the text for readability
+* Stack the buttons vertically or allow them to fit naturally
+* Keep buttons large enough for accessible touch interaction
+* Prevent any horizontal scrolling
+* Do not allow the headline, paragraph, or buttons to extend beyond the screen
+* Keep the live count fully visible
+
+ACCESSIBILITY
+
+* Maintain strong color contrast
+* Preserve semantic heading structure
+* Keep the headline as the page’s H1
+* Preserve descriptive image alt text
+* Maintain visible keyboard focus states
+* Do not place important wording inside the image
+* Respect reduced-motion settings if the count or hero has animation
+
+IMPORTANT PROTECTION REQUIREMENTS
+
+* Make the smallest possible targeted change
+* Do not change the live counter’s data source, calculation, animation, or update process
+* Do not hardcode the count
+* Do not change button links or click behavior
+* Do not modify other homepage sections
+* Do not remove or rename existing shared components unless absolutely necessary
+* Do not install unnecessary dependencies
+* Reuse the existing styling system and components
+* Do not break desktop, tablet, or mobile layouts
+* Preserve all current website functionality
+
+VALIDATION
+
+After implementing the changes:
+
+1. Confirm that the live count still loads and updates correctly.
+2. Confirm that both buttons still open their original destinations.
+3. Check the hero at desktop, tablet, and mobile widths.
+4. Verify that no text overlaps the wheelchair user’s face or smartphone.
+5. Verify that the paragraph is clearly readable.
+6. Confirm that there is no horizontal overflow.
+7. Run the existing build, lint, and relevant tests.
+8. Fix any errors caused by this change before finishing.
+
+Before making changes, inspect the existing hero component and its styles. Modify the existing implementation rather than creating a duplicate hero section. When finished, summarize exactly which files were changed and what was updated.
