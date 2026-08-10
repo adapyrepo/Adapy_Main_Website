@@ -26,6 +26,7 @@ import {
 import { useSEO } from "@/hooks/use-seo";
 import { computeMomentCount } from "@/lib/mobilityMoments";
 import ecosystemDiagram from "@assets/diagram_adapy_1785260728077.png";
+import heroPhoto from "@assets/hero-photo-cropped.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
@@ -62,7 +63,20 @@ export default function Platform() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-40 md:pb-44 overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 opacity-40">
+        {/* Hero photo — man with app + accessible van; cropped to the photo side so the baked-in text stays out of frame */}
+        <div className="absolute inset-0">
+          <img
+            src={heroPhoto}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-right"
+          />
+          {/* Legibility overlays: dark wash + stronger fade behind the text */}
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
+        </div>
+        <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
         
