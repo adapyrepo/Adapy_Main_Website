@@ -90,7 +90,7 @@ export default function Platform() {
               {momentCount.toLocaleString()} Moments of Mobility and&nbsp;Counting.
             </h1>
             <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-10 leading-relaxed">
-              Every one represents a moment someone moved forward without waiting or asking for help. With Adapy, you can independently control your wheelchair lift, transfer seat, ramp, doors, and more—all from your smartphone.
+              Every Moment of Mobility means moving forward without waiting or asking for help—controlling your lift, seat, ramp, doors, and more from your smartphone.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
