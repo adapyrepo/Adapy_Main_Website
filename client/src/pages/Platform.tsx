@@ -26,7 +26,7 @@ import {
 import { useSEO } from "@/hooks/use-seo";
 import { computeMomentCount } from "@/lib/mobilityMoments";
 import ecosystemDiagram from "@assets/diagram_adapy_1785260728077.png";
-import heroPhoto from "@assets/hero-photo-cropped.png";
+import heroPhoto from "@assets/hero_1786393794153.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
@@ -72,8 +72,8 @@ export default function Platform() {
             className="w-full h-full object-cover object-right"
           />
           {/* Legibility overlays: dark wash + stronger fade behind the text */}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
         </div>
         <div className="absolute inset-0 opacity-30">
