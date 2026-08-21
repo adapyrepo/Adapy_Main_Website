@@ -1,0 +1,342 @@
+import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "npm:@supabase/supabase-js@2";
+import * as nodemailer from "npm:nodemailer@6.9.7";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey, X-Form-Api-Key",
+};
+
+const LEAD_FIELD_MAP: Record<string, string> = {
+  first_name: "first_name",
+  last_name: "last_name",
+  email: "email",
+  phone: "phone",
+  company: "company_name",
+  company_name: "company_name",
+  title: "title",
+  website: "website",
+  notes: "notes",
+  city: "city",
+  state: "state",
+  zip: "zip_code",
+  zip_code: "zip_code",
+  address: "address_line1",
+  address_line1: "address_line1",
+  address_line2: "address_line2",
+  country: "country",
+  message: "notes",
+};
+
+Deno.serve(async (req: Request) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 200, headers: corsHeaders });
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const url = new URL(req.url);
+    const pathParts = url.pathname.split("/").filter(Boolean);
+    const formSlug = pathParts[pathParts.length - 1];
+
+    const apiKey = req.headers.get("X-Form-Api-Key") ||
+      req.headers.get("Authorization")?.replace("Bearer ", "") || "";
+
+    let body: Record<string, string> = {};
+    const contentType = req.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      body = await req.json();
+    } else if (contentType.includes("application/x-www-form-urlencoded") || contentType.includes("multipart/form-data")) {
+      const formData = await req.formData();
+      formData.forEach((value, key) => {
+        body[key] = value.toString();
+      });
+    }
+
+    const slug = body._form_slug || formSlug || body.form_slug || "";
+    const apiKeyFromBody = body._api_key || apiKey;
+
+    if (!slug && !apiKeyFromBody) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Missing form identifier. Include _form_slug and _api_key in your request." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    let query = supabase
+      .from("lead_forms")
+      .select("*, lead_form_fields(*)")
+      .eq("is_active", true);
+
+    if (slug) query = query.eq("slug", slug);
+    if (apiKeyFromBody && !slug) query = query.eq("api_key", apiKeyFromBody);
+
+    const { data: forms, error: formError } = await query;
+
+    if (formError || !forms || forms.length === 0) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Form not found or inactive." }),
+        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const form = forms[0];
+
+    if (form.api_key !== apiKeyFromBody && apiKeyFromBody !== supabaseKey) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid API key." }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const ipAddress = req.headers.get("x-forwarded-for") ||
+      req.headers.get("cf-connecting-ip") || "";
+    const userAgent = req.headers.get("user-agent") || "";
+    const referrerUrl = req.headers.get("referer") || body._referrer || "";
+
+    const cleanBody: Record<string, string> = {};
+    Object.entries(body).forEach(([k, v]) => {
+      if (!k.startsWith("_")) cleanBody[k] = v;
+    });
+
+    const leadData: Record<string, string | null | string[]> = {
+      country: "US",
+      lead_type: form.default_lead_type,
+      account_executive_id: form.default_account_executive_id || null,
+      source_form_id: form.id,
+    };
+
+    const formFields: Array<{ field_name: string; maps_to_lead_field: string }> =
+      form.lead_form_fields || [];
+
+    formFields.forEach((field) => {
+      const submittedValue = cleanBody[field.field_name] || cleanBody[field.field_name.toLowerCase()] || "";
+      if (submittedValue && field.maps_to_lead_field) {
+        leadData[field.maps_to_lead_field] = submittedValue;
+      }
+    });
+
+    Object.entries(cleanBody).forEach(([key, value]) => {
+      if (!value) return;
+      const normalizedKey = key.toLowerCase().replace(/[^a-z0-9_]/g, "_");
+      const leadField = LEAD_FIELD_MAP[normalizedKey];
+      if (leadField && !leadData[leadField]) {
+        leadData[leadField] = value;
+      }
+    });
+
+    if (!leadData.email && !leadData.phone && !leadData.company_name) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Submission must include at least an email, phone, or company name." }),
+        { status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const firstName = (leadData.first_name as string) || "";
+    const lastName = (leadData.last_name as string) || "";
+    const fullName = [firstName, lastName].filter(Boolean).join(" ").trim();
+
+    if (!leadData.contact_name) {
+      leadData.contact_name = fullName || (leadData.email as string) || "";
+    }
+    if (!leadData.company_name) {
+      leadData.company_name = fullName || (leadData.email as string) || "";
+    }
+    if (!leadData.email) {
+      leadData.email = "";
+    }
+
+    const { data: newLead, error: leadError } = await supabase
+      .from("leads")
+      .insert([leadData])
+      .select("id")
+      .single();
+
+    if (leadError) {
+      await supabase.from("lead_form_submissions").insert([{
+        form_id: form.id,
+        form_slug: form.slug,
+        submitted_data: cleanBody,
+        ip_address: ipAddress,
+        user_agent: userAgent,
+        referrer_url: referrerUrl,
+        status: "failed",
+        error_message: leadError.message,
+      }]);
+
+      return new Response(
+        JSON.stringify({ success: false, error: "Failed to create lead record." }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    await supabase.from("lead_form_submissions").insert([{
+      form_id: form.id,
+      form_slug: form.slug,
+      submitted_data: cleanBody,
+      ip_address: ipAddress,
+      user_agent: userAgent,
+      referrer_url: referrerUrl,
+      lead_id: newLead.id,
+      status: "processed",
+    }]);
+
+    await supabase
+      .from("lead_forms")
+      .update({ submission_count: (form.submission_count || 0) + 1 })
+      .eq("id", form.id);
+
+    const { data: campaigns } = await supabase
+      .from("drip_campaigns")
+      .select("id, target_lead_types")
+      .eq("is_active", true)
+      .eq("auto_enroll", true);
+
+    if (campaigns && campaigns.length > 0) {
+      const matchingCampaigns = campaigns.filter((c) =>
+        !c.target_lead_types ||
+        c.target_lead_types.length === 0 ||
+        c.target_lead_types.includes(form.default_lead_type)
+      );
+
+      for (const campaign of matchingCampaigns) {
+        const { data: firstStep } = await supabase
+          .from("drip_campaign_steps")
+          .select("id, delay_days")
+          .eq("campaign_id", campaign.id)
+          .eq("is_active", true)
+          .order("step_number", { ascending: true })
+          .limit(1)
+          .maybeSingle();
+
+        if (firstStep) {
+          const nextSendAt = new Date();
+          nextSendAt.setDate(nextSendAt.getDate() + (firstStep.delay_days || 0));
+
+          await supabase.from("drip_enrollments").insert([{
+            lead_id: newLead.id,
+            campaign_id: campaign.id,
+            current_step: 1,
+            status: "active",
+            next_send_at: nextSendAt.toISOString(),
+          }]);
+        }
+      }
+    }
+
+    // Send email notification directly via SMTP
+    try {
+      const { data: smtpSettings } = await supabase
+        .from("smtp_settings")
+        .select("*")
+        .limit(1)
+        .maybeSingle();
+
+      if (smtpSettings && smtpSettings.is_enabled) {
+        const transporter = nodemailer.createTransport({
+          host: smtpSettings.smtp_host,
+          port: smtpSettings.smtp_port,
+          secure: smtpSettings.smtp_port === 465,
+          auth: {
+            user: smtpSettings.smtp_username,
+            pass: smtpSettings.smtp_password,
+          },
+          tls: { rejectUnauthorized: false },
+        });
+
+        const leadName = firstName && lastName
+          ? `${firstName} ${lastName}`
+          : (leadData.contact_name as string) || (leadData.company_name as string) || (leadData.email as string) || "Unknown";
+
+        const locationParts = [leadData.city, leadData.state, leadData.zip_code].filter(Boolean);
+        const location = locationParts.length > 0 ? locationParts.join(", ") : "Not provided";
+
+        const formattedDate = new Date().toLocaleString("en-US", {
+          weekday: "long", year: "numeric", month: "long", day: "numeric",
+          hour: "2-digit", minute: "2-digit", timeZoneName: "short",
+        });
+
+        const emailHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; text-align: center; }
+    .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+    .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; }
+    .info-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e5e7eb; }
+    .info-row { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { font-weight: 600; color: #6b7280; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .info-value { color: #111827; font-size: 15px; word-break: break-word; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; background: #dbeafe; color: #1e40af; }
+    .notes-section { background: #fffbeb; border: 1px solid #fde68a; padding: 16px; border-radius: 8px; margin-top: 16px; }
+    .notes-section p { margin: 0; color: #92400e; font-size: 14px; }
+    .footer { background: #f3f4f6; padding: 20px; text-align: center; border-radius: 0 0 10px 10px; font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb; border-top: none; }
+  </style>
+</head>
+<body>
+  <div class="header"><h1>New Lead Submitted</h1></div>
+  <div class="content">
+    <p style="font-size: 16px; margin-top: 0;">A new lead has been submitted to the Adapy platform.</p>
+    <div class="info-section">
+      <div class="info-row"><div class="info-label">Name</div><div class="info-value"><strong>${leadName}</strong></div></div>
+      ${leadData.email ? `<div class="info-row"><div class="info-label">Email</div><div class="info-value"><a href="mailto:${leadData.email}">${leadData.email}</a></div></div>` : ""}
+      ${leadData.phone ? `<div class="info-row"><div class="info-label">Phone</div><div class="info-value"><a href="tel:${leadData.phone}">${leadData.phone}</a></div></div>` : ""}
+      ${leadData.company_name ? `<div class="info-row"><div class="info-label">Company</div><div class="info-value">${leadData.company_name}</div></div>` : ""}
+      ${leadData.title ? `<div class="info-row"><div class="info-label">Title</div><div class="info-value">${leadData.title}</div></div>` : ""}
+      ${leadData.website ? `<div class="info-row"><div class="info-label">Website</div><div class="info-value"><a href="${leadData.website}">${leadData.website}</a></div></div>` : ""}
+      <div class="info-row"><div class="info-label">Location</div><div class="info-value">${location}</div></div>
+      <div class="info-row"><div class="info-label">Lead Type</div><div class="info-value"><span class="badge">${leadData.lead_type || "General"}</span></div></div>
+      <div class="info-row"><div class="info-label">Submitted</div><div class="info-value">${formattedDate}</div></div>
+      <div class="info-row"><div class="info-label">Lead ID</div><div class="info-value"><code style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 12px;">${newLead.id}</code></div></div>
+    </div>
+    ${leadData.notes ? `<div class="notes-section"><div class="info-label" style="margin-bottom: 8px;">Notes / Message</div><p>${leadData.notes}</p></div>` : ""}
+    <p style="color: #6b7280; font-size: 14px; margin-bottom: 0;">You can view and manage this lead in the admin dashboard.</p>
+  </div>
+  <div class="footer"><p style="margin: 0;">This is an automated notification from Adapy.</p></div>
+</body>
+</html>`.trim();
+
+        const plainText = `New Lead Submitted - Adapy\n\nName: ${leadName}\nEmail: ${leadData.email || "Not provided"}\nPhone: ${leadData.phone || "Not provided"}\nCompany: ${leadData.company_name || "Not provided"}\nLocation: ${location}\nLead Type: ${leadData.lead_type || "General"}\nSubmitted: ${formattedDate}\nLead ID: ${newLead.id}\n${leadData.notes ? `\nNotes: ${leadData.notes}\n` : ""}\nThis is an automated notification from Adapy.`;
+
+        const info = await transporter.sendMail({
+          from: `"${smtpSettings.from_name}" <${smtpSettings.from_email}>`,
+          to: "aaronw@adapy.com",
+          subject: `New Lead: ${leadName}${leadData.company_name ? " at " + leadData.company_name : ""}`,
+          text: plainText,
+          html: emailHtml,
+        });
+
+        console.log("[LEAD SUBMIT] Notification email sent:", info.messageId);
+      } else {
+        console.log("[LEAD SUBMIT] SMTP not configured or disabled, skipping notification");
+      }
+    } catch (emailErr) {
+      console.error("[LEAD SUBMIT] Failed to send notification email:", emailErr);
+    }
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        lead_id: newLead.id,
+        message: form.success_message || "Thank you! We will be in touch shortly.",
+        redirect_url: form.redirect_url || null,
+      }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    return new Response(
+      JSON.stringify({ success: false, error: message }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+});
