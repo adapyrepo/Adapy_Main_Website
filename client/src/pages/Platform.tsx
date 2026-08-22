@@ -58,18 +58,18 @@ export default function Platform() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-[#0071e3] selection:text-white">
+    <div className="min-h-screen overflow-x-clip bg-background text-foreground font-sans selection:bg-[#0071e3] selection:text-white">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-40 md:pb-44 overflow-hidden bg-black text-white">
+      <section className="relative min-h-screen min-h-[100svh] flex flex-col justify-start sm:justify-center pt-28 sm:pt-32 pb-44 md:pb-44 overflow-hidden bg-black text-white">
         {/* Hero photo — man with app + accessible van; cropped to the photo side so the baked-in text stays out of frame */}
         <div className="absolute inset-0">
           <img
             src={heroPhoto}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-right"
+            className="w-full h-full object-cover object-[68%_center] sm:object-right"
           />
           {/* Legibility overlays: left-to-right gradient — darkest behind the
               text, fading out so the subject/van/sunset stay visible. A touch
@@ -82,27 +82,27 @@ export default function Platform() {
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0071e3] blur-[150px] rounded-full" />
         </div>
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-5 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-xl lg:max-w-2xl text-left"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-              {momentCount.toLocaleString()}+
-              <br />
-              Moments of Mobility—
-              <br />
-              and&nbsp;Counting.
+            <h1 className="text-[clamp(2rem,9vw,2.5rem)] leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5 sm:mb-6">
+              <span className="block">{momentCount.toLocaleString()}+</span>
+              <span className="block whitespace-nowrap text-[0.82em] min-[380px]:text-[0.9em] sm:text-[1em]">
+                Moments of Mobility—
+              </span>
+              <span className="block">and&nbsp;Counting.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mb-10 leading-relaxed">
+            <p className="text-base sm:text-xl md:text-2xl text-white/90 max-w-[640px] mb-7 sm:mb-10 leading-relaxed">
               Each one represents a moment someone moved forward without waiting or asking for help, controlling their lift, seat, ramp, doors, and more from one smartphone.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setIsRoleSelectorOpen(true)}
-                className="px-8 py-4 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-[#0071e3] text-white rounded-full font-bold text-base sm:text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95"
               >
                 See How Adapy Helps
               </button>
@@ -113,7 +113,7 @@ export default function Platform() {
                     title: "Adapy Platform Overview",
                   })
                 }
-                className="px-8 py-4 bg-black/30 backdrop-blur-md border border-white/40 text-white rounded-full font-bold text-lg hover:bg-white/15 transition-all shadow-lg hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-black/30 backdrop-blur-md border border-white/40 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/15 transition-all shadow-lg hover:scale-105 active:scale-95"
               >
                 Watch Adapy in Action
               </button>
@@ -148,7 +148,7 @@ export default function Platform() {
 
       {/* SECTION 2 — PLATFORM OVERVIEW */}
       <section className="py-24 bg-[#f5f5f7]">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">One Brain. Multiple Layers. Unified Intelligence.</h2>
@@ -173,7 +173,7 @@ export default function Platform() {
               </ul>
               <p className="mt-10 text-xl font-bold text-[#0071e3]">The result is a connected mobility ecosystem.</p>
             </div>
-            <div className="relative aspect-square rounded-[3rem] border border-black/5 shadow-2xl overflow-hidden">
+             <div className="relative aspect-square rounded-[2rem] sm:rounded-[3rem] border border-black/5 shadow-2xl overflow-hidden">
                <img
                  src={ecosystemDiagram}
                  alt="Adapy Smart Hub ecosystem diagram — one brain, multiple layers, unified intelligence"
@@ -191,7 +191,7 @@ export default function Platform() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Layer 1 */}
-            <div className="p-8 rounded-[2.5rem] bg-[#f5f5f7] border border-black/5">
+            <div className="p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-[#f5f5f7] border border-black/5">
               <h3 className="text-2xl font-bold mb-4">Layer 1 — The Intelligence Core</h3>
               <p className="text-black/60 mb-6 font-medium">Adapy Smart Hub</p>
               <ul className="space-y-3 mb-6">
@@ -206,7 +206,7 @@ export default function Platform() {
             </div>
 
             {/* Layer 2 */}
-            <div className="p-8 rounded-[2.5rem] bg-black text-white">
+            <div className="p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-black text-white">
               <h3 className="text-2xl font-bold mb-4 text-white">Layer 2 — Control Integration</h3>
               <p className="text-white/60 mb-6">Adaptive equipment integrates through:</p>
               <div className="space-y-6">
@@ -222,10 +222,10 @@ export default function Platform() {
             </div>
 
             {/* Layer 3 */}
-            <div className="p-8 rounded-[2.5rem] bg-[#f5f5f7] border border-black/5">
+            <div className="p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-[#f5f5f7] border border-black/5">
               <h3 className="text-2xl font-bold mb-4">Layer 3 — Safety & Monitoring</h3>
               <p className="text-black/60 mb-6">The platform expands through modular intelligence components:</p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3 sm:gap-4">
                 {[
                   { icon: <Thermometer size={16} />, label: "Temperature" },
                   { icon: <Battery size={16} />, label: "Voltage/Battery" },
@@ -243,12 +243,12 @@ export default function Platform() {
             </div>
 
             {/* Layer 4 */}
-            <div className="p-8 rounded-[2.5rem] bg-[#0071e3] text-white">
+            <div className="p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-[#0071e3] text-white">
               <h3 className="text-2xl font-bold mb-4 text-white">Layer 4 — Cloud Intelligence</h3>
               <p className="text-white/80 mb-6 leading-relaxed">
                 Data from the vehicle securely transmits to the Adapy Cloud, enabling role-based dashboards for:
               </p>
-              <ul className="grid grid-cols-2 gap-4 mb-6">
+              <ul className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3 sm:gap-4 mb-6">
                 {["Dealers", "CDRS professionals", "Manufacturers", "Fleet operators"].map((item, i) => (
                   <li key={i} className="px-4 py-2 bg-white/10 rounded-xl text-sm font-bold text-center border border-white/20">{item}</li>
                 ))}
@@ -337,7 +337,7 @@ export default function Platform() {
                 ))}
               </div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-[3rem] p-12 flex items-center justify-center aspect-video relative overflow-hidden">
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 flex items-center justify-center aspect-video relative overflow-hidden">
                <Shield size={120} className="text-[#0071e3]/20 absolute" />
                <div className="text-center relative z-10">
                  <Shield size={64} className="text-[#0071e3] mx-auto mb-6" />
@@ -377,25 +377,21 @@ export default function Platform() {
       />
 
       {/* FINAL CTA SECTION */}
-      <section className="py-24 bg-white text-center">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="bg-black text-white rounded-[4rem] p-12 md:p-20 relative overflow-hidden">
+      <section className="py-16 sm:py-24 bg-white text-center">
+        <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
+          <div className="bg-black text-white rounded-[2.5rem] sm:rounded-[4rem] p-7 sm:p-12 md:p-20 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#0071e3] blur-[120px] rounded-full -mr-32 -mt-32 opacity-20" />
             
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Build on the Adapy Platform</h2>
-            <p className="text-xl text-white/60 mb-10 leading-relaxed">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">Build on the Adapy Platform</h2>
+            <p className="text-base sm:text-xl text-white/70 mb-8 sm:mb-10 leading-relaxed">
               Whether integrating a single vehicle or deploying across a fleet, the Adapy Smart Mobility Platform provides the connected infrastructure layer modern adaptive environments require.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact">
-                <button className="px-10 py-5 bg-[#0071e3] text-white rounded-full font-bold text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95">
+              <Link href="/contact" className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-[#0071e3] text-white rounded-full font-bold text-base sm:text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95">
                   Request a Demo
-                </button>
               </Link>
-              <Link href="/contact">
-                <button className="px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-white/90 transition-all shadow-lg hover:scale-105 active:scale-95">
+              <Link href="/contact" className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white text-black rounded-full font-bold text-base sm:text-lg hover:bg-white/90 transition-all shadow-lg hover:scale-105 active:scale-95">
                   Contact Our Team
-                </button>
               </Link>
             </div>
           </div>

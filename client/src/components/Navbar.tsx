@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import {
@@ -181,6 +182,9 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
   const [location] = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleGetStarted = () => {
     if (onGetStarted) {
@@ -212,30 +216,82 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
   }, [location]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    const previousOverflow = document.body.style.overflow;
+    const appRoot = document.getElementById("root");
+    const previousInert = appRoot?.inert ?? false;
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      if (appRoot) appRoot.inert = true;
+      requestAnimationFrame(() => menuCloseButtonRef.current?.focus());
+    } else {
+      document.body.style.overflow = previousOverflow;
+      if (appRoot) appRoot.inert = previousInert;
+    }
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
+      if (appRoot) appRoot.inert = previousInert;
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key === "Tab" && menuPanelRef.current) {
+        const focusable = Array.from(
+          menuPanelRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (
+          event.shiftKey &&
+          (document.activeElement === first ||
+            document.activeElement === menuPanelRef.current)
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <header
-      ref={navRef}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
-        scrolled
-          ? "bg-black/90 backdrop-blur-lg border-white/10 shadow-lg py-2"
-          : "bg-black/80 backdrop-blur-md border-white/10 py-4",
-      )}
-      data-testid="header-main"
-    >
-      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+    <>
+      <header
+        ref={navRef}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
+          scrolled
+            ? "bg-black/90 backdrop-blur-lg border-white/10 shadow-lg py-2"
+            : "bg-black/80 backdrop-blur-md border-white/10 py-3 sm:py-4",
+        )}
+        data-testid="header-main"
+      >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           data-testid="link-home-logo"
         >
-          <img src={adapyLogo} alt="Adapy®" className="h-8 w-auto invert brightness-0" />
+          <img src={adapyLogo} alt="Adapy®" className="h-7 sm:h-8 w-auto invert brightness-0" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -370,23 +426,26 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
             href="https://my.adapy.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
+            className="hidden md:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
             data-testid="link-login"
           >
             <span className="text-[14px] font-medium">Login</span>
           </a>
           <button
             onClick={handleGetStarted}
-            className="hidden sm:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
+            className="hidden md:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
             data-testid="button-get-started"
           >
             Get started
           </button>
 
           <button
-            className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            ref={menuButtonRef}
+            className="lg:hidden min-h-11 min-w-11 rounded-full p-2 text-white/80 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3] transition-colors"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             data-testid="button-mobile-menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -394,98 +453,131 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[98] lg:hidden"
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black z-[99] lg:hidden flex flex-col p-8 pt-24"
-            >
-              <div className="flex-1 overflow-y-auto">
-                <nav className="flex flex-col gap-8">
-                  {navItems.map((item) => (
-                    <div key={item.name} className="flex flex-col gap-4 text-left">
-                      {item.href ? (
-                        <Link
-                          href={item.href}
-                          className="text-2xl font-bold text-white hover:text-[#0071e3] transition-colors"
-                          data-testid={`link-mobile-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                        >
-                          {item.name}
-                        </Link>
-                      ) : (
-                        <>
-                          <div className="text-white/40 uppercase tracking-widest text-xs font-bold">
-                            {item.name}
-                          </div>
-                          <div className="flex flex-col gap-4 pl-4 border-l border-white/10">
-                            {item.dropdown?.map((sub) => (
-                              <Link
-                                key={sub.title}
-                                href={sub.href}
-                                {...(sub.external
-                                  ? { target: "_blank", rel: "noopener noreferrer" }
-                                  : {})}
-                                className="group"
-                                data-testid={`link-mobile-${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
-                              >
-                                <div className="text-lg font-semibold text-white group-hover:text-[#0071e3] transition-colors">
-                                  {sub.title}
-                                </div>
-                                {sub.description && (
-                                  <div className="text-sm text-white/50 leading-snug">
-                                    {sub.description}
-                                  </div>
-                                )}
-                              </Link>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-              </div>
+      </header>
 
-              <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
-                <a
-                  href="https://my.adapy.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-white/10 transition-all"
-                  data-testid="link-mobile-login"
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[190] bg-black/70 backdrop-blur-sm lg:hidden"
+                  onClick={closeMenu}
+                  aria-hidden="true"
+                />
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "spring", damping: 28, stiffness: 240 }}
+                  ref={menuPanelRef}
+                  id="mobile-navigation"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label="Mobile navigation"
+                  tabIndex={-1}
+                  className="fixed inset-y-0 right-0 z-[200] flex w-[min(92vw,420px)] max-w-full flex-col overflow-hidden bg-black px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(5rem,env(safe-area-inset-top))] text-white shadow-2xl outline-none lg:hidden sm:px-8"
                 >
-                  Login
-                </a>
-                <button
-                  onClick={() => {
-                    setIsOpen(false);
-                    handleGetStarted();
-                  }}
-                  className="w-full py-4 bg-[#0071e3] text-white rounded-2xl font-bold text-lg flex items-center justify-center hover:bg-[#0077ed] transition-all"
-                  data-testid="button-mobile-get-started"
-                >
-                  Get started
-                </button>
-              </div>
-            </motion.div>
-          </>
+                  <button
+                    ref={menuCloseButtonRef}
+                    type="button"
+                    onClick={() => {
+                      closeMenu();
+                      menuButtonRef.current?.focus();
+                    }}
+                    className="absolute right-4 top-[max(1rem,env(safe-area-inset-top))] min-h-11 min-w-11 rounded-full p-2 text-white/80 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]"
+                    aria-label="Close navigation menu"
+                    data-testid="button-mobile-menu-close"
+                  >
+                    <X className="mx-auto h-6 w-6" aria-hidden="true" />
+                  </button>
+
+                  <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+                    <nav className="flex flex-col gap-7" aria-label="Mobile navigation links">
+                      {navItems.map((item) => (
+                        <div key={item.name} className="flex flex-col gap-3 text-left">
+                          {item.href ? (
+                            <Link
+                              href={item.href}
+                              onClick={closeMenu}
+                              className="rounded-lg py-1 text-2xl font-bold text-white transition-colors hover:text-[#0071e3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]"
+                              data-testid={`link-mobile-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : (
+                            <>
+                              <div className="text-xs font-bold uppercase tracking-widest text-white/50">
+                                {item.name}
+                              </div>
+                              <div className="flex flex-col gap-3 border-l border-white/15 pl-4">
+                                {item.dropdown?.map((sub) => (
+                                  <Link
+                                    key={sub.title}
+                                    href={sub.href}
+                                    onClick={closeMenu}
+                                    {...(sub.external
+                                      ? { target: "_blank", rel: "noopener noreferrer" }
+                                      : {})}
+                                    className="group rounded-lg py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]"
+                                    data-testid={`link-mobile-${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
+                                  >
+                                    <div className="text-base font-semibold text-white transition-colors group-hover:text-[#0071e3] sm:text-lg">
+                                      {sub.title}
+                                    </div>
+                                    {sub.description && (
+                                      <div className="mt-0.5 text-sm leading-snug text-white/60">
+                                        {sub.description}
+                                      </div>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ))}
+                    </nav>
+                  </div>
+
+                  <div className="shrink-0 border-t border-white/10 pt-5">
+                    <div className="flex flex-col gap-3">
+                      <a
+                        href="https://my.adapy.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-4 font-bold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]"
+                        data-testid="link-mobile-login"
+                        onClick={closeMenu}
+                      >
+                        Login
+                      </a>
+                      <button
+                        onClick={() => {
+                          closeMenu();
+                          handleGetStarted();
+                        }}
+                        className="flex min-h-12 w-full items-center justify-center rounded-2xl bg-[#0071e3] px-4 font-bold text-white transition-colors hover:bg-[#0077ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                        data-testid="button-mobile-get-started"
+                      >
+                        Get started
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
+
       <RoleSelectorModal
         open={isRoleModalOpen}
         onClose={() => setIsRoleModalOpen(false)}
       />
-    </header>
+    </>
   );
 }
