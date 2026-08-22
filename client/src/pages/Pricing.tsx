@@ -170,18 +170,14 @@ export default function Pricing() {
       const equipmentList = formData.equipment.join(", ") +
         (formData.equipment_other ? `, ${formData.equipment_other}` : "");
 
-      const response = await fetch(
-        "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/customquote",
-        {
+      const response = await fetch("/api/lead-proxy", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
           },
           body: JSON.stringify({
-            _form_slug: "customquote",
-            _api_key: "cd6003df2595f76b42ab4f200dd4d6a7da7d79a4728bdc6c845618b95cf88ffe",
+            formSlug: "customquote",
+            payload: {
             first_name: formData.first_name,
             last_name: formData.last_name,
             email: formData.email,
@@ -197,9 +193,9 @@ export default function Pricing() {
             timeline_optional: formData.timeline_optional || "",
             how_did_you_hear_about_adapy_optional: formData.how_did_you_hear_about_adapy_optional || "",
             anything_else_we_should_know: formData.anything_else_we_should_know || "",
+            },
           }),
-        },
-      );
+        });
 
       const data = await response.json();
       if (!response.ok || !data.success) {

@@ -18,6 +18,10 @@ const LEAD_FORM_UPSTREAMS = {
     url: "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/dealer",
     keyEnv: "LEAD_FORM_API_KEY_DEALER",
   },
+  customquote: {
+    url: "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/customquote",
+    keyEnv: "LEAD_FORM_API_KEY_CUSTOMQUOTE",
+  },
   fleet: {
     url: "https://khpbkjujudfncbmztyhh.supabase.co/functions/v1/api-lead-submit/fleet",
     keyEnv: "LEAD_FORM_API_KEY_FLEET",
@@ -25,7 +29,7 @@ const LEAD_FORM_UPSTREAMS = {
 } as const;
 
 const leadProxySchema = z.object({
-  formSlug: z.enum(["qualify-form", "dealer", "fleet"]),
+  formSlug: z.enum(["qualify-form", "dealer", "customquote", "fleet"]),
   payload: z.record(z.unknown()),
 });
 
