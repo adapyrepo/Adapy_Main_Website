@@ -123,7 +123,7 @@ export default function DealerPortal() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          formSlug: "qualify-form",
+          formSlug: "dealer",
           payload: {
             ...formData,
             mhmda_consent: mhmdaConsent,
