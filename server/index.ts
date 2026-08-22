@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import { redactSensitiveLeadFields } from "@shared/sensitiveFields";
 
 const app = express();
 app.set("trust proxy", 1); // behind Replit's proxy — required for secure cookies + rate-limit IPs
@@ -50,7 +51,9 @@ app.use((req, res, next) => {
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+        // Redact sensitive lead fields so they never land in access logs, even
+        // if the upstream lead store echoes them back. See shared/sensitiveFields.ts.
+        logLine += ` :: ${JSON.stringify(redactSensitiveLeadFields(capturedJsonResponse))}`;
       }
 
       log(logLine);

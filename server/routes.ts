@@ -4,6 +4,10 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { insertContactRequestSchema, insertSubscriberSchema } from "@shared/schema";
+import {
+  presentSensitiveFields,
+  redactSensitiveLeadFields,
+} from "@shared/sensitiveFields";
 import { registerLegacyRedirects } from "./redirects";
 import { registerBlogPublishingRoutes } from "./blogPublishing";
 import { registerAdminRoutes } from "./adminAuth";
@@ -81,6 +85,16 @@ export async function registerRoutes(
     if (anonKey) {
       headers["Authorization"] = `Bearer ${anonKey}`;
       headers["apikey"] = anonKey;
+    }
+
+    // Signal to the receiving store which fields must be tagged sensitive in
+    // storage and access logs (they can reveal a disability/health condition or
+    // record a WA consumer-health-data consent). See docs/compliance/posture.md.
+    const sensitiveFields = presentSensitiveFields(
+      parsed.payload as Record<string, unknown>,
+    );
+    if (sensitiveFields.length > 0) {
+      headers["X-Sensitive-Fields"] = sensitiveFields.join(",");
     }
 
     try {

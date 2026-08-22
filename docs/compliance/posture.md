@@ -71,6 +71,12 @@ Each row lists what the feature collects or displays, who the data is about, who
 
 The funnel does not need to be elevated into Regulated-Clinical (no covered-entity relationship), but it is the most sensitive surface in the General zone and should be treated as the high-water mark for General-zone controls.
 
+**Sensitive-field handling (applied).** Mitigations (b) and (c) are now enforced in code for both funnels:
+- `shared/sensitiveFields.ts` is the single source of truth. It names the sensitive lead fields — `situation`, `adaptive_equipment`, and the WA consent timestamp `mhmda_consent_at` — and exports `redactSensitiveLeadFields()` (a recursive redactor) plus `presentSensitiveFields()`.
+- **Access logs.** The Express request logger (`server/index.ts`) runs every `/api` response body through `redactSensitiveLeadFields()` before writing it, so these fields never reach application/access logs even if the upstream lead store echoes them back.
+- **Storage tagging.** The lead proxy (`POST /api/lead-proxy` in `server/routes.ts`) sends an `X-Sensitive-Fields` header listing the sensitive fields present in each submission, so the receiving store can tag them as sensitive in its own storage and access logs. The values are still transmitted (they are the reason the lead exists) but flagged for restricted handling.
+- **Analytics / error reports / LLM context.** No product-analytics, error-tracking (Sentry), or LLM integration exists in the codebase today. The exclusion is nonetheless enforceable going forward: any such integration must route lead data through `redactSensitiveLeadFields()` (documented in that module) rather than passing raw payloads. Reviewers should treat a raw lead payload reaching analytics/error/LLM code as a defect.
+
 **Note on the external submission endpoint.** Both funnels and the NEMT Fleet form post to an Adapy-controlled proxy (`POST /api/lead-proxy` in `server/routes.ts`) which injects the upstream `X-Form-Api-Key` server-side from the `LEAD_FORM_API_KEY_QUALIFY` and `LEAD_FORM_API_KEY_FLEET` environment variables before forwarding to the Supabase Functions endpoint. The receiving Supabase function and its storage are still, in effect, an extension of the General zone and are governed by whatever protections Supabase and the receiving function provide. See the "Current implementation gaps" section below for the remaining vendor-diligence work.
 
 ### Operator surfaces (PHI exposure)
