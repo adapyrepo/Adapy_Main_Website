@@ -278,7 +278,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
       <header
         ref={navRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
+          "fixed top-0 left-0 right-0 z-[900] transition-all duration-300 border-b",
           scrolled
             ? "bg-black/90 backdrop-blur-lg border-white/10 shadow-lg py-2"
             : "bg-black/80 backdrop-blur-md border-white/10 py-3 sm:py-4",
@@ -426,14 +426,14 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
             href="https://my.adapy.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
+            className="hidden lg:flex items-center px-4 py-2 text-white/70 hover:text-white transition-colors"
             data-testid="link-login"
           >
             <span className="text-[14px] font-medium">Login</span>
           </a>
           <button
             onClick={handleGetStarted}
-            className="hidden md:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
+            className="hidden lg:flex items-center justify-center px-6 py-2 bg-[#0071e3] text-white rounded-full font-medium text-[14px] hover:bg-[#0077ed] transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-[#0071e3]/20"
             data-testid="button-get-started"
           >
             Get started
@@ -464,7 +464,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-[190] bg-black/70 backdrop-blur-sm lg:hidden"
+                  className="fixed inset-0 z-[9900] bg-black/70 backdrop-blur-sm lg:hidden"
                   onClick={closeMenu}
                   aria-hidden="true"
                 />
@@ -479,7 +479,8 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
                   aria-modal="true"
                   aria-label="Mobile navigation"
                   tabIndex={-1}
-                  className="fixed inset-y-0 right-0 z-[200] flex w-[min(92vw,420px)] max-w-full flex-col overflow-hidden bg-black px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(5rem,env(safe-area-inset-top))] text-white shadow-2xl outline-none lg:hidden sm:px-8"
+                  className="fixed top-0 bottom-0 right-0 z-[10000] flex w-[min(92vw,420px)] max-w-full flex-col overflow-hidden bg-black px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(5rem,env(safe-area-inset-top))] text-white shadow-2xl outline-none lg:hidden sm:px-8"
+                  data-testid="panel-mobile-navigation"
                 >
                   <button
                     ref={menuCloseButtonRef}

@@ -2,7 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
-import { redactSensitiveLeadFields } from "@shared/sensitiveFields";
+import { createApiRequestLogger } from "./apiRequestLogging";
 
 const app = express();
 app.set("trust proxy", 1); // behind Replit's proxy — required for secure cookies + rate-limit IPs
@@ -35,33 +35,7 @@ export function log(message: string, source = "express") {
   console.log(`${formattedTime} [${source}] ${message}`);
 }
 
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
-
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        // Redact sensitive lead fields so they never land in access logs, even
-        // if the upstream lead store echoes them back. See shared/sensitiveFields.ts.
-        logLine += ` :: ${JSON.stringify(redactSensitiveLeadFields(capturedJsonResponse))}`;
-      }
-
-      log(logLine);
-    }
-  });
-
-  next();
-});
+app.use(createApiRequestLogger(log));
 
 (async () => {
   await registerRoutes(httpServer, app);

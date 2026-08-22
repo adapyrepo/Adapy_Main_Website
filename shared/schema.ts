@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb, customType, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json, jsonb, customType, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -33,6 +33,45 @@ export const subscribers = pgTable("subscribers", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+// connect-pg-simple creates this table for the administrator session store.
+// Keeping it in the Drizzle schema prevents future schema pushes from
+// misidentifying it as a renamed application table.
+export const adminSessions = pgTable("admin_sessions", {
+  sid: varchar("sid").primaryKey(),
+  sess: json("sess").notNull(),
+  expire: timestamp("expire").notNull(),
+});
+
+export const privacyRequests = pgTable("privacy_requests", {
+  id: serial("id").primaryKey(),
+  publicId: varchar("public_id", { length: 40 }).notNull().unique(),
+  requestType: text("request_type").notNull(),
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  status: text("status").notNull().default("received"),
+  submittedAt: timestamp("submitted_at", { withTimezone: true }).defaultNow().notNull(),
+  dueAt: timestamp("due_at", { withTimezone: true }).notNull(),
+  acknowledgedAt: timestamp("acknowledged_at", { withTimezone: true }),
+  identityVerifiedAt: timestamp("identity_verified_at", { withTimezone: true }),
+  externalActionStatus: text("external_action_status").notNull().default("not_started"),
+  externalActionCompletedAt: timestamp("external_action_completed_at", { withTimezone: true }),
+  dealerNotificationStatus: text("dealer_notification_status").notNull().default("not_started"),
+  dealerNotificationCompletedAt: timestamp("dealer_notification_completed_at", { withTimezone: true }),
+  dealerCount: integer("dealer_count"),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+});
+
+export const privacyRequestEvents = pgTable("privacy_request_events", {
+  id: serial("id").primaryKey(),
+  privacyRequestId: integer("privacy_request_id").notNull(),
+  eventType: text("event_type").notNull(),
+  actorEmail: text("actor_email").notNull(),
+  previousHash: varchar("previous_hash", { length: 64 }).notNull(),
+  eventHash: varchar("event_hash", { length: 64 }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
 export const blogArticles = pgTable("blog_articles", {
@@ -83,6 +122,9 @@ export type InsertContactRequest = z.infer<typeof insertContactRequestSchema>;
 
 export type Subscriber = typeof subscribers.$inferSelect;
 export type InsertSubscriber = z.infer<typeof insertSubscriberSchema>;
+
+export type PrivacyRequest = typeof privacyRequests.$inferSelect;
+export type InsertPrivacyRequest = typeof privacyRequests.$inferInsert;
 
 export type BlogArticle = typeof blogArticles.$inferSelect;
 export type InsertBlogArticle = typeof blogArticles.$inferInsert;

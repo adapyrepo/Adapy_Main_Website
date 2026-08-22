@@ -1,10 +1,10 @@
 ---
-name: Mobile navigation layering
-description: Prevent mobile drawers from being constrained by a filtered fixed header.
+name: Mobile navigation overlays
+description: Durable accessibility and layering rules for full-screen navigation dialogs.
 ---
 
-Render full-screen mobile drawers and their backdrops through a portal attached to `document.body`, rather than as descendants of a fixed header that uses blur or filters.
+Keep full-screen navigation dialogs outside ancestors that create stacking or containing contexts, such as transformed or filtered headers.
 
-**Why:** Filtered header elements can create a containing and stacking context that makes fixed-position descendants behave relative to the header instead of the viewport, leaving the menu invisible or incorrectly layered.
+**Why:** Those ancestors can constrain fixed-position descendants, leaving the dialog invisible or incorrectly layered. A visually correct overlay can still be inaccessible if background scrolling and keyboard focus are not controlled.
 
-**How to apply:** Keep the drawer and backdrop outside the application root when that root is made inert. While open, lock document scrolling, focus the drawer's close control, and contain keyboard focus until the drawer closes.
+**How to apply:** Render the dialog at a reliable top layer. While open, make background content inert, lock document scrolling, move focus into the dialog, contain keyboard focus, and support Escape and an explicit close control.

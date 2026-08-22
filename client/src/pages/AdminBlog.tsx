@@ -205,6 +205,9 @@ export default function AdminBlog() {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-lg font-semibold">Blog Admin</h1>
           <div className="flex items-center gap-2">
+            <Button variant="outline" asChild>
+              <a href="/admin/privacy-requests">Privacy requests</a>
+            </Button>
             <Button onClick={() => openEditor(null)} data-testid="button-new-article">New article</Button>
             <Button variant="outline" onClick={handleLogout} data-testid="button-admin-logout">Sign out</Button>
           </div>

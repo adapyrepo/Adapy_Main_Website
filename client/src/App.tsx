@@ -11,6 +11,7 @@ import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import AdminBlogPreview from "@/pages/AdminBlogPreview";
 import AdminBlog from "@/pages/AdminBlog";
+import AdminPrivacyRequests from "@/pages/AdminPrivacyRequests";
 import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Platform from "@/pages/Platform";
@@ -25,6 +26,7 @@ import CDRSPortal from "@/pages/CDRSPortal";
 import IndividualSolutions from "@/pages/IndividualSolutions";
 import NEMTFleet from "@/pages/NEMTFleet";
 import Privacy from "@/pages/Privacy";
+import PrivacyRequest from "@/pages/PrivacyRequest";
 import About from "@/pages/About";
 import Terms from "@/pages/Terms";
 import VideoLibrary from "@/pages/VideoLibrary";
@@ -82,6 +84,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/admin" component={AdminBlog} />
+      <Route path="/admin/privacy-requests" component={AdminPrivacyRequests} />
       <Route path="/admin/blog/:id/preview" component={AdminBlogPreview} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
@@ -92,6 +95,7 @@ function Router() {
       <Route path="/see-it" component={SeeItInActionVideo} />
       <Route path="/request-info" component={RequestInfoRedirect} />
       <Route path="/privacy" component={Privacy} />
+      <Route path="/privacy-request" component={PrivacyRequest} />
       <Route path="/terms" component={Terms} />
       <Route component={NotFound} />
     </Switch>

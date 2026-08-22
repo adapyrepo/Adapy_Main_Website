@@ -29,7 +29,7 @@ export default function Privacy() {
             We take your privacy seriously. This notice explains what information we
             collect, how we use it, and the rights you have over it.
           </p>
-          <p className="text-sm text-muted-foreground mt-4">Last updated: February 23, 2021.</p>
+          <p className="text-sm text-muted-foreground mt-4">Last updated: August 22, 2026.</p>
         </header>
 
         <Section title="Overview">
@@ -238,11 +238,15 @@ export default function Privacy() {
               and adaptive equipment fields from a Washington resident, we
               show a notice describing this use and ask you to affirmatively
               opt in. We record the timestamp of that consent with your
-              submission. You can withdraw consent at any time by emailing{" "}
+              submission. You can withdraw consent at any time through our{" "}
+              <a href="/privacy-request" className="text-primary underline">
+                Washington privacy request form
+              </a>
+              {" "}or by emailing{" "}
               <a href="mailto:support@adapy.com" className="text-primary underline">
                 support@adapy.com
               </a>
-              ; withdrawal will not affect processing that took place before
+              . Withdrawal will not affect processing that took place before
               we received the request.
             </p>
             <p>
@@ -252,11 +256,17 @@ export default function Privacy() {
               of the third parties with whom we have shared it, (iii)
               withdraw consent, and (iv) request deletion of the consumer
               health data we hold about you. To exercise any of these
-              rights, contact{" "}
+              rights, use our{" "}
+              <a href="/privacy-request" className="text-primary underline">
+                Washington privacy request form
+              </a>
+              {" "}or contact{" "}
               <a href="mailto:support@adapy.com" className="text-primary underline">
                 support@adapy.com
               </a>
-              . We will respond within the time required by MHMDA. If we
+               . We will acknowledge your request within two business days and
+               complete the request and respond within 30 calendar days. We may ask for information
+              needed to verify your identity before fulfilling a request. If we
               decline a request, you may appeal by replying to our
               response, and you may also file a complaint with the
               Washington State Attorney General.

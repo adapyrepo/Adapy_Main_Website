@@ -1,5 +1,7 @@
 import type { Express } from "express";
 import type { Server } from "http";
+import { randomUUID } from "crypto";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
@@ -35,6 +37,25 @@ const LEAD_FORM_UPSTREAMS = {
 const leadProxySchema = z.object({
   formSlug: z.enum(["qualify-form", "dealer", "customquote", "fleet"]),
   payload: z.record(z.unknown()),
+});
+
+const privacyRequestSchema = z.object({
+  requestType: z.enum(["access", "recipients", "withdrawal", "deletion"]),
+  fullName: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(254),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  washingtonResident: z.literal(true),
+});
+
+const privacyRequestLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    success: false,
+    error: "Too many requests from this address. Please try again in an hour.",
+  },
 });
 
 export async function registerRoutes(
@@ -117,6 +138,49 @@ export async function registerRoutes(
       res
         .status(502)
         .json({ success: false, error: "Network request failed. Please try again." });
+    }
+  });
+
+  app.post("/api/privacy-requests", privacyRequestLimiter, async (req, res) => {
+    let parsed;
+    try {
+      parsed = privacyRequestSchema.parse(req.body);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res.status(400).json({
+          success: false,
+          error: "Please provide your name, a valid email address, and confirm Washington residency.",
+        });
+      }
+      throw err;
+    }
+
+    const submittedAt = new Date();
+    const dueAt = new Date(submittedAt);
+    dueAt.setUTCDate(dueAt.getUTCDate() + 30);
+    const publicId = `MHMDA-${randomUUID().replace(/-/g, "").slice(0, 12).toUpperCase()}`;
+
+    try {
+      const request = await storage.createPrivacyRequest({
+        publicId,
+        requestType: parsed.requestType,
+        fullName: parsed.fullName,
+        email: parsed.email.toLowerCase(),
+        phone: parsed.phone || null,
+        dueAt,
+      });
+
+      return res.status(201).json({
+        success: true,
+        requestId: request.publicId,
+        responseBy: request.dueAt.toISOString().slice(0, 10),
+      });
+    } catch (err) {
+      console.error("[privacy-requests] ticket creation failed", err);
+      return res.status(500).json({
+        success: false,
+        error: "We could not create your request. Please email support@adapy.com.",
+      });
     }
   });
 

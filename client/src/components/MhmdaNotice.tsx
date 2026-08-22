@@ -19,15 +19,15 @@ export function MhmdaNotice({ consent, onConsentChange }: MhmdaNoticeProps) {
         (MHMDA). We collect it only to respond to your inquiry, share it
         with the Adapy team and any dealer partner we connect you with,
         and keep it for as long as needed to support that follow-up. You
-        can withdraw consent or ask us to delete this information any
-        time by emailing{" "}
+        can withdraw consent or ask us to delete this information at any
+        time through our{" "}
         <a
-          href="mailto:support@adapy.com"
+          href="/privacy-request"
           className="underline font-semibold"
         >
-          support@adapy.com
+          Washington privacy request form
         </a>
-        .
+        {" "}or by emailing support@adapy.com.
       </p>
       <p className="leading-relaxed mb-4">
         See the{" "}
