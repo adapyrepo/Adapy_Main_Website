@@ -6,7 +6,7 @@ import { insertContactRequestSchema } from "@shared/schema";
 import type { InsertContactRequest } from "@shared/schema";
 import { useContactForm } from "@/hooks/use-forms";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,6 +39,14 @@ export default function Contact() {
           contactType: "customer support",
           areaServed: "US",
           availableLanguage: ["English"],
+        },
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "5724 W. 670 S., Unit 1A",
+          addressLocality: "Hurricane",
+          addressRegion: "UT",
+          postalCode: "84737",
+          addressCountry: "US",
         },
       },
     },
@@ -87,7 +95,19 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-foreground mb-2">Location</h3>
-                  <p className="text-muted-foreground">St. George & Hurricane, Utah</p>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=5724+W.+670+S.+Unit+1A+Hurricane+UT+84737"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-start gap-3 text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    <MapPin className="mt-1 h-5 w-5 shrink-0" aria-hidden="true" />
+                    <address className="not-italic">
+                      5724 W. 670 S., Unit 1A
+                      <br />
+                      Hurricane, UT 84737
+                    </address>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -197,6 +217,31 @@ export default function Contact() {
             </motion.div>
           </div>
         </div>
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-16 overflow-hidden rounded-3xl border border-border bg-card shadow-sm"
+          aria-labelledby="visit-adapy"
+        >
+          <div className="px-6 py-6 sm:px-8">
+            <h2 id="visit-adapy" className="text-2xl font-bold tracking-tight">
+              Visit Adapy
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              5724 W. 670 S., Unit 1A, Hurricane, UT 84737
+            </p>
+          </div>
+          <iframe
+            title="Map showing the Adapy office in Hurricane, Utah"
+            src="https://www.google.com/maps?q=5724+W.+670+S.+Unit+1A+Hurricane+UT+84737&output=embed"
+            className="h-[320px] w-full border-0 sm:h-[420px]"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </motion.section>
       </div>
 
       <Footer />
