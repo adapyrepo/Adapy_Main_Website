@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "@shared/routes";
 import type { InsertContactRequest, InsertSubscriber } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/analytics";
 
 export function useContactForm() {
   const { toast } = useToast();
@@ -24,6 +25,7 @@ export function useContactForm() {
       return api.contact.create.responses[201].parse(await res.json());
     },
     onSuccess: () => {
+      trackEvent("contact_request_sent");
       toast({
         title: "Request Sent",
         description: "We'll be in touch shortly.",
@@ -60,6 +62,7 @@ export function useSubscribe() {
       return api.subscribe.create.responses[201].parse(await res.json());
     },
     onSuccess: () => {
+      trackEvent("newsletter_subscribed");
       toast({
         title: "Subscribed",
         description: "You've been added to our newsletter.",

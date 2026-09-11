@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
 import { computeMomentCount } from "@/lib/mobilityMoments";
+import { trackEvent } from "@/lib/analytics";
 import ecosystemDiagram from "@assets/diagram_adapy_1785260728077.png";
 import heroPhoto from "@assets/hero_1786393794153.png";
 
@@ -101,18 +102,22 @@ export default function Platform() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => setIsRoleSelectorOpen(true)}
+                onClick={() => {
+                  trackEvent("get_started_opened");
+                  setIsRoleSelectorOpen(true);
+                }}
                 className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-[#0071e3] text-white rounded-full font-bold text-base sm:text-lg hover:bg-[#0077ed] transition-all shadow-lg hover:scale-105 active:scale-95"
               >
                 See How Adapy Helps
               </button>
               <button
-                onClick={() =>
+                onClick={() => {
+                  trackEvent("overview_video_requested");
                   setActiveVideo({
                     videoUrl: "https://www.youtube.com/embed/Bngl22MMnc0",
                     title: "Adapy Platform Overview",
-                  })
-                }
+                  });
+                }}
                 className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-black/30 backdrop-blur-md border border-white/40 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/15 transition-all shadow-lg hover:scale-105 active:scale-95"
               >
                 Watch Adapy in Action

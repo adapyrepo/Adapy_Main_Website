@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/use-seo";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Contact() {
   useSEO({
@@ -97,6 +98,7 @@ export default function Contact() {
                   <h3 className="font-bold text-foreground mb-2">Location</h3>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=5724+W.+670+S.+Unit+1A+Hurricane+UT+84737"
+                    onClick={() => trackEvent("directions_opened")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-start gap-3 text-muted-foreground transition-colors hover:text-primary"

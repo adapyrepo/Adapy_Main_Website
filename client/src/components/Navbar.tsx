@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { trackEvent } from "@/lib/analytics";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import {
@@ -187,6 +188,7 @@ export function Navbar({ onGetStarted }: NavbarProps = {}) {
   const menuCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleGetStarted = () => {
+    trackEvent("get_started_opened");
     if (onGetStarted) {
       onGetStarted();
     } else {
