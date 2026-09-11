@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "8sI-2MDhVGwV-HPn2X5N-"
@@ -54,3 +53,17 @@ id = "EzAW3cX906GqW6d7xI8f5"
 uri = "file://attached_assets/generated_images/compassion_mobility_app.png"
 type = "image"
 title = "generated_image"
+
+[[outputs]]
+id = "Pg3sC-k502Y7T0bCkh8zz"
+uri = "file://screenshots/cookie-consent-preview.jpg"
+type = "image"
+title = "Cookie consent preview"
+description = "Desktop preview of the restyled bottom-left cookie notice. This has not been published."
+logical_id = "a8fee0b2-3a45-4387-bb02-2ec2f32edff9"
+content_hash = "sha256:a7260e9afca582478afdad354abda568ea9ce29931a6c727ecff6282824dd388"
+size = 143967
+mtime_ms = 1789140964010
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:45352c14-a248-4aaf-bb87-2bb32dc0aeee/a8fee0b2-3a45-4387-bb02-2ec2f32edff9/1a27d79b-aa1c-4763-868d-c70e622328e7"
+storage_version_token = "1789141028180566"
+content_type = "image/jpeg"
