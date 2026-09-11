@@ -1,16 +1,30 @@
-// Single source of truth for the "Mobility Moments" counter.
-// Starts at 244,264 on Aug 9, 2026 and increases by 15 per day.
-// Deterministic from the clock, so it is monotonic — it only ever goes up.
+import { useQuery } from "@tanstack/react-query";
 
-const BASE_COUNT = 244_264;
-const BASE_DATE = Date.UTC(2026, 7, 9); // August 9, 2026
-const DAILY_INCREMENT = 15;
-const MS_PER_DAY = 86_400_000;
+export async function fetchMobilityTotal(): Promise<number> {
+  const response = await fetch("https://my.adapy.com/moment-of-mobility", {
+    credentials: "omit",
+    cache: "no-store",
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!response.ok) throw new Error("Mobility total could not be loaded.");
+  const data = await response.json();
+  if (!data || !Number.isSafeInteger(data.total) || data.total < 0) {
+    throw new Error("Mobility endpoint returned an invalid total.");
+  }
+  return data.total;
+}
 
-export function computeMomentCount(now: number): number {
-  const elapsed = Math.max(0, now - BASE_DATE);
-  const wholeDays = Math.floor(elapsed / MS_PER_DAY);
-  // Accumulate today's +15 smoothly across the day (still monotonic).
-  const todayFraction = (elapsed % MS_PER_DAY) / MS_PER_DAY;
-  return BASE_COUNT + wholeDays * DAILY_INCREMENT + Math.floor(DAILY_INCREMENT * todayFraction);
+export function useMobilityMoments() {
+  const query = useQuery({
+    queryKey: ["mobility-moments-total"],
+    queryFn: fetchMobilityTotal,
+    staleTime: Infinity,
+    retry: 1,
+  });
+  return {
+    total: query.data,
+    formattedCount: query.data !== undefined
+      ? query.data.toLocaleString("en-US")
+      : query.isError ? "Unavailable" : "Loading…",
+  };
 }

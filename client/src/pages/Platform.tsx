@@ -24,20 +24,14 @@ import {
   X
 } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
-import { computeMomentCount } from "@/lib/mobilityMoments";
+import { useMobilityMoments } from "@/lib/mobilityMoments";
 import { trackEvent } from "@/lib/analytics";
 import ecosystemDiagram from "@assets/diagram_adapy_1785260728077.png";
 import heroPhoto from "@assets/hero_1786393794153.png";
 
 export default function Platform() {
   const [isRoleSelectorOpen, setIsRoleSelectorOpen] = useState(false);
-  const [momentCount, setMomentCount] = useState(() => computeMomentCount(Date.now()));
-
-  // Keep the hero number in lockstep with the header ticker (same shared source).
-  useEffect(() => {
-    const tick = setInterval(() => setMomentCount(computeMomentCount(Date.now())), 60_000);
-    return () => clearInterval(tick);
-  }, []);
+  const { total, formattedCount } = useMobilityMoments();
   const [activeVideo, setActiveVideo] = useState<{
     videoUrl: string;
     title: string;
@@ -91,7 +85,7 @@ export default function Platform() {
             className="max-w-xl lg:max-w-2xl text-left"
           >
             <h1 className="text-[clamp(2rem,9vw,2.5rem)] leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5 sm:mb-6">
-              <span className="block">{momentCount.toLocaleString()}+</span>
+              <span className="block">{formattedCount}{total !== undefined ? "+" : ""}</span>
               <span className="block whitespace-nowrap text-[0.82em] min-[380px]:text-[0.9em] sm:text-[1em]">
                 Moments of Mobility—
               </span>

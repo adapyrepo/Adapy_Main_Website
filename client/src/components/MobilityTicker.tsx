@@ -1,21 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Info, Share2, Mail, Link2, Check, ChevronRight } from "lucide-react";
 import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si";
 
-import { computeMomentCount } from "@/lib/mobilityMoments";
+import { useMobilityMoments } from "@/lib/mobilityMoments";
 
 export function MobilityTicker() {
-  // Pre-built data with a distinct up-down-up movement
-  const [data, setData] = useState([
-    40, 50, 65, 80, 100, 120, 140, 150, // Up
-    140, 120, 100, 85, 70, 60, 55, 65,  // Down
-    80, 100, 125, 150, 180, 210, 240, 260 // Back Up
-  ]);
   const [showTooltip, setShowTooltip] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [momentCount, setMomentCount] = useState(() => computeMomentCount(Date.now()));
+  const { formattedCount } = useMobilityMoments();
 
   const shareUrl = "https://www.adapy.com";
   const shareMessage =
@@ -67,45 +61,6 @@ export function MobilityTicker() {
     }
   };
 
-  // Recompute the live count on a steady cadence
-  useEffect(() => {
-    const tick = setInterval(() => {
-      setMomentCount(computeMomentCount(Date.now()));
-    }, 60_000);
-    return () => clearInterval(tick);
-  }, []);
-
-  const formattedCount = momentCount.toLocaleString();
-
-  // Animate the sparkline data with volatility that preserves the overall shape
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData(prev => {
-        const newData = [...prev.slice(1)];
-        const lastVal = prev[prev.length - 1];
-        
-        // Random variation with a slight upward bias to maintain momentum at the end
-        const variation = (Math.random() - 0.4) * 25; 
-        
-        const nextVal = Math.max(40, Math.min(280, lastVal + variation));
-        return [...newData, nextVal];
-      });
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-  
-  const maxValue = Math.max(...data);
-  const minValue = Math.min(...data);
-  const range = Math.max(1, maxValue - minValue);
-  const width = 80;
-  const height = 20;
-  
-  const points = data.map((val, i) => {
-    const x = (i / (data.length - 1)) * width;
-    const y = height - ((val - minValue) / range) * height;
-    return `${x},${y}`;
-  }).join(" ");
-
   return (
     <div 
       className="relative flex items-center gap-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-1.5 transition-all hover:bg-white/10 cursor-help group"
@@ -122,32 +77,9 @@ export function MobilityTicker() {
         </span>
         <div className="flex items-baseline gap-1.5">
           <span className="text-[16px] font-mono font-bold text-white tracking-tight">{formattedCount}</span>
-          <span className="text-[10px] text-[#0071e3] font-bold">+12.4%</span>
         </div>
       </div>
       
-      <div className="w-20 h-6 relative mt-1">
-        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="overflow-visible">
-          <motion.polyline
-            fill="none"
-            stroke="#0071e3"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            points={points}
-            initial={false}
-            animate={{ points }}
-            transition={{ duration: 1.5, ease: "linear" }}
-          />
-          <defs>
-            <linearGradient id="sparkline-gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0071e3" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#0071e3" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
       <AnimatePresence>
         {showTooltip && (
           <motion.div
