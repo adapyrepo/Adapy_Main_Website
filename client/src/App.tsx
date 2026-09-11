@@ -1,4 +1,5 @@
 import { Switch, Route, useLocation } from "wouter";
+import { AdvertisingConsent } from "@/components/AdvertisingConsent";
 import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -109,6 +110,7 @@ function App() {
         <ScrollToTop />
         <AnalyticsPageView />
         <Router />
+        <AdvertisingConsent />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

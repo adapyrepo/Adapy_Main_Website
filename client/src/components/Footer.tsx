@@ -197,7 +197,15 @@ export function Footer() {
             </a>
             .
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
+            <button
+              type="button"
+              onClick={() => window.adapyAdvertising?.open()}
+              className="min-h-11 text-white/60 hover:text-white text-sm underline underline-offset-4"
+              data-testid="button-cookie-preferences"
+            >
+              Cookie Preferences
+            </button>
             <Link
               href="/privacy"
               className="text-white/40 hover:text-white text-sm transition-colors"

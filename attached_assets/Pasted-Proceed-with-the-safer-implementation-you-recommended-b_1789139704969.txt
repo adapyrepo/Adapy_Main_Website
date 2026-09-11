@@ -1,0 +1,49 @@
+Proceed with the safer implementation you recommended, but do not publish or modify deployment settings.
+
+Requirements:
+
+1. First list every public route on adapy.com and identify which routes you recommend allowing or excluding from Meta Pixel tracking.
+
+2. Install Meta Pixel ID 1437670454873558 only on approved public marketing pages.
+
+3. Do not load the Pixel anywhere on:
+   - my.adapy.com
+   - admin.adapy.com
+   - dev.adapy.com
+   - authenticated areas
+   - dashboards or account pages
+   - dealer or customer portals
+   - inquiry/contact form submission or confirmation pages
+   - privacy request pages
+   - pages containing individual equipment, maintenance, service, disability, medical, funding, or customer information
+
+4. Add an advertising-cookie consent gate. The Meta Pixel must not download, initialize, set cookies, or transmit PageView events until the visitor affirmatively accepts advertising/marketing cookies.
+
+5. Provide clear choices:
+   - Accept all
+   - Reject non-essential cookies
+   - Manage preferences
+
+6. Rejecting or ignoring the banner must leave the Meta Pixel disabled. Do not use preselected advertising consent.
+
+7. Store the visitor’s consent preference so the banner does not appear on every page, but provide a persistent “Cookie Preferences” link in the website footer so consent can be changed or withdrawn.
+
+8. When advertising consent is withdrawn, stop future Pixel events and remove Meta advertising cookies that the website is able to remove.
+
+9. Disable automatic advanced matching and automatic event detection.
+
+10. Send only the standard PageView event. Do not send form values, button text, email addresses, phone numbers, names, equipment details, disability information, health information, custom parameters, or user IDs.
+
+11. Strip query strings and URL fragments from any URL information sent through custom implementation logic.
+
+12. Preserve all existing forms, integrations, navigation, routing, analytics, SEO, authentication, and production logic.
+
+13. After making the changes, show me:
+   - Every file changed
+   - The approved route allowlist
+   - The excluded route list
+   - How consent controls Pixel initialization
+   - How to test accepted and rejected consent
+   - Any privacy-policy wording that should be added
+
+14. Do not deploy or publish. Stop after completing and explaining the code changes so I can review them.
