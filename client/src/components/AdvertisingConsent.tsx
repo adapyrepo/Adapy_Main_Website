@@ -47,7 +47,7 @@ export function AdvertisingConsent() {
     setOpen(false);
   };
   const button = "min-h-11 rounded-xl border border-black/30 px-4 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
-  const noticeButton = "min-h-11 flex-1 rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+  const noticeButton = "min-h-8 rounded-md px-3 py-1 text-[13px] font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
   const showBanner = window.adapyAdvertising?.isPublicHost() &&
     consent === null && ["/", "/platform", "/about", "/privacy", "/terms"].includes(path);
   return <>
@@ -57,14 +57,14 @@ export function AdvertisingConsent() {
         Clear this site's stored data in your browser to remove any earlier advertising permission.
       </p>, document.body)}
     {showBanner && !open && !dismissed && createPortal(
-      <section aria-label="Advertising cookie choices" className="fixed bottom-4 left-4 z-[220] w-[calc(100%-2rem)] max-w-[360px] max-h-[70dvh] overflow-y-auto rounded-xl border border-white/15 bg-[#202225]/95 p-4 text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+      <section aria-label="Advertising cookie choices" className="fixed bottom-4 right-4 z-[220] w-[calc(100%-2rem)] max-w-[360px] max-h-[70dvh] overflow-y-auto rounded-xl border border-white/15 bg-[#202225]/95 p-4 text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
         <button type="button" aria-label="Close privacy notice" onClick={() => setDismissed(true)} className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md text-lg text-white/75 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">×</button>
         <p className="pr-7 text-[13px] leading-5">
           We use cookies to measure website visits and improve our advertising. You can accept or decline optional advertising cookies.
         </p>
         <div className="mt-3 flex gap-2">
-          <button className={noticeButton} onClick={() => save(true)}>Accept</button>
-          <button className={noticeButton} onClick={() => save(false)}>Decline</button>
+          <button className={`${noticeButton} bg-[#0069d9] hover:bg-[#005bbd]`} onClick={() => save(true)}>I agree</button>
+          <button className={`${noticeButton} hover:bg-white/10`} onClick={() => save(false)}>Decline</button>
         </div>
       </section>, document.body)}
     <Dialog open={open} onOpenChange={setOpen}>
