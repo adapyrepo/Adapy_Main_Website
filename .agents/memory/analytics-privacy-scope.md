@@ -9,8 +9,8 @@ Prefer fixed marketing-action events without custom payloads. Treat expansion in
 
 **How to apply:** Review the sensitivity of the action and page before adding events. This restriction concerns custom instrumentation; it does not disable the hosting provider's automatic pageviews.
 
-Meta advertising uses an opt-out preference model on its approved public pages. A saved decline and Global Privacy Control both override the default enabled state; permission to implement is not permission to publish.
+Meta advertising uses an opt-out model. The owner explicitly requested that only a saved opt-out or Global Privacy Control block initialization; permission to implement is not permission to publish.
 
 **Why:** The owner explicitly changed the prior opt-in decision. A loaded vendor SDK can persist across SPA navigation, so withdrawal still needs document isolation and cookie cleanup.
 
-**How to apply:** Preserve the narrow page allowlist and default-deny host/URL checks. Never load when GPC is enabled or a decline is saved. Do not relax exclusions for campaign parameters, inquiry pages, or sensitive content merely to increase event counts.
+**How to apply:** Do not reintroduce the superseded Meta route/referrer allowlist or admin-session check without a new user decision. Never load when GPC is enabled or a decline is saved. Keep these Meta requirements separate from the custom marketing-action analytics policy above.

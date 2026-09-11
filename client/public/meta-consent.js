@@ -4,9 +4,7 @@
   if (window.adapyAdvertising) return;
   const KEY = "adapy-advertising-consent-v1";
   const PIXEL = "1437670454873558";
-  const META_SETTINGS_VERIFIED = true;
   const HOSTS = ["adapy.com", "www.adapy.com"];
-  const PATHS = ["/", "/platform", "/about", "/privacy", "/terms"];
   let loaded = false;
   let checking = false;
   let memoryPreference = null;
@@ -25,22 +23,6 @@
     } catch {
       return memoryPreference;
     }
-  }
-
-  function cleanAllowedUrl(value) {
-    try {
-      const url = new URL(value);
-      return url.protocol === "https:" && HOSTS.includes(url.hostname) &&
-        url.port === "" && PATHS.includes(url.pathname) &&
-        !url.search && !url.hash && !url.username && !url.password;
-    } catch {
-      return false;
-    }
-  }
-
-  function eligible() {
-    return cleanAllowedUrl(location.href) &&
-      (!document.referrer || cleanAllowedUrl(document.referrer));
   }
 
   function gpcEnabled() {
@@ -67,15 +49,16 @@
     }
   }
 
-  async function initialize() {
-    if (!META_SETTINGS_VERIFIED || loaded || checking || read() === false || gpcEnabled() || !eligible()) return;
+  function initialize() {
+    if (read() === false || gpcEnabled()) return;
+    if (loaded) {
+      // Continue can re-enable an already downloaded SDK after withdrawal.
+      if (window.fbq) window.fbq("consent", "grant");
+      return;
+    }
+    if (checking) return;
     checking = true;
-    const initialUrl = location.href;
     try {
-      // Fail closed: an admin session, server failure, or unknown response blocks Meta.
-      const response = await fetch("/api/admin/me", { credentials: "same-origin", cache: "no-store" });
-       if (response.status !== 401 || read() === false || gpcEnabled() || !eligible() ||
-          initialUrl !== location.href || loaded || window.fbq) return;
       loaded = true;
       // Official Meta base loader, blocked by an opt-out preference or GPC.
       !function(f,b,e,v,n,t,s) {
@@ -92,7 +75,7 @@
       window.fbq("init", PIXEL);
       window.fbq("track", "PageView");
     } catch {
-      // No retries or fallback that could bypass the authentication/consent checks.
+      // Do not bypass the preference checks if browser script creation fails.
     } finally {
       checking = false;
     }

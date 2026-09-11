@@ -7,7 +7,6 @@ const key = "adapy-advertising-consent-v1";
 function setup(options: {
   url?: string; referrer?: string; consent?: boolean; status?: number;
   fetch?: () => Promise<{ status: number }>;
-  releaseLocked?: boolean;
   gpc?: boolean;
 } = {}) {
   const url = new URL(options.url ?? "https://adapy.com/");
@@ -38,9 +37,7 @@ function setup(options: {
   const originalPush = history.pushState;
   const fetch = vi.fn(options.fetch ?? (async () => ({ status: options.status ?? 401 })));
   const session = new Map<string, string>();
-  runInNewContext(options.releaseLocked ? source.replace(
-    "const META_SETTINGS_VERIFIED = true;", "const META_SETTINGS_VERIFIED = false;",
-  ) : source, {
+  runInNewContext(source, {
     window, document, location, history, fetch, URL, Event,
     navigator: { globalPrivacyControl: options.gpc === true },
     localStorage: { getItem: (name: string) => stored.get(name) ?? null, setItem: (name: string, value: string) => stored.set(name, value), removeItem: (name: string) => stored.delete(name) },
@@ -51,11 +48,11 @@ function setup(options: {
 }
 
 describe("Meta advertising consent", () => {
-  it("ships release-locked pending the owner's verification of Meta account settings", async () => {
-    const app = setup({ consent: true, releaseLocked: true });
+  it("loads immediately without an authentication request", async () => {
+    const app = setup();
     await app.flush();
     expect(app.fetch).not.toHaveBeenCalled();
-    expect(app.scripts).toHaveLength(0);
+    expect(app.scripts).toHaveLength(1);
   });
   it("loads by default when no preference has been saved", async () => {
     const app = setup();
@@ -74,7 +71,7 @@ describe("Meta advertising consent", () => {
     expect(app.fetch).not.toHaveBeenCalled();
     expect(app.scripts).toHaveLength(0);
   });
-  it.each(["/", "/platform", "/about", "/privacy", "/terms"])("allows only approved page %s", async path => {
+  it.each(["/", "/platform", "/about", "/privacy", "/terms"])("initializes once on page %s", async path => {
     const app = setup({ url: `https://adapy.com${path}`, consent: true });
     await app.flush();
     expect(app.scripts).toHaveLength(1);
@@ -99,28 +96,29 @@ describe("Meta advertising consent", () => {
     "/smart_mobility", "/technology-overview", "/safety-benefits", "/see-it",
     "/request-info", "/privacy-request", "/account", "/dashboard", "/unknown",
     "/?email=test", "/#private", "/about?fbclid=test", "/about/",
-  ])("never loads on excluded URL %s", async path => {
+  ])("does not block initialization based on URL %s", async path => {
     const app = setup({ url: `https://adapy.com${path}`, consent: true });
     await app.flush();
-    expect(app.scripts).toHaveLength(0);
+    expect(app.scripts).toHaveLength(1);
     expect(app.fetch).not.toHaveBeenCalled();
   });
-  it.each(["my.adapy.com", "admin.adapy.com", "dev.adapy.com", "localhost", "adapy.com.evil.test"])("blocks host %s", async host => {
+  it.each(["www.adapy.com", "localhost"])("does not add hostname-based consent restrictions for %s", async host => {
     const app = setup({ url: `https://${host}/`, consent: true });
     await app.flush();
-    expect(app.scripts).toHaveLength(0);
+    expect(app.scripts).toHaveLength(1);
   });
-  it.each(["https://adapy.com/contact", "https://adapy.com/?email=test", "https://adapy.com/#private", "https://example.com/private"])("blocks unsafe referrer %s", async referrer => {
+  it.each(["https://adapy.com/contact", "https://adapy.com/?email=test", "https://adapy.com/#private", "https://example.com/private"])("does not block on referrer %s", async referrer => {
     const app = setup({ consent: true, referrer });
     await app.flush();
-    expect(app.scripts).toHaveLength(0);
+    expect(app.scripts).toHaveLength(1);
   });
-  it.each([200, 403, 500])("blocks authenticated or unknown status %s", async status => {
+  it.each([200, 403, 500])("does not depend on admin endpoint status %s", async status => {
     const app = setup({ consent: true, status });
     await app.flush();
-    expect(app.scripts).toHaveLength(0);
+    expect(app.scripts).toHaveLength(1);
+    expect(app.fetch).not.toHaveBeenCalled();
   });
-  it("requires clean referrer and accepts www hostname", async () => {
+  it("accepts www hostname", async () => {
     const app = setup({ url: "https://www.adapy.com/about", referrer: "https://adapy.com/", consent: true });
     await app.flush();
     expect(app.scripts).toHaveLength(1);
@@ -144,18 +142,33 @@ describe("Meta advertising consent", () => {
     expect(app.location.assign).toHaveBeenCalledWith("https://adapy.com/contact?private=value");
     expect(app.originalPush).not.toHaveBeenCalled();
   });
-  it("does not initialize if consent is withdrawn during the auth check", async () => {
-    let resolve!: (value: { status: number }) => void;
-    const app = setup({ consent: true, fetch: () => new Promise(r => { resolve = r; }) });
-    app.window.adapyAdvertising.save(false);
-    resolve({ status: 401 });
-    await app.flush();
+  it("Continue enables a previously opted-out visitor", async () => {
+    const app = setup({ consent: false });
     expect(app.scripts).toHaveLength(0);
+    app.window.adapyAdvertising.save(true);
+    await app.flush();
+    expect(app.scripts).toHaveLength(1);
+    expect(app.window.adapyAdvertising.read()).toBe(true);
   });
-  it("fails closed on network errors", async () => {
+  it("does not depend on an admin network request succeeding", async () => {
     const app = setup({ consent: true, fetch: async () => { throw new Error("offline"); } });
     await app.flush();
+    expect(app.scripts).toHaveLength(1);
+    expect(app.fetch).not.toHaveBeenCalled();
+  });
+  it("Continue cannot override GPC, including a stored grant", () => {
+    const app = setup({ consent: true, gpc: true });
+    app.window.adapyAdvertising.save(true);
     expect(app.scripts).toHaveLength(0);
+    expect(app.window.fbq).toBeUndefined();
+  });
+  it("Continue re-grants consent after withdrawal without duplicate initialization", () => {
+    const app = setup();
+    app.window.adapyAdvertising.save(false);
+    app.window.adapyAdvertising.save(true);
+    expect(Array.from(app.window.fbq.queue.at(-1))).toEqual(["consent", "grant"]);
+    expect(app.scripts).toHaveLength(1);
+    expect(app.window.fbq.queue.filter((args: IArguments) => args[0] === "init")).toHaveLength(1);
   });
   it("withdraws when another tab saves an opt-out", async () => {
     const app = setup({ consent: true });
