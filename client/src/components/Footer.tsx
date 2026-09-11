@@ -222,7 +222,7 @@ export function Footer() {
             </Link>
             <span className="text-white/20">|</span>
             <a
-              href="https://www.facebook.com/adapyinc/"
+              href="https://www.facebook.com/adapy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
