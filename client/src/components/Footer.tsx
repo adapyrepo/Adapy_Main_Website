@@ -202,9 +202,9 @@ export function Footer() {
               type="button"
               onClick={() => window.adapyAdvertising?.open()}
               className="min-h-11 text-white/60 hover:text-white text-sm underline underline-offset-4"
-              data-testid="button-cookie-preferences"
+              data-testid="button-privacy-choices"
             >
-              Cookie Preferences
+              Privacy Choices
             </button>
             <Link
               href="/privacy"

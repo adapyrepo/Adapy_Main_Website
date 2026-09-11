@@ -12,6 +12,7 @@ declare global {
       save(advertising: boolean): void;
       open(): void;
       isPublicHost(): boolean;
+      isGpcEnabled(): boolean;
     };
   }
 }
@@ -20,12 +21,15 @@ export function AdvertisingConsent() {
   const [path] = useLocation();
   const [consent, setConsent] = useState<boolean | null>(() => window.adapyAdvertising?.read() ?? null);
   const [open, setOpen] = useState(false);
-  const [advertising, setAdvertising] = useState(false);
+  const [advertising, setAdvertising] = useState(() =>
+    window.adapyAdvertising?.read() !== false && !window.adapyAdvertising?.isGpcEnabled()
+  );
   const [storageError, setStorageError] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   useEffect(() => {
     const update = () => setConsent(window.adapyAdvertising?.read() ?? null);
     const manage = () => {
-      setAdvertising(window.adapyAdvertising?.read() === true);
+      setAdvertising(window.adapyAdvertising?.read() !== false && !window.adapyAdvertising?.isGpcEnabled());
       setOpen(true);
     };
     window.addEventListener("adapy-advertising-change", update);
@@ -52,23 +56,23 @@ export function AdvertisingConsent() {
         Advertising is disabled for this page, but your browser could not save the change.
         Clear this site's stored data in your browser to remove any earlier advertising permission.
       </p>, document.body)}
-    {showBanner && !open && createPortal(
+    {showBanner && !open && !dismissed && createPortal(
       <section aria-label="Advertising cookie choices" className="fixed bottom-4 left-4 z-[220] w-[calc(100%-2rem)] max-w-[360px] max-h-[70dvh] overflow-y-auto rounded-xl border border-white/15 bg-[#202225]/95 p-4 text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-        <p className="text-[13px] leading-5">
+        <button type="button" aria-label="Close privacy notice" onClick={() => setDismissed(true)} className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md text-lg text-white/75 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">×</button>
+        <p className="pr-7 text-[13px] leading-5">
           We use cookies to measure website visits and improve our advertising. You can accept or decline optional advertising cookies.
         </p>
         <div className="mt-3 flex gap-2">
           <button className={noticeButton} onClick={() => save(true)}>Accept</button>
           <button className={noticeButton} onClick={() => save(false)}>Decline</button>
         </div>
-        <button className="mt-2 min-h-6 rounded-sm text-xs text-white/80 underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" onClick={() => window.adapyAdvertising?.open()}>Cookie settings</button>
       </section>, document.body)}
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="z-[240] max-h-[85dvh] w-[calc(100%-2rem)] overflow-y-auto rounded-2xl">
         <DialogHeader>
           <DialogTitle>Cookie Preferences</DialogTitle>
           <DialogDescription>
-            Control Meta advertising on this site. Existing analytics are not changed by these settings.
+            Control Meta advertising on this site. Global Privacy Control always disables Meta advertising.
             Closing this window does not save changes.
           </DialogDescription>
         </DialogHeader>

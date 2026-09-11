@@ -1,12 +1,10 @@
-/* First-party consent controller. No Meta resources are requested on import. */
+/* First-party Meta preference controller. */
 (function () {
   "use strict";
   if (window.adapyAdvertising) return;
   const KEY = "adapy-advertising-consent-v1";
   const PIXEL = "1437670454873558";
-  // Release lock: only change after the owner verifies Automatic Advanced Matching
-  // and automatic events are OFF in Meta Events Manager and approves activation.
-  const META_SETTINGS_VERIFIED = false;
+  const META_SETTINGS_VERIFIED = true;
   const HOSTS = ["adapy.com", "www.adapy.com"];
   const PATHS = ["/", "/platform", "/about", "/privacy", "/terms"];
   let loaded = false;
@@ -45,6 +43,10 @@
       (!document.referrer || cleanAllowedUrl(document.referrer));
   }
 
+  function gpcEnabled() {
+    return navigator.globalPrivacyControl === true;
+  }
+
   function clearCookies() {
     // Only first-party cookies accessible to this origin can be removed.
     const names = ["_fbp", "_fbc"];
@@ -66,16 +68,16 @@
   }
 
   async function initialize() {
-    if (!META_SETTINGS_VERIFIED || loaded || checking || read() !== true || !eligible()) return;
+    if (!META_SETTINGS_VERIFIED || loaded || checking || read() === false || gpcEnabled() || !eligible()) return;
     checking = true;
     const initialUrl = location.href;
     try {
       // Fail closed: an admin session, server failure, or unknown response blocks Meta.
       const response = await fetch("/api/admin/me", { credentials: "same-origin", cache: "no-store" });
-      if (response.status !== 401 || read() !== true || !eligible() ||
+       if (response.status !== 401 || read() === false || gpcEnabled() || !eligible() ||
           initialUrl !== location.href || loaded || window.fbq) return;
       loaded = true;
-      // Official Meta base loader, deferred until affirmative advertising consent.
+      // Official Meta base loader, blocked by an opt-out preference or GPC.
       !function(f,b,e,v,n,t,s) {
         if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -133,6 +135,7 @@
     isPublicHost: function () {
       return location.protocol === "https:" && HOSTS.includes(location.hostname);
     },
+    isGpcEnabled: gpcEnabled,
   };
 
   // A downloaded third-party SDK cannot reliably be unloaded by removing its tag.
@@ -173,12 +176,12 @@
     if (event.key !== KEY && event.key !== null) return;
     memoryPreference = null;
     window.dispatchEvent(new Event("adapy-advertising-change"));
-    if (read() !== true) {
+    if (read() === false || gpcEnabled()) {
       revoke();
       clearCookies();
       if (loaded) location.reload();
     } else void initialize();
   });
-  if (read() === false) clearCookies();
+  if (read() === false || gpcEnabled()) clearCookies();
   void initialize();
 })();

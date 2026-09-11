@@ -8,6 +8,7 @@ function setup(options: {
   url?: string; referrer?: string; consent?: boolean; status?: number;
   fetch?: () => Promise<{ status: number }>;
   releaseLocked?: boolean;
+  gpc?: boolean;
 } = {}) {
   const url = new URL(options.url ?? "https://adapy.com/");
   const stored = new Map<string, string>();
@@ -37,10 +38,11 @@ function setup(options: {
   const originalPush = history.pushState;
   const fetch = vi.fn(options.fetch ?? (async () => ({ status: options.status ?? 401 })));
   const session = new Map<string, string>();
-  runInNewContext(options.releaseLocked ? source : source.replace(
-    "const META_SETTINGS_VERIFIED = false;", "const META_SETTINGS_VERIFIED = true;",
-  ), {
+  runInNewContext(options.releaseLocked ? source.replace(
+    "const META_SETTINGS_VERIFIED = true;", "const META_SETTINGS_VERIFIED = false;",
+  ) : source, {
     window, document, location, history, fetch, URL, Event,
+    navigator: { globalPrivacyControl: options.gpc === true },
     localStorage: { getItem: (name: string) => stored.get(name) ?? null, setItem: (name: string, value: string) => stored.set(name, value), removeItem: (name: string) => stored.delete(name) },
     sessionStorage: { getItem: (name: string) => session.get(name) ?? null, setItem: (name: string, value: string) => session.set(name, value), removeItem: (name: string) => session.delete(name) },
   });
@@ -55,12 +57,22 @@ describe("Meta advertising consent", () => {
     expect(app.fetch).not.toHaveBeenCalled();
     expect(app.scripts).toHaveLength(0);
   });
-  it.each([undefined, false])("never downloads or initializes before affirmative consent (%s)", async consent => {
-    const app = setup({ consent });
+  it("loads by default when no preference has been saved", async () => {
+    const app = setup();
+    await app.flush();
+    expect(app.scripts).toHaveLength(1);
+  });
+  it("keeps a previously declined visitor opted out", async () => {
+    const app = setup({ consent: false });
     await app.flush();
     expect(app.fetch).not.toHaveBeenCalled();
     expect(app.scripts).toHaveLength(0);
-    expect(app.window.fbq).toBeUndefined();
+  });
+  it("honors Global Privacy Control", async () => {
+    const app = setup({ gpc: true });
+    await app.flush();
+    expect(app.fetch).not.toHaveBeenCalled();
+    expect(app.scripts).toHaveLength(0);
   });
   it.each(["/", "/platform", "/about", "/privacy", "/terms"])("allows only approved page %s", async path => {
     const app = setup({ url: `https://adapy.com${path}`, consent: true });
@@ -113,8 +125,8 @@ describe("Meta advertising consent", () => {
     await app.flush();
     expect(app.scripts).toHaveLength(1);
   });
-  it("initializes after explicit accept and withdraws on reject", async () => {
-    const app = setup();
+  it("accepts explicitly and withdraws on decline", async () => {
+    const app = setup({ consent: true });
     app.window.adapyAdvertising.save(true);
     await app.flush();
     expect(app.scripts).toHaveLength(1);
@@ -145,11 +157,11 @@ describe("Meta advertising consent", () => {
     await app.flush();
     expect(app.scripts).toHaveLength(0);
   });
-  it("withdraws across tabs and clears stored consent", async () => {
+  it("withdraws when another tab saves an opt-out", async () => {
     const app = setup({ consent: true });
     await app.flush();
-    app.stored.clear();
-    app.window.dispatchEvent({ type: "storage", key: null });
+    app.stored.set(key, JSON.stringify({ version: 1, advertising: false }));
+    app.window.dispatchEvent({ type: "storage", key });
     expect(app.location.reload).toHaveBeenCalledOnce();
     expect(app.cookies.length).toBeGreaterThan(0);
   });
