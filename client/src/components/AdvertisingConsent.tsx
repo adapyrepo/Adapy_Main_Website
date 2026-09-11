@@ -60,11 +60,11 @@ export function AdvertisingConsent() {
       <section aria-label="Advertising cookie choices" className="fixed bottom-4 right-4 z-[220] w-[calc(100%-2rem)] max-w-[360px] max-h-[70dvh] overflow-y-auto rounded-xl border border-white/15 bg-[#202225]/95 p-4 text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
         <button type="button" aria-label="Close privacy notice" onClick={() => setDismissed(true)} className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md text-lg text-white/75 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">×</button>
         <p className="pr-7 text-[13px] leading-5">
-          We use cookies to measure website visits and improve our advertising. You can accept or decline optional advertising cookies.
+          We use cookies to understand website activity, improve performance, and make our outreach more relevant. Learn more in our <a href="/privacy" className="underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Privacy Policy</a>.
         </p>
         <div className="mt-3 flex gap-2">
-          <button className={`${noticeButton} bg-[#0069d9] hover:bg-[#005bbd]`} onClick={() => save(true)}>I agree</button>
-          <button className={`${noticeButton} hover:bg-white/10`} onClick={() => save(false)}>Decline</button>
+          <button className={`${noticeButton} bg-[#0069d9] hover:bg-[#005bbd]`} onClick={() => save(true)}>Continue</button>
+          <button className={`${noticeButton} hover:bg-white/10`} onClick={() => save(false)}>Opt out</button>
         </div>
       </section>, document.body)}
     <Dialog open={open} onOpenChange={setOpen}>
