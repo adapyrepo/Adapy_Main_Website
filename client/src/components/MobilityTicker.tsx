@@ -79,7 +79,20 @@ export function MobilityTicker() {
           <span className="text-[16px] font-mono font-bold text-white tracking-tight">{formattedCount}</span>
         </div>
       </div>
-      
+
+      <div className="mt-1 h-6 w-20 shrink-0" title="Illustrative sparkline — not historical activity data">
+        <svg width="80" height="24" viewBox="0 0 80 24" aria-hidden="true" focusable="false">
+          <polyline
+            points="1,20 9,16 17,10 25,13 33,17 41,18 49,14 57,9 65,3 73,2 79,4"
+            fill="none"
+            stroke="#0071e3"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+
       <AnimatePresence>
         {showTooltip && (
           <motion.div
