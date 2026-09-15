@@ -12,7 +12,7 @@ interface RoleSelectorModalProps {
 const roles = [
   { href: "/user-funnel", label: "Personal Use", Icon: User },
   { href: "/dealer-portal", label: "Dealer", Icon: Store },
-  { href: "/contact", label: "CDRS / OT", Icon: Brain },
+  { href: "/contact", label: "Mobility and Rehabilitation Professionals", Icon: Brain },
   { href: "/solutions/nemt", label: "NEMT Fleet", Icon: Ambulance },
   { href: "/contact", label: "Manufacturer", Icon: Cog },
 ];

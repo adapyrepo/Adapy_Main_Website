@@ -696,7 +696,7 @@ export default function Home() {
                         className="w-full min-h-[60px] py-4 px-6 border-2 border-black text-black rounded-2xl font-medium hover:bg-black hover:text-white transition-all text-base leading-relaxed flex items-center justify-center gap-3"
                       >
                         <Brain className="w-5 h-5 flex-shrink-0" />
-                        CDRS / OT
+                        Mobility and Rehabilitation Professionals
                       </button>
                     </Link>
                     <Link href="/solutions/nemt">
