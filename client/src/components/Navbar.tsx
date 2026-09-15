@@ -72,7 +72,7 @@ const navItems: NavItem[] = [
         icon: <Bus className="w-5 h-5" />,
       },
       {
-        title: "CDRS & Clinicians",
+        title: "Mobility and Rehabilitation Professionals",
         description: "Visibility into how your clients actually use their equipment.",
         href: "/software/cdrs",
         icon: <Stethoscope className="w-5 h-5" />,
