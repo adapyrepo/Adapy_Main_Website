@@ -81,3 +81,17 @@ mtime_ms = 1789141679155
 storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:45352c14-a248-4aaf-bb87-2bb32dc0aeee/375e9947-4a02-4e59-bcb3-bd87e327dcaf/cd1878da-4171-40ea-b348-d5dc41c09e4a"
 storage_version_token = "1789141701063641"
 content_type = "image/jpeg"
+
+[[outputs]]
+id = "HGGgOrznGqGffgyWPD7NB"
+uri = "file://client/public/adapy-wheelchair-512.png"
+type = "image"
+title = "Adapy wheelchair favicon"
+description = "512 × 512 PNG with a white wheelchair symbol on Adapy blue."
+logical_id = "2bcfc485-531a-4528-903e-4c226622cdf5"
+content_hash = "sha256:f27f8a5f6c93c5350426f5701109bd163c842be6c73874c4cae91738065ff4c6"
+size = 182592
+mtime_ms = 1790120123276
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:45352c14-a248-4aaf-bb87-2bb32dc0aeee/2bcfc485-531a-4528-903e-4c226622cdf5/4a859426-61ca-4c6c-9940-1234cdaf6c63"
+storage_version_token = "1790120162657730"
+content_type = "image/png"
