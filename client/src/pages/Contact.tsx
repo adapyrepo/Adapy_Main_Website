@@ -95,6 +95,10 @@ export default function Contact() {
                   <a href="mailto:support@adapy.com" className="text-muted-foreground hover:text-primary transition-colors">support@adapy.com</a>
                 </div>
                 <div>
+                  <h3 className="font-bold text-foreground mb-2">Phone</h3>
+                  <a href="tel:+18018961846" className="text-muted-foreground hover:text-primary transition-colors">(801) 896-1846</a>
+                </div>
+                <div>
                   <h3 className="font-bold text-foreground mb-2">Location</h3>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=5724+W.+670+S.+Unit+1A+Hurricane+UT+84737"
